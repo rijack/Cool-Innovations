@@ -1,9 +1,11 @@
 CoolInnovations::Application.routes.draw do
-  resources :users
 
-  get "home/index"
+  resources :users
+  resources :sessions
 
   root to: "home#index"
+  get 'login' => "sessions#new"
+  get 'logout' => "sessions#destroy"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
