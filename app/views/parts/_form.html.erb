@@ -6,7 +6,8 @@
     <%= f.input :drawing_number %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :part_processes, :as => :select %>
+    <%= f.association :part_processes, :as => :select,
+      :input_html => {:"data-placeholder" => "Choose processes"} %>
 
     <div id="required_hardwares">
       <%= f.simple_fields_for :required_hardwares do |required_hardware| %>

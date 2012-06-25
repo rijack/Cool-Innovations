@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :orders
+
   resources :clients
 
   resources :parts
