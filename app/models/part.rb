@@ -6,4 +6,5 @@ class Part < ActiveRecord::Base
   validates_uniqueness_of :drawing_number, :case_sensitive => false
 
   has_many :hardwares, :through => :required_hardwares
+  has_many :part_processes, :through => :required_hardwares
 end
