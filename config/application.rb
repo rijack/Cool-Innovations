@@ -71,5 +71,8 @@ module CoolInnovations
         :view_specs    => false,
         :routing_specs => false
     end
+
+    # for heroku
+    config.assets.initialize_on_precompile = false
   end
 end
