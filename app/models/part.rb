@@ -1,5 +1,5 @@
 class Part < ActiveRecord::Base
-  attr_accessible :description, :drawing_number, :name, :part_number
+  attr_accessible :description, :drawing_number, :name, :part_number, :part_process_ids, :required_hardwares_attributes
 
   validates_presence_of :part_number, :drawing_number
   validates_uniqueness_of :part_number, :case_sensitive => false

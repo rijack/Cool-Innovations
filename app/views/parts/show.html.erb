@@ -20,6 +20,24 @@
   <%= @part.drawing_number %>
 </p>
 
+<p>
+  <b>Required Processes:</b>
+  <ul>
+    <% @part.required_processes.each do |required_process| %>
+      <li><%= required_process.part_process.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <b>Required Hardware:</b>
+  <ul>
+    <% @part.required_hardwares.each do |required_hardware| %>
+      <li><%= required_hardware.hardware.name %>: <%= required_hardware.quantity %></li>
+    <% end %>
+  </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_part_path(@part) %> |
 <%= link_to 'Back', parts_path %>
