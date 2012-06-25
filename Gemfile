@@ -5,7 +5,6 @@ gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
 gem 'seed-fu'
 
 
@@ -32,6 +31,7 @@ gem 'cocoon'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
+  gem 'mysql2'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
@@ -51,3 +51,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+group :production do 
+  gem 'pg'
+end
