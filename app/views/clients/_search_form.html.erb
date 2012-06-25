@@ -1,0 +1,12 @@
+<%= simple_form_for :client, :method => :get do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :client,
+                :collection => Client.all,
+                :label => false,
+                :input_html => {:"data-placeholder" => "Choose a client"} %>
+    <%= link_to 'Edit',
+                '#',
+                :class => 'btn btn-primary neg-margin',
+                :id => 'edit-client'
+    %>
+<% end %>
