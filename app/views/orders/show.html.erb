@@ -10,6 +10,14 @@
   <%= @order.client_id %>
 </p>
 
+<p>Parts:</p>
+<% @order.parts.each do |part| %>
+<p>
+  <b>Part #:</b>
+  <%= part.part_number %>
+</p>
+<% end %>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
