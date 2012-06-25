@@ -4,6 +4,6 @@ class RequiredProcess < ActiveRecord::Base
   validates_presence_of :part_id, :part_process_id
   validates_uniqueness_of :part_process_id, :scope => :part_id
 
-  has_many :required_processes
-  has_many :parts, :through => :required_processes
+  belongs_to :hardware
+  belongs_to :part
 end

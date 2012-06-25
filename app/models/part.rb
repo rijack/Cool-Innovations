@@ -7,6 +7,6 @@ class Part < ActiveRecord::Base
 
   has_many :required_hardwares
   has_many :required_processes
-  has_many :hardwares, :through => :required_hardwares
+  has_many :hardwares, :through => :required_hardwares, :class_name => "Hardware"
   has_many :part_processes, :through => :required_processes
 end
