@@ -12,4 +12,8 @@ class Part < ActiveRecord::Base
 
   accepts_nested_attributes_for :required_hardwares
   accepts_nested_attributes_for :required_processes
+
+  def name
+    part_number
+  end
 end

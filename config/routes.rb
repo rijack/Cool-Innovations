@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :order_lines
+
   resources :orders
 
   resources :clients

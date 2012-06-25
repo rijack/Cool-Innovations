@@ -5,6 +5,15 @@
     <%= f.input :purchase_order %>
     <%= f.association :client,
       :input_html => {:"data-placeholder" => "Choose a client"} %>
+
+    <div id="order_lines">
+      <%= f.simple_fields_for :order_lines do |order_line| %>
+        <%= render 'order_line_fields', :f => order_line %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn' %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">
