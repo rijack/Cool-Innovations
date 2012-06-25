@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :hardwares
+
   resources :users
   resources :sessions
 

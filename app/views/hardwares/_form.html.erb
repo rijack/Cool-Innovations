@@ -1,0 +1,13 @@
+<%= simple_form_for(@hardware, :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', hardwares_path, :class => 'btn' %>
+  </div>
+<% end %>
