@@ -21,11 +21,13 @@ group :assets do
 
   gem 'bootstrap-sass', '2.0.0'
   gem 'font-awesome-sass-rails'
+  gem 'chosen-rails'
 end
 
 gem 'jquery-rails'
 
 gem 'simple_form'
+gem 'cocoon'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do

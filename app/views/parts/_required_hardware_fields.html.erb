@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <%= f.association :hardware, :collection => Hardware.all, :prompt => 'Choose existing hardware' %>
+  <%= f.input :quantity %>
+  <%= link_to_remove_association "Remove Hardware", f, :class => "btn" %>
+</div>
+

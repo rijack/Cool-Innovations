@@ -3,4 +3,7 @@ class PartProcess < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
+
+  has_many :required_processes
+  has_many :parts, :through => :required_processes
 end

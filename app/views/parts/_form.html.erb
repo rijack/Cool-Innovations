@@ -6,7 +6,16 @@
     <%= f.input :drawing_number %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :hardwares %>
+    <%= f.association :part_processes, :as => :select %>
+
+    <div id="required_hardwares">
+      <%= f.simple_fields_for :required_hardwares do |required_hardware| %>
+        <%= render 'required_hardware_fields', :f => required_hardware %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Attach Hardware', f, :required_hardwares, :class => 'btn' %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">
