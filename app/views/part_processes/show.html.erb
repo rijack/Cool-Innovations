@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @part_process.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @part_process.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_part_process_path(@part_process) %> |
+<%= link_to 'Back', part_processes_path %>

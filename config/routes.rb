@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :part_processes
+
   resources :hardwares
 
   resources :users
