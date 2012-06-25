@@ -14,6 +14,6 @@ $ ->
   $('#order_lines').find("select").chosen()
   $('#order_lines').bind 'insertion-callback', ->
     $('#order_lines').find("select").chosen()
+    datePicker $(".jquery-ui-date")
 
   datePicker $(".jquery-ui-date")
-
