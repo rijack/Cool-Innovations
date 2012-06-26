@@ -2,27 +2,30 @@
 
 <%= render 'search_form' %>
 
+<% if @clients.length > 0 %>
 
-<table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Actions</th>
-  </tr>
 
-<% @clients.each do |client| %>
-  <tr>
-    <td><%= client.name %></td>
-    <td>
-      <%= link_to 'Show', client, :class => 'btn btn-mini' %>
-      <%= link_to 'Edit', edit_client_path(client), :class => 'btn btn-mini' %>
-      <%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-    </td>
-  </tr>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Client Name</th>
+        <th class="actions">&nbsp;</th>
+      </tr>
+
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= link_to client.name, edit_client_path(client)%></td>
+        <td class="actions">
+          <%= link_to 'Edit', edit_client_path(client), :class => 'btn btn-mini' %>
+          <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+
+    <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
+<% else %>
+    <p>There are no results</p>
 <% end %>
-</table>
 
-<%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
 
-<br />
-
-<%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>

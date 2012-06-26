@@ -13,3 +13,62 @@
  *= require custom-theme/jquery-ui-1.8.16.custom
  *= require_tree .
  */
+
+
+table th.actions,
+table td.actions {
+    text-align: right;
+    width:20%;
+}
+
+.nm {margin:0 !important;}
+.mxn {margin:0 -10px !important;}
+.mxna {margin:-11px !important;}
+.mts { margin-top: 5px !important; }
+.mtx { margin-top: 10px !important; }
+.mtxx { margin-top: 20px !important; }
+.mls { margin-left: 5px !important; }
+.mlx { margin-left: 10px !important; }
+.mlxx { margin-left: 20px !important; }
+.mlxxx { margin-left: 30px !important; }
+.mlxc { margin-left: 90px !important; }
+.mlxx { margin-left: 20px !important; }
+.mbs { margin-bottom: 5px !important; }
+.mbx { margin-bottom: 10px !important; }
+.mbxx { margin-bottom: 20px !important; }
+.mbxxx { margin-bottom: 30px !important; }
+.mrs { margin-right: 5px !important; }
+.mrx { margin-right: 10px !important; }
+.mrxx { margin-right: 20px !important; }
+.nmt { margin-top: 0 !important; }
+.nml { margin-left: 0 !important; }
+.nmb { margin-bottom: 0 !important; }
+.nmr { margin-right: 0 !important; }
+.ml30 { margin-left:30px !important;}
+.ml15 { margin-left:15px !important;}
+.ml175 { margin-left:175px !important;}
+.ml335 { margin-left:335px !important;}
+.ml345 { margin-left:345px !important;}
+.stretch {padding-bottom:1000px !important;margin-bottom:-1000px !important;}
+.mtbx { margin: 10px 0 !important }
+.m0a { margin: 0 auto !important; }
+
+.px  {padding:10px !important;}
+.pxx  {padding:20px !important;}
+.plx {padding-left:10px !important;}
+.plxx {padding-left:20px !important;}
+.prx {padding-right:10px !important;}
+.prxx {padding-right:20px !important;}
+.ptx {padding-top:10px !important;}
+.pbx {padding-bottom:10px !important;}
+.pbxx {padding-bottom:20px !important;}
+
+.ps  {padding:5px !important;}
+.np  {padding:0px !important;}
+.pls {padding-left:5px !important;}
+.prs {padding-right:5px !important;}
+.pts {padding-top:5px !important;}
+.pbs {padding-bottom:5px !important;}
+.npt { padding-top: 0 !important; }
+.npb { padding-bottom: 0 !important; }
+.npl { padding-left: 0 !important; }

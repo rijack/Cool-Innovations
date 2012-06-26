@@ -1,11 +1,14 @@
 <%= simple_form_for :client, :url => search_clients_path, :method => :get do |f| %>
     <%= f.error_notification %>
-    <%= f.input :query,
-                :label => false,
-                :placeholder => 'Search for client'%>
     <%= f.input :client,
                 :collection => Client.all,
                 :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
                 :input_html => {:"data-placeholder" => "Choose a client"} %>
-    <%= f.submit 'Search', :class => 'btn btn-primary neg-margin' %>
+    <%= f.input :query,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :placeholder => 'Search for client'%>
+    <%= f.submit 'Search', :class => 'btn pull-left mrx' %>
+    <%= link_to 'New Client', new_client_path, :class => 'btn btn-primary' %>
 <% end %>
