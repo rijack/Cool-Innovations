@@ -1,4 +1,4 @@
-$("#edit-client").click(function(){
+/*$("#edit-client").click(function(){
     var url = "/clients/";
     var selected = $("#client_client").val();
     if(selected != "" &&  selected != null){
@@ -7,4 +7,4 @@ $("#edit-client").click(function(){
         alert ("Please select part");
         return false;
     }
-});
+});*/

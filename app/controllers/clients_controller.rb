@@ -81,4 +81,18 @@ class ClientsController < ApplicationController
     end
   end
 
+  def search
+    query = "%#{params[:client][:query]}%"
+    client = params[:client][:client]
+
+    @clients = Client.where("name like ?",query).order(:name).page(params[:page]).per_page(20) if query.present?
+    @clients = Client.where("id like ?",client).order(:name).page(params[:page]).per_page(20) if client.present?
+
+
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @clients }
+    end
+  end
+
 end

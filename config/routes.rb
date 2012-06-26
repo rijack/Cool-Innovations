@@ -4,8 +4,6 @@ CoolInnovations::Application.routes.draw do
 
   resources :orders
 
-  resources :clients
-
   resources :parts
 
   resources :part_processes
@@ -14,6 +12,10 @@ CoolInnovations::Application.routes.draw do
 
   resources :users
   resources :sessions
+
+  resources :clients do
+    get :search, :on => :collection
+  end
 
   root to: "home#index"
   get 'login' => "sessions#new"
