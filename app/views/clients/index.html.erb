@@ -4,7 +4,9 @@
 
 <% if @clients.length > 0 %>
 
-
+    <% if params.fetch(:client, {})[:query].present? %>
+        your search for "<%= params[:client][:query] %>" returned <%= pluralize(@clients.length, 'result') %>
+    <% end %>
 
     <table class="table table-striped">
       <tr>
