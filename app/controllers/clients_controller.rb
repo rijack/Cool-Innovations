@@ -82,6 +82,7 @@ class ClientsController < ApplicationController
   end
 
   def search
+    params[:client] ||= {}
     query = "%#{params[:client][:query]}%"
     client = params[:client][:client]
 
