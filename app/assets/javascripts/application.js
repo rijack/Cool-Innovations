@@ -17,3 +17,4 @@
 //= require cocoon
 //= require chosen-jquery
 //= require_tree .
+//= require jquery.spin

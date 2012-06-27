@@ -4,8 +4,8 @@
 
 
 $ ->
-
   $(".modal-trigger").click ->
+    $("#modal-container .spinner").spin()
     url = $(this).attr('href')
     $("#modal-container").modal()
     $("#modal-container").on 'shown', ->

@@ -22,6 +22,7 @@ group :assets do
   gem 'bootstrap-sass', '2.0.0'
   gem 'font-awesome-sass-rails'
   gem 'chosen-rails'
+  gem 'spinjs-rails'
 end
 
 # we want to coffee regardless.
