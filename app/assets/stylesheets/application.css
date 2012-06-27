@@ -72,3 +72,6 @@ table td.actions {
 .npt { padding-top: 0 !important; }
 .npb { padding-bottom: 0 !important; }
 .npl { padding-left: 0 !important; }
+
+
+#modal-container form {margin-bottom:0px;}
