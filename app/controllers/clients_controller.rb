@@ -37,6 +37,13 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
+
+    respond_to do |format|
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
+      format.json { render json: @client }
+    end
   end
 
   # POST /clients
@@ -63,10 +70,10 @@ class ClientsController < ApplicationController
     respond_to do |format|
       if @client.update_attributes(params[:client])
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
