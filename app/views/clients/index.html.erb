@@ -1,7 +1,7 @@
 <h1>Listing clients</h1>
 
 <%= render 'search_form' %>
-<%= link_to 'New Client', "#modal-container", :class => 'btn btn-primary pull-right mrx', :"data-toggle" => "modal" %>
+<%= link_to 'New Client', "/clients/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
 
 <% if @clients.length > 0 %>
 

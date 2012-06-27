@@ -4,12 +4,11 @@
 
 
 $ ->
-  $("#client_client").chosen()
 
-  ###$(".modal-trigger").click ->
+  $(".modal-trigger").click ->
     url = $(this).attr('href')
     $("#modal-container").modal()
     $("#modal-container").on 'shown', ->
       $.get url, (data) ->
         $("#modal-container").html data
-    return false###
+    return false
