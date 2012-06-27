@@ -6,3 +6,6 @@
 $ ->
   $("#client_client").chosen()
 
+  $('#modal_container').on 'shown', ->
+    $.get "/clients/new?no_layout=1", (data) ->
+      $("#modal_container").html data

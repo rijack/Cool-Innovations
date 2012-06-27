@@ -6,5 +6,5 @@
                 :wrapper_html => { :class => 'pull-left mrx' },
                 :placeholder => 'Search for client'%>
     <%= f.submit 'Search', :class => 'btn pull-left mrx' %>
-    <%= link_to 'New Client', new_client_path, :class => 'btn btn-primary pull-right mrx' %>
+    <%= link_to 'New Client', "#modal_container", :class => 'btn btn-primary pull-right mrx', :"data-toggle" => "modal" %>
 <% end %>

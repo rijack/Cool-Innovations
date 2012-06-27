@@ -5,6 +5,7 @@
     <%= f.input :purchase_order %>
     <%= f.association :client,
       :input_html => {:"data-placeholder" => "Choose a client"} %>
+    <%= link_to 'New Client', "#modal_container", :class => 'btn btn-primary pull-right mrx', :"data-toggle" => "modal" %>
 
     <div id="order_lines">
       <%= f.simple_fields_for :order_lines do |order_line| %>
@@ -21,3 +22,4 @@
     <%= link_to 'Cancel', orders_path, :class => 'btn' %>
   </div>
 <% end %>
+
