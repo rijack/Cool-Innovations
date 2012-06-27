@@ -75,7 +75,7 @@ table td.actions {
 
 
 #modal-container form {margin-bottom:0px;}
-.spinner {
+.modal .spinner {
     padding:20px 140px;
     margin: 20px 0 0 0;
 }
