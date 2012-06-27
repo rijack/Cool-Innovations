@@ -22,11 +22,11 @@
         <a class="brand" href="/">Cool Innovations</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Orders", orders_path %></li>
-            <li><%= link_to "Parts", parts_path %></li>
-            <li><%= link_to "Hardwares", hardwares_path %></li>
-            <li><%= link_to "Processes", part_processes_path %></li>
-            <li><%= link_to "Clients", clients_path %></li>
+            <li <% if current_page?(:controller => 'orders') %>class="active"<% end%>><%= link_to "Orders", orders_path %></li>
+            <li <% if current_page?(:controller => 'parts') %>class="active"<% end%>><%= link_to "Parts", parts_path %></li>
+            <li <% if current_page?(:controller => 'hardwares') %>class="active"<% end%>><%= link_to "Hardwares", hardwares_path %></li>
+            <li <% if current_page?(:controller => 'part_processes') %>class="active"<% end%>><%= link_to "Processes", part_processes_path %></li>
+            <li <% if current_page?(:controller => 'clients') %>class="active"<% end%>><%= link_to "Clients", clients_path%></li>
           </ul>
         </div>
       </div>
