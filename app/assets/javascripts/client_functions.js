@@ -8,3 +8,8 @@
         return false;
     }
 });*/
+
+
+function update_select(){
+    $("#order_client_id").trigger("liszt:updated")
+}
