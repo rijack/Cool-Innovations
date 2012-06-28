@@ -1,25 +1,23 @@
-<h1>Listing part_processes</h1>
+<h1>Listing Part Processes</h1>
+
+
+<%= link_to 'New Process', "/part_processes/new?no_layout=1", :class => 'btn btn-primary pull-right mrx mbxx modal-trigger'%>
 
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Actions</th>
+    <th>Process Name</th>
+    <th>Process Description</th>
+    <th class="actions">&nbsp;</th>
   </tr>
 
-<% @part_processes.each do |part_process| %>
-  <tr>
-    <td><%= part_process.name %></td>
-    <td><%= part_process.description %></td>
-    <td>
-      <%= link_to 'Show', part_process, :class => 'btn btn-mini' %>
-      <%= link_to 'Edit', edit_part_process_path(part_process), :class => 'btn btn-mini' %>
-      <%= link_to 'Destroy', part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-    </td>
-  </tr>
-<% end %>
+  <% @part_processes.each do |part_process| %>
+      <tr>
+        <td><%= link_to part_process.name, edit_part_process_path(part_process)%></td>
+        <td><%= part_process.description %></td>
+        <td class="actions">
+          <%= link_to 'Edit', edit_part_process_path(part_process)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
+          <%= link_to 'Delete', part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Part process', new_part_process_path, :class => 'btn btn-primary' %>

@@ -27,7 +27,9 @@ class PartProcessesController < ApplicationController
     @part_process = PartProcess.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
       format.json { render json: @part_process }
     end
   end
@@ -35,6 +37,13 @@ class PartProcessesController < ApplicationController
   # GET /part_processes/1/edit
   def edit
     @part_process = PartProcess.find(params[:id])
+
+    respond_to do |format|
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
+      format.json { render json: @part_process }
+    end
   end
 
   # POST /part_processes
@@ -45,10 +54,10 @@ class PartProcessesController < ApplicationController
     respond_to do |format|
       if @part_process.save
         format.html { redirect_to @part_process, notice: 'Part process was successfully created.' }
-        format.json { render json: @part_process, status: :created, location: @part_process }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @part_process.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,10 +70,10 @@ class PartProcessesController < ApplicationController
     respond_to do |format|
       if @part_process.update_attributes(params[:part_process])
         format.html { redirect_to @part_process, notice: 'Part process was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @part_process.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
