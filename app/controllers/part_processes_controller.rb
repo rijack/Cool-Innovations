@@ -2,7 +2,7 @@ class PartProcessesController < ApplicationController
   # GET /part_processes
   # GET /part_processes.json
   def index
-    @part_processes = PartProcess.all
+    @part_processes = PartProcess.order(:name).all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,7 +1,1 @@
-<% if @client.errors.empty? %>
-  $(".modal-body").html "Client was created"
-  setTimeout (-> $('#modal-container').modal('hide')), 2000
-  location.reload()
-<% else %>
-  $("#new_client").replaceWith "<%= raw escape_javascript(render("clients/form")) %>"
-<% end %>
+<%= render "shared/create", :item => @client, :url => 'clients/form', :error_body => 'new_client', :path => clients_path  %>

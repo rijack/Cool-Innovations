@@ -1,7 +1,1 @@
-<% if @part_process.errors.empty? %>
-$(".modal-body").html "Process was created"
-setTimeout (-> $('#modal-container').modal('hide')), 2000
-location.reload()
-<% else %>
-$("#new_part_process").replaceWith "<%= raw escape_javascript(render("part_processes/form")) %>"
-<% end %>
+<%= render "shared/create", :item => @part_process, :url => 'part_processes/form', :error_body => 'new_part_process', :path => part_processes_path  %>
