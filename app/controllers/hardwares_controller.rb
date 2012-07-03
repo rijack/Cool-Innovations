@@ -2,7 +2,7 @@ class HardwaresController < ApplicationController
   # GET /hardwares
   # GET /hardwares.json
   def index
-    @hardwares = Hardware.all
+    @hardwares = Hardware.order(:name).page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,10 +24,12 @@ class HardwaresController < ApplicationController
   # GET /hardwares/new
   # GET /hardwares/new.json
   def new
-    @hardware = Hardware.new
+    @hardware = Client.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
       format.json { render json: @hardware }
     end
   end
@@ -35,20 +37,27 @@ class HardwaresController < ApplicationController
   # GET /hardwares/1/edit
   def edit
     @hardware = Hardware.find(params[:id])
+
+    respond_to do |format|
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
+      format.json { render json: @hardware }
+    end
   end
 
   # POST /hardwares
   # POST /hardwares.json
   def create
-    @hardware = Hardware.new(params[:hardware])
+    @hardware = Hardware.new(params[:client])
 
     respond_to do |format|
       if @hardware.save
         format.html { redirect_to @hardware, notice: 'Hardware was successfully created.' }
-        format.json { render json: @hardware, status: :created, location: @hardware }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @hardware.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -59,12 +68,12 @@ class HardwaresController < ApplicationController
     @hardware = Hardware.find(params[:id])
 
     respond_to do |format|
-      if @hardware.update_attributes(params[:hardware])
+      if @hardware.update_attributes(params[:@hardware])
         format.html { redirect_to @hardware, notice: 'Hardware was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @hardware.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -80,4 +89,20 @@ class HardwaresController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    params[:hardware] ||= {}
+    query = "%#{params[:hardware][:query]}%"
+    hardware = params[:hardware][:hardware]
+
+    @hardwares = Hardware.where("name like ?",query).order(:name).page(params[:page]).per_page(20) if query.present?
+    @hardwares = Hardware.where("id like ?",client).order(:name).page(params[:page]).per_page(20) if hardware.present?
+
+
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @hardwares }
+    end
+  end
+
 end

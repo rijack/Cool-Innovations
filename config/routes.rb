@@ -10,7 +10,9 @@ CoolInnovations::Application.routes.draw do
 
   resources :part_processes
 
-  resources :hardwares
+  resources :hardwares do
+    get :search, :on => :collection
+  end
 
   resources :users
   resources :sessions

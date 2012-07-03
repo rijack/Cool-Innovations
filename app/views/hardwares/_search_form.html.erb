@@ -1,0 +1,9 @@
+<%= simple_form_for :hardware, :url => search_hardwares_path, :method => :get do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :query,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :placeholder => 'Search for hardware'%>
+    <%= f.submit 'Search', :class => 'btn pull-left mrx' %>
+<% end %>

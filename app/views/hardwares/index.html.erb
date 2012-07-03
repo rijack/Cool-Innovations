@@ -1,25 +1,45 @@
-<h1>Listing hardwares</h1>
+<h1>Listing Hardware</h1>
 
-<table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
+<%= render 'search_form' %>
+<%= link_to 'New Hardware', "/hardwares/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
 
-<% @hardwares.each do |hardware| %>
-  <tr>
-    <td><%= hardware.name %></td>
-    <td><%= hardware.description %></td>
-    <td>
-      <%= link_to 'Show', hardware, :class => 'btn btn-mini' %>
-      <%= link_to 'Edit', edit_hardware_path(hardware), :class => 'btn btn-mini' %>
-      <%= link_to 'Destroy', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-    </td>
-  </tr>
+<%= @hardwares.length %>
+
+
+<% if @hardwares.length > 0 %>
+
+    <% if params.fetch(:hardware, {})[:query].present? %>
+        <div class="row">
+          <div class="span9 mbxx">
+            your search for <em><strong>"<%= params[:hardware][:query] %>"</strong></em>  returned <strong><%= pluralize(@hardwares.length, 'result') %></strong>
+          </div>
+        </div>
+    <% end %>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Hardware Name</th>
+        <th class="actions">&nbsp;</th>
+      </tr>
+
+      <% @hardwares.each do |hardware| %>
+          <tr>
+            <td><%= link_to hardware.name, edit_hardware_path(hardware)%></td>
+            <td class="actions">
+              <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
+              <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+
+    <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
+<% else %>
+    <div class="row">
+      <div class="span9 mbxx">
+        There are no results
+      </div>
+    </div>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Hardware', new_hardware_path, :class => 'btn btn-primary' %>
