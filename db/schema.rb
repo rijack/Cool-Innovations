@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625023229) do
+ActiveRecord::Schema.define(:version => 20120702191805) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -26,14 +26,26 @@ ActiveRecord::Schema.define(:version => 20120625023229) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "order_line_process_statuses", :force => true do |t|
+    t.integer  "order_line_id"
+    t.integer  "part_process_id"
+    t.string   "status"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "order_line_process_statuses", ["order_line_id"], :name => "index_order_line_process_statuses_on_order_line_id"
+  add_index "order_line_process_statuses", ["part_process_id"], :name => "index_order_line_process_statuses_on_part_process_id"
+
   create_table "order_lines", :force => true do |t|
     t.integer  "order_id"
     t.integer  "part_id"
     t.date     "due_date"
     t.integer  "quantity"
     t.text     "comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "status",     :default => "pending"
   end
 
   create_table "orders", :force => true do |t|

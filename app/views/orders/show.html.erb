@@ -10,12 +10,21 @@
   <%= @order.client_id %>
 </p>
 
-<p>Parts:</p>
-<% @order.parts.each do |part| %>
-<p>
-  <b>Part #:</b>
-  <%= part.part_number %>
-</p>
+
+<p>Order Lines:</p>
+<% @order.order_lines.each do |line| %>
+<div class="order_line" data-id="<%= line.id %>">
+  <b>Part #:</b> <%= line.part.part_number %> <br />
+  <b>Due date:</b> <%= line.due_date %> <br />
+  <b>Quantity:</b> <%= line.quantity %> <br />
+  <b>Status:</b> <span class="status"><%= line.status %></span> <br />
+  <% line.order_line_process_statuses.each do |status| %>
+    <div data-id="<%= status.id %>" class="process_status">
+      <b>Process:</b> <%= status.part_process.name %> <br />
+      <b>Status:</b> <%= select_tag(:process_status, options_for_select(["pending", "completed"], status.status), :class => "status") %> <br />
+    </div>
+  <% end %>
+</div>
 <% end %>
 
 

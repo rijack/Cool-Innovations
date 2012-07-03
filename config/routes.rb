@@ -1,6 +1,8 @@
 CoolInnovations::Application.routes.draw do
 
-  resources :order_lines
+  resources :order_lines do
+    post :set_process_status, :on => :collection
+  end
 
   resources :orders
 

@@ -6,4 +6,6 @@ class PartProcess < ActiveRecord::Base
 
   has_many :required_processes
   has_many :parts, :through => :required_processes
+
+  has_many :order_line_process_statuses
 end

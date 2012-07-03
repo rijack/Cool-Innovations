@@ -80,4 +80,10 @@ class OrderLinesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def set_process_status
+    @order_line_process_status = OrderLineProcessStatus.find(params[:order_line_process_status_id])
+    @order_line_process_status.status = params[:status]
+    @order_line_process_status.save
+  end
 end
