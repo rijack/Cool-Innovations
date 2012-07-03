@@ -49,7 +49,7 @@ class HardwaresController < ApplicationController
   # POST /hardwares
   # POST /hardwares.json
   def create
-    @hardware = Hardware.new(params[:client])
+    @hardware = Hardware.new(params[:hardware])
 
     respond_to do |format|
       if @hardware.save
