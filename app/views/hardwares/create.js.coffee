@@ -1,1 +1,1 @@
-<%= render "shared/create", :item => @hardware, :url => 'hardwares/form', :error_body => 'new_hardware', :path => hardwares_path, :select_id => 'order_hardware_id'  %>
+<%= render "shared/create", :item => @hardware, :url => 'hardwares/form', :error_body => 'new_hardware', :path => hardwares_path, :select_class => 'parts-hardware', :select_id => ''  %>

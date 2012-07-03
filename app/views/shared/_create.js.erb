@@ -4,12 +4,19 @@ setTimeout (-> $('#modal-container').modal('hide')), 2000
 if (window.location.pathname == <%= raw path.to_json %>)
     location.reload()
 else
-    if ($("#<%= select_id%>"))
+    if ($("#<%= select_id%>").length > 0)
         $('#<%= select_id%>')
                 .append($("<option/>")
                 .attr("value", "<%= item.id%>")
                 .text("<%= item.name%>"))
         $('#<%= select_id%>').val("<%= item.id%>").trigger("liszt:updated")
+    else
+        if ($(".<%= select_class %>").length > 0)
+            $('.<%= select_class%>')
+                    .append($("<option/>")
+                    .attr("value", "<%= item.id%>")
+                    .text("<%= item.name%>"))
+            $('.<%= select_class%>').trigger("liszt:updated")
 
 <% else %>
 $("#<%= error_body%>").replaceWith "<%= raw escape_javascript(render(url)) %>"

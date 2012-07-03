@@ -1,6 +1,6 @@
 <div class="nested-fields">
   <%= f.association :hardware, :collection => Hardware.all,
-      :input_html => {:"data-placeholder" => "Choose hardware"} %>
+      :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %>
 
   <%= f.input :quantity %>
   <%= link_to_remove_association "Remove Hardware", f, :class => "btn" %>

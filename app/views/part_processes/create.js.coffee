@@ -1,1 +1,1 @@
-<%= render "shared/create", :item => @part_process, :url => 'part_processes/form', :error_body => 'new_part_process', :path => part_processes_path  %>
+<%= render "shared/create", :item => @part_process, :url => 'part_processes/form', :error_body => 'new_part_process', :path => part_processes_path, :select_id => 'part_part_process_ids', :select_class => ''  %>
