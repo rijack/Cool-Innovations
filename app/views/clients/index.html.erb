@@ -9,7 +9,7 @@
     <% if params.fetch(:client, {})[:query].present? %>
         <div class="row">
           <div class="span9 mbxx">
-            your search for <em><strong>"<%= params[:client][:query] %>"</strong></em>  returned <strong><%= pluralize(@clients.length, 'result') %></strong>
+            your search for <em><strong>"<%= params[:client][:query] %>"</strong></em>  returned <strong><%= pluralize(@clients.count, 'result') %></strong>
           </div>
         </div>
     <% end %>

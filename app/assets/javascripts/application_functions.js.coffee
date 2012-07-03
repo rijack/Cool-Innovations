@@ -11,4 +11,5 @@ $ ->
     $("#modal-container").on 'shown', ->
       $.get url, (data) ->
         $("#modal-container").html data
+        $("#modal-container form:not(.filter) :input:visible:enabled:first").focus()
     return false

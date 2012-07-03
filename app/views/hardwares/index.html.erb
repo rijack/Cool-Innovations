@@ -3,15 +3,13 @@
 <%= render 'search_form' %>
 <%= link_to 'New Hardware', "/hardwares/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
 
-<%= @hardwares.length %>
-
 
 <% if @hardwares.length > 0 %>
 
     <% if params.fetch(:hardware, {})[:query].present? %>
         <div class="row">
           <div class="span9 mbxx">
-            your search for <em><strong>"<%= params[:hardware][:query] %>"</strong></em>  returned <strong><%= pluralize(@hardwares.length, 'result') %></strong>
+            your search for <em><strong>"<%= params[:hardware][:query] %>"</strong></em>  returned <strong><%= pluralize(@hardwares.count, 'result') %></strong>
           </div>
         </div>
     <% end %>

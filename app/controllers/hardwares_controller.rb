@@ -24,7 +24,7 @@ class HardwaresController < ApplicationController
   # GET /hardwares/new
   # GET /hardwares/new.json
   def new
-    @hardware = Client.new
+    @hardware = Hardware.new
 
     respond_to do |format|
       format.html do
