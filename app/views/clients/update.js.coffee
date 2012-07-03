@@ -1,7 +1,1 @@
-<% if @client.errors.empty? %>
-  $(".modal-body").html "Client was updated"
-  setTimeout (-> $('#modal-container').modal('hide')), 2000
-  location.reload()
-<% else %>
-  $("#edit_client_<%= @client.id %>").replaceWith "<%= raw escape_javascript(render("clients/form")) %>"
-<% end %>
+<%= render "shared/update", :item => @client, :url => 'clients/form', :error_body => 'edit_client', :text => 'Client' %>

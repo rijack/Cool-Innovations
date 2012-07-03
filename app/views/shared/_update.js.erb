@@ -1,0 +1,7 @@
+<% if item.errors.empty? %>
+$(".modal-body").html "<%= text %> was updated"
+setTimeout (-> $('#modal-container').modal('hide')), 2000
+location.reload()
+<% else %>
+$("#<%= error_body %>_<%= item.id %>").replaceWith "<%= raw escape_javascript(render(url)) %>"
+<% end %>
