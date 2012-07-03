@@ -15,11 +15,13 @@
     <% end %>
 
     <table class="table table-striped">
-      <tr>
-        <th>Hardware Name</th>
-        <th class="actions">&nbsp;</th>
-      </tr>
-
+      <thead>
+          <tr>
+            <th>Hardware Name</th>
+            <th class="actions">&nbsp;</th>
+          </tr>
+      </thead>
+      <tbody>
       <% @hardwares.each do |hardware| %>
           <tr>
             <td><%= link_to hardware.name, edit_hardware_path(hardware)%></td>
@@ -29,6 +31,7 @@
             </td>
           </tr>
       <% end %>
+      </tbody>
     </table>
 
     <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>

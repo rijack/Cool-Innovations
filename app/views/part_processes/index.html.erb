@@ -4,12 +4,14 @@
 <%= link_to 'New Process', "/part_processes/new?no_layout=1", :class => 'btn btn-primary pull-right mrx mbxx modal-trigger'%>
 
 <table class="table table-striped">
-  <tr>
-    <th>Process Name</th>
-    <th>Process Description</th>
-    <th class="actions">&nbsp;</th>
-  </tr>
-
+  <thead>
+      <tr>
+        <th>Process Name</th>
+        <th>Process Description</th>
+        <th class="actions">&nbsp;</th>
+      </tr>
+  </thead>
+  <tbody>
   <% @part_processes.each do |part_process| %>
       <tr>
         <td><%= link_to part_process.name, edit_part_process_path(part_process)%></td>
@@ -20,4 +22,5 @@
         </td>
       </tr>
   <% end %>
+  </tbody>
 </table>

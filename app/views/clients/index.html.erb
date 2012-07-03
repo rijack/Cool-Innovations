@@ -15,20 +15,23 @@
     <% end %>
 
     <table class="table table-striped">
-      <tr>
-        <th>Client Name</th>
-        <th class="actions">&nbsp;</th>
-      </tr>
-
-    <% @clients.each do |client| %>
-      <tr>
-        <td><%= link_to client.name, edit_client_path(client)%></td>
-        <td class="actions">
-          <%= link_to 'Edit', edit_client_path(client)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
-          <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+      <thead>
+          <tr>
+            <th>Client Name</th>
+            <th class="actions">&nbsp;</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @clients.each do |client| %>
+          <tr>
+            <td><%= link_to client.name, client %></td>
+            <td class="actions">
+              <%= link_to 'Edit', edit_client_path(client)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
+              <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
 
     <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>

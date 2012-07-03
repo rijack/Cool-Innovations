@@ -1,10 +1,43 @@
+<h1><%= @client.name %></h1>
+
+<h2>Orders</h2>
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @client.name %>
-</p>
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th>P/O Number</th>
+        <th>Part Number</th>
+        <th>Quantity</th>
+        <th>Due Date</th>
+        <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% @client.orders.each do |order| %>
+        <% order.order_lines.each do |order_line| %>
+          <tr>
+            <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order.purchase_order %></a></td>
+            <td><%= order_line.part.name %></td>
+            <td><%= order_line.quantity %></td>
+            <td><%= order_line.due_date %></td>
+            <td class="status"><%= order_line.status %></td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
+                <div data-id="<%= order_line.id %>" class="process_status">
+                    <% order_line.order_line_process_statuses.each do |process_status| %>
+                        <%= process_status.part_process.name %> - <%= select_tag(:process_status, options_for_select(["pending","in progress", "completed"], process_status.status), :class => "status") %>  <BR />
+                    <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+  </tbody>
+</table>
 
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>

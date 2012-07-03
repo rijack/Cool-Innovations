@@ -18,15 +18,4 @@ $ ->
 
   datePicker $(".jquery-ui-date")
 
-  $('.process_status .status').live 'change', ->
-    $select = $(this)
-    status = $select.val()
-    process_status_id = $select.parents(".process_status").data("id")
-    console.log process_status_id
-    console.log status
-    $.ajax
-      type: 'POST'
-      url: "/order_lines/set_process_status"
-      data:
-        status: status
-        order_line_process_status_id: process_status_id
+
