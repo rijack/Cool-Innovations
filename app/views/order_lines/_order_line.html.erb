@@ -1,0 +1,22 @@
+<tr>
+  <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order_line.order.purchase_order %></a></td>
+  <td><%= order_line.part.name %></td>
+  <td><%= order_line.quantity %></td>
+  <td><%= order_line.due_date %></td>
+  <td><%= order_line.status %></td>
+</tr>
+<tr>
+  <td colspan="5">
+    <div class="accordion-body collapse in" id="collapse<%= order_line.id %>">
+      <h3>Process Status</h3>
+      <% order_line.order_line_process_statuses.each do |process_status| %>
+        <%= process_status.part_process.name %> - <%= process_status.status %>  <BR />
+      <% end %>
+      <h3>Part Hardware</h3>
+
+      <% order_line.part.required_hardwares.each do |hardware| %>
+        <%= hardware.hardware.name %> - <%= hardware.quantity %> <br />
+      <% end %>
+    </div>
+  </td>
+</tr>
