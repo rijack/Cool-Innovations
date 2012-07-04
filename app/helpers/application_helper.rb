@@ -10,7 +10,7 @@ module ApplicationHelper
     end
 
     link_to({:sort => column, :direction => direction, :search => params[:search]}, {:class => css_class}) do
-      "#{content_tag(:i, "", :class=> i_class).safe_html if css_class} " + title
+      "#{content_tag(:i, "", :class=> i_class).html_safe if css_class} " + title
     end
   end
 end
