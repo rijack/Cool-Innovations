@@ -48,8 +48,12 @@ $ ->
         order_line_process_status_id: process_status_id
 
 
+  $('.accordion-toggle').on "click", ->
+    $(this).children().toggleClass("icon-plus").toggleClass("icon-minus");
+
   $('.collapse').on 'show', ->
     $(this).parent("td").removeClass("hide")
+
 
   $('.collapse').on 'hidden', ->
     $(this).parent("td").addClass("hide")
