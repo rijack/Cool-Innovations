@@ -10,16 +10,15 @@
       <tr>
         <th>P/O Number</th>
         <th>Part Number</th>
-        <th>Quantity</th>
-        <th>Due Date</th>
+        <th><%= sortable "quantity" %></th>
+        <th><%= sortable "due_date" %></th>
         <th>Status</th>
       </tr>
   </thead>
   <tbody>
-      <% @client.orders.each do |order| %>
-        <% order.order_lines.each do |order_line| %>
+      <% @client.order_lines.order(sort_by_field).each do |order_line| %>
           <tr>
-            <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order.purchase_order %></a></td>
+            <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order_line.order.purchase_order %></a></td>
             <td><%= order_line.part.name %></td>
             <td><%= order_line.quantity %></td>
             <td><%= order_line.due_date %></td>
@@ -40,7 +39,6 @@
               </div>
             </td>
           </tr>
-        <% end %>
       <% end %>
   </tbody>
 </table>
