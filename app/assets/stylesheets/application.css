@@ -95,7 +95,9 @@ table .order-line-info .span4 {float:right;}
 .control-group {
     float:left;
 }
-.form-horizontal .control-group .controls {
+.order-search .control-group .controls {
     margin-left:0;
     margin-right: 10px;
+    width:160px;
 }
+.order-search .control-group .controls select {width: 160px;}
