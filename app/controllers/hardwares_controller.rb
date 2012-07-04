@@ -68,7 +68,7 @@ class HardwaresController < ApplicationController
     @hardware = Hardware.find(params[:id])
 
     respond_to do |format|
-      if @hardware.update_attributes(params[:@hardware])
+      if @hardware.update_attributes(params[:hardware])
         format.html { redirect_to @hardware, notice: 'Hardware was successfully updated.' }
         format.js
       else
