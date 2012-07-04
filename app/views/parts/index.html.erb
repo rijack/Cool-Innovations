@@ -1,29 +1,31 @@
-<h1>Listing parts</h1>
+<h1>Parts</h1>
 
+<%= link_to 'New Part', new_part_path, :class => 'btn btn-primary pull-right' %>
 <table class="table table-striped">
-  <tr>
-    <th>Drawing number</th>
-    <th>Part number</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
-
-<% @parts.each do |part| %>
-  <tr>
-    <td><%= part.drawing_number %></td>
-    <td><%= part.part_number %></td>
-    <td><%= part.name %></td>
-    <td><%= part.description %></td>
-    <td>
-      <%= link_to 'Show', part, :class => 'btn btn-mini' %>
-      <%= link_to 'Edit', edit_part_path(part), :class => 'btn btn-mini' %>
-      <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-    </td>
-  </tr>
-<% end %>
+  <thead>
+      <tr>
+        <th>Part number</th>
+        <th>Drawing number</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @parts.each do |part| %>
+      <tr>
+        <td><%= link_to part.part_number, edit_part_path(part) %></td>
+        <td><%= part.drawing_number %></td>
+        <td><%= part.name %></td>
+        <td><%= part.description %></td>
+        <td class="actions">
+          <%= link_to 'Edit', edit_part_path(part), :class => 'btn btn-small' %>
+          <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+<%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
 
-<br />
 
-<%= link_to 'New Part', new_part_path, :class => 'btn btn-primary' %>

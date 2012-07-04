@@ -92,7 +92,7 @@ table td.actions {
 table .order-line-info .span7 {float:left;}
 table .order-line-info .span4 {float:right;}
 
-.control-group {
+.order-search .control-group {
     float:left;
 }
 .order-search .control-group .controls {

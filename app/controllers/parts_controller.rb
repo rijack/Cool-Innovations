@@ -2,7 +2,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    @parts = Part.all
+    @parts = Part.order(:part_number).page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb

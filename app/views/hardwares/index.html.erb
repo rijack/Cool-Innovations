@@ -26,8 +26,8 @@
           <tr>
             <td><%= link_to hardware.name, edit_hardware_path(hardware)%></td>
             <td class="actions">
-              <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
-              <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+              <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
+              <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
             </td>
           </tr>
       <% end %>

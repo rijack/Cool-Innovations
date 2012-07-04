@@ -17,8 +17,8 @@
         <td><%= link_to part_process.name, edit_part_process_path(part_process)%></td>
         <td><%= part_process.description %></td>
         <td class="actions">
-          <%= link_to 'Edit', edit_part_process_path(part_process)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
-          <%= link_to 'Delete', part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Edit', edit_part_process_path(part_process)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
+          <%= link_to 'Delete', part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
         </td>
       </tr>
   <% end %>

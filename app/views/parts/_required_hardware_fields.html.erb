@@ -2,7 +2,7 @@
   <%= f.association :hardware, :collection => Hardware.all,
       :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %>
 
-  <%= f.input :quantity, :class => "pull-left" %>
+  <%= f.input :quantity, :input_html => {:class => "input-mini pull-left"} %>
   <%= link_to_remove_association "Remove Hardware", f, :class => "btn" %>
 </div>
 
