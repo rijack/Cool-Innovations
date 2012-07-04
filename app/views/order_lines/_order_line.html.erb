@@ -1,5 +1,5 @@
 <% colspan = 5 %>
-<tr>
+<tr class="order_line" data-id="<%= order_line.id %>">
   <% if local_assigns[:show_client].present? %>
     <% colspan = 6 %>
     <td><%= order_line.order.client.name %></td>
@@ -8,15 +8,20 @@
   <td><%= order_line.part.name %></td>
   <td><%= order_line.quantity %></td>
   <td><%= order_line.due_date %></td>
-  <td><%= order_line.status %></td>
+  <td> <span class="status"><%= order_line.status %></span> </td>
 </tr>
 <tr>
   <td colspan="<%= colspan %>">
     <div class="accordion-body collapse in" id="collapse<%= order_line.id %>">
       <h3>Process Status</h3>
+      <ul>
       <% order_line.order_line_process_statuses.each do |process_status| %>
-        <%= process_status.part_process.name %> - <%= process_status.status %>  <BR />
+        <li class="process_status" data-id="<%= process_status.id %>">
+          <%= process_status.part_process.name %> - 
+          <%= select_tag(:process_status, options_for_select(["pending","in progress", "completed"], process_status.status), :class => "status") %>
+        </li>
       <% end %>
+      </ul>
       <h3>Part Hardware</h3>
 
       <% order_line.part.required_hardwares.each do |hardware| %>
