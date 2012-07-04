@@ -1,24 +1,23 @@
-<h1>Listing orders</h1>
+<h1>Listing order lines</h1>
 
 <table class="table table-striped">
-  <tr>
-    <th>Purchase order</th>
-    <th>Client</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th><%= sortable "order_id", "P/O Number" %></th>
+      <th>Part Number</th>
+      <th>Quantity</th>
+      <th><%= sortable "due_date" %></th>
+      <th><%= sortable "status" %></th>
+    </tr>
+  </thead>
 
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.purchase_order %></td>
-    <td><%= order.client.name %></td>
-    <td>
-      <%= link_to 'Show', order, :class => 'btn btn-mini' %>
-      <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-mini' %>
-      <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
-    </td>
-  </tr>
-<% end %>
+  <tbody>
+    <%= render :partial => 'order_lines/order_line', :collection => @order_lines, :locals => { :show_client => true } %>
+  </tbody>
 </table>
+
+<%= will_paginate @order_lines, :renderer => BootstrapPagination::Rails %>
 
 <br />
 

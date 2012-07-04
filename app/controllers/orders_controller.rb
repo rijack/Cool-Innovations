@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @order_lines = OrderLine.order(sort_by_field).page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @orders }
+      format.json { render json: @order_lines }
     end
   end
 

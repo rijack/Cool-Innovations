@@ -6,19 +6,4 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
-
-  def sort_column
-    params[:sort]
-  end
-
-  def sort_by_field
-    if sort_column
-      "#{sort_column} #{sort_direction}" 
-    else
-      ""
-    end
-  end
 end

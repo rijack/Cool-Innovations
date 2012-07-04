@@ -1,4 +1,9 @@
+<% colspan = 5 %>
 <tr>
+  <% if local_assigns[:show_client].present? %>
+    <% colspan = 6 %>
+    <td><%= order_line.order.client.name %></td>
+  <% end %>
   <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order_line.order.purchase_order %></a></td>
   <td><%= order_line.part.name %></td>
   <td><%= order_line.quantity %></td>
@@ -6,7 +11,7 @@
   <td><%= order_line.status %></td>
 </tr>
 <tr>
-  <td colspan="5">
+  <td colspan="<%= colspan %>">
     <div class="accordion-body collapse in" id="collapse<%= order_line.id %>">
       <h3>Process Status</h3>
       <% order_line.order_line_process_statuses.each do |process_status| %>
