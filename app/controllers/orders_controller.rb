@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     end
 
     search = params[:search].slice *OrderLine.column_names
+    search.select! {|k, v| v.present? }
     if search.present?
       @order_lines = @order_lines.where(search)
     end
