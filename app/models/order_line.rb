@@ -6,7 +6,7 @@ class OrderLine < ActiveRecord::Base
   belongs_to :order
   belongs_to :part
 
-  has_many :order_line_process_statuses
+  has_many :order_line_process_statuses, :dependent => :destroy
 
   after_create :build_statuses
 

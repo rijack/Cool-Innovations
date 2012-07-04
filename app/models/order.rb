@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   validates_uniqueness_of :purchase_order, :case_sensitive => false
 
   belongs_to :client
-  has_many :order_lines
+  has_many :order_lines, :dependent => :destroy
   has_many :parts, :through => :order_lines
 
   accepts_nested_attributes_for :order_lines
