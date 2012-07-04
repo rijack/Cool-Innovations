@@ -1,5 +1,4 @@
 <% colspan = 5 %>
-
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
     <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
     <% if local_assigns[:show_client].present? %>

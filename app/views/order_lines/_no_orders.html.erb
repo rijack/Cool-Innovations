@@ -1,0 +1,7 @@
+<% colspan = 5 %>
+<% if local_assigns[:show_client].present? %>
+    <% colspan = 6 %>
+<% end %>
+<tr>
+  <td colspan="<%= colspan %>">There are no order lines</td>
+</tr>

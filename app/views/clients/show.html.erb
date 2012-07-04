@@ -16,7 +16,12 @@
       </tr>
   </thead>
   <tbody>
-    <%= render :partial => 'order_lines/order_line', :collection => @client.order_lines.order(sort_by_field) %>
+      <% if @client.order_lines.length > 0 %>
+      <%= render :partial => 'order_lines/order_line', :collection => @client.order_lines.order(sort_by_field) %>
+      <% end %>
+      <% if @client.order_lines.length == 0 %>
+          <%= render :partial => 'order_lines/no_orders' %>
+      <% end %>
   </tbody>
 </table>
 

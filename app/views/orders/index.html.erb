@@ -3,6 +3,7 @@
 <%= render 'order_line_search' %>
 <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
 
+
 <table class="table">
   <thead>
     <tr>
@@ -16,7 +17,12 @@
   </thead>
 
   <tbody>
-    <%= render :partial => 'order_lines/order_line', :collection => @order_lines, :locals => { :show_client => true } %>
+      <% if @order_lines.length > 0 %>
+        <%= render :partial => 'order_lines/order_line', :collection => @order_lines, :locals => { :show_client => true } %>
+      <% end %>
+      <% if @order_lines.length == 0 %>
+        <%= render :partial => 'order_lines/no_orders', :locals => { :show_client => true } %>
+      <% end %>
   </tbody>
 </table>
 
