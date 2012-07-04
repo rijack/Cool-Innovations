@@ -26,8 +26,8 @@
           <tr>
             <td><%= link_to client.name, client %></td>
             <td class="actions">
-              <%= link_to 'Edit', edit_client_path(client)+"?no_layout=1", :class => 'btn btn-min modal-trigger'%>
-              <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+              <%= link_to 'Edit', edit_client_path(client)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
+              <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
             </td>
           </tr>
         <% end %>

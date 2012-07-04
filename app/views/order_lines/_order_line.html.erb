@@ -1,32 +1,77 @@
 <% colspan = 5 %>
-<tr class="order_line" data-id="<%= order_line.id %>">
-  <% if local_assigns[:show_client].present? %>
-    <% colspan = 6 %>
-    <td><%= order_line.order.client.name %></td>
-  <% end %>
-  <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order_line.order.purchase_order %></a></td>
-  <td><%= order_line.part.name %></td>
-  <td><%= order_line.quantity %></td>
-  <td><%= order_line.due_date %></td>
-  <td> <span class="status"><%= order_line.status %></span> </td>
+
+<tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
+    <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><%= order_line.order.purchase_order %></a></td>
+    <% if local_assigns[:show_client].present? %>
+        <% colspan = 6 %>
+        <td><%= order_line.order.client.name %></td>
+    <% end %>
+    <td><%= order_line.part.name %></td>
+    <td><%= order_line.quantity %></td>
+    <td><%= order_line.due_date %></td>
+    <td class="status-cell"> <span class="status"><%= order_line.status %></span> </td>
 </tr>
 <tr>
-  <td colspan="<%= colspan %>">
-    <div class="accordion-body collapse in" id="collapse<%= order_line.id %>">
-      <h3>Process Status</h3>
-      <ul>
-      <% order_line.order_line_process_statuses.each do |process_status| %>
-        <li class="process_status" data-id="<%= process_status.id %>">
-          <%= process_status.part_process.name %> - 
-          <%= select_tag(:process_status, options_for_select(OrderLine::STATUSES, process_status.status), :class => "status") %>
-        </li>
-      <% end %>
-      </ul>
-      <h3>Part Hardware</h3>
-
-      <% order_line.part.required_hardwares.each do |hardware| %>
-        <%= hardware.hardware.name %> - <%= hardware.quantity %> <br />
-      <% end %>
-    </div>
-  </td>
+    <td colspan="<%= colspan %>" class="order-line-info hide">
+        <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
+            <h4>Order line details</h4>
+            <div class="process-info span7">
+                <h5>Process</h5>
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Process Name</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% order_line.order_line_process_statuses.each do |process_status| %>
+                        <tr class="process_status" data-id="<%= process_status.id %>">
+                          <td><%= process_status.part_process.name %></td>
+                          <td>
+                            <div class="btn-group line-status" data-toggle="buttons-radio">
+                              <% OrderLine::STATUSES.each do |order_line_status| %>
+                                  <% extra_class = "" %>
+                                  <% if order_line_status == process_status.status %>
+                                      <% extra_class = "active" %>
+                                      <% if process_status.status == "pending" %>
+                                          <% extra_class = extra_class + " btn-warning" %>
+                                      <% end %>
+                                      <% if process_status.status == "in progress" %>
+                                          <% extra_class = extra_class + " btn-info" %>
+                                      <% end %>
+                                      <% if process_status.status == "completed" %>
+                                          <% extra_class = extra_class + " btn-success" %>
+                                      <% end %>
+                                  <% end %>
+                                  <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+            </div>
+            <div class="hardware-info span4">
+                <h5>Hardware</h5>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Hardware Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% order_line.part.required_hardwares.each do |hardware| %>
+                            <tr>
+                              <td><%= hardware.hardware.name %></td>
+                              <td><%= hardware.quantity %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </td>
 </tr>

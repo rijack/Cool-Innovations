@@ -79,3 +79,15 @@ table td.actions {
     padding:20px 140px;
     margin: 20px 0 0 0;
 }
+
+.table td.order-line-info {
+    border-top:0;
+}
+
+.table tr td.status-cell {color: #fff;}
+.table tr.completed td.status-cell { background-color: #51A351; }
+.table tr.in-progress td.status-cell { background-color: #2F96B4; }
+.table tr.pending td.status-cell { background-color: #F89406; }
+
+table .order-line-info .span7 {float:left;}
+table .order-line-info .span4 {float:right;}

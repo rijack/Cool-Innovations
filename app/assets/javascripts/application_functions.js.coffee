@@ -19,11 +19,37 @@ $ ->
     $select = $(this)
     status = $select.val()
     process_status_id = $select.parents(".process_status").data("id")
-    console.log process_status_id
-    console.log status
+    #console.log process_status_id
+    #console.log status
     $.ajax
       type: 'POST'
       url: "/order_lines/set_process_status"
       data:
         status: status
         order_line_process_status_id: process_status_id
+
+
+
+  $('.process_status .line-status .btn').live 'click', ->
+    status = $(this).html()
+    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning")
+    if (status == 'completed')
+      $(this).addClass("btn-success")
+    else if (status == 'in progress')
+      $(this).addClass("btn-info")
+    else
+      $(this).addClass("btn-warning")
+    process_status_id = $(this).parents(".process_status").data("id")
+    $.ajax
+      type: 'POST'
+      url: "/order_lines/set_process_status"
+      data:
+        status: status
+        order_line_process_status_id: process_status_id
+
+
+  $('.collapse').on 'show', ->
+    $(this).parent("td").removeClass("hide")
+
+  $('.collapse').on 'hidden', ->
+    $(this).parent("td").addClass("hide")
