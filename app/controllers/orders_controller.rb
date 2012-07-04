@@ -2,7 +2,29 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @order_lines = OrderLine.order(sort_by_field).page(params[:page]).per_page(20)
+    params[:search] ||= {}
+
+    if params[:search][:client].present?
+      @client = Client.find params[:search][:client]
+      if params[:search][:po_number].present?
+        @client = @client.orders.find params[:search][:po_number]
+      end
+      @order_lines = @client.order_lines
+    else
+      if params[:search][:po_number].present?
+        @order = Order.find params[:search][:po_number]
+        @order_lines = @order.order_lines
+      else
+        @order_lines = OrderLine
+      end
+    end
+
+    search = params[:search].slice *OrderLine.column_names
+    if search.present?
+      @order_lines = @order_lines.where(search)
+    end
+
+    @order_lines = @order_lines.order(sort_by_field).page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -21,7 +21,7 @@
   <% line.order_line_process_statuses.each do |status| %>
     <div data-id="<%= status.id %>" class="process_status">
       <b>Process:</b> <%= status.part_process.name %> <br />
-      <b>Status:</b> <%= select_tag(:process_status, options_for_select(["pending","in progress", "completed"], status.status), :class => "status") %> <br />
+      <b>Status:</b> <%= select_tag(:process_status, options_for_select(OrderLine::STATUSES, status.status), :class => "status") %> <br />
     </div>
   <% end %>
 </div>
