@@ -91,3 +91,11 @@ table td.actions {
 
 table .order-line-info .span7 {float:left;}
 table .order-line-info .span4 {float:right;}
+
+.control-group {
+    float:left;
+}
+.form-horizontal .control-group .controls {
+    margin-left:0;
+    margin-right: 10px;
+}

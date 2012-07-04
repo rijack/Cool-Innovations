@@ -1,34 +1,13 @@
 <h1>Listing order lines</h1>
 
-<%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal' }) do |f| %>
+<%= render 'order_line_search' %>
+<%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
 
-  <%= f.input :client, :collection => Client.all.collect{|x| [x.name, x.id] }.unshift(["None selected", nil]),
-    :selected => params[:search][:client],
-    :input_html => { :"data-placeholder" => "Select a client" } %>
-
-  <%= f.input :po_number, :collection => Order.all.collect{|x| [x.purchase_order, x.id] }.unshift(["None selected", nil]),
-    :selected => params[:search][:po_number],
-    :input_html => {:"data-placeholder" => "Select a purchase order"} %>
-
-  <%= f.input :part_id, :collection => Part.all.collect{|x| [x.name, x.id] }.unshift(["None selected", nil]),
-    :selected => params[:search][:part_id],
-    :input_html => {:"data-placeholder" => "Select a part"} %>
-
-  <%= f.input :status, :collection => OrderLine::STATUSES.collect{|x| [x, x] }.unshift(["None selected", nil]),
-    :selected => params[:search][:status],
-    :input_html => {:"data-placeholder" => "Select a status"} %>
-
-
-  <div class="form-actions">
-    <%= f.submit "Search" %>
-  </div>
-<% end %>
-
-<table class="table table-striped">
+<table class="table">
   <thead>
     <tr>
-      <th>Client</th>
       <th><%= sortable "order_id", "P/O Number" %></th>
+      <th>Client</th>
       <th>Part Number</th>
       <th>Quantity</th>
       <th><%= sortable "due_date" %></th>
@@ -45,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Order', new_order_path, :class => 'btn btn-primary' %>
+

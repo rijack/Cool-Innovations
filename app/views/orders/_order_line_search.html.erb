@@ -1,0 +1,25 @@
+<%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal' }) do |f| %>
+
+    <%= f.input :client, :collection => Client.all.collect{|x| [x.name, x.id] }.unshift(["Select a client", nil]),
+                :selected => params[:search][:client],
+                :label => false,
+                :input_html => { :"data-placeholder" => "Select a client" } %>
+
+    <%= f.input :po_number, :collection => Order.all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a purchase order", nil]),
+                :selected => params[:search][:po_number],
+                :label => false,
+                :input_html => {:"data-placeholder" => "Select a purchase order"} %>
+
+    <%= f.input :part_id, :collection => Part.all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
+                :selected => params[:search][:part_id],
+                :label => false,
+                :input_html => {:"data-placeholder" => "Select a part"} %>
+
+    <%= f.input :status, :collection => OrderLine::STATUSES.collect{|x| [x, x] }.unshift(["Select a status", nil]),
+                :selected => params[:search][:status],
+                :label => false,
+                :input_html => {:"data-placeholder" => "Select a status"} %>
+
+
+    <%= f.submit "Search" %>
+<% end %>
