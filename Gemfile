@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'seed-fu'
+gem 'paperclip'
 gem 'will_paginate', '> 3.0'
 gem 'will_paginate-bootstrap'
 
@@ -23,7 +24,6 @@ group :assets do
   gem 'font-awesome-sass-rails'
   gem 'chosen-rails'
   gem 'spinjs-rails'
-  gem 'paperclip'
 end
 
 # we want to coffee regardless.
