@@ -104,3 +104,12 @@ table .order-line-info .span4 {float:right;}
 }
 .part-hardware .control-group .controls select,
 .order-search .control-group .controls select {width: 155px;}
+
+.product-attachment {
+    margin-left: 160px;
+    margin-bottom: 18px;
+    float: left;
+    display: block;
+    width: 100%;
+    margin-top: -17px;
+}

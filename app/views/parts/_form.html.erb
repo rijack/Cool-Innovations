@@ -7,7 +7,7 @@
     <%= f.input :description, :label => 'Comment' %>
     <%= f.input :attachment, :as => :file %>
     <% if @part.attachment? %>
-        <%= link_to @part.attachment_file_name, @part.attachment.url %>
+        <%= link_to @part.attachment_file_name, @part.attachment.url, :class => "product-attachment" %>
     <% end %>
     <%= f.association :part_processes, :as => :select,
       :input_html => {:"data-placeholder" => "Choose processes"} %>

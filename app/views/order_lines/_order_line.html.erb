@@ -13,8 +13,10 @@
 <tr>
     <td colspan="<%= colspan %>" class="order-line-info hide">
         <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
+            <% if order_line.order.attachment? %>
+                <h5 class="pull-right">Order Attachment: <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></h5>
+            <% end %>
             <h4>Order line details</h4>
-            <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %>
             <div class="process-info span7">
                 <h5>Process</h5>
                 <table class="table table-bordered table-condensed">
