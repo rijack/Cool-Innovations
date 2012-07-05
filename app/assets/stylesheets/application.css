@@ -92,12 +92,15 @@ table td.actions {
 table .order-line-info .span7 {float:left;}
 table .order-line-info .span4 {float:right;}
 
-.order-search .control-group {
+.order-search .control-group
+{
     float:left;
 }
+.part-hardware .control-group .controls,
 .order-search .control-group .controls {
     margin-left:0;
     margin-right: 5px;
     width:155px;
 }
+.part-hardware .control-group .controls select,
 .order-search .control-group .controls select {width: 155px;}

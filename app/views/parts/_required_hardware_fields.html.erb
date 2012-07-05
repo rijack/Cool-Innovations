@@ -1,8 +1,8 @@
 <div class="nested-fields">
-  <%= f.association :hardware, :collection => Hardware.all,
+  <%= f.association :hardware, :collection => Hardware.all, :label=>false,
       :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %>
 
-  <%= f.input :quantity, :input_html => {:class => "input-mini pull-left"} %>
-  <%= link_to_remove_association "Remove Hardware", f, :class => "btn" %>
+  <%= f.input :quantity,:label => false, :input_html => {:class => "input-small pull-left"} %>
+  <%= link_to_remove_association "Remove", f, :class => "btn" %>
 </div>
 

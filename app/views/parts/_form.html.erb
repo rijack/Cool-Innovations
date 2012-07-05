@@ -8,16 +8,16 @@
     <%= f.input :description %>
     <%= f.association :part_processes, :as => :select,
       :input_html => {:"data-placeholder" => "Choose processes"} %>
+  </div>
 
-    <div id="required_hardwares">
+    <div id="required-hardwares">
       <%= f.simple_fields_for :required_hardwares do |required_hardware| %>
-        <%= render 'required_hardware_fields', :f => required_hardware %>
+          <%= render 'required_hardware_fields', :f => required_hardware %>
       <% end %>
-      <div class="links">
+      <div class="links2">
         <%= link_to_add_association 'Attach Hardware', f, :required_hardwares, :class => 'btn' %>
       </div>
     </div>
-  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
