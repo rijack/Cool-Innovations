@@ -4,7 +4,8 @@
 $ ->
   # hack to save date from: http://railscasts.com/episodes/213-calendars?view=comments
   datePicker = (selector) ->
-    $real = $(selector)
+    $real = $(selector).not(".picked")
+    $real.addClass("picked")
     $display = $real.clone().attr({class: null, id: null, name: null})
     $real.hide()
     $display.insertBefore($real)
