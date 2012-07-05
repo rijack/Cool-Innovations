@@ -3,8 +3,8 @@
 
   <div class="form-inputs">
     <%= f.input :purchase_order %>
-    <%= f.association :client,
-      :input_html => {:"data-placeholder" => "Choose a client"} %>
+    <%= f.association :client, :label => "Customer",
+      :input_html => {:"data-placeholder" => "Choose a customer"} %>
 
     <div id="order_lines">
       <%= f.simple_fields_for :order_lines do |order_line| %>

@@ -6,8 +6,7 @@
       <tr>
         <th>Part number</th>
         <th>Drawing number</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Comments</th>
         <th></th>
       </tr>
   </thead>
@@ -16,7 +15,6 @@
       <tr>
         <td><%= link_to part.part_number, edit_part_path(part) %></td>
         <td><%= part.drawing_number %></td>
-        <td><%= part.name %></td>
         <td><%= part.description %></td>
         <td class="actions">
           <%= link_to 'Edit', edit_part_path(part), :class => 'btn btn-small' %>
