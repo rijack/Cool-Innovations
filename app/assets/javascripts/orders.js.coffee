@@ -9,15 +9,17 @@ $ ->
     $display = $real.clone().attr({class: null, id: null, name: null})
     $real.hide()
     $display.insertBefore($real)
-    $display.datepicker({altField: $real, altFormat: 'yy-mm-dd'})
+    $display.datepicker({altField: $real, altFormat: 'yyyy-mm-dd'})
 
   $('#search_form').find("select").chosen()
   $("#order_client_id").chosen()
   $('#order_lines').find("select").chosen()
+
+
   $('#order_lines').bind 'insertion-callback', ->
     $('#order_lines').find("select").chosen()
-    datePicker $(".jquery-ui-date")
+    datePicker $(".due-date")
+    datePicker $(".ship-date  ")
 
-  datePicker $(".jquery-ui-date")
 
 

@@ -2,8 +2,8 @@
   <%= f.association :part, :collection => Part.all,
       :input_html => {:"data-placeholder" => "Choose part"} %>
 
-  <%= f.input :due_date, :as => :string,:input_html => {:class => "jquery-ui-date"} %>
-  <%= f.input :ship_date, :as => :string,:input_html => {:class => "jquery-ui-date"} %>
+  <%= f.input :due_date, :as => :string,:input_html => {:class => "due-date"} %>
+  <%= f.input :ship_date, :as => :string,:input_html => {:class => "ship-date"} %>
   <%= f.input :quantity %>
   <%= f.input :comment %>
   <%= link_to_remove_association "Remove Line", f, :class => "btn btn-danger" %>
