@@ -1,10 +1,14 @@
-<%= simple_form_for(@part, :html => { :class => 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@part, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :part_number %>
     <%= f.input :drawing_number %>
     <%= f.input :description, :label => 'Comment' %>
+    <%= f.input :attachment, :as => :file %>
+    <% if @part.attachment? %>
+        <%= link_to @part.attachment_file_name, @part.attachment.url %>
+    <% end %>
     <%= f.association :part_processes, :as => :select,
       :input_html => {:"data-placeholder" => "Choose processes"} %>
   </div>

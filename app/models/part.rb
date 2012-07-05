@@ -1,5 +1,5 @@
 class Part < ActiveRecord::Base
-  attr_accessible :description, :drawing_number, :name, :part_number, :part_process_ids, :required_hardwares_attributes
+  attr_accessible :description, :drawing_number, :name, :part_number, :part_process_ids, :required_hardwares_attributes, :attachment
 
   validates_presence_of :part_number, :drawing_number
   validates_uniqueness_of :part_number, :case_sensitive => false
@@ -12,6 +12,7 @@ class Part < ActiveRecord::Base
 
   accepts_nested_attributes_for :required_hardwares
   accepts_nested_attributes_for :required_processes
+  has_attached_file :attachment
 
   def name
     part_number

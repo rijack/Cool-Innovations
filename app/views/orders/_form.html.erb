@@ -1,10 +1,11 @@
-<%= simple_form_for(@order, :html => { :class => 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@order, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :purchase_order %>
     <%= f.association :client, :label => "Customer",
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
+    <%= f.input :attachment, :as => :file %>
 
     <div id="order_lines">
       <%= f.simple_fields_for :order_lines do |order_line| %>

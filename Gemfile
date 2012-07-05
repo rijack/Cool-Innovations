@@ -23,6 +23,7 @@ group :assets do
   gem 'font-awesome-sass-rails'
   gem 'chosen-rails'
   gem 'spinjs-rails'
+  gem 'paperclip'
 end
 
 # we want to coffee regardless.
