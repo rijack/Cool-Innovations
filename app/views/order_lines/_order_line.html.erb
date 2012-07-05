@@ -1,22 +1,29 @@
-<% colspan = 5 %>
+<% colspan = 6 %>
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
-    <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
+    <td><%= link_to 'Edit', edit_order_path(order_line.order), :class => 'btn btn-small' %></td>
     <% if local_assigns[:show_client].present? %>
-        <% colspan = 6 %>
+        <% colspan = 7 %>
         <td><%= order_line.order.client.name %></td>
     <% end %>
+  <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
     <td><%= order_line.part.name %></td>
     <td><%= order_line.quantity %></td>
     <td><%= order_line.due_date %></td>
     <td class="status-cell"> <span class="status"><%= order_line.status %></span> </td>
+
 </tr>
 <tr>
     <td colspan="<%= colspan %>" class="order-line-info hide">
         <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
+            <!--<h4>Order line details</h4>-->
+          <div class="order-line-info span11">
             <% if order_line.order.attachment? %>
-                <h5 class="pull-right">Order Attachment: <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></h5>
+                <h5>Order Attachment: <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></h5>
             <% end %>
-            <h4>Order line details</h4>
+            <% if order_line.comment? %>
+                <h5>Comment: <span class="no-bold"><%= order_line.comment %></span></h5>
+            <% end %>
+          </div>
             <div class="process-info span7">
                 <h5>Process</h5>
                 <table class="table table-bordered table-condensed">
