@@ -1,5 +1,5 @@
 <div class="nested-fields">
-  <%= f.association :hardware, :collection => Hardware.all, :label=>false,
+  <%= f.association :hardware, :collection => Hardware.order(:name).all, :label=>false,
       :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %>
 
   <%= f.input :quantity,:label => false, :input_html => {:class => "input-small pull-left"} %>

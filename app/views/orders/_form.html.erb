@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :purchase_order %>
-    <%= f.association :client, :label => "Customer",
+    <%= f.association :client, :label => "Customer", :collection => Client.order("LOWER(name)").all,
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
     <%= f.input :attachment, :as => :file %>
 

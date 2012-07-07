@@ -1,16 +1,16 @@
 <%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal order-search pull-left' }) do |f| %>
 
-    <%= f.input :client, :collection => Client.all.collect{|x| [x.name, x.id] }.unshift(["Select a client", nil]),
+    <%= f.input :client, :collection => Client.order("LOWER(name)").all.collect{|x| [x.name, x.id] }.unshift(["Select a client", nil]),
                 :selected => params[:search][:client],
                 :label => false,
                 :input_html => { :"data-placeholder" => "Select a client" } %>
 
-    <%= f.input :po_number, :collection => Order.all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil]),
+    <%= f.input :po_number, :collection => Order.order(:purchase_order).all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil]),
                 :selected => params[:search][:po_number],
                 :label => false,
                 :input_html => {:"data-placeholder" => "Select a P/O"} %>
 
-    <%= f.input :part_id, :collection => Part.all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
+    <%= f.input :part_id, :collection => Part.order(:part_number).all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
                 :selected => params[:search][:part_id],
                 :label => false,
                 :input_html => {:"data-placeholder" => "Select a part"} %>

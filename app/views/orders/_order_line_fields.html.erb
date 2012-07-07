@@ -1,5 +1,5 @@
 <div class="nested-fields">
-  <%= f.association :part, :collection => Part.all,
+  <%= f.association :part, :collection => Part.order(:part_number).all,
       :input_html => {:"data-placeholder" => "Choose part"} %>
 
   <%= f.input :due_date, :as => :string,:input_html => {:class => "due-date"} %>
