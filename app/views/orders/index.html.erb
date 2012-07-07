@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th class="edit"></th>
+      <th class="delete"></th>
       <th>Customer</th>
       <th><%= sortable "order_id", "P/O Number" %></th>
       <th>Part Number</th>
@@ -20,8 +21,7 @@
   <tbody>
       <% if @order_lines.length > 0 %>
         <%= render :partial => 'order_lines/order_line', :collection => @order_lines, :locals => { :show_client => true } %>
-      <% end %>
-      <% if @order_lines.length == 0 %>
+      <% else %>
         <%= render :partial => 'order_lines/no_orders', :locals => { :show_client => true } %>
       <% end %>
   </tbody>

@@ -1,10 +1,15 @@
-<% colspan = 6 %>
+<% colspan = 7 %>
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
-    <td><%= link_to 'Edit', edit_order_path(order_line.order), :class => 'btn btn-small' %></td>
-    <% if local_assigns[:show_client].present? %>
-        <% colspan = 7 %>
-        <td><%= order_line.order.client.name %></td>
-    <% end %>
+  <td> 
+    <%= link_to 'Edit', edit_order_path(order_line.order), :class => 'btn btn-small' %>
+  </td>
+  <td> 
+    <%= link_to 'Delete', order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+  </td>
+  <% if local_assigns[:show_client].present? %>
+    <% colspan += 1 %>
+    <td><%= order_line.order.client.name %></td>
+  <% end %>
   <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
     <td><%= order_line.part.name %></td>
     <td><%= order_line.quantity %></td>

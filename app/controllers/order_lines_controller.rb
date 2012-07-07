@@ -76,7 +76,7 @@ class OrderLinesController < ApplicationController
     @order_line.destroy
 
     respond_to do |format|
-      format.html { redirect_to order_lines_url }
+      format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
   end

@@ -16,6 +16,8 @@ class OrderLine < ActiveRecord::Base
 
   after_create :build_statuses
 
+  after_destroy :check_order
+
   private
 
   def build_statuses
@@ -25,6 +27,13 @@ class OrderLine < ActiveRecord::Base
       )
       status.part_process_id = process.id
       status.save
+    end
+  end
+
+  # check if order should be deleted
+  def check_order
+    if order.order_lines.count == 0
+      order.destroy
     end
   end
 end
