@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   def sort_by_field
     if sort_column
-      "#{sort_column} #{sort_direction}" 
+      "#{sort_column} #{sort_direction}"
     else
-      ""
+      nil
     end
   end
 end

@@ -4,28 +4,21 @@ class OrdersController < ApplicationController
   def index
     params[:search] ||= {}
 
+    # join order and client all the time
+    @order_lines = OrderLine.joins(:order => :client)
+
     if params[:search][:client].present?
-      @client = Client.find params[:search][:client]
-      if params[:search][:po_number].present?
-        @client = @client.orders.find params[:search][:po_number]
-      end
-      @order_lines = @client.order_lines
-    else
-      if params[:search][:po_number].present?
-        @order = Order.find params[:search][:po_number]
-        @order_lines = @order.order_lines
-      else
-        @order_lines = OrderLine
-      end
+      @order_lines = @order_lines.where(:"clients.id" => params[:search][:client])
     end
 
-    search = params[:search].slice *OrderLine.column_names
-    search.select! {|k, v| v.present? }
-    if search.present?
-      @order_lines = @order_lines.where(search)
+    if params[:search][:po_number].present?
+      @order_lines = @order_lines.where(:"orders.id" => params[:search][:po_number])
     end
 
-    @order_lines = @order_lines.order(sort_by_field).page(params[:page]).per_page(20)
+    search = params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?}
+    @order_lines = @order_lines.where(search) if search.present?
+
+    @order_lines = @order_lines.order(sort_by_field || "created_at desc").page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
