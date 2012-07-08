@@ -1,4 +1,5 @@
-<div class="nested-fields">
+<tr class="nested-fields">
+  <td>
   <%= f.association :part, :collection => Part.order(:part_number).all,
       :input_html => {:"data-placeholder" => "Choose part"} %>
 
@@ -7,5 +8,6 @@
   <%= f.input :quantity %>
   <%= f.input :comment %>
   <%= link_to_remove_association "Remove Line", f, :class => "btn btn-danger" %>
-</div>
+  </td>
+</tr>
 
