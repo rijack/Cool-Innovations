@@ -18,6 +18,14 @@ class OrderLine < ActiveRecord::Base
 
   after_destroy :check_order
 
+  def self.shipped
+    where { status == "shipped" }
+  end
+
+  def self.not_shipped
+    where { status != "shipped" }
+  end
+
   private
 
   def build_statuses
