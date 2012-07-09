@@ -15,7 +15,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="span9">
+      <div class="span12">
         <% flash.each do |name, msg| %>
           <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
             <a class="close" data-dismiss="alert">×</a>
@@ -25,9 +25,9 @@
 
         <%= yield %>
       </div>
-      <div class="span3">
+      <!--<div class="span3">
         <%= render 'layouts/rail_search' %>
-      </div>
+      </div>-->
     </div>
   </div>
   <%= javascript_include_tag "application" %>
