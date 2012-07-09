@@ -6,6 +6,15 @@ class OrderLineProcessStatus < ActiveRecord::Base
 
   after_save :set_order_line_status, :if => :status_changed?
 
+  validate :check_order
+
+  protected
+  def check_order
+    if order_line.status == "shipped"
+      errors.add :status, "Order has already been shipped."
+    end
+  end
+
   private
 
   def set_order_line_status
