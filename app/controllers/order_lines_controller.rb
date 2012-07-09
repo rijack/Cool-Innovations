@@ -86,4 +86,10 @@ class OrderLinesController < ApplicationController
     @order_line_process_status.status = params[:status]
     @order_line_process_status.save
   end
+
+  def update_order_line
+    @order_line = OrderLine.find(params[:order_line_id])
+    @order_line[params[:type]] = params[:new_comment]
+    @order_line.save
+  end
 end

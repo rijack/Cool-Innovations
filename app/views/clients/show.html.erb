@@ -8,12 +8,15 @@
 <table class="table">
   <thead>
       <tr>
-        <th class="edit"></th>
         <th><%= sortable "order_id", "P/O Number" %></th>
         <th>Part Number</th>
         <th>Quantity</th>
         <th><%= sortable "due_date" %></th>
+        <th>Comment</th>
+        <th>Production Comment</th>
         <th><%= sortable "status" %></th>
+        <th class="edit"></th>
+        <th class="delete"></th>
       </tr>
   </thead>
   <tbody>

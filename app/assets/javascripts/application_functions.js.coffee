@@ -29,7 +29,6 @@ $ ->
         order_line_process_status_id: process_status_id
 
 
-
   $('.process_status .line-status .btn').live 'click', ->
     status = $(this).html()
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning")
@@ -57,3 +56,40 @@ $ ->
 
   $('.collapse').on 'hidden', ->
     $(this).parent("td").addClass("hide")
+
+  currentEditable = ""
+  $('.editable').live 'click', ->
+    if (currentEditable == "")
+      oldValue = $(this).html()
+      currId = $(this).attr('id')
+      editableType = currId.split("-")[0]
+      editableValue = currId.split("-")[1]
+      currentEditable = true
+      inputType = "input"
+
+      if (editableType == "quantity")
+        $(this).html("<input type='text' id='"+$(this).attr('id')+"' value='"+oldValue+"'/>");
+      else
+        $(this).html("<textarea id='"+$(this).attr('id')+"'>"+oldValue+"</textarea>");
+        inputType = "textarea"
+
+      #$(this).html("<input type='text' id='"+$(this).attr('id')+"' value='"+oldValue+"'/>");
+      #$(this).html("<textarea id='"+$(this).attr('id')+"'>"+oldValue+"</textarea>");
+
+      $("#"+currId+" "+inputType).focus()
+      $("#"+currId+" "+inputType).on 'blur', ->
+        newValue = $("#"+currId+" "+inputType).val()
+        if (newValue != oldValue)
+          $.ajax
+            type: 'POST'
+            url: "/order_lines/update_order_line"
+            data:
+              type: editableType
+              order_line_id: editableValue
+              new_comment: newValue
+          $(this).parents("td").html(newValue);
+        else
+          $(this).parents("td").html(oldValue);
+        currentEditable = ""
+
+
