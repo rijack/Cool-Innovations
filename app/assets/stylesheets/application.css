@@ -85,10 +85,10 @@ table td.actions {
     border-top:0;
 }
 
-.table tr td.status-cell {color: #fff; width:55px;}
-.table tr.completed td.status-cell .status { background-color: #51A351; }
-.table tr.in-progress td.status-cell .status  { background-color: #2F96B4; }
-.table tr.pending td.status-cell .status  { background-color: #F89406; }
+.table tr .status.btn {background-image: none;}
+.table tr.completed .status.btn { background-color: #51A351; }
+.table tr.in-progress .status.btn  { background-color: #2F96B4;  }
+.table tr.pending .status.btn  { background-color: #F89406; }
 
 
 table .order-line-info .span7 {float:left;}
@@ -123,4 +123,6 @@ table .order-line-info .span4 {float:right;}
 
 .table td.editable.qty input {width:50px;}
 .table td.editable.qty {width:80px;}
+
+.table td.actions {width:100px;}
 

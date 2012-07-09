@@ -1,4 +1,4 @@
-<% colspan = 7 %>
+<% colspan = 6 %>
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
 
   <% if local_assigns[:show_client].present? %>
@@ -11,10 +11,14 @@
   <td><%= order_line.due_date %></td>
   <td class="editable comment" id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
   <td class="editable comment" id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
-  <td class="status-cell"> <span class="status"><i class="icon-star-empty"></i></span> </td>
-  <td>
-    <%= link_to 'Edit', edit_order_path(order_line.order), :class => 'btn btn-small' %>
-    <%= link_to 'Delete', order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+  <td class="actions">
+    <span class="status btn btn-small" title="<%= order_line.status %>"><i class="icon-star-empty"></i></span>
+    <%= link_to edit_order_path(order_line.order), :class => 'btn btn-small', :title => 'Edit' do%>
+        <i class="icon-edit"></i>
+    <% end %>
+    <%= link_to order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+        <i class="icon-trash" alt="edit"></i>
+    <% end %>
   </td>
 </tr>
 <tr>
