@@ -72,7 +72,8 @@
                     <thead>
                         <tr>
                             <th>Hardware Name</th>
-                            <th>Status</th>
+                            <th>Part Qty</th>
+                            <th>Order Qty</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,6 +81,7 @@
                             <tr>
                               <td><%= hardware.hardware.name %></td>
                               <td><%= hardware.quantity %></td>
+                              <td><%= hardware.quantity * order_line.quantity %></td>
                             </tr>
                         <% end %>
                     </tbody>
