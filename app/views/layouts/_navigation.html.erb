@@ -9,16 +9,9 @@
       <a class="brand" href="/">Cool Innovations</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="dropdown <% if params[:controller] == "orders" %> active <% end%>" id="orders-menu">
-            <%= link_to orders_path, :class => 'dropdown-toggle', :"data-toggle" => "dropdown", :"data-target" => "#" do%>
-                Orders
-                <b class="caret"></b>
-            <% end %>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Active Orders', orders_path %></li>
-              <li><%= link_to 'Shipped Orders', shipped_orders_url %></li>
-            </ul>
-          </li>
+
+          <li <% if params[:controller] == "orders" %>class="active"<% end%>><%= link_to 'Orders', orders_path %></li>
+          <li <% if params[:controller] == "shipped" %>class="active"<% end%>><%= link_to 'Shipped Orders', shipped_orders_url %></li>
           <li <% if params[:controller] == "parts" %>class="active"<% end%>><%= link_to "Parts", parts_path %></li>
           <li <% if params[:controller] == "hardwares" %>class="active"<% end%>><%= link_to "Hardwares", hardwares_path %></li>
           <li <% if params[:controller] == "part_process" %>class="active"<% end%>><%= link_to "Processes", part_processes_path %></li>
