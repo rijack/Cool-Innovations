@@ -3,9 +3,12 @@ CoolInnovations::Application.routes.draw do
   resources :order_lines do
     post :set_process_status, :on => :collection
     post :update_order_line, :on => :collection
+    post :ship_order_lines, :on => :collection
   end
 
-  resources :orders
+  resources :orders do
+    match :shipped, :on => :collection, :action => :index, :display => "shipped"
+  end
 
   resources :parts
 

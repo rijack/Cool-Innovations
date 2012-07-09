@@ -3,9 +3,19 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     params[:search] ||= {}
+    params[:display] ||= {}
+
+    #raise params[:display].inspect
+
+    if params[:display] == "shipped"
+      @order_lines = OrderLine.where{status == "shipped"}.joins(:order => :client)
+    else
+      @order_lines = OrderLine.where{status != "shipped"}.joins(:order => :client)
+    end
 
     # join order and client all the time
-    @order_lines = OrderLine.joins(:order => :client)
+    #@order_lines = OrderLine.joins(:order => :client)
+    #@order_lines = OrderLine.where{status != "shipped"}.joins(:order => :client)
 
     if params[:search][:client].present?
       @order_lines = @order_lines.where(:"clients.id" => params[:search][:client])

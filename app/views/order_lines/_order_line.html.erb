@@ -19,6 +19,9 @@
     <%= link_to order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
         <i class="icon-trash" alt="edit"></i>
     <% end %>
+    <% if local_assigns[:show_client].present? %>
+        <input type="checkbox" name="ship-order-lines" class="ship-lines" value="ol-<%= order_line.id%>">
+    <% end %>
   </td>
 </tr>
 <tr>

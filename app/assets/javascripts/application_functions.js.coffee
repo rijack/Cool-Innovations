@@ -93,3 +93,20 @@ $ ->
         currentEditable = ""
 
 
+  $(".ship-orders").click ->
+    cBoxes = $('input.ship-lines')
+    toShip = []
+    cBoxes.filter(':checked').each ->
+      orderLineId = $(this).val().split("-")[1]
+      toShip.push orderLineId
+
+    if (toShip.length > 0)
+      $.ajax
+        type: 'POST'
+        url: "/order_lines/ship_order_lines"
+        data:
+          ids: toShip
+    else
+      alert("Select a line to ship, you dumbass!!!!")
+
+    return false

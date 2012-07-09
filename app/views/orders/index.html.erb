@@ -1,6 +1,21 @@
-<h1>Order Lines</h1>
+<% if params["display"] == "shipped" %>
+    <h1>Shipped Order Lines</h1>
+<% else %>
+    <h1>Order Lines</h1>
+<% end %>
+
+
+<% if params["shipped"] %>
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert">×</a>
+      order lines shipped successfully.  Click <a href="">Shipped Orders</a> to view
+    </div>
+
+<% end %>
 
 <%= render 'order_line_search' %>
+
+<%= link_to 'Ship Orders', "#", :class => 'btn btn-success pull-right mls mrx ship-orders' %>
 <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
 
 

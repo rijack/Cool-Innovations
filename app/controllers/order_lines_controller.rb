@@ -92,4 +92,12 @@ class OrderLinesController < ApplicationController
     @order_line[params[:type]] = params[:new_comment]
     @order_line.save
   end
+
+  def ship_order_lines
+    params[:ids].each do |id|
+      @order_line = OrderLine.find(id)
+      @order_line.status = "shipped"
+      @order_line.save
+    end
+  end
 end
