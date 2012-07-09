@@ -10,6 +10,7 @@
   <td><%= order_line.quantity %></td>
   <td><%= order_line.due_date %></td>
   <td><%= order_line.comment %></td>
+  <td><%= order_line.production_comment %></td>
   <td class="status-cell"> <span class="status"><%= order_line.status %></span> </td>
   <td>
     <%= link_to 'Edit', edit_order_path(order_line.order), :class => 'btn btn-small' %>

@@ -5,7 +5,7 @@ class OrderLine < ActiveRecord::Base
     "completed"
   ]
 
-  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :_destroy
+  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :_destroy
 
   validates_presence_of :due_date, :part_id, :quantity
 
