@@ -6,10 +6,7 @@ $ ->
   datePicker = (selector) ->
     $real = $(selector).not(".picked")
     $real.addClass("picked")
-    $display = $real.clone().attr({class: null, id: null, name: null})
-    $real.hide()
-    $display.insertBefore($real)
-    $display.datepicker({altField: $real, altFormat: 'yyyy-mm-dd'})
+    $real.datepicker({dateFormat: 'yy-mm-dd'})
 
   $('#search_form').find("select").chosen()
   $("#order_client_id").chosen()
@@ -19,7 +16,10 @@ $ ->
   $('#order_lines').bind 'insertion-callback', ->
     $('#order_lines').find("select").chosen()
     datePicker $(".due-date")
-    datePicker $(".ship-date  ")
+    datePicker $(".ship-date")
+
+  datePicker $(".due-date")
+  datePicker $(".ship-date")
 
 
 
