@@ -126,6 +126,7 @@ table .order-line-info .span4 {float:right;}
 .table td.editable.qty {width:45px;}
 
 .table td.actions {width:110px;}
+.table td.actions.small {width:70px;}
 
 /*order lines */
 .form-horizontal #order_lines td {vertical-align: top; padding-right:10px;}
