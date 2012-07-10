@@ -122,8 +122,8 @@ table .order-line-info .span4 {float:right;}
 .table td.editable.comment textarea {width:150px; height:50px;}
 .table td.editable.comment {width:180px;}
 
-.table td.editable.qty input {width:50px;}
-.table td.editable.qty {width:80px;}
+.table td.editable.qty input {width:30px;}
+.table td.editable.qty {width:45px;}
 
 .table td.actions {width:110px;}
 

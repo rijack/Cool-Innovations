@@ -24,9 +24,11 @@
     <tr>
       <th><%= sortable "clients.name", "Customer" %></th>
       <th><%= sortable "order_id", "P/O Number" %></th>
-      <th>Part Number</th>
-      <th>Quantity</th>
+      <th>Part #</th>
+      <th>Qty</th>
+      <th><%= sortable "created_at" %></th>
       <th><%= sortable "due_date" %></th>
+      <th><%= sortable "ship_date" %></th>
       <th>Comment</th>
       <th>Production Comment</th>
       <th></th>
