@@ -26,6 +26,23 @@ class OrderLine < ActiveRecord::Base
     where { status != "shipped" }
   end
 
+  # shipped => true | false
+  # client_id => 
+  # order_id => 
+  # params => 
+  # sort =>
+  # page =>
+  # per_page =>
+  def self.search(options = {})
+    order_lines = OrderLine.joins(:order => :client)
+    order_lines = options[:shipped] ? order_lines.shipped : order_lines.not_shipped
+    order_lines = order_lines.where{clients.id == options[:client_id]} if options[:client_id].present?
+    order_lines = order_lines.where{orders.id == options[:order_id]} if options[:order_id].present?
+    order_lines = order_lines.where(options[:search]) if options[:search].present?
+
+    order_lines = order_lines.order(options[:sort]).page(options[:page]).per_page(options[:per_page])
+  end
+
   private
 
   def build_statuses

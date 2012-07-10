@@ -6,4 +6,6 @@ class Hardware < ActiveRecord::Base
 
   has_many :required_hardwares
   has_many :parts, :through => :required_hardwares
+  has_many :order_lines, :through => :parts
+
 end

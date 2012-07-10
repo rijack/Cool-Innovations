@@ -5,20 +5,16 @@ class OrdersController < ApplicationController
     params[:search] ||= {}
     params[:display] ||= {}
 
-    @order_lines = OrderLine.send(params[:display] == "shipped" ? :shipped : :not_shipped).joins(:order => :client)
 
-    if params[:search][:client].present?
-      @order_lines = @order_lines.where(:"clients.id" => params[:search][:client])
-    end
-
-    if params[:search][:po_number].present?
-      @order_lines = @order_lines.where(:"orders.id" => params[:search][:po_number])
-    end
-
-    search = params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?}
-    @order_lines = @order_lines.where(search) if search.present?
-
-    @order_lines = @order_lines.order(sort_by_field || "created_at desc").page(params[:page]).per_page(20)
+    @order_lines = OrderLine.search(
+      :shipped => params[:display] == "shipped",
+      :client_id => params[:search][:client],
+      :order_id => params[:search][:po_number],
+      :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
+      :sort => (sort_by_field || "created_at desc"),
+      :page => params[:page],
+      :per_page =>  20
+    )
 
     respond_to do |format|
       format.html # index.html.erb
