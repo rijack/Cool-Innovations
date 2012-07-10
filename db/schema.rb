@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710184159) do
+ActiveRecord::Schema.define(:version => 20120710195810) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120710184159) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "comment"
   end
 
   create_table "order_line_process_statuses", :force => true do |t|
