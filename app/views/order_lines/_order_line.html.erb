@@ -3,16 +3,16 @@
 
   <% if local_assigns[:show_client].present? %>
     <% colspan += 1 %>
-    <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.client.name %></a></td>
-    <td><%= order_line.order.purchase_order %></td>
+    <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.client.name %></a></td>
+    <td class="fixed"><%= order_line.order.purchase_order %></td>
   <% else %>
-      <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
+      <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
   <% end %>
-  <td><%= order_line.part.name %></td>
+  <td class="fixed"><%= order_line.part.name %></td>
   <td class="editable qty" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
-  <td><%= order_line.created_at.to_date() %></td>
-  <td><%= order_line.due_date %></td>
-  <td><%= order_line.ship_date %></td>
+  <td class="fixed"><%= order_line.created_at.to_date() %></td>
+  <td class="fixed"><%= order_line.due_date %></td>
+  <td class="fixed"><%= order_line.ship_date %></td>
   <td class="editable comment" id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
   <td class="editable comment" id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
   <td class="actions">

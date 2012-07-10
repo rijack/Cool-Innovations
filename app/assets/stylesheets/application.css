@@ -138,3 +138,5 @@ table .order-line-info .span4 {float:right;}
     margin-left:0;
 }
 
+td.fixed {white-space: nowrap;}
+
