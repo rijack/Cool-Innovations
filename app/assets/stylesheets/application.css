@@ -125,7 +125,7 @@ table .order-line-info .span4 {float:right;}
 .table td.editable.qty input {width:30px;}
 .table td.editable.qty {width:45px;}
 
-.table td.actions {width:110px;}
+.table td.actions {width:115px;}
 .table td.actions.small {width:70px;}
 
 /*order lines */
@@ -139,5 +139,6 @@ table .order-line-info .span4 {float:right;}
     margin-left:0;
 }
 
+th.fixed,
 td.fixed {white-space: nowrap;}
 
