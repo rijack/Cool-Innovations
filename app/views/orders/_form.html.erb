@@ -7,12 +7,12 @@
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
     <%= f.input :attachment, :as => :file %>
 
-    <table id="order_lines">
+    <table id="order_lines" class="table table-condensed">
       <%= f.simple_fields_for :order_lines do |order_line| %>
         <%= render 'order_line_fields', :f => order_line %>
       <% end %>
       <tr>
-        <td>
+        <td colspan="9">
           <div class="links">
             <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
               :"data-association-insertion-node" => '#order_lines',
@@ -20,6 +20,17 @@
             %>
           </div>
         </td>
+      </tr>
+      <tr>
+        <th>Part</th>
+        <th>Shipping Method</th>
+        <th>Due Date</th>
+        <th>Ship Date</th>
+        <th>Qty</th>
+        <th>Comment</th>
+        <th>Production Comment</th>
+        <th>Price</th>
+        <th></th>
       </tr>
     </table>
   </div>

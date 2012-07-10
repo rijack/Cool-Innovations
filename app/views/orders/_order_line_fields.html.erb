@@ -1,15 +1,16 @@
 <tr class="nested-fields">
+  <td><%= f.association :part, :label =>false, :collection => Part.order(:part_number).all, :input_html => {:"data-placeholder" => "Choose part", :class => "span2"} %></td>
+  <td><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).all, :input_html => {:"data-placeholder" => "Choose shipping method", :class => "span2"} %></td>
+  <td><%= f.input :due_date, :label =>false, :as => :string,:input_html => {:class => "due-date input-small"} %></td>
+  <td><%= f.input :ship_date, :label =>false, :as => :string,:input_html => {:class => "ship-date input-small"} %></td>
+  <td><%= f.input :quantity, :label =>false,:input_html => {:class => "span1"} %></td>
+  <td><%= f.input :comment, :label =>false,:input_html => {:class => "span2"} %></td>
+  <td><%= f.input :production_comment, :label =>false,:input_html => {:class => "span2"} %></td>
+  <td><%= f.input :price, :label =>false,:input_html => {:class => "span1"} %></td>
   <td>
-  <%= f.association :part, :collection => Part.order(:part_number).all,
-      :input_html => {:"data-placeholder" => "Choose part"} %>
-
-  <%= f.input :due_date, :as => :string,:input_html => {:class => "due-date"} %>
-  <%= f.input :ship_date, :as => :string,:input_html => {:class => "ship-date"} %>
-  <%= f.input :quantity %>
-  <%= f.input :comment %>
-  <%= f.input :production_comment %>
-  <%= f.input :price %>
-  <%= link_to_remove_association "Remove Line", f, :class => "btn btn-danger" %>
+    <%= link_to_remove_association  f, :class => "btn btn-small btn-danger", :title => "Remove Line" do%>
+        <i class="icon-trash" alt="edit"></i>
+    <% end %>
   </td>
 </tr>
 
