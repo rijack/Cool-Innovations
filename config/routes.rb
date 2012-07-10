@@ -1,5 +1,9 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :shipping_methods do
+    get :search, :on => :collection
+  end
+
   resources :order_lines do
     post :set_process_status, :on => :collection
     post :update_order_line, :on => :collection

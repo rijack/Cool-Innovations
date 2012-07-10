@@ -1,0 +1,9 @@
+<%= simple_form_for :shipping_method, :url => search_shipping_methods_path, :method => :get do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :query,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :placeholder => 'Search for shipping method'%>
+    <%= f.submit 'Search', :class => 'btn pull-left mrx' %>
+<% end %>

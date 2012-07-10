@@ -1,0 +1,13 @@
+<%= simple_form_for(@shipping_method, :remote => true, :html => { :class => 'form-horizontal' }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="modal-body">
+      <%= f.input :name %>
+      <%= f.input :duration, :label => "Duration (in days)" %>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+<% end %>

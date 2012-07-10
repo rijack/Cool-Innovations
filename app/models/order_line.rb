@@ -5,12 +5,13 @@ class OrderLine < ActiveRecord::Base
     "completed"
   ]
 
-  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :price, :_destroy
+  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :price, :shipping_method_id, :_destroy
 
   validates_presence_of :due_date, :part_id, :quantity
 
   belongs_to :order
   belongs_to :part
+  belongs_to :shipping_method
 
   has_many :order_line_process_statuses, :dependent => :destroy
 

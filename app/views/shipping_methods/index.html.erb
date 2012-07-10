@@ -1,0 +1,46 @@
+<h1>Shipping Methods</h1>
+
+<%= render 'search_form' %>
+<%= link_to 'New Shipping Method', "/shipping_methods/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
+
+
+<% if @shipping_methods.length > 0 %>
+
+    <% if params.fetch(:shipping_method, {})[:query].present? %>
+        <div class="row">
+          <div class="span9 mbxx">
+            your search for <em><strong>"<%= params[:shipping_method][:query] %>"</strong></em>  returned <strong><%= pluralize(@shipping_methods.count, 'result') %></strong>
+          </div>
+        </div>
+    <% end %>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Shipping Method Name</th>
+        <th>Duration (in days)</th>
+        <th class="actions">&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @shipping_methods.each do |shipping_method| %>
+          <tr>
+            <td><%= shipping_method.name %></td>
+            <td><%= shipping_method.duration %></td>
+            <td class="actions">
+              <%= link_to 'Edit', edit_shipping_method_path(shipping_method)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
+              <%= link_to 'Delete', shipping_method, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @shipping_methods, :renderer => BootstrapPagination::Rails %>
+<% else %>
+    <div class="row">
+      <div class="span9 mbxx">
+        There are no results
+      </div>
+    </div>
+<% end %>

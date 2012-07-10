@@ -1,0 +1,1 @@
+<%= render "shared/create", :text => 'Shipping Method', :item => @shipping_method, :url => 'shipping_methods/form', :error_body => 'new_shipping_method', :path => shipping_methods_path, :select_id => 'shipping_method_id', :select_class => ''  %>

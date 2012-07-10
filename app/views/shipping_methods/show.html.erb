@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @shipping_method.name %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @shipping_method.duration %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipping_method_path(@shipping_method) %> |
+<%= link_to 'Back', shipping_methods_path %>

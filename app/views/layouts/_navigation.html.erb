@@ -16,6 +16,7 @@
           <li <% if params[:controller] == "hardwares" %>class="active"<% end%>><%= link_to "Hardwares", hardwares_path %></li>
           <li <% if params[:controller] == "part_process" %>class="active"<% end%>><%= link_to "Processes", part_processes_path %></li>
           <li <% if params[:controller] == "clients" %>class="active"<% end%>><%= link_to "Customers", clients_path%></li>
+          <li <% if params[:controller] == "shipping_methods" %>class="active"<% end%>><%= link_to "Shipping Methods", shipping_methods_path%></li>
           <li class="dropdown" id="utilities-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#utilityMenu">
               Utilities
@@ -28,6 +29,7 @@
               <li><%= link_to 'New Hardware', "/hardwares/new?no_layout=1", :class => 'modal-trigger' %></li>
               <li><%= link_to 'New Process', "/part_processes/new?no_layout=1", :class => 'modal-trigger' %></li>
               <li><%= link_to 'New Customer', "/clients/new?no_layout=1", :class => 'modal-trigger' %></li>
+              <li><%= link_to 'New Shipping Method', "/shipping_methods/new?no_layout=1", :class => 'modal-trigger' %></li>
             </ul>
           </li>
         </ul>
