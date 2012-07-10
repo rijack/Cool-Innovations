@@ -40,7 +40,7 @@ class OrderLine < ActiveRecord::Base
     order_lines = order_lines.where{orders.id == options[:order_id]} if options[:order_id].present?
     order_lines = order_lines.where(options[:search]) if options[:search].present?
 
-    order_lines = order_lines.order(options[:sort]).page(options[:page]).per_page(options[:per_page])
+    order_lines = order_lines.order(options[:sort]).page(options[:page] || 1).per_page(options[:per_page] || 10)
   end
 
   private

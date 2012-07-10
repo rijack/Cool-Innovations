@@ -25,6 +25,7 @@ class HardwaresController < ApplicationController
   # GET /hardwares/new.json
   def new
     @hardware = Hardware.new
+    @order_lines = []
 
     respond_to do |format|
       format.html do
@@ -36,7 +37,18 @@ class HardwaresController < ApplicationController
 
   # GET /hardwares/1/edit
   def edit
+    params[:search] ||= {}
+      
     @hardware = Hardware.find(params[:id])
+    @order_lines = @hardware.order_lines.search(
+      :shipped => params[:display] == "shipped",
+      :client_id => params[:search][:client],
+      :order_id => params[:search][:po_number],
+      :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
+      :sort => (sort_by_field || "created_at desc"),
+      :page => params[:page],
+      :per_page =>  20
+    )
 
     respond_to do |format|
       format.html do
