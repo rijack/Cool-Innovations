@@ -18,6 +18,7 @@
       <thead>
           <tr>
             <th>Hardware Name</th>
+            <th>Required pending count</th>
             <th class="actions">&nbsp;</th>
           </tr>
       </thead>
@@ -25,6 +26,7 @@
       <% @hardwares.each do |hardware| %>
           <tr>
             <td><%= link_to hardware.name, edit_hardware_path(hardware)%></td>
+            <td><%= hardware.required_count(:shipped => false) %>
             <td class="actions">
               <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
               <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>

@@ -3,7 +3,6 @@ class HardwaresController < ApplicationController
   # GET /hardwares.json
   def index
     @hardwares = Hardware.order(:name).page(params[:page]).per_page(20)
-    @hardwares = @hardwares.joins(:parts => :)
 
     respond_to do |format|
       format.html # index.html.erb
