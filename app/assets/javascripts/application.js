@@ -18,3 +18,4 @@
 //= require chosen-jquery
 //= require_tree .
 //= require jquery.spin
+//= require date.js
