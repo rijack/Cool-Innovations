@@ -28,6 +28,7 @@
     <% end %>
   </td>
 </tr>
+<% if params["display"] != "shipped" %>
 <tr>
     <td colspan="<%= colspan %>" class="order-line-info hide">
         <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
@@ -99,3 +100,4 @@
         </div>
     </td>
 </tr>
+<% end %>
