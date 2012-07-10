@@ -120,7 +120,7 @@ table .order-line-info .span4 {float:right;}
 .table td.editable {cursor:pointer;}
 
 .table td.editable.comment textarea {width:150px; height:50px;}
-.table td.editable.comment {width:180px;}
+.table td.editable.comment {width:170px;}
 
 .table td.editable.qty input {width:30px;}
 .table td.editable.qty {width:45px;}
