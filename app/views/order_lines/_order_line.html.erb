@@ -16,7 +16,11 @@
   <td class="editable qty" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
   <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <td class="fixed"><%= order_line.due_date %></td>
-  <td class="fixed"><%= order_line.ship_date %></td>
+  <% if params["display"] == "shipped" %>
+    <td class="fixed"><%= order_line.actual_ship_date %></td>
+  <% else %>
+    <td class="fixed"><%= order_line.ship_date %></td>
+  <% end %>
   <td class="editable comment" id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
   <td class="editable comment" id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
   <td class="actions <% if params["display"] == "shipped" %>small<% end %>">

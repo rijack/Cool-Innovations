@@ -97,6 +97,7 @@ class OrderLinesController < ApplicationController
     params[:ids].each do |id|
       @order_line = OrderLine.find(id)
       @order_line.status = "shipped"
+      @order_line.actual_ship_date = Time.now
       @order_line.save
     end
   end

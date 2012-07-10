@@ -31,7 +31,11 @@
       <th class="fixed">Qty</th>
       <th class="fixed"><%= sortable "created_at" %></th>
       <th class="fixed"><%= sortable "due_date" %></th>
-      <th class="fixed"><%= sortable "ship_date" %></th>
+      <% if params["display"] != "shipped" %>
+        <th class="fixed"><%= sortable "ship_date" %></th>
+      <% else %>
+          <th class="fixed"><%= sortable "actual_ship_date" %></th>
+      <% end %>
       <th>Comment</th>
       <th>Production Comment</th>
       <th></th>
