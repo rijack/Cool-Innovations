@@ -7,32 +7,36 @@
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
     <%= f.input :attachment, :as => :file %>
 
-    <table id="order_lines" class="table table-condensed">
-      <%= f.simple_fields_for :order_lines do |order_line| %>
-        <%= render 'order_line_fields', :f => order_line %>
-      <% end %>
-      <tr>
-        <td colspan="10">
-          <div class="links">
-            <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
-              :"data-association-insertion-node" => '#order_lines',
-              :"data-association-insertion-method" => "append"
-            %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th>Line #</th>
-        <th>Part</th>
-        <th>Due Date</th>
-        <th>Shipping Method</th>
-        <th>Ship Date</th>
-        <th>Qty</th>
-        <th>Comment</th>
-        <th>Production Comment</th>
-        <th>Price</th>
-        <th></th>
-      </tr>
+    <table class="table table-condensed">
+      <thead>
+          <tr>
+            <th>Line #</th>
+            <th>Part</th>
+            <th>Due Date</th>
+            <th>Shipping Method</th>
+            <th>Ship Date</th>
+            <th>Qty</th>
+            <th>Comment</th>
+            <th>Production Comment</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody  id="order_lines">
+          <%= f.simple_fields_for :order_lines do |order_line| %>
+            <%= render 'order_line_fields', :f => order_line %>
+          <% end %>
+          <tr>
+            <td colspan="10">
+              <div class="links">
+                <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
+                  :"data-association-insertion-node" => '#order_lines',
+                  :"data-association-insertion-method" => "prepend"
+                %>
+              </div>
+            </td>
+          </tr>
+      </tbody>
     </table>
   </div>
 

@@ -3,6 +3,10 @@
       :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %></td>
 
   <td class="hardware-qty"><%= f.input :quantity,:label => false, :input_html => {:class => "input-small pull-left"} %></td>
-  <td class="hardware-remove"><%= link_to_remove_association "Remove", f, :class => "btn btn-small btn-danger" %></td>
+  <td class="hardware-remove">
+    <%= link_to_remove_association  f, :class => "btn btn-small btn-danger", :title => "Remove Line" do%>
+        <i class="icon-trash" alt="edit"></i>
+    <% end %>
+  </td>
 </tr>
 

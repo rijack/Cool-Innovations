@@ -154,3 +154,25 @@ table .order-line-info .span4 {float:right;}
 th.fixed,
 td.fixed {white-space: nowrap;}
 
+.hardware-cell {width:40%;}
+#required-hardwares {width:auto;}
+#required-hardwares td.top { border:0; padding:0 0 4px 0; }
+
+
+#required-hardwares td.req-hardware { width:110px; }
+#required-hardwares td.hardware-qty { width:100px; }
+#required-hardwares td.hardware-remove { width:50px; }
+
+/*
+#required-hardwares td.req-hardware select {
+    width:200px;
+}
+#required-hardwares { width: 400px}
+#required-hardwares th,
+#required-hardwares td {border:0}
+#required-hardwares td.req-hardware { width:110px; }
+#required-hardwares td.hardware-qty { width:100px; }
+#required-hardwares td.hardware-remove { width:50px; }
+*/
+
+
