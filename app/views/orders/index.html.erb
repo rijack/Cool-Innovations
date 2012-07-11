@@ -17,8 +17,9 @@
 
 <% if params["display"] != "shipped" %>
     <%= link_to 'Ship Orders', "#", :class => 'ship-orders btn btn-success pull-right mls mrx ' %>
+    <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
 <% end %>
-<%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
+
 
 
 
@@ -30,7 +31,9 @@
       <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
       <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
       <th class="fixed"><%= sortable "quantity", "Qty" %></th>
-      <th class="fixed"><%= sortable "created_at" %></th>
+      <% if params["display"] != "shipped" %>
+        <th class="fixed"><%= sortable "created_at" %></th>
+      <% end %>
       <th class="fixed"><%= sortable "due_date" %></th>
       <% if params["display"] != "shipped" %>
         <th class="fixed"><%= sortable "ship_date" %></th>
@@ -38,7 +41,11 @@
           <th class="fixed"><%= sortable "actual_ship_date" %></th>
       <% end %>
       <th>Comment</th>
-      <th>Production Comment</th>
+      <% if params["display"] != "shipped" %>
+        <th>Production Comment</th>
+      <% else %>
+          <th>Tracking #</th>
+      <% end %>
       <th></th>
     </tr>
   </thead>
