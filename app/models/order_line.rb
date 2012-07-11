@@ -35,7 +35,7 @@ class OrderLine < ActiveRecord::Base
   # page =>
   # per_page =>
   def self.search(options = {})
-    order_lines = OrderLine.joins(:order => :client)
+    order_lines = OrderLine.joins(:order => :client).joins(:part)
     order_lines = options[:shipped] ? order_lines.shipped : order_lines.not_shipped
     order_lines = order_lines.where{clients.id == options[:client_id]} if options[:client_id].present?
     order_lines = order_lines.where{orders.id == options[:order_id]} if options[:order_id].present?
