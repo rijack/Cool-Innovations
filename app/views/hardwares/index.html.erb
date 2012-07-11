@@ -35,10 +35,10 @@
                 <td class="fixed"><%= hardware.name %></td>
             <% end %>
             <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %></td>
-            <td class="editable comment" headers="/hardwares/update_hardware"  id="vendor_name-<%= hardware.id %>"><%= hardware.vendor_name %></td>
-            <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_i-<%= hardware.id %>"><%= hardware.pricing_i %></td>
-            <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_history-<%= hardware.id %>"><%= hardware.pricing_history %></td>
-            <td class="editable comment" headers="/hardwares/update_hardware"  id="description-<%= hardware.id %>"><%= hardware.description %></td>
+            <td class="editable comment" data-headers="/hardwares/update_hardware"  id="vendor_name-<%= hardware.id %>"><%= hardware.vendor_name %></td>
+            <td class="editable comment" data-headers="/hardwares/update_hardware"  id="pricing_i-<%= hardware.id %>"><%= hardware.pricing_i %></td>
+            <td class="editable comment" data-headers="/hardwares/update_hardware"  id="pricing_history-<%= hardware.id %>"><%= hardware.pricing_history %></td>
+            <td class="editable comment" data-headers="/hardwares/update_hardware"  id="description-<%= hardware.id %>"><%= hardware.description %></td>
             <td class="actions">
               <%= link_to hardware, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>

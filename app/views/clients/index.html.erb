@@ -32,9 +32,9 @@
             <% else %>
                 <td><%= client.name %></td>
             <% end %>
-            <td class="editable medium" headers="/clients/update_client"  id="payment_instructions-<%= client.id %>"><%= client.payment_instructions %></td>
-            <td class="editable medium" headers="/clients/update_client"  id="shipping_instructions-<%= client.id %>"><%= client.shipping_instructions %></td>
-            <td class="editable medium" headers="/clients/update_client"  id="special_instructions-<%= client.id %>"><%= client.special_instructions %></td>
+            <td class="editable medium" data-headers="/clients/update_client"  id="payment_instructions-<%= client.id %>"><%= client.payment_instructions %></td>
+            <td class="editable medium" data-headers="/clients/update_client"  id="shipping_instructions-<%= client.id %>"><%= client.shipping_instructions %></td>
+            <td class="editable medium" data-headers="/clients/update_client"  id="special_instructions-<%= client.id %>"><%= client.special_instructions %></td>
             <td class="actions fixed">
               <%= link_to client, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>

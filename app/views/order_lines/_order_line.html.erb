@@ -17,7 +17,7 @@
   <% end %>
   <td class="fixed"><%= order_line.line_number %></td>
   <td class="fixed"><%= order_line.part.name %></td>
-  <td class="editable qty" headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
+  <td class="editable qty" data-headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
   <% if params["display"] != "shipped" %>
     <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <% end %>
@@ -27,11 +27,11 @@
   <% else %>
     <td class="fixed"><%= order_line.ship_date %></td>
   <% end %>
-  <td class="editable comment" headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
+  <td class="editable comment" data-headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
   <% if params["display"] != "shipped" %>
-    <td class="editable comment" headers="/order_lines/update_order_line"  id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
+    <td class="editable comment" data-headers="/order_lines/update_order_line"  id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
   <% else %>
-    <td class="editable comment" headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
+    <td class="editable comment" data-headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
   <% end %>
   <td class="actions <% if params["display"] == "shipped" %>small<% end %> fixed">
     <span class="status btn btn-small" title="<%= order_line.status %>"><i class="icon-star-empty"></i></span>

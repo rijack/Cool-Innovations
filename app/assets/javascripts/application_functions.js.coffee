@@ -62,7 +62,7 @@ $ ->
     if (currentEditable == "")
       oldValue = $(this).html()
       currId = $(this).attr('id')
-      postUrl = $(this).attr('headers')
+      postUrl = $(this).attr('data-headers')
 
       editableField= currId.split("-")[0]
       editableID = currId.split("-")[1]
