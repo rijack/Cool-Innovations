@@ -5,6 +5,11 @@ class OrdersController < ApplicationController
     params[:search] ||= {}
     params[:display] ||= {}
 
+    if params[:display] == "shipped"
+      list_per_page = 100
+    else
+      list_per_page = 500
+    end
 
     @order_lines = OrderLine.search(
       :shipped => params[:display] == "shipped",
@@ -13,7 +18,7 @@ class OrdersController < ApplicationController
       :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
       :sort => (sort_by_field || "created_at desc"),
       :page => params[:page],
-      :per_page =>  500
+      :per_page =>  list_per_page
     )
 
     respond_to do |format|
