@@ -27,7 +27,7 @@
       <tbody>
         <% @clients.each do |client| %>
           <tr>
-            <% if (client.order_lines.length > 0) %>
+            <% if (client.order_lines.not_shipped.length > 0) %>
                 <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= client.id %>"><i class="icon-plus"></i><%= client.name %></a></td>
             <% else %>
                 <td><%= client.name %></td>
