@@ -80,4 +80,10 @@ class PartsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_part
+    @client = Client.find(params[:id])
+    @client[params[:field]] = params[:new_value]
+    @client.save
+  end
 end

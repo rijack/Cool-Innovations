@@ -1,7 +1,8 @@
 <h1>Parts</h1>
 
-<%= link_to 'New Part', new_part_path, :class => 'btn btn-primary pull-right' %>
-<table class="table table-striped">
+<%= link_to 'New Part', new_part_path, :class => 'btn btn-primary pull-right mbxx' %>
+
+<table class="table table-bordered">
   <thead>
       <tr>
         <th>Part number</th>
@@ -13,12 +14,19 @@
   <tbody>
     <% @parts.each do |part| %>
       <tr>
-        <td><%= link_to part.part_number, edit_part_path(part) %></td>
-        <td><%= part.drawing_number %></td>
-        <td><%= part.description %></td>
+        <td class="fixed"><%= link_to part.part_number, edit_part_path(part) %></td>
+        <td class="editable large" headers="/parts/update_part"  id="description-<%= part.drawing_number %>"><%= part.drawing_number %></td>
+        <td class="editable large" headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
         <td class="actions">
-          <%= link_to 'Edit', edit_part_path(part), :class => 'btn btn-small' %>
-          <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+          <%= link_to part, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+              <i class="icon-folder-open"></i>
+          <% end %>
+          <%= link_to edit_part_path(part), :class => 'btn btn-small', :title => 'Edit' do%>
+              <i class="icon-edit"></i>
+          <% end %>
+          <%= link_to part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+              <i class="icon-trash" alt="delete"></i>
+          <% end %>
         </td>
       </tr>
     <% end %>

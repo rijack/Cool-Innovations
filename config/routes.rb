@@ -14,7 +14,9 @@ CoolInnovations::Application.routes.draw do
     match :shipped, :on => :collection, :action => :index, :display => "shipped"
   end
 
-  resources :parts
+  resources :parts do
+    post :update_part, :on => :collection
+  end
 
   resources :part_processes do
     post :part_processes, :on => :collection
