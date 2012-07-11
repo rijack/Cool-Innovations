@@ -50,6 +50,9 @@
             <% if order_line.order.attachment? %>
                 <h5>Order Attachment: <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></h5>
             <% end %>
+            <% if order_line.part.attachment? %>
+                <h5>Part Drawing: <%= link_to order_line.part.attachment_file_name, order_line.part.attachment.url %></h5>
+            <% end %>
           </div>
             <div class="process-info span7">
                 <h5>Process</h5>
