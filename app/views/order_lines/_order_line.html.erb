@@ -33,7 +33,7 @@
   <% else %>
     <td class="editable comment" headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
   <% end %>
-  <td class="actions <% if params["display"] == "shipped" %>small<% end %>">
+  <td class="actions <% if params["display"] == "shipped" %>small<% end %> fixed">
     <span class="status btn btn-small" title="<%= order_line.status %>"><i class="icon-star-empty"></i></span>
     <% if params["display"] != "shipped" %>
         <%= link_to edit_order_path(order_line.order), :class => 'btn btn-small', :title => 'Edit' do%>
