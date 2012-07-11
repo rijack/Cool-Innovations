@@ -1,5 +1,24 @@
 <h1><%= @client.name %></h1>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Payment Instructions</th>
+      <th>Shipping Instructions</th>
+      <th>Special Instructions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="editable large" headers="/clients/update_client" id="payment_instructions-<%= @client.id%>"><%= @client.payment_instructions %></td>
+      <td class="editable large" headers="/clients/update_client" id="shipping_instructions-<%= @client.id%>"><%= @client.payment_instructions %></td>
+      <td class="editable large" headers="/clients/update_client" id="special_instructions-<%= @client.id%>"><%= @client.payment_instructions %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 <h2>Orders</h2>
 
 

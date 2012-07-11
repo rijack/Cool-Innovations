@@ -88,8 +88,8 @@ class OrderLinesController < ApplicationController
   end
 
   def update_order_line
-    @order_line = OrderLine.find(params[:order_line_id])
-    @order_line[params[:type]] = params[:new_comment]
+    @order_line = OrderLine.find(params[:id])
+    @order_line[params[:field]] = params[:new_value]
     @order_line.save
   end
 

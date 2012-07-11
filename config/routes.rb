@@ -27,6 +27,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :clients do
     get :search, :on => :collection
+    post :update_client, :on => :collection
   end
 
   root to: "home#index"

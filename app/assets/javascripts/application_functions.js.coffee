@@ -62,19 +62,18 @@ $ ->
     if (currentEditable == "")
       oldValue = $(this).html()
       currId = $(this).attr('id')
-      editableType = currId.split("-")[0]
-      editableValue = currId.split("-")[1]
+      postUrl = $(this).attr('headers')
+
+      editableField= currId.split("-")[0]
+      editableID = currId.split("-")[1]
       currentEditable = true
       inputType = "input"
 
-      if (editableType == "quantity")
+      if (editableField == "quantity")
         $(this).html("<input type='text' id='"+$(this).attr('id')+"' value='"+oldValue+"'/>");
       else
         $(this).html("<textarea id='"+$(this).attr('id')+"'>"+oldValue+"</textarea>");
         inputType = "textarea"
-
-      #$(this).html("<input type='text' id='"+$(this).attr('id')+"' value='"+oldValue+"'/>");
-      #$(this).html("<textarea id='"+$(this).attr('id')+"'>"+oldValue+"</textarea>");
 
       $("#"+currId+" "+inputType).focus()
       $("#"+currId+" "+inputType).on 'blur', ->
@@ -82,11 +81,11 @@ $ ->
         if (newValue != oldValue)
           $.ajax
             type: 'POST'
-            url: "/order_lines/update_order_line"
+            url: postUrl
             data:
-              type: editableType
-              order_line_id: editableValue
-              new_comment: newValue
+              field: editableField
+              id: editableID
+              new_value: newValue
           $(this).parents("td").html(newValue);
         else
           $(this).parents("td").html(oldValue);

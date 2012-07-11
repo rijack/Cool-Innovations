@@ -102,4 +102,10 @@ class ClientsController < ApplicationController
     end
   end
 
+  def update_client
+    @client = Client.find(params[:id])
+    @client[params[:field]] = params[:new_value]
+    @client.save
+  end
+
 end

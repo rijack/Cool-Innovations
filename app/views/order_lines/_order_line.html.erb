@@ -17,7 +17,7 @@
       <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
   <% end %>
   <td class="fixed"><%= order_line.part.name %></td>
-  <td class="editable qty" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
+  <td class="editable qty" headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
   <% if params["display"] != "shipped" %>
     <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <% end %>
@@ -27,11 +27,11 @@
   <% else %>
     <td class="fixed"><%= order_line.ship_date %></td>
   <% end %>
-  <td class="editable comment" id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
+  <td class="editable comment" headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>"><%= order_line.comment %></td>
   <% if params["display"] != "shipped" %>
-    <td class="editable comment" id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
+    <td class="editable comment" headers="/order_lines/update_order_line"  id="production_comment-<%= order_line.id%>"><%= order_line.production_comment %></td>
   <% else %>
-    <td class="editable comment" id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
+    <td class="editable comment" headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
   <% end %>
   <td class="actions <% if params["display"] == "shipped" %>small<% end %>">
     <span class="status btn btn-small" title="<%= order_line.status %>"><i class="icon-star-empty"></i></span>
@@ -61,6 +61,17 @@
             <% end %>
             <% if order_line.part.attachment? %>
                 <h5>Part Drawing: <%= link_to order_line.part.attachment_file_name, order_line.part.attachment.url %></h5>
+            <% end %>
+            <% if order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
+                <% if order_line.order.client.payment_instructions?  %>
+                    <h5>Payment Instructions: <span class="no-bold"><%= order_line.order.client.payment_instructions %></span></h5>
+                <% end %>
+                <% if order_line.order.client.shipping_instructions?  %>
+                    <h5>Shipping Instructions: <span class="no-bold"><%= order_line.order.client.shipping_instructions %></span></h5>
+                <% end %>
+                <% if order_line.order.client.special_instructions?  %>
+                    <h5>Special Instructions: <span class="no-bold"><%= order_line.order.client.special_instructions %></span></h5>
+                <% end %>
             <% end %>
           </div>
             <div class="process-info span7">
