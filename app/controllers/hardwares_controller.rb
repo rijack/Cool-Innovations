@@ -115,4 +115,10 @@ class HardwaresController < ApplicationController
     end
   end
 
+  def update_hardware
+    @hardware = Hardware.find(params[:id])
+    @hardware[params[:field]] = params[:new_value]
+    @hardware.save
+  end
+
 end

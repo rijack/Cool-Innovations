@@ -20,6 +20,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :hardwares do
     get :search, :on => :collection
+    post :update_hardware, :on => :collection
   end
 
   resources :users

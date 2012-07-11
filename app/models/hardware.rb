@@ -1,5 +1,5 @@
 class Hardware < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :vendor_name, :pricing_i, :pricing_history
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false

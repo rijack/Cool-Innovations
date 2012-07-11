@@ -17,8 +17,12 @@
     <table class="table">
       <thead>
           <tr>
-            <th>Hardware Name</th>
-            <th>Required pending count</th>
+            <th class="fixed">Name</th>
+            <th>Vendor Name</th>
+            <th>Pricing I</th>
+            <th>Pricing History</th>
+            <th>Notes</th>
+            <th>Total Pending</th>
             <th class="actions">&nbsp;</th>
           </tr>
       </thead>
@@ -26,11 +30,15 @@
       <% @hardwares.each do |hardware| %>
           <tr>
             <% if (hardware.order_lines.length > 0) %>
-                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
+                <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
             <% else %>
-                <td><%= hardware.name %></td>
+                <td class="fixed"><%= hardware.name %></td>
             <% end %>
-            <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %>
+            <td class="editable comment" headers="/hardwares/update_hardware"  id="vendor_name-<%= hardware.id %>"><%= hardware.vendor_name %></td>
+            <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_i-<%= hardware.id %>"><%= hardware.pricing_i %></td>
+            <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_history-<%= hardware.id %>"><%= hardware.pricing_history %></td>
+            <td class="editable comment" headers="/hardwares/update_hardware"  id="description-<%= hardware.id %>"><%= hardware.description %></td>
+            <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %></td>
             <td class="actions">
               <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
               <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
@@ -38,7 +46,7 @@
           </tr>
           <% if (hardware.order_lines.not_shipped.length > 0) %>
               <tr>
-                <td colspan="3" class="order-line-info hide">
+                <td colspan="7" class="order-line-info hide">
                   <div class="accordion-body collapse" id="collapse<%= hardware.id %>">
                     <table class="table table-bordered table-condensed">
                       <thead>
