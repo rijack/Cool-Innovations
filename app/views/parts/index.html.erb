@@ -25,9 +25,6 @@
           <%= link_to part, :class => 'btn btn-small btn-info', :title => 'Show' do%>
               <i class="icon-folder-open"></i>
           <% end %>
-          <%= link_to edit_part_path(part), :class => 'btn btn-small', :title => 'Edit' do%>
-              <i class="icon-edit"></i>
-          <% end %>
           <%= link_to part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
               <i class="icon-trash" alt="delete"></i>
           <% end %>
