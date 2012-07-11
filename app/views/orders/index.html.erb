@@ -25,10 +25,11 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th>#</th>
       <th><%= sortable "clients.name", "Customer" %></th>
       <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
       <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
-      <th class="fixed">Qty</th>
+      <th class="fixed"><%= sortable "quantity", "Qty" %></th>
       <th class="fixed"><%= sortable "created_at" %></th>
       <th class="fixed"><%= sortable "due_date" %></th>
       <% if params["display"] != "shipped" %>

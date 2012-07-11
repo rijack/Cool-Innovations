@@ -8,12 +8,17 @@
 <table class="table table-bordered">
   <thead>
       <tr>
-        <th><%= sortable "order_id", "P/O Number" %></th>
-        <th>Part Number</th>
-        <th>Quantity</th>
-        <th>Created Date</th>
-        <th><%= sortable "due_date" %></th>
-        <th>Ship Date</th>
+        <th>#</th>
+        <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
+        <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
+        <th class="fixed"><%= sortable "quantity", "Qty" %></th>
+        <th class="fixed"><%= sortable "created_at" %></th>
+        <th class="fixed"><%= sortable "due_date" %></th>
+        <% if params["display"] != "shipped" %>
+            <th class="fixed"><%= sortable "ship_date" %></th>
+        <% else %>
+            <th class="fixed"><%= sortable "actual_ship_date" %></th>
+        <% end %>
         <th>Comment</th>
         <th>Production Comment</th>
         <th></th>

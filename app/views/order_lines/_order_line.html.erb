@@ -1,6 +1,7 @@
-<% colspan = 9 %>
+<% colspan = 10 %>
 
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
+  <td class="fixed"><%= order_line.line_number %></td>
   <% if local_assigns[:show_client].present? %>
     <% colspan += 1 %>
     <% if params["display"] != "shipped" %>

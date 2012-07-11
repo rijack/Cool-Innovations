@@ -12,7 +12,7 @@
         <%= render 'order_line_fields', :f => order_line %>
       <% end %>
       <tr>
-        <td colspan="9">
+        <td colspan="10">
           <div class="links">
             <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
               :"data-association-insertion-node" => '#order_lines',
@@ -22,6 +22,7 @@
         </td>
       </tr>
       <tr>
+        <th>Line #</th>
         <th>Part</th>
         <th>Due Date</th>
         <th>Shipping Method</th>
