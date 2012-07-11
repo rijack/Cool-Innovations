@@ -12,49 +12,55 @@
       </tr>
   </thead>
   <tbody>
-    <% @parts.each do |part| %>
-      <tr>
-        <% if (part.order_lines.not_shipped.length > 0) %>
-            <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part.id %>"><i class="icon-plus"></i><%= part.part_number %></a></td>
-        <% else %>
-            <td class="fixed"><%= part.part_number %></td>
-        <% end %>
-        <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.drawing_number %>"><%= part.drawing_number %></td>
-        <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
-        <td class="actions">
-          <%= link_to part, :class => 'btn btn-small btn-info', :title => 'Show' do%>
-              <i class="icon-folder-open"></i>
-          <% end %>
-          <%= link_to part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
-              <i class="icon-trash" alt="delete"></i>
-          <% end %>
-        </td>
-      </tr>
-      <% if (part.order_lines.not_shipped.length > 0) %>
+    <% if @parts.length > 0 %>
+      <% @parts.each do |part| %>
           <tr>
-            <td colspan="7" class="order-line-info hide">
-              <div class="accordion-body collapse" id="collapse<%= part.id %>">
-                <table class="table table-bordered table-condensed">
-                  <thead>
-                  <tr>
-                    <th>P/O #</th>
-                    <th>Client</th>
-                    <th>Part #</th>
-                    <th>Qty</th>
-                    <th>Due Date</th>
-                    <th>Ship Date</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <%= render :partial => 'order_lines/order_line_simple',
-                             :collection => part.order_lines.not_shipped,
-                             :as => 'order_line',
-                             :locals => {:hardware => nil, :view => 'part_process'} %>
-                  </tbody>
-                </table>
-              </div>
+            <% if (part.order_lines.not_shipped.length > 0) %>
+                <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part.id %>"><i class="icon-plus"></i><%= part.part_number %></a></td>
+            <% else %>
+                <td class="fixed"><%= part.part_number %></td>
+            <% end %>
+            <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.drawing_number %>"><%= part.drawing_number %></td>
+            <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
+            <td class="actions">
+              <%= link_to part, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+                  <i class="icon-folder-open"></i>
+              <% end %>
+              <%= link_to part, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
+            </td>
           </tr>
+          <% if (part.order_lines.not_shipped.length > 0) %>
+              <tr>
+                <td colspan="7" class="order-line-info hide">
+                  <div class="accordion-body collapse" id="collapse<%= part.id %>">
+                    <table class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th>P/O #</th>
+                        <th>Client</th>
+                        <th>Part #</th>
+                        <th>Qty</th>
+                        <th>Due Date</th>
+                        <th>Ship Date</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <%= render :partial => 'order_lines/order_line_simple',
+                                 :collection => part.order_lines.not_shipped,
+                                 :as => 'order_line',
+                                 :locals => {:hardware => nil, :view => 'part_process'} %>
+                      </tbody>
+                    </table>
+                  </div>
+              </tr>
+          <% end %>
       <% end %>
+    <% else %>
+        <tr>
+          <td colspan="4">There are no parts</td>
+        </tr>
     <% end %>
   </tbody>
 </table>
