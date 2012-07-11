@@ -1,29 +1,75 @@
-<%= simple_form_for(@part, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :part_number %>
-    <%= f.input :drawing_number %>
-    <%= f.input :description, :label => 'Comment' %>
-    <%= f.input :attachment, :as => :file %>
-    <% if @part.attachment? %>
-        <%= link_to @part.attachment_file_name, @part.attachment.url, :class => "product-attachment" %>
-    <% end %>
-    <%= f.association :part_processes, :as => :select,
-      :input_html => {:"data-placeholder" => "Choose processes"} %>
-  </div>
-
-    <div id="required-hardwares">
-      <%= f.simple_fields_for :required_hardwares do |required_hardware| %>
-          <%= render 'required_hardware_fields', :f => required_hardware %>
+<%= simple_form_for(@part, :html => { :class => 'form-inline', :multipart => true }) do |f| %>
+    <%= f.error_notification %>
+    <table class="table">
+      <% if view == 'new' %>
+        <tr>
+            <th colspan="3">Part Number</th>
+        </tr>
+        <tr>
+            <td colspan="3"><%= f.input :part_number, :label => false %></td>
+        </tr>
       <% end %>
-      <div class="links2">
-        <%= link_to_add_association 'Attach Hardware', f, :required_hardwares, :class => 'btn' %>
-      </div>
-    </div>
+          <tr>
+            <th>Drawing Number</th>
+            <th>Comment</th>
+            <th>Attachment</th>
+          </tr>
+      <tr>
+        <% if view == 'new' %>
+            <td><%= f.input :drawing_number, :label => false %></td>
+            <td><%= f.input :description, :label => false %></td>
+        <% else %>
+            <td class="editable large" data-headers="/parts/update_part" id="drawing_number-<%= @part.id%>"><%= @part.drawing_number %></td>
+            <td class="editable large" data-headers="/parts/update_part" id="description-<%= @part.id%>"><%= @part.description %></td>
+        <% end %>
+        <td class="large">
+          <% if @part.attachment? %>
+              <%= link_to @part.attachment_file_name, @part.attachment.url, :class => "" %>
+          <% end %>
+          <%= f.input :attachment, :as => :file, :label => false %>
+        </td>
+      </tr>
+      <tr>
+        <th>Part Processes</th>
+        <th>Required Hardware</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>
+          <%= f.association :part_processes, :as => :select, :label => false,
+                            :input_html => {:"data-placeholder" => "Choose processes"} %>
+        </td>
+        <td class="hardware-cell">
+          <table class="table table-condensed">
+            <thead>
+                <% if view == 'new' %>
+                    <tr class="hide">
+                <% else %>
+                    <tr>
+                <% end %>
+                  <th class="req-hardware">Hardware</th>
+                  <th class="hardware-qty">Qty</th>
+                  <th class="hardware-remove">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody id="required-hardwares">
+                <%= f.simple_fields_for :required_hardwares do |required_hardware| %>
+                    <%= render 'required_hardware_fields', :f => required_hardware %>
+                <% end %>
+                <tr>
+                  <td colspan="3" class="top">
+                    <%= link_to_add_association 'Add Hardware', f, :required_hardwares, :class => 'btn',
+                                                :"data-association-insertion-node" => '#required-hardwares',
+                                                :"data-association-insertion-method" => "prepend"
+                    %>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </td>
+        <td><%= f.submit nil, :class => 'btn btn-primary btn-small' %></td>
+      </tr>
+    </table>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to 'Cancel', parts_path, :class => 'btn' %>
-  </div>
 <% end %>
+

@@ -1,39 +1,40 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @part.name %></h1>
+
+<%= render :partial => 'form', :locals => {:view => 'show'} %>
+
+<% if @part.order_lines.not_shipped.length > 0 %>
+    <h2>Active Orders</h2>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th><%= sortable "clients.name", "Customer" %></th>
+        <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
+        <th>#</th>
+        <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
+        <th class="fixed"><%= sortable "quantity", "Qty" %></th>
+        <th class="fixed"><%= sortable "created_at" %></th>
+        <th class="fixed"><%= sortable "due_date" %></th>
+        <% if params["display"] != "shipped" %>
+            <th class="fixed"><%= sortable "ship_date" %></th>
+        <% else %>
+            <th class="fixed"><%= sortable "actual_ship_date" %></th>
+        <% end %>
+        <th>Comment</th>
+        <th>Production Comment</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @part.order_lines.not_shipped.length > 0 %>
+          <%= render :partial => 'order_lines/order_line', :collection => @part.order_lines.not_shipped, :locals => { :show_client => true }  %>
+      <% end %>
+      <% if @part.order_lines.not_shipped == 0 %>
+          <%= render :partial => 'order_lines/no_orders' %>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <p>There are currently no active orders for this part</p>
+<% end %>
 
 
-<p>
-  <b>Description:</b>
-  <%= @part.description %>
-</p>
-
-<p>
-  <b>Part number:</b>
-  <%= @part.part_number %>
-</p>
-
-<p>
-  <b>Drawing number:</b>
-  <%= @part.drawing_number %>
-</p>
-
-<p>
-  <b>Required Processes:</b>
-  <ul>
-    <% @part.required_processes.each do |required_process| %>
-      <li><%= required_process.part_process.name %></li>
-    <% end %>
-  </ul>
-</p>
-
-<p>
-  <b>Required Hardware:</b>
-  <ul>
-    <% @part.required_hardwares.each do |required_hardware| %>
-      <li><%= required_hardware.hardware.name %>: <%= required_hardware.quantity %></li>
-    <% end %>
-  </ul>
-</p>
-
-
-<%= link_to 'Edit', edit_part_path(@part) %> |
-<%= link_to 'Back', parts_path %>

@@ -14,7 +14,11 @@
   <tbody>
     <% @parts.each do |part| %>
       <tr>
-        <td class="fixed"><%= link_to part.part_number, edit_part_path(part) %></td>
+        <% if (part.order_lines.not_shipped.length > 0) %>
+            <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part.id %>"><i class="icon-plus"></i><%= part.part_number %></a></td>
+        <% else %>
+            <td class="fixed"><%= part.part_number %></td>
+        <% end %>
         <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.drawing_number %>"><%= part.drawing_number %></td>
         <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
         <td class="actions">
@@ -29,6 +33,31 @@
           <% end %>
         </td>
       </tr>
+      <% if (part.order_lines.not_shipped.length > 0) %>
+          <tr>
+            <td colspan="7" class="order-line-info hide">
+              <div class="accordion-body collapse" id="collapse<%= part.id %>">
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                  <tr>
+                    <th>P/O #</th>
+                    <th>Client</th>
+                    <th>Part #</th>
+                    <th>Qty</th>
+                    <th>Due Date</th>
+                    <th>Ship Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <%= render :partial => 'order_lines/order_line_simple',
+                             :collection => part.order_lines.not_shipped,
+                             :as => 'order_line',
+                             :locals => {:hardware => nil, :view => 'part_process'} %>
+                  </tbody>
+                </table>
+              </div>
+          </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
