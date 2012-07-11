@@ -1,0 +1,11 @@
+<tr>
+  <td><%= order_line.order.purchase_order %></td>
+  <td><%= order_line.order.client.name %></td>
+  <td><%= order_line.part.name %></td>
+  <td><%= number_with_delimiter(order_line.quantity) %></td>
+  <% if view != 'client' %>
+    <td><%= number_with_delimiter(order_line.part.required_hardwares.where(:hardware_id => hardware.id)[0].quantity * order_line.quantity) %></td>
+  <% end %>
+  <td><%= order_line.due_date %></td>
+  <td><%= order_line.ship_date %></td>
+</tr>

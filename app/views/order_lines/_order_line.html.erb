@@ -41,7 +41,7 @@
         <% end %>
     <% end %>
     <%= link_to order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
-        <i class="icon-trash" alt="edit"></i>
+        <i class="icon-trash" alt="delete"></i>
     <% end %>
     <% if params["display"] != "shipped" %>
         <% if local_assigns[:show_client].present? %>

@@ -14,22 +14,65 @@
         </div>
     <% end %>
 
-    <table class="table table-striped">
+    <table class="table table-bordered">
       <thead>
           <tr>
             <th>Client Name</th>
-            <th class="actions">&nbsp;</th>
+            <th>Payment Instructions</th>
+            <th>Shipping Instructions</th>
+            <th>Special Instructions</th>
+            <th>&nbsp;</th>
           </tr>
       </thead>
       <tbody>
         <% @clients.each do |client| %>
           <tr>
-            <td><%= link_to client.name, client %></td>
-            <td class="actions">
-              <%= link_to 'Edit', edit_client_path(client)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
-              <%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <% if (client.order_lines.length > 0) %>
+                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= client.id %>"><i class="icon-plus"></i><%= client.name %></a></td>
+            <% else %>
+                <td><%= client.name %></td>
+            <% end %>
+            <td class="editable medium" headers="/clients/update_client"  id="payment_instructions-<%= client.id %>"><%= client.payment_instructions %></td>
+            <td class="editable medium" headers="/clients/update_client"  id="shipping_instructions-<%= client.id %>"><%= client.shipping_instructions %></td>
+            <td class="editable medium" headers="/clients/update_client"  id="special_instructions-<%= client.id %>"><%= client.special_instructions %></td>
+            <td class="actions fixed">
+              <%= link_to client, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+                  <i class="icon-folder-open"></i>
+              <% end %>
+              <%= link_to edit_client_path(client)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
+                  <i class="icon-edit"></i>
+              <% end %>
+              <%= link_to client, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
             </td>
           </tr>
+          <% if (client.order_lines.not_shipped.length > 0) %>
+              <tr>
+                <td colspan="7" class="order-line-info hide">
+                  <div class="accordion-body collapse" id="collapse<%= client.id %>">
+                    <table class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th>P/O #</th>
+                        <th>Client</th>
+                        <th>Part #</th>
+                        <th>Qty</th>
+                        <th>Due Date</th>
+                        <th>Ship Date</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <%= render :partial => 'order_lines/order_line_simple',
+                                 :collection => client.order_lines.not_shipped,
+                                 :as => 'order_line',
+                                 :locals => {:hardware => nil , :view => 'client'} %>
+                      </tbody>
+                    </table>
+
+                  </div>
+              </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

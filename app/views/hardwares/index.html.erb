@@ -14,16 +14,16 @@
         </div>
     <% end %>
 
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
           <tr>
             <th class="fixed">Name</th>
+            <th>Total Pending</th>
             <th>Vendor Name</th>
             <th>Pricing I</th>
             <th>Pricing History</th>
             <th>Notes</th>
-            <th>Total Pending</th>
-            <th class="actions">&nbsp;</th>
+            <th>&nbsp;</th>
           </tr>
       </thead>
       <tbody>
@@ -34,14 +34,21 @@
             <% else %>
                 <td class="fixed"><%= hardware.name %></td>
             <% end %>
+            <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %></td>
             <td class="editable comment" headers="/hardwares/update_hardware"  id="vendor_name-<%= hardware.id %>"><%= hardware.vendor_name %></td>
             <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_i-<%= hardware.id %>"><%= hardware.pricing_i %></td>
             <td class="editable comment" headers="/hardwares/update_hardware"  id="pricing_history-<%= hardware.id %>"><%= hardware.pricing_history %></td>
             <td class="editable comment" headers="/hardwares/update_hardware"  id="description-<%= hardware.id %>"><%= hardware.description %></td>
-            <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %></td>
             <td class="actions">
-              <%= link_to 'Edit', edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
-              <%= link_to 'Delete', hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+              <%= link_to hardware, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+                  <i class="icon-folder-open"></i>
+              <% end %>
+              <%= link_to edit_hardware_path(hardware)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
+                  <i class="icon-edit"></i>
+              <% end %>
+              <%= link_to hardware, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
             </td>
           </tr>
           <% if (hardware.order_lines.not_shipped.length > 0) %>
@@ -61,17 +68,10 @@
                           </tr>
                       </thead>
                       <tbody>
-                        <% hardware.order_lines.not_shipped.each do |order_line| %>
-                            <tr>
-                              <td><%= order_line.order.purchase_order %></td>
-                              <td><%= order_line.order.client.name %></td>
-                              <td><%= order_line.part.name %></td>
-                              <td><%= number_with_delimiter(order_line.quantity) %></td>
-                              <td><%= number_with_delimiter(order_line.part.required_hardwares.where(:hardware_id => hardware.id)[0].quantity * order_line.quantity) %></td>
-                              <td><%= order_line.due_date %></td>
-                              <td><%= order_line.ship_date %></td>
-                            </tr>
-                        <% end %>
+                        <%= render :partial => 'order_lines/order_line_simple',
+                                   :collection => hardware.order_lines.not_shipped,
+                                   :as => 'order_line',
+                                   :locals => {:hardware => hardware, :view => 'hardware'} %>
                       </tbody>
                     </table>
 

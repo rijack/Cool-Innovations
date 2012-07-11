@@ -1,15 +1,57 @@
+<h1><%= @hardware.name %></h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Vendor Name</th>
+    <th>Pricing I</th>
+    <th>Pricing History</th>
+    <th>Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="editable large2" headers="/hardwares/update_hardware" id="vendor_name-<%= @hardware.id%>"><%= @hardware.vendor_name %></td>
+    <td class="editable large2" headers="/hardwares/update_hardware" id="pricing_i-<%= @hardware.id%>"><%= @hardware.pricing_i %></td>
+    <td class="editable large2" headers="/hardwares/update_hardware" id="pricing_history-<%= @hardware.id%>"><%= @hardware.pricing_history %></td>
+    <td class="editable large2" headers="/hardwares/update_hardware" id="comment-<%= @hardware.id%>"><%= @hardware.comment %></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Active Orders</h2>
+<% if @hardware.required_count(:shipped => false) > 0 %>
+    <h4><span class="no-bold">Pending count in active orders:</span> <%= number_with_delimiter(@hardware.required_count(:shipped => false)) %></h4>
+<% end %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @hardware.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @hardware.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_hardware_path(@hardware) %> |
-<%= link_to 'Back', hardwares_path %>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
+    <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
+    <th class="fixed"><%= sortable "quantity", "Qty" %></th>
+    <th class="fixed"><%= sortable "created_at" %></th>
+    <th class="fixed"><%= sortable "due_date" %></th>
+    <% if params["display"] != "shipped" %>
+        <th class="fixed"><%= sortable "ship_date" %></th>
+    <% else %>
+        <th class="fixed"><%= sortable "actual_ship_date" %></th>
+    <% end %>
+    <th>Comment</th>
+    <th>Production Comment</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @hardware.order_lines.not_shipped.length > 0 %>
+      <%= render :partial => 'order_lines/order_line', :collection => @hardware.order_lines.not_shipped %>
+  <% end %>
+  <% if @hardware.order_lines.not_shipped == 0 %>
+      <%= render :partial => 'order_lines/no_orders' %>
+  <% end %>
+  </tbody>
+</table>
