@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
       :sort => (sort_by_field || "created_at desc"),
       :page => params[:page],
-      :per_page =>  20
+      :per_page =>  500
     )
 
     respond_to do |format|
