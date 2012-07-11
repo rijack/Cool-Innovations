@@ -89,4 +89,10 @@ class PartProcessesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_part_process
+    @client = Client.find(params[:id])
+    @client[params[:field]] = params[:new_value]
+    @client.save
+  end
 end

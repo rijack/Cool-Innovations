@@ -1,15 +1,49 @@
+<h1><%= @part_process.name %></h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="editable large2" headers="/part_processes/update_part_process" id="description-<%= @part_process.id%>"><%= @part_process.description %></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<h2>Active Orders</h2>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @part_process.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @part_process.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_part_process_path(@part_process) %> |
-<%= link_to 'Back', part_processes_path %>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th><%= sortable "clients.name", "Customer" %></th>
+    <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
+    <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
+    <th class="fixed"><%= sortable "quantity", "Qty" %></th>
+    <th class="fixed"><%= sortable "created_at" %></th>
+    <th class="fixed"><%= sortable "due_date" %></th>
+    <% if params["display"] != "shipped" %>
+        <th class="fixed"><%= sortable "ship_date" %></th>
+    <% else %>
+        <th class="fixed"><%= sortable "actual_ship_date" %></th>
+    <% end %>
+    <th>Comment</th>
+    <th>Production Comment</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @part_process.order_lines.not_shipped.length > 0 %>
+      <%= render :partial => 'order_lines/order_line', :collection => @part_process.order_lines.not_shipped, :locals => { :show_client => true } %>
+  <% end %>
+  <% if @part_process.order_lines.not_shipped == 0 %>
+      <%= render :partial => 'order_lines/no_orders' %>
+  <% end %>
+  </tbody>
+</table>

@@ -31,6 +31,7 @@
   <thead>
   <tr>
     <th>#</th>
+    <th><%= sortable "clients.name", "Customer" %></th>
     <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
     <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
     <th class="fixed"><%= sortable "quantity", "Qty" %></th>
@@ -48,7 +49,7 @@
   </thead>
   <tbody>
   <% if @hardware.order_lines.not_shipped.length > 0 %>
-      <%= render :partial => 'order_lines/order_line', :collection => @hardware.order_lines.not_shipped %>
+      <%= render :partial => 'order_lines/order_line', :collection => @hardware.order_lines.not_shipped, :locals => { :show_client => true }  %>
   <% end %>
   <% if @hardware.order_lines.not_shipped == 0 %>
       <%= render :partial => 'order_lines/no_orders' %>

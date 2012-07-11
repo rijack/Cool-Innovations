@@ -3,7 +3,7 @@
   <td><%= order_line.order.client.name %></td>
   <td><%= order_line.part.name %></td>
   <td><%= number_with_delimiter(order_line.quantity) %></td>
-  <% if view != 'client' %>
+  <% if view == 'hardware' %>
     <td><%= number_with_delimiter(order_line.part.required_hardwares.where(:hardware_id => hardware.id)[0].quantity * order_line.quantity) %></td>
   <% end %>
   <td><%= order_line.due_date %></td>

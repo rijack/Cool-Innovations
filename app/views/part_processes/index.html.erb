@@ -1,26 +1,62 @@
 <h1>Part Processes</h1>
 
-
 <%= link_to 'New Process', "/part_processes/new?no_layout=1", :class => 'btn btn-primary pull-right mrx mbxx modal-trigger'%>
 
-<table class="table table-striped">
+
+<table class="table table-bordered">
   <thead>
-      <tr>
-        <th>Process Name</th>
-        <th>Process Description</th>
-        <th class="actions">&nbsp;</th>
-      </tr>
+  <tr>
+    <th>Process Name</th>
+    <th>Process Description</th>
+    <th class="actions">&nbsp;</th>
+  </tr>
   </thead>
   <tbody>
   <% @part_processes.each do |part_process| %>
       <tr>
-        <td><%= link_to part_process.name, edit_part_process_path(part_process)%></td>
-        <td><%= part_process.description %></td>
+        <% if (part_process.order_lines.not_shipped.length > 0) %>
+            <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part_process.id %>"><i class="icon-plus"></i><%= part_process.name %></a></td>
+        <% else %>
+            <td class="fixed"><%= part_process.name %></td>
+        <% end %>
+        <td class="editable large" headers="/part_processes/update_part_process"  id="description-<%= part_process.id %>"><%= part_process.description %></td>
         <td class="actions">
-          <%= link_to 'Edit', edit_part_process_path(part_process)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
-          <%= link_to 'Delete', part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+          <%= link_to part_process, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+              <i class="icon-folder-open"></i>
+          <% end %>
+          <%= link_to edit_part_process_path(part_process)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
+              <i class="icon-edit"></i>
+          <% end %>
+          <%= link_to part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+              <i class="icon-trash" alt="delete"></i>
+          <% end %>
         </td>
       </tr>
+      <% if (part_process.order_lines.not_shipped.length > 0) %>
+          <tr>
+            <td colspan="7" class="order-line-info hide">
+              <div class="accordion-body collapse" id="collapse<%= part_process.id %>">
+                <table class="table table-bordered table-condensed">
+                  <thead>
+                  <tr>
+                    <th>P/O #</th>
+                    <th>Client</th>
+                    <th>Part #</th>
+                    <th>Qty</th>
+                    <th>Due Date</th>
+                    <th>Ship Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <%= render :partial => 'order_lines/order_line_simple',
+                             :collection => part_process.order_lines.not_shipped,
+                             :as => 'order_line',
+                             :locals => {:hardware => nil, :view => 'part_process'} %>
+                  </tbody>
+                </table>
+              </div>
+          </tr>
+      <% end %>
   <% end %>
   </tbody>
 </table>

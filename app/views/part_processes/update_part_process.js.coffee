@@ -1,0 +1,1 @@
+console.log("<%= @part_process.id %>")

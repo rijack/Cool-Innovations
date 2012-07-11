@@ -29,7 +29,7 @@
       <tbody>
       <% @hardwares.each do |hardware| %>
           <tr>
-            <% if (hardware.order_lines.length > 0) %>
+            <% if (hardware.order_lines.not_shipped.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
             <% else %>
                 <td class="fixed"><%= hardware.name %></td>
