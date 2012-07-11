@@ -125,6 +125,9 @@ table .order-line-info .span4 {float:right;}
 .table td.editable.large2 textarea {width:250px; height:50px;}
 .table td.editable.large2 {width:25%}
 
+.table td.editable.large3 textarea {width:450px; height:50px;}
+.table td.editable.large3 {width:45%}
+
 .table td.editable.medium textarea {width:190px; height:50px;}
 .table td.editable.medium {width:220px}
 

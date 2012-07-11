@@ -82,8 +82,8 @@ class PartsController < ApplicationController
   end
 
   def update_part
-    @client = Client.find(params[:id])
-    @client[params[:field]] = params[:new_value]
-    @client.save
+    @part = Part.find(params[:id])
+    @part[params[:field]] = params[:new_value]
+    @part.save
   end
 end

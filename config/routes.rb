@@ -2,6 +2,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :shipping_methods do
     get :search, :on => :collection
+    post :update_shipping_method, :on => :collection
   end
 
   resources :order_lines do

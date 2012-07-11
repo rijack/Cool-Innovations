@@ -14,22 +14,23 @@
         </div>
     <% end %>
 
-    <table class="table table-striped">
+    <table class="table table-bordered">
       <thead>
       <tr>
         <th>Shipping Method Name</th>
         <th>Duration (in days)</th>
-        <th class="actions">&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
       </thead>
       <tbody>
       <% @shipping_methods.each do |shipping_method| %>
           <tr>
-            <td><%= shipping_method.name %></td>
-            <td><%= shipping_method.duration %></td>
+            <td class="editable large3" headers="/shipping_methods/update_shipping_method"  id="name-<%= shipping_method.id %>"><%= shipping_method.name %></td>
+            <td class="editable large3" headers="/shipping_methods/update_shipping_method"  id="duration-<%= shipping_method.id %>"><%= shipping_method.duration %></td>
             <td class="actions">
-              <%= link_to 'Edit', edit_shipping_method_path(shipping_method)+"?no_layout=1", :class => 'btn btn-small modal-trigger'%>
-              <%= link_to 'Delete', shipping_method, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+              <%= link_to shipping_method, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
             </td>
           </tr>
       <% end %>

@@ -103,4 +103,10 @@ class ShippingMethodsController < ApplicationController
       format.json { render json: @shipping_methods }
     end
   end
+
+  def update_shipping_method
+    @shipping_method = ShippingMethod.find(params[:id])
+    @shipping_method[params[:field]] = params[:new_value]
+    @shipping_method.save
+  end
 end

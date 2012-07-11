@@ -91,8 +91,8 @@ class PartProcessesController < ApplicationController
   end
 
   def update_part_process
-    @client = Client.find(params[:id])
-    @client[params[:field]] = params[:new_value]
-    @client.save
+    @part_process = PartProcess.find(params[:id])
+    @part_process[params[:field]] = params[:new_value]
+    @part_process.save
   end
 end
