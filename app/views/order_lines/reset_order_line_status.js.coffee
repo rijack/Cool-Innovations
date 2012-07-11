@@ -1,0 +1,1 @@
+document.location = "/orders?reset=<%= @order_line.id %>"

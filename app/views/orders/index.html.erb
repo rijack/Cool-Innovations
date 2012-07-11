@@ -5,10 +5,14 @@
 <% end %>
 
 
-<% if params["shipped"] %>
+<% if params["shipped"] or params["reset"] %>
     <div class="alert alert-success">
       <a class="close" data-dismiss="alert">×</a>
-      order lines shipped successfully.  Click <%= link_to 'Shipped Orders', shipped_orders_url %> to view
+      <% if params["shipped"] %>
+        order lines shipped successfully.  Click <%= link_to 'Shipped Orders', shipped_orders_url %> to view
+      <% else %>
+        order line has been reset
+      <% end %>
     </div>
 
 <% end %>

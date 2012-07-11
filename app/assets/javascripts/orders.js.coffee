@@ -41,3 +41,13 @@ $ ->
     if (durationValue && dueDateValue)
       shipDate = dueDateValue.add({days:-durationValue})
       shipDateCell.val(shipDate.toString("yyyy-MM-dd"))
+
+
+  $(".unship").on "click", ->
+    orderLineId = $(this).attr('data-id')
+    $.ajax
+      type: 'POST'
+      url: '/order_lines/reset_order_line_status'
+      data:
+        id: orderLineId
+    return false

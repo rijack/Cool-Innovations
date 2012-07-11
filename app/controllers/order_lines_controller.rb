@@ -101,4 +101,10 @@ class OrderLinesController < ApplicationController
       @order_line.save
     end
   end
+
+  def reset_order_line_status
+    @order_line = OrderLine.find(params[:id])
+    @order_line.status = "completed"
+    @order_line.save
+  end
 end

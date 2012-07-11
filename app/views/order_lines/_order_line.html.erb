@@ -47,6 +47,8 @@
         <% if local_assigns[:show_client].present? %>
             <input type="checkbox" name="ship-order-lines" class="ship-lines" value="ol-<%= order_line.id%>">
         <% end %>
+    <% else %>
+        <a href="#" data-id="<%= order_line.id %>" class="btn btn-warning btn-small unship" title="Unship"><i class="icon-repeat" alt="Roll back"></i></a>
     <% end %>
   </td>
 </tr>

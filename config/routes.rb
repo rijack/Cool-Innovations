@@ -9,6 +9,7 @@ CoolInnovations::Application.routes.draw do
     post :set_process_status, :on => :collection
     post :update_order_line, :on => :collection
     post :ship_order_lines, :on => :collection
+    post :reset_order_line_status, :on => :collection
   end
 
   resources :orders do
