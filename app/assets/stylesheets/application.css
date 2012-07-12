@@ -97,8 +97,12 @@ table td.actions {
 
 
 
-table .order-line-info .span7 {float:left;}
-table .order-line-info .span4 {float:right;}
+table .order-line-info .span6 {float:left;}
+table .order-line-info .span3 {float:left;}
+table .order-line-info .span5 {float:left;}
+table .order-line-info .span5.middle {margin:0 25px;}
+
+
 
 .order-search .control-group
 {

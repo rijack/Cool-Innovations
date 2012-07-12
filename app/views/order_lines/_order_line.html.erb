@@ -62,87 +62,112 @@
     <td colspan="<%= colspan %>" class="order-line-info hide">
         <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
             <!--<h4>Order line details</h4>-->
-          <div class="order-line-info span11">
-            <% if order_line.order.attachment? %>
-                <h5>Order Attachment: <%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></h5>
-            <% end %>
-            <% if order_line.part.attachment? %>
-                <h5>Part Drawing: <%= link_to order_line.part.attachment_file_name, order_line.part.attachment.url %></h5>
-            <% end %>
-            <% if order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
-                <% if order_line.order.client.payment_instructions?  %>
-                    <h5>Payment Instructions: <span class="no-bold"><%= order_line.order.client.payment_instructions %></span></h5>
-                <% end %>
-                <% if order_line.order.client.shipping_instructions?  %>
-                    <h5>Shipping Instructions: <span class="no-bold"><%= order_line.order.client.shipping_instructions %></span></h5>
-                <% end %>
-                <% if order_line.order.client.special_instructions?  %>
-                    <h5>Special Instructions: <span class="no-bold"><%= order_line.order.client.special_instructions %></span></h5>
-                <% end %>
-            <% end %>
-            <% if order_line.part.description? %>
-                <h5>Part Comment: <span class="no-bold"><%= order_line.part.description %></span></h5>
-            <% end %>
-          </div>
-            <div class="process-info span7">
-                <h5>Process</h5>
-                <table class="table table-bordered table-condensed">
-                  <thead>
-                    <tr>
-                      <th>Process Name</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% order_line.order_line_process_statuses.each do |process_status| %>
-                        <tr class="process_status" data-id="<%= process_status.id %>">
-                          <td><%= process_status.part_process.name %></td>
-                          <td>
-                            <div class="btn-group line-status" data-toggle="buttons-radio">
-                              <% OrderLine::STATUSES.each do |order_line_status| %>
-                                  <% extra_class = "" %>
-                                  <% if order_line_status == process_status.status %>
-                                      <% extra_class = "active" %>
-                                      <% if process_status.status == "pending" %>
-                                          <% extra_class = extra_class + " btn-warning" %>
-                                      <% end %>
-                                      <% if process_status.status == "in progress" %>
-                                          <% extra_class = extra_class + " btn-info" %>
-                                      <% end %>
-                                      <% if process_status.status == "completed" %>
-                                          <% extra_class = extra_class + " btn-success" %>
-                                      <% end %>
-                                  <% end %>
-                                  <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
-                              <% end %>
-                            </div>
-                          </td>
-                        </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-            </div>
-            <div class="hardware-info span4">
-                <h5>Hardware</h5>
-                <table class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Hardware Name</th>
-                            <th>Part Qty</th>
-                            <th>Order Qty</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% order_line.part.required_hardwares.each do |hardware| %>
-                            <tr>
-                              <td><%= hardware.hardware.name %></td>
-                              <td><%= hardware.quantity %></td>
-                              <td><%= hardware.quantity * order_line.quantity %></td>
-                            </tr>
+          <div class="span5">
+            <h5>Process</h5>
+            <table class="table table-bordered table-condensed span5">
+              <thead>
+              <tr>
+                <th>Process Name</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% order_line.order_line_process_statuses.each do |process_status| %>
+                  <tr class="process_status" data-id="<%= process_status.id %>">
+                    <td><%= process_status.part_process.name %></td>
+                    <td>
+                      <div class="btn-group line-status" data-toggle="buttons-radio">
+                        <% OrderLine::STATUSES.each do |order_line_status| %>
+                            <% extra_class = "" %>
+                            <% if order_line_status == process_status.status %>
+                                <% extra_class = "active" %>
+                                <% if process_status.status == "pending" %>
+                                    <% extra_class = extra_class + " btn-warning" %>
+                                <% end %>
+                                <% if process_status.status == "in progress" %>
+                                    <% extra_class = extra_class + " btn-info" %>
+                                <% end %>
+                                <% if process_status.status == "completed" %>
+                                    <% extra_class = extra_class + " btn-success" %>
+                                <% end %>
+                            <% end %>
+                            <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
                         <% end %>
-                    </tbody>
-                </table>
-            </div>
+                      </div>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="span5 middle">
+            <h5>Hardware</h5>
+            <table class="table table-bordered table-condensed span5">
+              <thead>
+              <tr>
+                <th>Hardware Name</th>
+                <th>Part Qty</th>
+                <th>Order Qty</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% order_line.part.required_hardwares.each do |hardware| %>
+                  <tr>
+                    <td><%= hardware.hardware.name %></td>
+                    <td><%= hardware.quantity %></td>
+                    <td><%= hardware.quantity * order_line.quantity %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="span5">
+            <h5>Additional Info</h5>
+            <table class="table table-bordered table-condensed">
+              <% if order_line.order.attachment? or order_line.part.attachment? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
+                  <% if order_line.order.attachment? %>
+                      <tr>
+                        <td class="span2"><strong>Order Attachment:</strong></td>
+                        <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></td>
+                      </tr>
+                  <% end %>
+                  <% if order_line.part.attachment? %>
+                      <tr>
+                        <td class="span2"><strong>Part Drawing:</strong></td>
+                        <td><%= link_to order_line.part.attachment_file_name, order_line.part.attachment.url %></td>
+                      </tr>
+                  <% end %>
+                  <% if order_line.part.description? %>
+                      <tr>
+                        <td class="span2"><strong>Part Comment:</strong></td>
+                        <td><%= order_line.part.description %></td>
+                      </tr>
+                  <% end %>
+                  <% if order_line.order.client.payment_instructions?  %>
+                      <tr>
+                        <td class="span2"><strong>Payment Instructions:</strong></td>
+                        <td><%= order_line.order.client.payment_instructions %></td>
+                      </tr>
+                  <% end %>
+                  <% if order_line.order.client.shipping_instructions?  %>
+                      <tr>
+                        <td class="span2"><strong>Shipping Instructions:</strong></td>
+                        <td><%= order_line.order.client.shipping_instructions %></td>
+                      </tr>
+                  <% end %>
+                  <% if order_line.order.client.special_instructions?  %>
+                      <tr>
+                        <td class="span2"><strong>Special Instructions:</strong></td>
+                        <td><%= order_line.order.client.special_instructions %></td>
+                      </tr>
+                  <% end %>
+              <% else %>
+                <tr>
+                  <td>No special instructions</td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
         </div>
     </td>
 </tr>
