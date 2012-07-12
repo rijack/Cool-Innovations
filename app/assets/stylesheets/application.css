@@ -91,6 +91,10 @@ table td.actions {
 .table tr.pending .status.btn  { background-color: #F89406; }
 .table tr.shipped .status.btn  { background-color: #414141;  }
 
+.table tr.green td {background-color: #CCFEBF;}
+.table tr.red td {background-color: #FE8080;}
+
+
 
 table .order-line-info .span7 {float:left;}
 table .order-line-info .span4 {float:right;}

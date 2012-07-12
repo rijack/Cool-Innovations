@@ -4,11 +4,18 @@
     <h1>Order Lines</h1>
 <% end %>
 
+<% param = '' %>
+<% if params["shipped"] %>
+    <% param = 'shipped' %>
+<% end %>
+<% if params["reset"] %>
+    <% param = 'reset' %>
+<% end %>
 
-<% if params["shipped"] or params["reset"] %>
+<% if param != "" %>
     <div class="alert alert-success">
       <a class="close" data-dismiss="alert">×</a>
-      <% if params["shipped"] %>
+      <% if param == "shipped" %>
         order lines shipped successfully.  Click <%= link_to 'Shipped Orders', shipped_orders_url %> to view
       <% else %>
         order line has been reset
@@ -50,7 +57,19 @@
       <% else %>
           <th>Tracking #</th>
       <% end %>
-      <th></th>
+      <th class="dropdown">
+        <% if params["display"] != "shipped" %>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#colorChange">
+              Change color
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <% OrderLine::COLORS.each do |order_line_color| %>
+                  <li><a href="#" class="change-color"><%= order_line_color %></a></li>
+              <% end %>
+            </ul>
+        <% end %>
+      </th>
     </tr>
   </thead>
 

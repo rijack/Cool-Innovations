@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711141351) do
+ActiveRecord::Schema.define(:version => 20120712135117) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120711141351) do
     t.date     "actual_ship_date"
     t.integer  "line_number"
     t.string   "tracking_number"
+    t.string   "color",                                            :default => "white"
   end
 
   create_table "orders", :force => true do |t|

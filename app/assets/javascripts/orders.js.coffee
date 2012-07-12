@@ -43,6 +43,27 @@ $ ->
       shipDateCell.val(shipDate.toString("yyyy-MM-dd"))
 
 
+  $(".ship-orders").click ->
+    cBoxes = $('input.ship-lines')
+    toShip = []
+    cBoxes.filter(':checked').each ->
+      orderLineId = $(this).val().split("-")[1]
+      toShip.push orderLineId
+
+    if (toShip.length > 0)
+      $.ajax
+        type: 'POST'
+        url: "/order_lines/update_order_lines"
+        data:
+          ids: toShip
+          field: 'status'
+          value: 'shipped'
+    else
+      alert("Select a line to ship, you dumbass!!!!")
+
+    return false
+
+
   $(".unship").on "click", ->
     orderLineId = $(this).attr('data-id')
     $.ajax
@@ -51,3 +72,28 @@ $ ->
       data:
         id: orderLineId
     return false
+
+  $(".change-color").on "click", ->
+    cBoxes = $('input.ship-lines')
+    colorValue = $(this).html()
+    colorValues = []
+    toChange = []
+
+    $(this).parents("li").siblings().each ->
+      colorValues.push $(this).children("a").html()
+
+    cBoxes.filter(':checked').each ->
+      orderLineId = $(this).val().split("-")[1]
+      toChange.push orderLineId
+      for value in colorValues
+        $(".order_line[data-id="+orderLineId+"]").removeClass(value)
+      $(".order_line[data-id="+orderLineId+"]").addClass(colorValue)
+
+    $.ajax
+      type: 'POST'
+      url: "/order_lines/update_order_lines"
+      data:
+        ids: toChange
+        field: 'color'
+        value: colorValue
+    #return false

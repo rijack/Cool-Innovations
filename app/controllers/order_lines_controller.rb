@@ -93,11 +93,13 @@ class OrderLinesController < ApplicationController
     @order_line.save
   end
 
-  def ship_order_lines
+  def update_order_lines
     params[:ids].each do |id|
       @order_line = OrderLine.find(id)
-      @order_line.status = "shipped"
-      @order_line.actual_ship_date = Time.now
+      @order_line[params[:field]] = params[:value]
+      if params[:field] == "status" && params[:value] == "shipped"
+        @order_line.actual_ship_date = Time.now
+      end
       @order_line.save
     end
   end
