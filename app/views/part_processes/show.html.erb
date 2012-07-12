@@ -14,7 +14,6 @@
 </table>
 
 
-
 <h2>Active Orders</h2>
 <p id="notice"><%= notice %></p>
 
@@ -39,10 +38,10 @@
   </tr>
   </thead>
   <tbody>
-  <% if @part_process.order_lines.not_shipped.length > 0 %>
-      <%= render :partial => 'order_lines/order_line', :collection => @part_process.order_lines.not_shipped, :locals => { :show_client => true } %>
+  <% if @part_process.order_lines.pending.length > 0 %>
+      <%= render :partial => 'order_lines/order_line', :collection => @part_process.order_lines.pending, :locals => { :show_client => true } %>
   <% end %>
-  <% if @part_process.order_lines.not_shipped == 0 %>
+  <% if @part_process.order_lines.pending == 0 %>
       <%= render :partial => 'order_lines/no_orders' %>
   <% end %>
   </tbody>
