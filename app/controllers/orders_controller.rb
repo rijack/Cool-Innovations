@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
       list_per_page = 500
     end
 
+    #raise sort_by_field.inspect
+
     @order_lines = OrderLine.search(
       :shipped => params[:display] == "shipped",
       :client_id => params[:search][:client],
@@ -20,6 +22,8 @@ class OrdersController < ApplicationController
       :page => params[:page],
       :per_page =>  list_per_page
     )
+
+    cookies["order_line_sort_order"] = sort_by_field
 
     respond_to do |format|
       format.html # index.html.erb
