@@ -1,6 +1,12 @@
 <%= simple_form_for :client, :url => search_clients_path, :method => :get do |f| %>
     <%= f.error_notification %>
 
+    <%= f.input :client,
+                :collection => Client.all,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :input_html => {:"data-placeholder" => "Find customer"} %>
+
     <%= f.input :query,
                 :label => false,
                 :wrapper_html => { :class => 'pull-left mrx' },

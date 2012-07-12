@@ -108,7 +108,7 @@ class HardwaresController < ApplicationController
     hardware = params[:hardware][:hardware]
 
     @hardwares = Hardware.where{name =~ query}.order(:name).page(params[:page]).per_page(20) if query.present?
-    @hardwares = Hardware.where("id like ?",hardware).order(:name).page(params[:page]).per_page(20) if part.present?
+    @hardwares = Hardware.where("id like ?",hardware).order(:name).page(params[:page]).per_page(20) if hardware.present?
 
 
     respond_to do |format|
