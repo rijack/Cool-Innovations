@@ -74,6 +74,7 @@ $ ->
     return false
 
   $(".change-color").on "click", ->
+    console.log(2)
     cBoxes = $('input.ship-lines')
     colorValue = $(this).html()
     colorValues = []

@@ -86,10 +86,11 @@ table td.actions {
 }
 
 .table tr .status.btn {background-image: none; color:#fff;}
-.table tr.completed .status.btn { background-color: #51A351; }
-.table tr.in-progress .status.btn  { background-color: #2F96B4;  }
-.table tr.pending .status.btn  { background-color: #F89406; }
-.table tr.shipped .status.btn  { background-color: #414141;  }
+
+.table td.actions.completed .status.btn { background-color: #51A351; }
+.table td.actions.in-progress .status.btn  { background-color: #2F96B4;  }
+.table td.actions.pending .status.btn  { background-color: #F89406; }
+.table td.actions.shipped .status.btn  { background-color: #414141;  }
 
 .table tr.green td {background-color: #CCFEBF;}
 .table tr.red td {background-color: #FE8080;}

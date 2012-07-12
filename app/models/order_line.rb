@@ -33,6 +33,10 @@ class OrderLine < ActiveRecord::Base
     where { status != "shipped" }
   end
 
+  def self.pending
+    where { status != "completed" && status != "shipped" }
+  end
+
   # shipped => true | false
   # client_id => 
   # order_id => 

@@ -19,8 +19,6 @@ $ ->
     $select = $(this)
     status = $select.val()
     process_status_id = $select.parents(".process_status").data("id")
-    #console.log process_status_id
-    #console.log status
     $.ajax
       type: 'POST'
       url: "/order_lines/set_process_status"
@@ -31,6 +29,7 @@ $ ->
 
   $('.process_status .line-status .btn').live 'click', ->
     status = $(this).html()
+    #console.log($(this).siblings())
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning")
     if (status == 'completed')
       $(this).addClass("btn-success")

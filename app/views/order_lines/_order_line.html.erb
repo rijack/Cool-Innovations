@@ -8,7 +8,7 @@
     <% extraClass = order_line.color%>
 <% end %>
 
-<tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %> <%= extraClass %>" data-id="<%= order_line.id %>">
+<tr class="order_line <%= extraClass %>" data-id="<%= order_line.id %>">
   <% if params["display"] != "shipped" %>
       <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <% end %>
@@ -38,7 +38,7 @@
   <% else %>
     <td class="editable comment" data-headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
   <% end %>
-  <td class="actions <% if params["display"] == "shipped" %>small<% end %> fixed">
+  <td class="actions <% if params["display"] == "shipped" %>small<% end %> fixed <%= order_line.status.gsub(/\s+/, '-') %>">
     <span class="status btn btn-small" title="<%= order_line.status %>"><i class="icon-star-empty"></i></span>
     <% if params["display"] != "shipped" %>
         <%= link_to edit_order_path(order_line.order), :class => 'btn btn-small', :title => 'Edit' do%>
