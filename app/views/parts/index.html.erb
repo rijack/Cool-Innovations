@@ -6,7 +6,6 @@
   <thead>
       <tr>
         <th>Part number</th>
-        <th>Drawing number</th>
         <th>Comments</th>
         <th></th>
       </tr>
@@ -20,8 +19,7 @@
             <% else %>
                 <td class="fixed"><%= part.part_number %></td>
             <% end %>
-            <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.drawing_number %>"><%= part.drawing_number %></td>
-            <td class="editable large" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
+            <td class="editable large3" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
             <td class="actions">
               <%= link_to part, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>
