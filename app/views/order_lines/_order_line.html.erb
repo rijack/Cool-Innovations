@@ -4,6 +4,9 @@
 <% end %>
 
 <tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %>" data-id="<%= order_line.id %>">
+  <% if params["display"] != "shipped" %>
+      <td class="fixed"><%= order_line.created_at.to_date() %></td>
+  <% end %>
   <% if local_assigns[:show_client].present? %>
     <% colspan += 1 %>
     <% if params["display"] != "shipped" %>
@@ -18,9 +21,6 @@
   <td class="fixed"><%= order_line.line_number %></td>
   <td class="fixed"><%= order_line.part.name %></td>
   <td class="editable qty" data-headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
-  <% if params["display"] != "shipped" %>
-    <td class="fixed"><%= order_line.created_at.to_date() %></td>
-  <% end %>
   <td class="fixed"><%= order_line.due_date %></td>
   <% if params["display"] == "shipped" %>
     <td class="fixed"><%= order_line.actual_ship_date %></td>
@@ -74,6 +74,9 @@
                 <% if order_line.order.client.special_instructions?  %>
                     <h5>Special Instructions: <span class="no-bold"><%= order_line.order.client.special_instructions %></span></h5>
                 <% end %>
+            <% end %>
+            <% if order_line.part.description? %>
+                <h5>Part Comment: <span class="no-bold"><%= order_line.part.description %></span></h5>
             <% end %>
           </div>
             <div class="process-info span7">

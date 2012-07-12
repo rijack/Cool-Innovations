@@ -7,12 +7,12 @@
     <table class="table table-bordered">
       <thead>
       <tr>
+        <th class="fixed"><%= sortable "created_at" %></th>
         <th><%= sortable "clients.name", "Customer" %></th>
         <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
-        <th>#</th>
+        <th>Line</th>
         <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
         <th class="fixed"><%= sortable "quantity", "Qty" %></th>
-        <th class="fixed"><%= sortable "created_at" %></th>
         <th class="fixed"><%= sortable "due_date" %></th>
         <% if params["display"] != "shipped" %>
             <th class="fixed"><%= sortable "ship_date" %></th>
@@ -20,7 +20,7 @@
             <th class="fixed"><%= sortable "actual_ship_date" %></th>
         <% end %>
         <th>Comment</th>
-        <th>Production Comment</th>
+        <th>Prod Comment</th>
         <th></th>
       </tr>
       </thead>

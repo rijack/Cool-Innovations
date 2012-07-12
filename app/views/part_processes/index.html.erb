@@ -7,7 +7,7 @@
   <thead>
   <tr>
     <th>Process Name</th>
-    <th>Process Description</th>
+    <th>Notes</th>
     <th>&nbsp;</th>
   </tr>
   </thead>
@@ -20,7 +20,7 @@
             <% else %>
                 <td class="fixed"><%= part_process.name %></td>
             <% end %>
-            <td class="editable large" data-headers="/part_processes/update_part_process"  id="description-<%= part_process.id %>"><%= part_process.description %></td>
+            <td class="editable large3" data-headers="/part_processes/update_part_process"  id="description-<%= part_process.id %>"><%= part_process.description %></td>
             <td class="actions">
               <%= link_to part_process, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>
