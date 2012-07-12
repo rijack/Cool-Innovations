@@ -15,7 +15,7 @@
   <% if @part_processes.length > 0 %>
       <% @part_processes.each do |part_process| %>
           <tr>
-            <% if (part_process.order_lines.not_shipped.length > 0) %>
+            <% if (part_process.order_lines.pending.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part_process.id %>"><i class="icon-plus"></i><%= part_process.name %></a></td>
             <% else %>
                 <td class="fixed"><%= part_process.name %></td>
@@ -33,7 +33,7 @@
               <% end %>
             </td>
           </tr>
-          <% if (part_process.order_lines.not_shipped.length > 0) %>
+          <% if (part_process.order_lines.pending.length > 0) %>
               <tr>
                 <td colspan="7" class="order-line-info hide">
                   <div class="accordion-body collapse" id="collapse<%= part_process.id %>">
@@ -50,7 +50,7 @@
                       </thead>
                       <tbody>
                       <%= render :partial => 'order_lines/order_line_simple',
-                                 :collection => part_process.order_lines.not_shipped,
+                                 :collection => part_process.order_lines.pending,
                                  :as => 'order_line',
                                  :locals => {:hardware => nil, :view => 'part_process'} %>
                       </tbody>
