@@ -1,0 +1,15 @@
+<%= simple_form_for :part, :url => search_parts_path, :method => :get do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :part,
+                :collection => Part.all,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :input_html => {:"data-placeholder" => "Find a part"} %>
+
+    <%= f.input :query,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :placeholder => 'Search for parts'%>
+    <%= f.submit 'Search', :class => 'btn pull-left mrx' %>
+<% end %>

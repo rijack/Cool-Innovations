@@ -86,4 +86,19 @@ class PartsController < ApplicationController
     @part[params[:field]] = params[:new_value]
     @part.save
   end
+
+  def search
+    params[:client] ||= {}
+    query = "%#{params[:part][:query]}%"
+    part = params[:part][:part]
+
+    @parts = Part.where{part_number =~ query}.order(:part_number).page(params[:page]).per_page(20) if query.present?
+    @parts = Part.where("id like ?",part).order(:part_number).page(params[:page]).per_page(20) if part.present?
+
+
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @parts }
+    end
+  end
 end

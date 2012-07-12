@@ -17,6 +17,7 @@ CoolInnovations::Application.routes.draw do
   end
 
   resources :parts do
+    get :search, :on => :collection
     post :update_part, :on => :collection
   end
 

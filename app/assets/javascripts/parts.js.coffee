@@ -4,6 +4,7 @@
 
 $ ->
   $("#part_part_process_ids").chosen()
+  $('#part_part').chosen()
   $('#required_hardwares').find("select").chosen()
   $('#required-hardwares').bind 'insertion-callback', ->
     $('.hardware-cell tr.hide').removeClass()
