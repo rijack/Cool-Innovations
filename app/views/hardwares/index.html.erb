@@ -80,7 +80,6 @@
               </tr>
           <% end %>
       <% end %>
-      <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
   <% else %>
     <tr>
       <td colspan="7">There is no hardware</td>
@@ -88,6 +87,7 @@
   <% end %>
   </tbody>
 </table>
+<%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
 
 
 
