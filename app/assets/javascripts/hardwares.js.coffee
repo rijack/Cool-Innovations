@@ -3,4 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $('#hardware_hardware').chosen()
+  $('#hardware_hardware').chosen().change 'on', ->
+    $(".simple_form.hardware").submit()

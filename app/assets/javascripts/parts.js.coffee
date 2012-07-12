@@ -4,9 +4,12 @@
 
 $ ->
   $("#part_part_process_ids").chosen()
-  $('#part_part').chosen()
+
   $('#required_hardwares').find("select").chosen()
   $('#required-hardwares').bind 'insertion-callback', ->
     $('.hardware-cell tr.hide').removeClass()
     $('.req-hardware select').chosen()
+
+  $('#part_part').chosen().change 'on', ->
+    $(".simple_form.part").submit()
 

@@ -4,7 +4,8 @@
 
 
 $ ->
-  $("#client_client").chosen()
+  $('#client_client').chosen().change 'on', ->
+    $(".simple_form.client").submit()
 
   ###$(".modal-trigger").click ->
     url = $(this).attr('href')
