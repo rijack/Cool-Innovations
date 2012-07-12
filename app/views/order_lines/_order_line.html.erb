@@ -102,7 +102,7 @@
           </div>
           <div class="span5 middle">
             <h5>Hardware</h5>
-            <table class="table table-bordered table-condensed span5">
+            <table class="table table-bordered table-condensed span5 table-striped">
               <thead>
               <tr>
                 <th>Hardware Name</th>
@@ -123,7 +123,7 @@
           </div>
           <div class="span5">
             <h5>Additional Info</h5>
-            <table class="table table-bordered table-condensed">
+            <table class="table table-bordered table-condensed table-striped">
               <% if order_line.order.attachment? or order_line.part.attachment? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
                   <% if order_line.order.attachment? %>
                       <tr>
