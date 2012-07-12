@@ -1,5 +1,10 @@
 <%= simple_form_for :hardware, :url => search_hardwares_path, :method => :get do |f| %>
     <%= f.error_notification %>
+    <%= f.input :hardware,
+                :collection => Hardware.all,
+                :label => false,
+                :wrapper_html => { :class => 'pull-left mrx' },
+                :input_html => {:"data-placeholder" => "Find hardware"} %>
 
     <%= f.input :query,
                 :label => false,
