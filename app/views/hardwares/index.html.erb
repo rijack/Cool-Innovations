@@ -4,29 +4,30 @@
 <%= link_to 'New Hardware', "/hardwares/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
 
 
-<% if @hardwares.length > 0 %>
 
-    <% if params.fetch(:hardware, {})[:query].present? %>
-        <div class="row">
-          <div class="span9 mbxx">
-            your search for <em><strong>"<%= params[:hardware][:query] %>"</strong></em>  returned <strong><%= pluralize(@hardwares.count, 'result') %></strong>
-          </div>
-        </div>
-    <% end %>
 
-    <table class="table table-bordered">
-      <thead>
-          <tr>
-            <th class="fixed">Name</th>
-            <th>Total Pending</th>
-            <th>Vendor Name</th>
-            <th>Pricing I</th>
-            <th>Pricing History</th>
-            <th>Notes</th>
-            <th>&nbsp;</th>
-          </tr>
-      </thead>
-      <tbody>
+<% if params.fetch(:hardware, {})[:query].present? %>
+    <div class="row">
+      <div class="span9 mbxx">
+        your search for <em><strong>"<%= params[:hardware][:query] %>"</strong></em>  returned <strong><%= pluralize(@hardwares.count, 'result') %></strong>
+      </div>
+    </div>
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+      <tr>
+        <th class="fixed">Name</th>
+        <th>Total Pending</th>
+        <th>Vendor Name</th>
+        <th>Pricing I</th>
+        <th>Pricing History</th>
+        <th>Notes</th>
+        <th>&nbsp;</th>
+      </tr>
+  </thead>
+  <tbody>
+  <% if @hardwares.length > 0 %>
       <% @hardwares.each do |hardware| %>
           <tr>
             <% if (hardware.order_lines.not_shipped.length > 0) %>
@@ -57,21 +58,21 @@
                   <div class="accordion-body collapse" id="collapse<%= hardware.id %>">
                     <table class="table table-bordered table-condensed">
                       <thead>
-                          <tr>
-                            <th>P/O #</th>
-                            <th>Client</th>
-                            <th>Part #</th>
-                            <th>Qty</th>
-                            <th>Total Qty</th>
-                            <th>Due Date</th>
-                            <th>Ship Date</th>
-                          </tr>
+                      <tr>
+                        <th>P/O #</th>
+                        <th>Client</th>
+                        <th>Part #</th>
+                        <th>Qty</th>
+                        <th>Total Qty</th>
+                        <th>Due Date</th>
+                        <th>Ship Date</th>
+                      </tr>
                       </thead>
                       <tbody>
-                        <%= render :partial => 'order_lines/order_line_simple',
-                                   :collection => hardware.order_lines.not_shipped,
-                                   :as => 'order_line',
-                                   :locals => {:hardware => hardware, :view => 'hardware'} %>
+                      <%= render :partial => 'order_lines/order_line_simple',
+                                 :collection => hardware.order_lines.not_shipped,
+                                 :as => 'order_line',
+                                 :locals => {:hardware => hardware, :view => 'hardware'} %>
                       </tbody>
                     </table>
 
@@ -79,17 +80,14 @@
               </tr>
           <% end %>
       <% end %>
-      </tbody>
-    </table>
-
-    <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
-<% else %>
-    <div class="row">
-      <div class="span9 mbxx">
-        There are no results
-      </div>
-    </div>
-<% end %>
+      <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
+  <% else %>
+    <tr>
+      <td colspan="7">There is no hardware</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
 
 
