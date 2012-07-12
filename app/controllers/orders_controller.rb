@@ -23,7 +23,9 @@ class OrdersController < ApplicationController
       :per_page =>  list_per_page
     )
 
-    cookies["order_line_sort_order"] = sort_by_field
+    if params[:controller] == "orders"
+      cookies["order_line_sort_order"] = sort_by_field
+    end
 
     respond_to do |format|
       format.html # index.html.erb
