@@ -48,8 +48,8 @@
   </tr>
   </thead>
   <tbody>
-  <% if @hardware.order_lines.pending.length > 0 %>
-      <%= render :partial => 'order_lines/order_line', :collection => @hardware.order_lines.pending, :locals => { :show_client => true }  %>
+  <% if @hardware.order_lines.not_shipped.length > 0 %>
+      <%= render :partial => 'order_lines/order_line', :collection => @hardware.order_lines.not_shipped, :locals => { :show_client => true }  %>
   <% end %>
   <% if @hardware.order_lines.pending == 0 %>
       <%= render :partial => 'order_lines/no_orders' %>
