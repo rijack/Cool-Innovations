@@ -84,6 +84,7 @@ $ ->
 
     cBoxes.filter(':checked').each ->
       orderLineId = $(this).val().split("-")[1]
+      $(this).attr('checked', false)
       toChange.push orderLineId
       for value in colorValues
         $(".order_line[data-id="+orderLineId+"]").removeClass(value)
@@ -96,4 +97,6 @@ $ ->
         ids: toChange
         field: 'color'
         value: colorValue
-    #return false
+    $('.dropdown').removeClass('open');
+    return false
+

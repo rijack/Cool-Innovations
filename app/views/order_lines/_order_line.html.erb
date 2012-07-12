@@ -3,7 +3,12 @@
     <% colspan = colspan - 1 %>
 <% end %>
 
-<tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %> <%= order_line.color%>" data-id="<%= order_line.id %>">
+<% extraClass = '' %>
+<% if params["display"] != "shipped" %>
+    <% extraClass = order_line.color%>
+<% end %>
+
+<tr class="order_line <%= order_line.status.gsub(/\s+/, '-') %> <%= extraClass %>" data-id="<%= order_line.id %>">
   <% if params["display"] != "shipped" %>
       <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <% end %>

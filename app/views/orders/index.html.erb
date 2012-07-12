@@ -27,8 +27,20 @@
 <%= render 'order_line_search' %>
 
 <% if params["display"] != "shipped" %>
-    <%= link_to 'Ship Orders', "#", :class => 'ship-orders btn btn-success pull-right mls mrx ' %>
-    <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrx' %>
+
+    <div class="dropdown pull-right">
+        <a class="dropdown-toggle btn" data-toggle="dropdown" href="#colorChange">
+          Change color
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <% OrderLine::COLORS.each do |order_line_color| %>
+              <li><a href="#" class="change-color"><%= order_line_color %></a></li>
+          <% end %>
+        </ul>
+    </div>
+    <%= link_to 'Ship Orders', "#", :class => 'ship-orders btn btn-success pull-right  mrs ' %>
+    <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrs' %>
 <% end %>
 
 
@@ -57,17 +69,9 @@
       <% else %>
           <th>Tracking #</th>
       <% end %>
-      <th class="dropdown">
+      <th>
         <% if params["display"] != "shipped" %>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#colorChange">
-              Change color
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <% OrderLine::COLORS.each do |order_line_color| %>
-                  <li><a href="#" class="change-color"><%= order_line_color %></a></li>
-              <% end %>
-            </ul>
+            <%= sortable "color" %>
         <% end %>
       </th>
     </tr>

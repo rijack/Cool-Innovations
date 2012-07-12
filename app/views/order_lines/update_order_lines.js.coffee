@@ -1,1 +1,2 @@
-document.location = document.location + "?shipped=true"
+if ("<%= @changedField%>" == "status")
+  document.location = document.location + "?shipped=true"
