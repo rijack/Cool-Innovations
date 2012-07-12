@@ -1,25 +1,17 @@
 <%= simple_form_for(@part, :html => { :class => 'form-inline', :multipart => true }) do |f| %>
     <%= f.error_notification %>
     <table class="table">
-      <% if view == 'new' %>
-        <tr>
-            <th colspan="3">Part Number</th>
-        </tr>
-        <tr>
-            <td colspan="3"><%= f.input :part_number, :label => false %></td>
-        </tr>
-      <% end %>
-          <tr>
-            <th>Drawing Number</th>
-            <th>Comment</th>
-            <th>Attachment</th>
-          </tr>
+      <tr>
+        <th>Part Number</th>
+        <th>Comment</th>
+        <th>Attachment</th>
+      </tr>
       <tr>
         <% if view == 'new' %>
-            <td><%= f.input :drawing_number, :label => false %></td>
+            <td><%= f.input :part_number, :label => false %></td>
             <td><%= f.input :description, :label => false %></td>
         <% else %>
-            <td class="editable large" data-headers="/parts/update_part" id="drawing_number-<%= @part.id%>"><%= @part.drawing_number %></td>
+            <td class="editable large" data-headers="/parts/update_part" id="part_number-<%= @part.id%>"><%= @part.part_number %></td>
             <td class="editable large" data-headers="/parts/update_part" id="description-<%= @part.id%>"><%= @part.description %></td>
         <% end %>
         <td class="large">
