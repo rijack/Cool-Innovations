@@ -4,36 +4,3 @@
 </div>
 
 <%= render 'form' %>
-
-<% if (@part_process.order_lines.not_shipped.length > 0) %>
-  <tr>
-    <td colspan="3" class="order-line-info hide">
-      <div class="accordion-body " id="collapse<%= @part_process.id %>">
-        <table class="table table-bordered table-condensed">
-          <thead>
-            <tr>
-              <th>P/O #</th>
-              <th>Client</th>
-              <th>Part #</th>
-              <th>Qty</th>
-              <th>Due Date</th>
-              <th>Ship Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @part_process.order_lines.not_shipped.each do |order_line| %>
-              <tr>
-                <td><%= order_line.order.purchase_order %></td>
-                <td><%= order_line.order.client.name %></td>
-                <td><%= order_line.part.name %></td>
-                <td><%= number_with_delimiter(order_line.quantity) %></td>
-                <td><%= order_line.due_date %></td>
-                <td><%= order_line.ship_date %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
-    </tr>
-  <% end %>
