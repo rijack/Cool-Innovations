@@ -11,8 +11,11 @@ class Hardware < ActiveRecord::Base
   def required_count(options = {})
     count = 0
     lines = options[:shipped] ? order_lines.shipped : order_lines.not_shipped
+    hardware_quantity = {}
     lines.each do |order_line|
-      count += (order_line.quantity || 0) * (order_line.part.required_hardwares.where{hardware_id == self.id}.first.try(:quantity) || 0)
+
+      hardware_quantity[order_line.part.id] ||= (order_line.part.required_hardwares.where{hardware_id == my{id}}.first.try(:quantity) || 0)
+      count += (order_line.quantity || 0) * hardware_quantity[order_line.part.id]
     end
 
     count
