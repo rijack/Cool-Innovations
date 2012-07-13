@@ -3,7 +3,7 @@
     <%= f.input :client, :collection => Client.order("LOWER(name)").all.collect{|x| [x.name, x.id] }.unshift(["Select a client", nil]),
                 :selected => params[:search][:client],
                 :label => false,
-                :input_html => { :"data-placeholder" => "Select a client" } %>
+                :input_html => { :"data-placeholder" => "Select a customer" } %>
 
     <%= f.input :po_number, :collection => Order.order(:purchase_order).all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil]),
                 :selected => params[:search][:po_number],
