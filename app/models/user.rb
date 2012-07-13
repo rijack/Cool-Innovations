@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :email, :username, :case_sensitive => false
 
+  has_many :comments
+
   def admin?
     status == "admin"
   end

@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :comments
+
   resources :shipping_methods do
     get :search, :on => :collection
     post :update_shipping_method, :on => :collection
@@ -38,7 +40,7 @@ CoolInnovations::Application.routes.draw do
     post :update_client, :on => :collection
   end
 
-  root to: "home#index"
+  root to: "comments#index"
   get 'login' => "sessions#new"
   get 'logout' => "sessions#destroy"
 
