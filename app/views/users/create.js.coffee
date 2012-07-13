@@ -1,0 +1,1 @@
+<%= render "shared/create", :text => 'User', :item => @user, :url => 'user/form', :error_body => 'new_user', :path => users_path, :select_class => 'user', :select_id => ''  %>

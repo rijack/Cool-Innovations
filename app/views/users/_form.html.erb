@@ -1,14 +1,17 @@
-<%= simple_form_for(@user, :html => { :class => 'form-horizontal' }) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@user, :remote => true, :html => { :class => 'form-horizontal condensed-form' }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :username %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-  </div>
+    <div class="modal-body">
+      <%= f.input :username %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.input :status, :label => "Type (admin or user)" %>
+      <%= f.input :password %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to 'Cancel', users_path, :class => 'btn' %>
-  </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
 <% end %>
+

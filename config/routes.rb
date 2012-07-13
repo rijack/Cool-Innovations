@@ -32,7 +32,9 @@ CoolInnovations::Application.routes.draw do
     post :update_hardware, :on => :collection
   end
 
-  resources :users
+  resources :users do
+    post :update_user, :on => :collection
+  end
   resources :sessions
 
   resources :clients do
