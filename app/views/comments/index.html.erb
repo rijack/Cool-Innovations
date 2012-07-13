@@ -34,7 +34,7 @@
   </div>
   <div class="span5">
     <h2>Upcoming Orders</h2>
-    <table class="table table-bordered table-condensed table-striped">
+    <table class="table table-bordered table-condensed">
       <thead>
         <th>P/O #</th>
         <th>Customer</th>
@@ -44,7 +44,7 @@
       </thead>
       <tbody>
         <% @order_lines.each do |order_line| %>
-            <tr>
+            <tr class="<%= order_line.color %>">
               <td><%= order_line.order.purchase_order %></td>
               <td><%= order_line.order.client.name %></td>
               <td><%= order_line.part.name %></td>
