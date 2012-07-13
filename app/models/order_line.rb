@@ -34,7 +34,7 @@ class OrderLine < ActiveRecord::Base
   end
 
   def self.pending
-    where { status == "in progress" ||  status == "pending" }
+    where { (status == "in progress") | (status == "pending") }
   end
 
   # shipped => true | false
