@@ -1,30 +1,38 @@
 <h1>Listing comments</h1>
 
-<table class="table table-striped">
-  <tr>
-    <th>Message</th>
-    <th>User</th>
-    <th></th>
-  </tr>
+<div class="span12 nml">
+  <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-primary pull-left mrx mbxx modal-trigger'%>
+</div>
 
-<% @comments.each do |comment| %>
-  <tr>
-    <td><%= comment.message %></td>
-    <td><%= comment.user.username %></td>
-    <td class="actions">
-      <%= link_to edit_comment_path(comment), :class => 'btn btn-small', :title => 'Edit' do%>
-          <i class="icon-edit"></i>
-      <% end %>
-      <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
-          <i class="icon-trash" alt="delete"></i>
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<%= will_paginate @comments, :renderer => BootstrapPagination::Rails %>
-
-<br />
-
-<%= link_to 'New Comment', new_comment_path, :class => 'btn btn-primary' %>
+<div class="row comments">
+  <% @comments.each do |comment| %>
+  <div class="span7 comment-container" data-id="<%= comment.id %>">
+    <div class="row">
+      <div class="span1">
+        <% if comment.user.avatar? %>
+            <%= image_tag comment.user.avatar.url(:medium) %>
+        <% else %>
+            <%= image_tag "silhouette.png" %>
+        <% end %>
+        <span class="actions">
+          <% if comment.user.id == current_user.id %>
+              <%= link_to edit_comment_path(comment), :class => 'edit', :title => 'Edit' do%>
+                  <i class="icon-edit"></i>
+              <% end %>
+          <% end %>
+          <% if comment.user.id == current_user.id or current_user.admin?  %>
+              <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
+          <% end %>
+        </span>
+      </div>
+      <div class="span6 comment-details">
+        <div class="username"><%= comment.user.name %></div>
+        <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
+        <div class="message"><%= comment.message %></div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

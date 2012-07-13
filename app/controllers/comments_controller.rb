@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.order("created_at desc").page(params[:page] || 1).per_page(params[:per_page] || 20)
+    @comments = Comment.order("created_at desc").page(params[:page] || 1).per_page(params[:per_page] || 200)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
       format.json { render json: @comment }
     end
   end
@@ -35,6 +37,13 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
+
+    respond_to do |format|
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
+      format.json { render json: @comment }
+    end
   end
 
   # POST /comments
@@ -44,11 +53,11 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comments_url, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,10 +70,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

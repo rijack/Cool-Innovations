@@ -1,0 +1,1 @@
+<%= render "shared/update", :item => @comment, :url => 'comments/form', :error_body => 'edit_comment', :text => 'Comment' %>

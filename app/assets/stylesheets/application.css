@@ -174,4 +174,12 @@ td.fixed {white-space: nowrap;}
 
 .condensed-form textarea.text { height:50px;}
 
+.comment-container .alert {background-color: #fff; color:#000; border-color: #999;}
+.comment-container {border-top:1px dotted black; padding:10px 0;}
+.comment-container .comment-details div {float:left; display: block; width:100%; }
+.comment-details .username {color:#ff0000; font-weight: bold;}
+.comment-details .message {margin:10px 0 0 0;}
+.comment-container .actions .delete {color:#ff0000;}
+.comment-container .actions .delete:hover {color:#000; text-decoration: none;}
+
 
