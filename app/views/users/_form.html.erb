@@ -5,6 +5,15 @@
       <%= f.input :username %>
       <%= f.input :name %>
       <%= f.input :email %>
+      <% if @user.avatar? %>
+          <div class="control-group">
+            <label class="control-label">Avatar</label>
+            <div class="controls">
+              <img src="<%=@user.avatar.url%>" width="100" height="100" />
+            </div>
+          </div>
+      <% end %>
+      <%= f.input :avatar, :as => :file, :label => false %>
       <%= f.input :status, :label => "Type (admin or user)" %>
       <%= f.input :password %>
     </div>

@@ -4,12 +4,21 @@
   <tr>
     <th>Message</th>
     <th>User</th>
+    <th></th>
   </tr>
 
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.message %></td>
     <td><%= comment.user.username %></td>
+    <td class="actions">
+      <%= link_to edit_comment_path(comment), :class => 'btn btn-small', :title => 'Edit' do%>
+          <i class="icon-edit"></i>
+      <% end %>
+      <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+          <i class="icon-trash" alt="delete"></i>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
