@@ -12,7 +12,7 @@
               <% end %>
               <span class="actions">
                   <% if comment.user.id == current_user.id %>
-                      <%= link_to edit_comment_path(comment), :class => 'edit', :title => 'Edit' do%>
+                      <%= link_to edit_comment_path(comment)+"?no_layout=1", :class => 'edit modal-trigger', :title => 'Edit' do%>
                           <i class="icon-edit"></i>
                       <% end %>
                   <% end %>
