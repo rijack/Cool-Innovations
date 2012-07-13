@@ -33,7 +33,7 @@
               <% end %>
             </td>
           </tr>
-          <% if (part_process.order_lines.pending.length > 0) %>
+          <% if (part_process.order_lines_with_pending.length > 0) %>
               <tr>
                 <td colspan="7" class="order-line-info hide">
                   <div class="accordion-body collapse" id="collapse<%= part_process.id %>">
@@ -50,7 +50,7 @@
                       </thead>
                       <tbody>
                       <%= render :partial => 'order_lines/order_line_simple',
-                                 :collection => part_process.order_lines.pending,
+                                 :collection => part_process.order_lines_with_pending,
                                  :as => 'order_line',
                                  :locals => {:hardware => nil, :view => 'part_process'} %>
                       </tbody>
