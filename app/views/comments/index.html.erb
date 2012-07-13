@@ -1,38 +1,62 @@
-<h1>Listing comments</h1>
-
-<div class="span12 nml">
-  <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-primary pull-left mrx mbxx modal-trigger'%>
-</div>
-
-<div class="row comments">
-  <% @comments.each do |comment| %>
-  <div class="span7 comment-container" data-id="<%= comment.id %>">
-    <div class="row">
-      <div class="span1">
-        <% if comment.user.avatar? %>
-            <%= image_tag comment.user.avatar.url(:medium) %>
-        <% else %>
-            <%= image_tag "silhouette.png" %>
-        <% end %>
-        <span class="actions">
-          <% if comment.user.id == current_user.id %>
-              <%= link_to edit_comment_path(comment), :class => 'edit', :title => 'Edit' do%>
-                  <i class="icon-edit"></i>
+<div class="row">
+  <div class="span7">
+    <h2>Comments <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-primary pull-right mrx mbxx modal-trigger'%></h2>
+    <% @comments.each do |comment| %>
+        <div class="comment-container" data-id="<%= comment.id %>">
+          <div class="row">
+            <div class="span1">
+              <% if comment.user.avatar? %>
+                  <%= image_tag comment.user.avatar.url(:medium) %>
+              <% else %>
+                  <%= image_tag "silhouette.png" %>
               <% end %>
-          <% end %>
-          <% if comment.user.id == current_user.id or current_user.admin?  %>
-              <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete', :title => 'Delete' do%>
-                  <i class="icon-trash" alt="delete"></i>
-              <% end %>
-          <% end %>
-        </span>
-      </div>
-      <div class="span6 comment-details">
-        <div class="username"><%= comment.user.name %></div>
-        <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
-        <div class="message"><%= comment.message %></div>
-      </div>
-    </div>
+              <span class="actions">
+                  <% if comment.user.id == current_user.id %>
+                      <%= link_to edit_comment_path(comment), :class => 'edit', :title => 'Edit' do%>
+                          <i class="icon-edit"></i>
+                      <% end %>
+                  <% end %>
+                  <% if comment.user.id == current_user.id or current_user.admin?  %>
+                      <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete', :title => 'Delete' do%>
+                          <i class="icon-trash" alt="delete"></i>
+                      <% end %>
+                  <% end %>
+              </span>
+            </div>
+            <div class="span6 comment-details">
+              <div class="username"><%= comment.user.name %></div>
+              <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
+              <div class="message"><%= comment.message %></div>
+            </div>
+          </div>
+        </div>
+    <% end %>
   </div>
-  <% end %>
+  <div class="span5">
+    <h2>Upcoming Orders</h2>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
+        <th>P/O #</th>
+        <th>Customer</th>
+        <th>Part #</th>
+        <th>Qty</th>
+        <th>Ship Date</th>
+      </thead>
+      <tbody>
+        <% @order_lines.each do |order_line| %>
+            <tr>
+              <td><%= order_line.order.purchase_order %></td>
+              <td><%= order_line.order.client.name %></td>
+              <td><%= order_line.part.name %></td>
+              <td><%= number_with_delimiter(order_line.quantity) %></td>
+              <td><%= order_line.ship_date %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'View All', orders_path%>
+  </div>
 </div>
+
+
+

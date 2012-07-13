@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
   def index
     @comments = Comment.order("created_at desc").page(params[:page] || 1).per_page(params[:per_page] || 200)
 
+
+    @order_lines = OrderLine.where{(status != "shipped") & (ship_date <= 3.days.from_now) }.order("ship_date asc")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }
