@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :sort_column, :sort_direction, :sort_by_field
+  helper_method :sort_column, :sort_direction, :sort_by_field, :current_user, :logged_in?
 
+  before_filter :needs_login
 
   protected
   def sort_direction
@@ -24,8 +25,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
   def sort_by_field
     if params[:sort]
       "#{sort_column} #{sort_direction}"
@@ -35,6 +34,30 @@ class ApplicationController < ActionController::Base
       else
         "ship_date asc"
       end
+    end
+  end
+
+  def current_user
+    @current_user ||= User.find_by_id session[:user_id]
+  end
+
+  def logged_in?
+    session[:user_id] && !!current_user
+  end
+
+  def user_admin?
+    current_user && current_user.admin?
+  end
+
+  def needs_login
+    if !logged_in?
+      redirect_to login_url, :notice => "you need to be logged in"
+    end
+  end
+
+  def needs_admin
+    if !user_admin?
+      redirect_to login_url, :notice => "you need to be logged in as admin"
     end
   end
 end

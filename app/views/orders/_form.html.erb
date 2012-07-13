@@ -18,7 +18,9 @@
             <th>Qty</th>
             <th>Comment</th>
             <th>Production Comment</th>
+            <% if current_user.admin? %>
             <th>Price</th>
+            <% end %>
             <th></th>
           </tr>
       </thead>
