@@ -15,7 +15,7 @@
   <% if @part_processes.length > 0 %>
       <% @part_processes.each do |part_process| %>
           <tr>
-            <% if (part_process.order_lines.pending.length > 0) %>
+            <% if (part_process.order_lines_with_pending.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part_process.id %>"><i class="icon-plus"></i><%= part_process.name %></a></td>
             <% else %>
                 <td class="fixed"><%= part_process.name %></td>
