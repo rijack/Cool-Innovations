@@ -26,7 +26,7 @@
             <div class="span6 comment-details">
               <div class="username"><%= comment.user.name %></div>
               <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
-              <div class="message"><%= comment.message %></div>
+              <div class="message"><%= simple_format comment.message %></div>
             </div>
           </div>
         </div>
