@@ -37,9 +37,11 @@
               <tr>
                 <td colspan="7" class="order-line-info hide">
                   <div class="accordion-body collapse" id="collapse<%= part_process.id %>">
-                    <table class="table table-bordered table-condensed table-striped">
+                    <table class="table table-bordered table-condensed table-striped" data-id="<%= part_process.id %>">
                       <thead>
                       <tr>
+                        <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Priority" %></th>
+                        <% @process_order_line_priority = part_process.id %>
                         <th>P/O #</th>
                         <th>Client</th>
                         <th>Part #</th>
@@ -48,7 +50,7 @@
                         <th>Ship Date</th>
                       </tr>
                       </thead>
-                      <tbody>
+                      <tbody  class="process_order_lines"  data-id="<%= part_process.id %>">
                       <%= render :partial => 'order_lines/order_line_simple',
                                  :collection => part_process.order_lines_with_pending,
                                  :as => 'order_line',

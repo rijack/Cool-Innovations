@@ -4,7 +4,7 @@
 
 
 $ ->
-  $("#process_order_lines").sortable
+  $(".process_order_lines").sortable
     helper: (e, ui) ->
       ui.children().each -> $(this).width($(this).width())
       ui
@@ -13,6 +13,7 @@ $ ->
       $row = $(ui.item)
       order_line_ids = ($(row).data('id') for row in $row.parent().find(".order_line"))
       process_id = $row.parents("table").data("id")
+      #console.log(process_id)
       
       $.ajax
         type: 'POST'

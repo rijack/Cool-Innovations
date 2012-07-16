@@ -20,7 +20,7 @@
 <table class="table table-bordered" data-id="<%= @part_process.id %>">
   <thead>
   <tr>
-    <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Process Priority" %></th>
+    <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Priority" %></th>
     <% @process_order_line_priority = @part_process.id %>
     <th class="fixed"><%= nonsortable "created_at" %></th>
     <th><%= nonsortable "clients.name", "Customer" %></th>
@@ -39,7 +39,7 @@
     <th></th>
   </tr>
   </thead>
-  <tbody id="process_order_lines">
+  <tbody class="process_order_lines" data-id="<%= @part_process.id %>">
   <% if @part_process.order_lines_with_pending.length > 0 %>
     <%= render :partial => 'order_lines/order_line', :collection => @part_process.order_lines_with_pending, :locals => { :show_client => true } %>
   <% else %>

@@ -98,6 +98,7 @@ class PartProcessesController < ApplicationController
 
   def set_order_line_priority
     params[:order_line_ids] ||= []
+    @curr_id = params[:id]
 
     @part_process = PartProcess.find(params[:id])
 
