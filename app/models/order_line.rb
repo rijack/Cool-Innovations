@@ -25,6 +25,9 @@ class OrderLine < ActiveRecord::Base
 
   after_destroy :check_order
 
+  # track only due date changes
+  has_paper_trail :only => [:due_date]
+
   def self.shipped
     where { status == "shipped" }
   end

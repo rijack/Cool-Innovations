@@ -120,6 +120,27 @@
               <% end %>
               </tbody>
             </table>
+            <% if order_line.versions.count > 0 %>
+              <h5>Date changes</h5>
+              <table class="table table-bordered table-condensed span5 table-striped">
+                <thead>
+                  <tr>
+                    <th>Changed on</th>
+                    <th>By</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% order_line.versions.order("created_at desc").limit(5).each do |version| %>
+                    <tr>
+                      <td><%= version.created_at.to_s(:long) %></td>
+                      <td><%= User.find_by_id(version.whodunnit).try(:username) %></td>
+                      <td><%= version.reify.due_date %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
           </div>
           <div class="span5">
             <h5>Additional Info</h5>
