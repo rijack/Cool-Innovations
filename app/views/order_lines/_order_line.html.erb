@@ -138,7 +138,7 @@
                     <tr>
                       <td><%= version.created_at.to_s(:long) %></td>
                       <td><%= User.find_by_id(version.whodunnit).try(:username) %></td>
-                      <td><%= version.reify.due_date %></td>
+                      <td><%= version.reify.try(:due_date) %></td>
                     </tr>
                   <% end %>
                 </tbody>
