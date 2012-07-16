@@ -12,6 +12,7 @@ $ ->
       $.get url, (data) ->
         $("#modal-container").html data
         $("#modal-container form:not(.filter) :input:visible:enabled:first").focus()
+        $('#sample_lines').find("select").chosen()
     return false
 
 

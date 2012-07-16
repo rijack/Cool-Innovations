@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-  $('#sample_lines').bind 'insertion-callback', ->
+  $('#sample_lines').live 'insertion-callback', ->
     $('#sample_lines').find("select").chosen()
