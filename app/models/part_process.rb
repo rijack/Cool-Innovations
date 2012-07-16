@@ -1,9 +1,10 @@
 class PartProcess < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :part_process_category_id
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
 
+  belongs_to :part_process_category
   has_many :required_processes
   has_many :parts, :through => :required_processes
 

@@ -1,9 +1,10 @@
 class Hardware < ActiveRecord::Base
-  attr_accessible :description, :name, :vendor_name, :pricing_i, :pricing_history
+  attr_accessible :description, :name, :vendor_name, :pricing_i, :pricing_history, :hardware_category_id
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
 
+  belongs_to :hardware_category
   has_many :required_hardwares
   has_many :parts, :through => :required_hardwares
   has_many :order_lines, :through => :parts

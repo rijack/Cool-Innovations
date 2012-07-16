@@ -186,4 +186,8 @@ td.small {width:100px;}
 .sample-form textarea.text {height: 30px;}
 .sample-form .sample-lines .controls {margin-left:0;}
 
+textarea.text.short { height: 30px;}
+
+.category {background-color: #DDD;}
+
 

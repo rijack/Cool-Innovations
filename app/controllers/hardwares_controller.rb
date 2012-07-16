@@ -2,7 +2,7 @@ class HardwaresController < ApplicationController
   # GET /hardwares
   # GET /hardwares.json
   def index
-    @hardwares = Hardware.order(:name).page(params[:page]).per_page(20)
+    @hardwares = Hardware.order(:hardware_category_id).page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb

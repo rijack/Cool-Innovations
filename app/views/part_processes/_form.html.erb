@@ -2,6 +2,8 @@
   <%= f.error_notification %>
 
   <div class="modal-body">
+    <%= f.association :part_process_category, :label => "Category", :collection => PartProcessCategory.order("LOWER(name)").all,
+                      :input_html => {:"data-placeholder" => "Choose a category"} %>
     <%= f.input :name %>
     <%= f.input :description %>
   </div>

@@ -26,7 +26,14 @@
   </thead>
   <tbody>
   <% if @hardwares.length > 0 %>
+    <% hardware_category_name = "" %>
       <% @hardwares.each do |hardware| %>
+          <% if hardware.hardware_category.name != hardware_category_name %>
+            <tr>
+              <td colspan="5" class="category"><%= hardware.hardware_category.name %></td>
+            </tr>
+            <% hardware_category_name = hardware.hardware_category.name %>
+          <% end %>
           <tr>
             <% if (hardware.order_lines.pending.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>

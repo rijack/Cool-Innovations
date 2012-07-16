@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716174519) do
+ActiveRecord::Schema.define(:version => 20120716191104) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(:version => 20120716174519) do
   create_table "hardwares", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.text     "comment"
     t.text     "vendor_name"
     t.text     "pricing_i"
     t.text     "pricing_history"
-    t.integer  "hardware_category_id"
+    t.integer  "hardware_category_id", :default => 1
   end
 
   create_table "order_line_process_statuses", :force => true do |t|
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(:version => 20120716174519) do
   create_table "part_processes", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.integer  "part_process_category_id"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "part_process_category_id", :default => 1
   end
 
   create_table "parts", :force => true do |t|
