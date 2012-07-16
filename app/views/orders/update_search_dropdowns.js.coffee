@@ -1,0 +1,3 @@
+$("#search_po_number").html("<%= raw escape_javascript(options_for_select(@orders.all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil]), params[:order_id])) %>").trigger("liszt:updated")
+$("#search_part_id").html("<%= raw escape_javascript(options_for_select(@parts.all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]), params[:part_id])) %>").trigger("liszt:updated")
+$("#search_client").html("<%= raw escape_javascript(options_for_select(@clients.all.collect{|x| [x.name, x.id] }.unshift(["Select a customer", nil]), params[:client_id])) %>").trigger("liszt:updated")

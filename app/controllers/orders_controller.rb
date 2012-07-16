@@ -104,4 +104,26 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_search_dropdowns
+    @clients = Client.order("LOWER(name)")
+    #.all.collect{|x| [x.name, x.id] }.unshift(["Select a customer", nil])
+    @orders  = Order.order(:purchase_order)
+      #.all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil])
+    @parts  = Part.order(:part_number)
+    #.all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
+    if params[:client_id].present?
+      @orders = @orders.where(:client_id => params[:client_id])
+    end
+
+    if params[:part_id].present?
+      @orders = @orders.joins(:order_lines).where{order_lines.part_id == my{params[:part_id]}}
+      @clients = @clients.joins(:orders => :order_lines).where{(order_lines.part_id == my{params[:part_id]})}.group(:id)
+    end
+
+    if params[:order_id].present?
+      @parts = @parts.joins(:order_lines).where{order_lines.order_id == my{params[:order_id]}}
+      @clients = @clients.joins(:orders).where(:"orders.id" => params[:order_id])
+    end
+  end
 end
