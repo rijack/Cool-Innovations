@@ -21,7 +21,7 @@
   <thead>
   <tr>
     <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Process Priority" %></th>
-    <% @process_order_line_priority = true %>
+    <% @process_order_line_priority = @part_process.id %>
     <th class="fixed"><%= nonsortable "created_at" %></th>
     <th><%= nonsortable "clients.name", "Customer" %></th>
     <th class="fixed"><%= nonsortable "order_id", "P/O Number" %></th>

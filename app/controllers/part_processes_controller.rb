@@ -103,7 +103,7 @@ class PartProcessesController < ApplicationController
 
     params[:order_line_ids].each_with_index do |id, i|
       status = @part_process.order_line_process_statuses.where(:order_line_id => id).first
-      status.order_line_priority = i
+      status.order_line_priority = i + 1
       status.save
     end
   end
