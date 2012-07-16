@@ -1,0 +1,27 @@
+<h1>Listing sample_lines</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Comment</th>
+    <th>Part</th>
+    <th>Quantity</th>
+    <th>Actions</th>
+  </tr>
+
+<% @sample_lines.each do |sample_line| %>
+  <tr>
+    <td><%= sample_line.comment_id %></td>
+    <td><%= sample_line.part_id %></td>
+    <td><%= sample_line.quantity %></td>
+    <td>
+      <%= link_to 'Show', sample_line, :class => 'btn btn-mini' %>
+      <%= link_to 'Edit', edit_sample_line_path(sample_line), :class => 'btn btn-mini' %>
+      <%= link_to 'Destroy', sample_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sample line', new_sample_line_path, :class => 'btn btn-primary' %>

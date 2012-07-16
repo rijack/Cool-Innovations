@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment:</b>
+  <%= @sample_line.comment_id %>
+</p>
+
+<p>
+  <b>Part:</b>
+  <%= @sample_line.part_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @sample_line.quantity %>
+</p>
+
+
+<%= link_to 'Edit', edit_sample_line_path(@sample_line) %> |
+<%= link_to 'Back', sample_lines_path %>

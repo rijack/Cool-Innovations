@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :sample_lines
+
   resources :comments
 
   resources :shipping_methods do

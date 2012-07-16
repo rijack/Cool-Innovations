@@ -1,0 +1,2 @@
+module SampleLinesHelper
+end

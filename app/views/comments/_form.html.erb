@@ -1,8 +1,45 @@
-<%= simple_form_for(@comment, :remote => true, :html => { :class => 'form-horizontal condensed-form' }) do |f| %>
-  <%= f.error_notification %>
+<%if  params["sample"] %>
+    <% form_style = "sample-form" %>
+<% else %>
+    <% form_style = "" %>
+<% end %>
 
+<%= simple_form_for(@comment, :remote => true, :html => { :class => 'form form-horizontal '+form_style }) do |f| %>
+  <%= f.error_notification %>
   <div class="modal-body">
+  <%if  params["sample"] %>
+    <%= f.input :customer_name %>
+    <%= f.input :contact_name %>
+    <%= f.input :address %>
+    <%= f.input :shipping_account_info %>
+    <%= f.input :comment %>
+    <table class="table table-condensed sample-lines">
+      <thead>
+          <tr>
+            <th>Part</th>
+            <th>Qty</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody  id="sample_lines">
+          <%= f.simple_fields_for :sample_lines do |sample_line| %>
+              <%= render 'sample_line_fields', :f => sample_line %>
+          <% end %>
+          <tr>
+            <td colspan="3">
+              <div class="links">
+                <%= link_to_add_association 'Add Line', f, :sample_lines, :class => 'btn',
+                                            :"data-association-insertion-node" => '#sample_lines',
+                                            :"data-association-insertion-method" => "prepend"
+                %>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  <% else %>
     <%= f.input :message %>
+  <% end %>
   </div>
 
   <div class="modal-footer">

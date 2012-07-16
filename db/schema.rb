@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716010346) do
+ActiveRecord::Schema.define(:version => 20120716153705) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -25,9 +25,15 @@ ActiveRecord::Schema.define(:version => 20120716010346) do
   create_table "comments", :force => true do |t|
     t.text     "message"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "name"
+    t.integer  "sample_line_id"
+    t.string   "customer_name"
+    t.string   "contact_name"
+    t.text     "address"
+    t.text     "shipping_account_info"
+    t.text     "comment"
   end
 
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
@@ -116,6 +122,14 @@ ActiveRecord::Schema.define(:version => 20120716010346) do
     t.integer  "part_process_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "sample_lines", :force => true do |t|
+    t.integer  "comment_id"
+    t.integer  "part_id"
+    t.integer  "quantity"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "shipping_methods", :force => true do |t|

@@ -182,4 +182,8 @@ td.fixed {white-space: nowrap;}
 .comment-container .actions .delete {color:#ff0000;}
 .comment-container .actions .delete:hover {color:#000; text-decoration: none;}
 
+td.small {width:100px;}
+.sample-form textarea.text {height: 30px;}
+.sample-form .sample-lines .controls {margin-left:0;}
+
 

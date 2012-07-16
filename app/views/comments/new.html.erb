@@ -1,6 +1,11 @@
+<%if  params["sample"] %>
+    <% title = "New Sample" %>
+<% else %>
+    <% title = "New Comment" %>
+<% end %>
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">×</button>
-  <h3>New Comment</h3>
+  <h3><%= title %>></h3>
 </div>
 
 <%= render 'form' %>

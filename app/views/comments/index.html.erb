@@ -1,6 +1,6 @@
 <div class="row">
   <div class="span7">
-    <h2>Comments <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-primary pull-right mrx mbxx modal-trigger'%></h2>
+    <h2>Comments <%= link_to 'New Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h2>
     <% @comments.each do |comment| %>
         <div class="comment-container" data-id="<%= comment.id %>">
           <div class="row">
@@ -11,8 +11,12 @@
                   <%= image_tag "silhouette.png" %>
               <% end %>
               <span class="actions">
+                  <% extra_param = "" %>
+                  <% if comment.sample_lines.length >0 %>
+                    <% extra_param = "&sample=true" %>
+                  <% end %>
                   <% if comment.user.id == current_user.id %>
-                      <%= link_to edit_comment_path(comment)+"?no_layout=1", :class => 'edit modal-trigger', :title => 'Edit' do%>
+                      <%= link_to edit_comment_path(comment)+"?no_layout=1"+extra_param, :class => 'edit modal-trigger', :title => 'Edit' do%>
                           <i class="icon-edit"></i>
                       <% end %>
                   <% end %>
@@ -26,7 +30,52 @@
             <div class="span6 comment-details">
               <div class="username"><%= comment.user.name %></div>
               <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
-              <div class="message"><%= simple_format comment.message %></div>
+              <div class="message">
+                <% if comment.sample_lines.length >0 %>
+                    Sample for: <strong><%= comment.customer_name %></strong>
+                    <% if comment.contact_name? %><br />Contact Name:<strong><%= comment.contact_name %></strong><% end %>
+                    <table class="table table-bordered table-condensed table-striped mtx">
+                      <thead>
+                        <tr>
+                          <th>Part #</th>
+                          <th>Quantity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% comment.sample_lines.each do |sample_line| %>
+                            <tr>
+                              <td class="comment"><%= sample_line.part.name %></td>
+                              <td><%= sample_line.quantity %></td>
+                            </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <% if comment.address? or comment.shipping_account_info? or comment.comment? %>
+                        <table class="table table-bordered table-condensed">
+                          <% if comment.address? %>
+                          <tr>
+                            <td class="small"><strong>Address:</strong></td>
+                            <td><%= simple_format comment.address %></td>
+                          </tr>
+                          <% end %>
+                          <% if comment.shipping_account_info? %>
+                          <tr>
+                            <td><strong>Shipping Info:</strong></td>
+                            <td><%= simple_format comment.shipping_account_info %></td>
+                          </tr>
+                          <% end %>
+                          <% if comment.comment? %>
+                          <tr>
+                            <td><strong>Comment:</strong></td>
+                            <td><%= simple_format comment.comment %></td>
+                          </tr>
+                          <% end %>
+                        </table>
+                    <% end %>
+                <% else %>
+                    <%= simple_format comment.message %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
