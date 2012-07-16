@@ -14,4 +14,8 @@ module ApplicationHelper
       raw ("#{content_tag(:i, "", :class=> i_class).html_safe if css_class} " + title)
     end
   end
+
+  def nonsortable column, title = nil
+    title ||= column.titleize
+  end
 end

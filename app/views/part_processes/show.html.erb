@@ -17,27 +17,29 @@
 <h2>Active Orders</h2>
 <p id="notice"><%= notice %></p>
 
-<table class="table table-bordered">
+<table class="table table-bordered" data-id="<%= @part_process.id %>">
   <thead>
   <tr>
-    <th class="fixed"><%= sortable "created_at" %></th>
-    <th><%= sortable "clients.name", "Customer" %></th>
-    <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
+    <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Process Priority" %></th>
+    <% @process_order_line_priority = true %>
+    <th class="fixed"><%= nonsortable "created_at" %></th>
+    <th><%= nonsortable "clients.name", "Customer" %></th>
+    <th class="fixed"><%= nonsortable "order_id", "P/O Number" %></th>
     <th>Line</th>
-    <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
-    <th class="fixed"><%= sortable "quantity", "Qty" %></th>
-    <th class="fixed"><%= sortable "due_date" %></th>
+    <th class="fixed"><%= nonsortable "parts.part_number", "Part #" %></th>
+    <th class="fixed"><%= nonsortable "quantity", "Qty" %></th>
+    <th class="fixed"><%= nonsortable "due_date" %></th>
     <% if params["display"] != "shipped" %>
-        <th class="fixed"><%= sortable "ship_date" %></th>
+        <th class="fixed"><%= nonsortable "ship_date" %></th>
     <% else %>
-        <th class="fixed"><%= sortable "actual_ship_date" %></th>
+        <th class="fixed"><%= nonsortable "actual_ship_date" %></th>
     <% end %>
     <th>Comment</th>
     <th>Prod Comment</th>
     <th></th>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="process_order_lines">
   <% if @part_process.order_lines_with_pending.length > 0 %>
     <%= render :partial => 'order_lines/order_line', :collection => @part_process.order_lines_with_pending, :locals => { :show_client => true } %>
   <% else %>

@@ -9,6 +9,9 @@
 <% end %>
 
 <tr class="order_line <%= extraClass %>" data-id="<%= order_line.id %>">
+  <% if @process_order_line_priority %>
+    <td class="fixed sort_handle"><%= order_line.order_line_process_statuses.where(:part_process_id => @process_order_line_priority).first.order_line_priority %></td>
+  <% end %>
   <% if params["display"] != "shipped" %>
       <td class="fixed"><%= order_line.created_at.to_date() %></td>
   <% end %>

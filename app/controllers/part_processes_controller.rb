@@ -95,4 +95,16 @@ class PartProcessesController < ApplicationController
     @part_process[params[:field]] = params[:new_value]
     @part_process.save
   end
+
+  def set_order_line_priority
+    params[:order_line_ids] ||= []
+
+    @part_process = PartProcess.find(params[:id])
+
+    params[:order_line_ids].each_with_index do |id, i|
+      status = @part_process.order_line_process_statuses.where(:order_line_id => id).first
+      status.order_line_priority = i
+      status.save
+    end
+  end
 end
