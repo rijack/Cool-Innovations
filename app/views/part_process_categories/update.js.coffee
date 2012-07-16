@@ -1,0 +1,1 @@
+<%= render "shared/update", :item => @part_process_category, :url => 'part_process_categories/form', :error_body => 'edit_part_process_category', :text => 'Process Category' %>

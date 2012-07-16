@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716172746) do
+ActiveRecord::Schema.define(:version => 20120716174519) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -98,11 +98,18 @@ ActiveRecord::Schema.define(:version => 20120716172746) do
     t.datetime "attachment_updated_at"
   end
 
+  create_table "part_process_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "part_processes", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "part_process_category_id"
   end
 
   create_table "parts", :force => true do |t|
