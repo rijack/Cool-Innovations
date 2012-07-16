@@ -16,6 +16,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :orders do
     match :shipped, :on => :collection, :action => :index, :display => "shipped"
+    match :update_search_dropdowns, :on => :collection
   end
 
   resources :parts do
