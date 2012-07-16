@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716153705) do
+ActiveRecord::Schema.define(:version => 20120716172746) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -38,15 +38,22 @@ ActiveRecord::Schema.define(:version => 20120716153705) do
 
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "hardware_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "hardwares", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.text     "comment"
     t.text     "vendor_name"
     t.text     "pricing_i"
     t.text     "pricing_history"
+    t.integer  "hardware_category_id"
   end
 
   create_table "order_line_process_statuses", :force => true do |t|

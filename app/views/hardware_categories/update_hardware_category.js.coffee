@@ -1,0 +1,1 @@
+console.log("<%= @hardware_category.id %>")

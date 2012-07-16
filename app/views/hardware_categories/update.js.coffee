@@ -1,0 +1,1 @@
+<%= render "shared/update", :item => @hardware_category, :url => 'hardware_categories/form', :error_body => 'edit_hardware_category', :text => 'Hardware Category' %>

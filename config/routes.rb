@@ -1,5 +1,9 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :hardware_categories do
+    post :update_hardware_category, :on => :collection
+  end
+
   resources :sample_lines
 
   resources :comments

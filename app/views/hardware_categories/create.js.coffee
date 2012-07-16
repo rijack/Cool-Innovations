@@ -1,0 +1,1 @@
+<%= render "shared/create", :text => 'Hardware Category', :item => @hardware_category, :url => 'hardware_categories/form', :error_body => 'new_hardware_category', :path => hardware_categories_path, :select_id => 'hardware_category_id', :select_class => ''  %>
