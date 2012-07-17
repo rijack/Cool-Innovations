@@ -5,7 +5,7 @@ class PartProcess < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
 
   belongs_to :part_process_category
-  has_many :required_processes
+  has_many :required_processes, :dependent =>:destroy
   has_many :parts, :through => :required_processes
 
   has_many :order_line_process_statuses

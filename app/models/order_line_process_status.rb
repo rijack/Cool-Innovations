@@ -6,6 +6,8 @@ class OrderLineProcessStatus < ActiveRecord::Base
 
   after_save :set_order_line_status, :if => :status_changed?
 
+  after_destroy :set_order_line_status
+
   validate :check_order
 
   protected
