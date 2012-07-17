@@ -77,7 +77,7 @@
               <tbody>
               <% order_line.order_line_process_statuses.each do |process_status| %>
                   <tr class="process_status" data-id="<%= process_status.id %>">
-                    <td><%= process_status.part_process.name %></td>
+                    <td><% if process_status.part_process? %><%= process_status.part_process.name %><% end%></td>
                     <td>
                       <div class="btn-group line-status" data-toggle="buttons-radio">
                         <% OrderLine::STATUSES.each do |order_line_status| %>
