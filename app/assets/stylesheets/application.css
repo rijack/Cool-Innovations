@@ -184,10 +184,13 @@ td.fixed {white-space: nowrap;}
 
 td.small {width:100px;}
 .sample-form textarea.text {height: 30px;}
+.sample-form .sample-lines .control-group {margin-bottom:8px;}
 .sample-form .sample-lines .controls {margin-left:0;}
 
 textarea.text.short { height: 30px;}
 
 .category {background-color: #DDD;}
 
+.modal {max-height:720px !important; top:300px !important;}
+.modal.fade.in {top:300px !important;}
 

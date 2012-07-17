@@ -38,13 +38,15 @@
                       <thead>
                         <tr>
                           <th>Part #</th>
+                          <th>New Part #</th>
                           <th>Quantity</th>
                         </tr>
                       </thead>
                       <tbody>
                         <% comment.sample_lines.each do |sample_line| %>
                             <tr>
-                              <td class="comment"><%= sample_line.part.name %></td>
+                              <td class="comment"><% if sample_line.part_id? %><%= sample_line.part.name %><% end %></td>
+                              <td class="comment"><%= sample_line.new_part_number %></td>
                               <td><%= sample_line.quantity %></td>
                             </tr>
                         <% end %>
