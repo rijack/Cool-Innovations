@@ -48,7 +48,7 @@
             <i class="icon-edit"></i>
         <% end %>
     <% end %>
-    <%= link_to order_line, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+    <%= link_to order_line, method: :delete, data: { confirm: "Are you sure? \n P/O #:" + order_line.order.purchase_order + "\nCustomer:" + order_line.order.client.name }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
         <i class="icon-trash" alt="delete"></i>
     <% end %>
     <% if params["display"] != "shipped" %>
