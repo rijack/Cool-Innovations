@@ -110,9 +110,9 @@ class OrdersController < ApplicationController
     @clients = Client.order("LOWER(name)")
     @orders  = Order.order(:purchase_order)
     if params[:display] == "shipped"
-      @orders = @orders.joins(:order_lines).where{order_lines.status == "shipped"}.group(:purchase_order)
+      @orders = @orders.joins(:order_lines).where{order_lines.status == "shipped"}.group(:purchase_order, :id)
     else
-      @orders = @orders.joins(:order_lines).where{order_lines.status != "shipped"}.group(:purchase_order)
+      @orders = @orders.joins(:order_lines).where{order_lines.status != "shipped"}.group(:purchase_order, :id)
     end
 
     @parts  = Part.order(:part_number)
@@ -122,7 +122,7 @@ class OrdersController < ApplicationController
     end
 
     if params[:part_id].present?
-      @orders = @orders.joins(:order_lines).where{order_lines.part_id == my{params[:part_id]}}.group(:purchase_order)
+      @orders = @orders.joins(:order_lines).where{order_lines.part_id == my{params[:part_id]}}.group(:purchase_order, :id)
       @clients = @clients.joins(:orders => :order_lines).where{(order_lines.part_id == my{params[:part_id]})}.group(:id)
     end
 
