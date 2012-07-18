@@ -23,11 +23,8 @@ class RequiredProcess < ActiveRecord::Base
   end
 
   def remove_statuses
-    raise "destroy"
     self.part.order_lines.not_shipped.each do |order_line|
       order_line.order_line_process_statuses.where(:part_process_id => self.part_process_id).destroy_all
     end
   end
-
-
 end
