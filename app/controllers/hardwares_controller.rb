@@ -3,15 +3,15 @@ class HardwaresController < ApplicationController
   # GET /hardwares.json
   def index
 
-    @hardwares = Hardware.joins('LEFT OUTER JOIN required_hardwares on hardwares.id = required_hardwares.hardware_id')
-                         .joins('LEFT OUTER JOIN order_lines ON required_hardwares.part_id = order_lines.part_id')
-                         .group(:id)
-                         .includes(:hardware_category)
-                         .order("hardware_categories.sort_priority")
-                         .order("order_lines.order_id desc")
-                         .page(params[:page]).per_page(20)
+    #@hardwares = Hardware.joins('LEFT OUTER JOIN required_hardwares on hardwares.id = required_hardwares.hardware_id')
+    #                     .joins('LEFT OUTER JOIN order_lines ON required_hardwares.part_id = order_lines.part_id')
+    #                     .group(:id)
+    #                     .includes(:hardware_category)
+    #                     .order("hardware_categories.sort_priority")
+    #                     .order("order_lines.order_id desc")
+    #                     .page(params[:page]).per_page(20)
 
-    #@hardwares = Hardware.includes(:hardware_category).order("hardware_categories.sort_priority").page(params[:page]).per_page(20)
+    @hardwares = Hardware.includes(:hardware_category).order("hardware_categories.sort_priority").page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb
