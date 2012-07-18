@@ -2,7 +2,7 @@ class PartProcessCategoriesController < ApplicationController
   # GET /part_process_categories
   # GET /part_process_categories.json
   def index
-    @part_process_categories = PartProcessCategory.all
+    @part_process_categories = PartProcessCategory.order(sort_by_field)
 
     respond_to do |format|
       format.html # index.html.erb

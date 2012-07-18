@@ -2,7 +2,7 @@ class HardwareCategoriesController < ApplicationController
   # GET /hardware_categories
   # GET /hardware_categories.json
   def index
-    @hardware_categories = HardwareCategory.all
+    @hardware_categories = HardwareCategory.order(sort_by_field)
 
     respond_to do |format|
       format.html # index.html.erb
