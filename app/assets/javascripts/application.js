@@ -19,4 +19,3 @@
 //= require_tree .
 //= require jquery.spin
 //= require date
-//= require jquery.tablescroll
