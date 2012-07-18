@@ -22,7 +22,7 @@ class Part < ActiveRecord::Base
 
   def handle_removed_processes(value = nil)
     self.order_lines.not_shipped.each do |order_line|
-      order_line.order_line_process_statuses.where{part_process_id << my{value.id}}.destroy_all
+      order_line.order_line_process_statuses.where{part_process_id == value.id}.destroy_all
     end if value
   end
 end
