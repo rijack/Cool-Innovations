@@ -107,17 +107,21 @@ class OrdersController < ApplicationController
 
   def update_search_dropdowns
     @clients = Client.order("LOWER(name)")
-    #.all.collect{|x| [x.name, x.id] }.unshift(["Select a customer", nil])
     @orders  = Order.order(:purchase_order)
-      #.all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil])
+    if params[:display] == "shipped"
+      @orders = @orders.joins(:order_lines).where{order_lines.status == "shipped"}.group(:id)
+    else
+      @orders = @orders.joins(:order_lines).where{order_lines.status != "shipped"}.group(:id)
+    end
+
     @parts  = Part.order(:part_number)
-    #.all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
+
     if params[:client_id].present?
       @orders = @orders.where(:client_id => params[:client_id])
     end
 
     if params[:part_id].present?
-      @orders = @orders.joins(:order_lines).where{order_lines.part_id == my{params[:part_id]}}
+      @orders = @orders.joins(:order_lines).where{order_lines.part_id == my{params[:part_id]}}.group(:id)
       @clients = @clients.joins(:orders => :order_lines).where{(order_lines.part_id == my{params[:part_id]})}.group(:id)
     end
 

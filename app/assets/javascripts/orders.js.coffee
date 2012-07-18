@@ -102,15 +102,17 @@ $ ->
     return false
 
 
-  update_search_dropdowns = ->
+  window.update_search_dropdowns = ->
     data =
       client_id: $("#search_form #search_client").val()
       order_id: $("#search_form #search_po_number").val()
       part_id: $("#search_form #search_part_id").val()
+      display: $("#search_form").data('display')
     $.ajax
       type: 'POST'
       url: "/orders/update_search_dropdowns"
       data: data
+
   $("#search_form #search_client").change update_search_dropdowns
   $("#search_form #search_part_id").change update_search_dropdowns
   $("#search_form #search_po_number").change update_search_dropdowns

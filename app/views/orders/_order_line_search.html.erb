@@ -1,4 +1,4 @@
-<%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal order-search pull-left' }) do |f| %>
+<%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal order-search pull-left', :"data-display" => params[:display] }) do |f| %>
 
     <%= f.input :client, :collection => Client.order("LOWER(name)").all.collect{|x| [x.name, x.id] }.unshift(["Select a customer", nil]),
                 :selected => params[:search][:client],
@@ -21,4 +21,12 @@
                 :input_html => {:"data-placeholder" => "Select a status"} %>
 
     <%= f.submit "Search", :class => 'btn' %>
+<% end %>
+
+<% content_for :pushed_javascript do %>
+<script>
+  $(function() {
+    update_search_dropdowns();
+  });
+</script>
 <% end %>
