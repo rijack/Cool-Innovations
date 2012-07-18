@@ -1,24 +1,33 @@
 <%= simple_form_for(:search, :method => "GET", :html => { :id => "search_form", :class => 'form-horizontal order-search pull-left', :"data-display" => params[:display] }) do |f| %>
 
     <%= f.input :client, :collection => Client.order("LOWER(name)").all.collect{|x| [x.name, x.id] }.unshift(["Select a customer", nil]),
-                :selected => params[:search][:client],
-                :label => false,
-                :input_html => { :"data-placeholder" => "Select a customer" } %>
+      :selected => params[:search][:client],
+      :label => false,
+      :input_html => { :"data-placeholder" => "Select a customer" } %>
 
     <%= f.input :po_number, :collection => Order.order(:purchase_order).all.collect{|x| [x.purchase_order, x.id] }.unshift(["Select a P/O", nil]),
-                :selected => params[:search][:po_number],
-                :label => false,
-                :input_html => {:"data-placeholder" => "Select a P/O"} %>
+      :selected => params[:search][:po_number],
+      :label => false,
+      :input_html => {:"data-placeholder" => "Select a P/O"} %>
 
     <%= f.input :part_id, :collection => Part.order(:part_number).all.collect{|x| [x.name, x.id] }.unshift(["Select a part", nil]),
-                :selected => params[:search][:part_id],
-                :label => false,
-                :input_html => {:"data-placeholder" => "Select a part"} %>
+      :selected => params[:search][:part_id],
+      :label => false,
+      :input_html => {:"data-placeholder" => "Select a part"} %>
 
-    <%= f.input :status, :collection => OrderLine::STATUSES.collect{|x| [x, x] }.unshift(["Select a status", nil]),
-                :selected => params[:search][:status],
-                :label => false,
-                :input_html => {:"data-placeholder" => "Select a status"} %>
+                
+    <% if params[:display] != "shipped" %>
+      <%= f.input :status_option, :collection => [['not completed', 0], ['completed', 1]].unshift(["Select a status", nil]),
+        :selected => params[:search][:status_option],
+        :label => false,
+        :input_html => {:"data-placeholder" => "Select a status"} %>
+    <% end %>
+
+    <%= f.input :start_date, :as => :string, :label => false,
+      :input_html => {:"data-placeholder" => "Start date", :class => "datepicker", :value => params[:search][:start_date]} %>
+
+    <%= f.input :end_date, :as => :string, :label => false,
+      :input_html => {:"data-placeholder" => "End date", :class => "datepicker", :value => params[:search][:end_date]} %>
 
     <%= f.submit "Search", :class => 'btn' %>
 <% end %>

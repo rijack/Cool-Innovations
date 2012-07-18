@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('#sample_lines').live 'insertion-callback', ->
-    $('#sample_lines').find("select").chosen()
+    $('#sample_lines').find("select").chosen(search_contains: true)

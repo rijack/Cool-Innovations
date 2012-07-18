@@ -4,7 +4,7 @@
 
 
 $ ->
-  $('#client_client').chosen().change 'on', ->
+  $('#client_client').chosen(search_contains: true).change 'on', ->
     $(".simple_form.client").submit()
 
   ###$(".modal-trigger").click ->

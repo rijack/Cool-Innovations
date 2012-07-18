@@ -11,9 +11,10 @@ class OrdersController < ApplicationController
       list_per_page = 500
     end
 
-    #raise sort_by_field.inspect
-
     @order_lines = OrderLine.search(
+      :start_date => params[:search][:start_date],
+      :end_date => params[:search][:end_date],
+      :status_option => params[:search][:status_option],
       :shipped => params[:display] == "shipped",
       :client_id => params[:search][:client],
       :order_id => params[:search][:po_number],

@@ -8,13 +8,14 @@ $ ->
     $real.addClass("picked")
     $real.datepicker({dateFormat: 'yy-mm-dd'})
 
-  $('#search_form').find("select").chosen()
-  $("#order_client_id").chosen()
-  $('#order_lines').find("select").chosen()
+  $('#search_form').find("select").chosen(search_contains: true)
+  $('#search_form .datepicker').datepicker({dateFormat: 'yy-mm-dd'})
+  $("#order_client_id").chosen(search_contains: true)
+  $('#order_lines').find("select").chosen(search_contains: true)
 
 
   $('#order_lines').bind 'insertion-callback', ->
-    $('#order_lines').find("select").chosen()
+    $('#order_lines').find("select").chosen(search_contains: true)
     datePicker $(".due-date")
     datePicker $(".ship-date")
 

@@ -12,7 +12,7 @@ $ ->
       $.get url, (data) ->
         $("#modal-container").html data
         $("#modal-container form:not(.filter) :input:visible:enabled:first").focus()
-        $("#modal-container").find("select").chosen()
+        $("#modal-container").find("select").chosen(search_contains: true)
     return false
 
 
