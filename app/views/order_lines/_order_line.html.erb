@@ -68,13 +68,10 @@
           <div class="span5">
             <h5>Process</h5>
             <table class="table table-bordered table-condensed span5">
-              <thead>
               <tr>
                 <th>Process Name</th>
                 <th>Status</th>
               </tr>
-              </thead>
-              <tbody>
               <% order_line.order_line_process_statuses.each do |process_status| %>
                   <% if process_status.part_process %>
                   <tr class="process_status" data-id="<%= process_status.id %>">
@@ -102,20 +99,16 @@
                   </tr>
                   <% end%>
               <% end %>
-              </tbody>
             </table>
           </div>
           <div class="span5 middle">
             <h5>Hardware</h5>
             <table class="table table-bordered table-condensed span5 table-striped">
-              <thead>
               <tr>
                 <th>Hardware Name</th>
                 <th>Part Qty</th>
                 <th>Order Qty</th>
               </tr>
-              </thead>
-              <tbody>
               <% order_line.part.required_hardwares.each do |hardware| %>
                   <tr>
                     <td><%= hardware.hardware.name %></td>
@@ -123,7 +116,6 @@
                     <td><%= hardware.quantity * order_line.quantity %></td>
                   </tr>
               <% end %>
-              </tbody>
             </table>
           </div>
           <div class="span5">
