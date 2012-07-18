@@ -104,15 +104,12 @@ table .order-line-info .span5.middle {margin:0 25px;}
 
 
 
-.order-search .control-group
-{
-    float:left;
-}
+.order-search .control-group {float:left;}
 .part-hardware .control-group .controls,
 .order-search .control-group .controls {
     margin-left:0;
     margin-right: 5px;
-    width:155px;
+
 }
 .part-hardware .control-group .controls select,
 .order-search .control-group .controls select {width: 155px;}

@@ -27,10 +27,9 @@
 <%= render 'order_line_search' %>
 
 <% if params["display"] != "shipped" %>
-
     <div class="dropdown pull-right">
-        <a class="dropdown-toggle btn" data-toggle="dropdown" href="#colorChange">
-          Change color
+        <a class="dropdown-toggle btn btn-info" data-toggle="dropdown" href="#colorChange">
+          <i class="icon-adjust"></i>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
@@ -39,8 +38,15 @@
           <% end %>
         </ul>
     </div>
-    <%= link_to 'Ship Orders', "#", :class => 'ship-orders btn btn-success pull-right  mrs ' %>
-    <%= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right mrs' %>
+
+    <%= link_to "#", :class => 'ship-orders btn-success btn btn-small pull-right mrs', :title => 'Ship Orders' do%>
+        <i class="icon-plane"></i>
+    <% end %>
+
+    <%= link_to new_order_path, :class => 'btn btn-primary btn-small pull-right mrs', :title => 'New' do%>
+        <i class="icon-pencil"></i>
+    <% end %>
+
 <% end %>
 
 
