@@ -2,7 +2,7 @@ class HardwareCategoriesController < ApplicationController
   # GET /hardware_categories
   # GET /hardware_categories.json
   def index
-    @hardware_categories = HardwareCategory.order(sort_by_field)
+    @hardware_categories = HardwareCategory.order(:sort_priority)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -94,5 +94,13 @@ class HardwareCategoriesController < ApplicationController
     @hardware_category = HardwareCategory.find(params[:id])
     @hardware_category[params[:field]] = params[:new_value]
     @hardware_category.save
+  end
+
+  def set_sort_priority
+    count = 0
+    params[:ids].each do |id|
+      count += 1
+      HardwareCategory.update_all({:sort_priority => count}, {:id => id})
+    end
   end
 end

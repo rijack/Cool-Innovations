@@ -2,7 +2,7 @@ class PartProcessCategoriesController < ApplicationController
   # GET /part_process_categories
   # GET /part_process_categories.json
   def index
-    @part_process_categories = PartProcessCategory.order(sort_by_field)
+    @part_process_categories = PartProcessCategory.order(:sort_priority)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -94,5 +94,13 @@ class PartProcessCategoriesController < ApplicationController
     @part_process_category = PartProcessCategory.find(params[:id])
     @part_process_category[params[:field]] = params[:new_value]
     @part_process_category.save
+  end
+
+  def set_sort_priority
+    count = 0
+    params[:ids].each do |id|
+      count += 1
+      PartProcessCategory.update_all({:sort_priority => count}, {:id => id})
+    end
   end
 end

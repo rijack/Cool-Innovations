@@ -2,10 +2,12 @@ CoolInnovations::Application.routes.draw do
 
   resources :part_process_categories do
     post :update_part_process_category, :on => :collection
+    post :set_sort_priority, :on => :collection
   end
 
   resources :hardware_categories do
     post :update_hardware_category, :on => :collection
+    post :set_sort_priority, :on => :collection
   end
 
   resources :sample_lines

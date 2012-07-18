@@ -6,20 +6,22 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th><%= sortable 'name', 'Hardware Category Name' %></th>
+    <th><%= nonsortable 'sort_priority', 'Priority' %></th>
+    <th><%= nonsortable 'name', 'Hardware Category Name' %></th>
     <th>&nbsp;</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="hardware_category_sort">
   <% @hardware_categories.each do |hardware_category| %>
-      <tr>
-        <td class="editable large3" data-headers="/hardware_categories/update_hardware_category"  id="name-<%= hardware_category.id %>"><%= hardware_category.name %></td>
-        <td class="actions">
-          <%= link_to hardware_category, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
-              <i class="icon-trash" alt="delete"></i>
-          <% end %>
-        </td>
-      </tr>
+    <tr class="hardware_category" data-id="<%= hardware_category.id %>">
+      <td class="sort_handle"><%= hardware_category.sort_priority %></td>
+      <td class="editable large3" data-headers="/hardware_categories/update_hardware_category"  id="name-<%= hardware_category.id %>"><%= hardware_category.name %></td>
+      <td class="actions">
+        <%= link_to hardware_category, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+          <i class="icon-trash" alt="delete"></i>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
   </tbody>
 </table>

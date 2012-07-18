@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717140359) do
+ActiveRecord::Schema.define(:version => 20120718034512) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(:version => 20120717140359) do
 
   create_table "hardware_categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "sort_priority", :default => 10000
   end
 
   create_table "hardwares", :force => true do |t|
@@ -100,8 +101,9 @@ ActiveRecord::Schema.define(:version => 20120717140359) do
 
   create_table "part_process_categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "sort_priority", :default => 10000
   end
 
   create_table "part_processes", :force => true do |t|
