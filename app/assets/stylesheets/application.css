@@ -194,3 +194,10 @@ textarea.text.short { height: 30px;}
 .modal {max-height:720px !important; top:300px !important;}
 .modal.fade.in {top:300px !important;}
 
+
+.scroll {
+    height: 500px;
+    overflow: auto;
+}
+
+
