@@ -4,7 +4,7 @@
 
 
 $ ->
-  $('#orders-table').tableScroll({height:800});
+  $('#orders-table').tableScroll({height:500});
   $(".modal-trigger").click ->
     $("#modal-container .spinner").spin()
     url = $(this).attr('href')
