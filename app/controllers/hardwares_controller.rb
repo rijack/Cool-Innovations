@@ -10,6 +10,7 @@ class HardwaresController < ApplicationController
                          .order("hardware_categories.sort_priority")
                          .order("order_lines.order_id desc")
                          .page(params[:page]).per_page(20)
+                         .order(:name)
 
     respond_to do |format|
       format.html # index.html.erb

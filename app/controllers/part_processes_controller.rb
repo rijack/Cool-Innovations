@@ -8,6 +8,7 @@ class PartProcessesController < ApplicationController
                                  .includes(:part_process_category)
                                  .order("part_process_categories.sort_priority")
                                  .order("order_lines.order_id desc")
+                                 .order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
