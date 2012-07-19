@@ -5,6 +5,20 @@ class CommentsController < ApplicationController
     @comments = Comment.order("created_at desc").where(:ancestry => nil).page(params[:page] || 1).per_page(params[:per_page] || 30)
     @order_lines = OrderLine.where{(status != "shipped") & (color != "white") }.order("color asc")
 
+    if cookies["latest_comment"] == nil
+      @latest_comment_id = @comments[0].id
+    else
+      @comments.each do |comment|
+        if (comment.id == cookies["latest_comment"].to_i  )
+          @latest_comment_id = comment.id
+          break
+        end
+      end
+    end
+    cookies["latest_comment"] = @comments[0].id
+
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }

@@ -1,4 +1,7 @@
-<div class="comment-container" data-id="<%= comment.id %>">
+<% if @latest_comment_id == comment.id %>
+    <% @is_seen = true %>
+<% end %>
+<div class="comment-container <% if @is_seen == false%>new<%end%>" data-id="<%= comment.id %>">
   <div class="row">
     <div class="span1">
       <% if comment.user.avatar? %>
@@ -80,3 +83,4 @@
     </div>
   </div>
 </div>
+

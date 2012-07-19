@@ -20,3 +20,15 @@ $ ->
         url: "/part_processes/#{process_id}/set_order_line_priority"
         data:
           order_line_ids: order_line_ids
+
+
+  $(".reset-process-order").on 'click', ->
+    process_id = $(this).data('id')
+
+    $.ajax
+      type: 'POST'
+      url: "/part_processes/#{process_id}/reset_order_line_priority"
+      data:
+        id: process_id
+
+    return false

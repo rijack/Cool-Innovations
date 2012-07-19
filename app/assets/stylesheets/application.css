@@ -21,6 +21,9 @@ table td.actions {
     text-align: right;
     width:20%;
 }
+table td.actions.med {
+    width:130px;
+}
 
 .nm {margin:0 !important;}
 .mxn {margin:0 -10px !important;}

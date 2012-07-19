@@ -114,4 +114,16 @@ class PartProcessesController < ApplicationController
       status.save
     end
   end
+
+  def reset_order_line_priority
+    @curr_id = params[:id]
+
+    @part_process = PartProcess.find(@curr_id)
+
+
+    @part_process.order_line_process_statuses.each do |order_line_process_status|
+      order_line_process_status.order_line_priority = 10000
+      order_line_process_status.save
+    end
+  end
 end

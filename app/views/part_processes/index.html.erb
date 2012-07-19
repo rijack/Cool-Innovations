@@ -28,7 +28,7 @@
                 <td class="fixed"><%= part_process.name %></td>
             <% end %>
             <td class="editable large3" data-headers="/part_processes/update_part_process"  id="description-<%= part_process.id %>"><%= part_process.description %></td>
-            <td class="actions">
+            <td class="actions med">
               <%= link_to part_process, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>
               <% end %>
@@ -38,12 +38,22 @@
               <%= link_to part_process, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
                   <i class="icon-trash" alt="delete"></i>
               <% end %>
+              <%= link_to "#", :class => 'btn btn-small btn-warning reset-process-order', :title => 'Reset Order lines', :'data-id' => part_process.id do%>
+                  <i class="icon-refresh"></i>
+              <% end %>
             </td>
           </tr>
           <% if (part_process.order_lines_with_pending.length > 0) %>
+              <% if params["open"].to_i == part_process.id %>
+                <% hide_class = "" %>
+                <% div_class = "in" %>
+              <% else %>
+                <% hide_class = "hide" %>
+                <% div_class = "" %>
+              <% end %>
               <tr>
-                <td colspan="7" class="order-line-info hide">
-                  <div class="accordion-body collapse" id="collapse<%= part_process.id %>">
+                <td colspan="7" class="order-line-info <%=hide_class%>">
+                  <div class="accordion-body collapse <%=div_class%>" id="collapse<%= part_process.id %>">
                     <table class="table table-bordered table-condensed table-striped" data-id="<%= part_process.id %>">
                       <thead>
                       <tr>
