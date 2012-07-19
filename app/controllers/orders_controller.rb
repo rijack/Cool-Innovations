@@ -119,6 +119,7 @@ class OrdersController < ApplicationController
 
     if params[:client_id].present?
       @orders = @orders.where(:client_id => params[:client_id])
+      @parts = @parts.joins(:order_lines).where{order_lines.order_id >> my{@orders.all.collect(&:id)}}
     end
 
     if params[:part_id].present?
