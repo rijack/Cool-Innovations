@@ -14,8 +14,7 @@
  *= require_tree .
  */
 
-body {top:0 !important;}
-.navbar-fixed-top {position: relative;}
+.navbar-fixed-top {position: relative !important;}
 
 table th.actions,
 table td.actions {
