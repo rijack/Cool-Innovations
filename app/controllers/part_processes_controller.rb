@@ -2,16 +2,12 @@ class PartProcessesController < ApplicationController
   # GET /part_processes
   # GET /part_processes.json
   def index
-    #@part_processes = PartProcess.joins('LEFT OUTER JOIN required_processes on part_processes.id = required_processes.part_process_id')
-    #                             .joins('LEFT OUTER JOIN order_lines ON required_processes.part_id = order_lines.part_id')
-    #                             .group(:id)
-    #                             .includes(:part_process_category)
-    #                             .order("part_process_categories.sort_priority")
-    #                             .order("order_lines.order_id desc")
-
-
-
-    @part_processes = PartProcess.includes(:part_process_category).order("part_process_categories.sort_priority").all
+    @part_processes = PartProcess.joins('LEFT OUTER JOIN required_processes on part_processes.id = required_processes.part_process_id')
+                                 .joins('LEFT OUTER JOIN order_lines ON required_processes.part_id = order_lines.part_id')
+                                 .group(:id)
+                                 .includes(:part_process_category)
+                                 .order("part_process_categories.sort_priority")
+                                 .order("order_lines.order_id desc")
 
     respond_to do |format|
       format.html # index.html.erb
