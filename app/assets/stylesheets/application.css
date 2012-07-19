@@ -193,7 +193,7 @@ textarea.text.short { height: 30px;}
 .modal.fade.in {top:300px !important;}
 
 
-
+#orders-table {float:left;}
 #orders-table th
 {
     padding: 5px; /* NOTE: th padding must be set explicitly in order to support IE */
