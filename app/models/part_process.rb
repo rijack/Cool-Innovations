@@ -14,4 +14,10 @@ class PartProcess < ActiveRecord::Base
   def order_lines_with_pending
     order_lines.pending.where{(order_line_process_statuses.status == "in progress") | (order_line_process_statuses.status == "pending")}.order("order_line_process_statuses.order_line_priority asc").order("ship_date asc")
   end
+
+  def order_lines_manual
+    order_lines.any? do |order_line|
+      order_line.order_line_process_statuses.where(:part_process_id => self.id).first.order_line_priority != 10000
+    end
+  end
 end

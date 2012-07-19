@@ -43,6 +43,7 @@
               <% end %>
             </td>
           </tr>
+
           <% if (part_process.order_lines_with_pending.length > 0) %>
               <% if params["open"].to_i == part_process.id %>
                 <% hide_class = "" %>
@@ -56,6 +57,12 @@
                   <div class="accordion-body collapse <%=div_class%>" id="collapse<%= part_process.id %>">
                     <table class="table table-bordered table-condensed table-striped" data-id="<%= part_process.id %>">
                       <thead>
+                      <% if part_process.order_lines_manual %>
+                        <tr>
+                          <th colspan="7">Custom order</th>
+                        </tr>
+
+                      <% end %>
                       <tr>
                         <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Priority" %></th>
                         <% @process_order_line_priority = part_process.id %>
