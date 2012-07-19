@@ -11,7 +11,7 @@ class Part < ActiveRecord::Base
   has_many :order_lines
   has_many :sample_lines
 
-  accepts_nested_attributes_for :required_hardwares
+  accepts_nested_attributes_for :required_hardwares, :allow_destroy => true
   has_attached_file :attachment
 
   after_save :handle_removed_processes
