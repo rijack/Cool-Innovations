@@ -3,9 +3,9 @@
 <% end %>
 <div class="comment-container <% if @is_seen == false%>new<%end%>" data-id="<%= comment.id %>">
   <div class="row">
-    <div class="span1">
+    <!--<div class="span1">
       <% if comment.user.avatar? %>
-        <%= image_tag comment.user.avatar.url(:medium) %>
+        <%= image_tag comment.user.avatar.url(:thumb) %>
       <% else %>
         <%= image_tag "silhouette.png" %>
       <% end %>
@@ -28,8 +28,8 @@
           <i class="icon-comments-alt"></i>
         <% end if comment.ancestry.nil? %>
       </span>
-    </div>
-    <div class="span6 comment-details">
+    </div>-->
+    <div class="span7 comment-details">
       <div class="username"><%= comment.user.name %></div>
       <div class="date"><em><%= comment.created_at.to_formatted_s(:long) %></em></div>
       <div class="message">
@@ -80,6 +80,25 @@
           <%= simple_format comment.message %>
         <% end %>
       </div>
+    </div>
+    <div class="mlxxx comment-actions">
+      <% extra_param = "" %>
+      <% if comment.sample_lines.length >0 %>
+          <% extra_param = "&sample=true" %>
+      <% end %>
+      <% if comment.user.id == current_user.id %>
+          <%= link_to edit_comment_path(comment)+"?no_layout=1"+extra_param, :class => 'edit modal-trigger', :title => 'Edit' do%>
+              <i class="icon-edit"></i>
+          <% end %>
+      <% end %>
+      <% if comment.user.id == current_user.id or current_user.admin?  %>
+          <%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete', :title => 'Delete' do%>
+              <i class="icon-trash" alt="delete"></i>
+          <% end %>
+      <% end %>
+      <%= link_to new_comment_path(:no_layout => 1, :parent_id => comment.id), :class => 'reply modal-trigger', :title => 'Reply' do%>
+          <i class="icon-comments-alt"></i>
+      <% end if comment.ancestry.nil? %>
     </div>
   </div>
 </div>
