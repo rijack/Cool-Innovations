@@ -183,6 +183,7 @@ td.fixed {white-space: nowrap;}
 .comment-details .message {margin:10px 0 0 0;}
 .comment-container .actions .delete {color:#ff0000;}
 .comment-container .actions .delete:hover {color:#000; text-decoration: none;}
+/*.comment-container.new {background-color: #aaaaaa;}*/
 
 td.small {width:100px;}
 .sample-form textarea.text {height: 30px;}
