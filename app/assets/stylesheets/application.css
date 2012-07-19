@@ -204,3 +204,4 @@ textarea.text.short { height: 30px;}
     border-bottom: 1px solid #DDD;
 }
 
+.nested_comments .span6 {width: 470px !important;}

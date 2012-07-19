@@ -21,7 +21,7 @@
             <i class="icon-trash" alt="delete"></i>
           <% end %>
         <% end %>
-        <%= link_to new_comment_path(:no_layout => 1, :parent_id => comment.id) + extra_param, :class => 'reply modal-trigger', :title => 'Reply' do%>
+        <%= link_to new_comment_path(:no_layout => 1, :parent_id => comment.id), :class => 'reply modal-trigger', :title => 'Reply' do%>
           <i class="icon-comments-alt"></i>
         <% end if comment.ancestry.nil? %>
       </span>
