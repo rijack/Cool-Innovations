@@ -38,7 +38,6 @@ gem 'cocoon'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
-  gem 'mysql2'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
@@ -59,4 +58,4 @@ end
 # To use debugger
 # gem 'debugger'
 
-  gem 'pg'
+gem 'mysql2'
