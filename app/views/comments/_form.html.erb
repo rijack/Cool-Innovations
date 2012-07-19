@@ -7,6 +7,7 @@
 <%= simple_form_for(@comment, :remote => true, :html => { :class => 'form form-horizontal '+form_style }) do |f| %>
   <%= f.error_notification %>
   <div class="modal-body">
+    <%= f.input :parent_id, :as => :hidden if @comment.parent_id.present? %>
   <%if  params["sample"] %>
     <%= f.input :customer_name %>
     <%= f.input :contact_name %>

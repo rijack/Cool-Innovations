@@ -1,5 +1,7 @@
-<%if  params["sample"] %>
+<% if params[:sample] %>
     <% title = "New Sample" %>
+<% elsif params[:parent_id] %>
+    <% title = "Reply to Comment" %>
 <% else %>
     <% title = "New Comment" %>
 <% end %>

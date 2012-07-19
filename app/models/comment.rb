@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :message, :sample_lines_attributes, :customer_name, :contact_name, :address, :shipping_account_info, :comment
+  attr_accessible :message, :sample_lines_attributes, :customer_name, :contact_name, :address, :shipping_account_info, :comment, :parent_id
   belongs_to :user
 
 
@@ -8,5 +8,6 @@ class Comment < ActiveRecord::Base
 
   accepts_nested_attributes_for :sample_lines
 
+  has_ancestry
 end
 

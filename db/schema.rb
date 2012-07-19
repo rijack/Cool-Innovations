@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718034512) do
+ActiveRecord::Schema.define(:version => 20120719013111) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120718034512) do
     t.text     "address"
     t.text     "shipping_account_info"
     t.text     "comment"
+    t.string   "ancestry"
   end
 
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"

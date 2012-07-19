@@ -2,10 +2,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.order("created_at desc").page(params[:page] || 1).per_page(params[:per_page] || 200)
-
-
-    #@order_lines = OrderLine.where{(status != "shipped") & (ship_date <= 3.days.from_now) }.order("ship_date asc")
+    @comments = Comment.order("created_at desc").where(:ancestry => nil).page(params[:page] || 1).per_page(params[:per_page] || 30)
     @order_lines = OrderLine.where{(status != "shipped") & (color != "white") }.order("color asc")
 
     respond_to do |format|
@@ -28,7 +25,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
+    @comment = Comment.new(:parent_id => params[:parent_id])
 
     respond_to do |format|
       format.html do
