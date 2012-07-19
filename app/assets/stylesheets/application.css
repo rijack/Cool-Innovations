@@ -14,6 +14,8 @@
  *= require_tree .
  */
 
+body {top:0 !important;}
+.navbar-fixed-top {position: relative;}
 
 table th.actions,
 table td.actions {
@@ -193,30 +195,12 @@ textarea.text.short { height: 30px;}
 
 
 
-
-
-
-
-.tablescroll {border-collapse: collapse;border-spacing: 0;}
-
-.tablescroll_head {
-    display: table-header-group;
-    vertical-align: middle;
-    border: 1px solid #DDD;
-
-}
-
-
-.tablescroll thead:first-child tr:first-child th, .tablescroll tbody:first-child tr:first-child th, .tablescroll tbody:first-child tr:first-child td {
-    border-top: 0;
-}
-.tablescroll th, .tablescroll td {
-    padding: 8px;
-    line-height: 18px;
-    text-align: left;
-    border-top: 1px solid #DDD;
-}
-.tablescroll th + th, .tablescroll td + td, .tablescroll th + td, .tablescroll td + th {
-    border-left: 1px solid #DDD;
+#orders-table th
+{
+    padding: 5px; /* NOTE: th padding must be set explicitly in order to support IE */
+    font-weight:bold;
+    line-height: 2em;
+    background-color: #fff;
+    border-bottom: 1px solid #DDD;
 }
 
