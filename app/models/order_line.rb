@@ -8,6 +8,7 @@ class OrderLine < ActiveRecord::Base
   COLORS = [
       "white",
       "green",
+      "yellow",
       "red"
   ]
 
