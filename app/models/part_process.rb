@@ -20,4 +20,9 @@ class PartProcess < ActiveRecord::Base
       order_line.order_line_process_statuses.where(:part_process_id => self.id).first.order_line_priority != 10000
     end
   end
+
+  def self.order_by_priority
+    includes(:part_process_category)
+    .order("part_process_categories.sort_priority")
+  end
 end

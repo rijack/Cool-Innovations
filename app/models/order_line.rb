@@ -61,8 +61,20 @@ class OrderLine < ActiveRecord::Base
         order_lines = order_lines.where(:status => "completed")
       end
     end
-    order_lines = order_lines.where{created_at >= options[:start_date]} if options[:start_date].present?
-    order_lines = order_lines.where{created_at <= options[:end_date]} if options[:end_date].present?
+    if options[:start_date].present?
+      begin
+        Date.parse(options[:start_date])
+        order_lines = order_lines.where{created_at >= options[:start_date]} 
+      rescue
+      end
+    end
+    if options[:end_date].present?
+      begin
+        Date.parse(options[:end_date])
+        order_lines = order_lines.where{created_at <= options[:end_date]} 
+      rescue
+      end
+    end
     order_lines = order_lines.where(options[:search]) if options[:search].present?
 
     order_lines = order_lines.order(options[:sort]).page(options[:page] || 1).per_page(options[:per_page] || 10)

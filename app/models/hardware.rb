@@ -22,4 +22,8 @@ class Hardware < ActiveRecord::Base
     count
   end
 
+  def self.order_by_priority
+    includes(:hardware_category)
+    .order("hardware_categories.sort_priority")
+  end
 end

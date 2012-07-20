@@ -1,6 +1,6 @@
 <tr class="nested-fields">
-  <td class="req-hardware"><%= f.association :hardware, :collection => Hardware.order(:name).all, :label=>false,
-      :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %></td>
+  <td class="req-hardware"><%= f.association :hardware, :collection => HardwareCategory.order(:sort_priority), :as => :grouped_select, :group_method => :hardwares_ordered_by_priority, :group_label_method => :name, :label_method => :name,
+    :label=>false, :input_html => {:"data-placeholder" => "Choose hardware", :class => "parts-hardware"} %></td>
 
   <td class="hardware-qty"><%= f.input :quantity,:label => false, :input_html => {:class => "input-small pull-left"} %></td>
   <td class="hardware-remove">

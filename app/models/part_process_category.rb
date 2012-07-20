@@ -20,4 +20,8 @@ class PartProcessCategory < ActiveRecord::Base
     category_id = self.class.find_by_name("default").try(:id) || 1
     part_processes.update_all(:part_process_category_id => category_id)
   end
+
+  def part_processes_ordered_by_priority
+    part_processes.order_by_priority
+  end
 end

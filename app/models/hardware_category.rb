@@ -20,4 +20,8 @@ class HardwareCategory < ActiveRecord::Base
     category_id = self.class.find_by_name("default").try(:id) || 1
     hardwares.update_all(:hardware_category_id => category_id)
   end
+
+  def hardwares_ordered_by_priority
+    hardwares.order_by_priority
+  end
 end
