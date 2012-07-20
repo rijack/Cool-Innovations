@@ -64,14 +64,14 @@ class OrderLine < ActiveRecord::Base
     if options[:start_date].present?
       begin
         Date.parse(options[:start_date])
-        order_lines = order_lines.where{created_at >= options[:start_date]} 
+        order_lines = order_lines.where{created_at >= options[:start_date].to_date.beginning_of_day}
       rescue
       end
     end
     if options[:end_date].present?
       begin
         Date.parse(options[:end_date])
-        order_lines = order_lines.where{created_at <= options[:end_date]} 
+        order_lines = order_lines.where{created_at <= options[:end_date].to_date.end_of_day}
       rescue
       end
     end
