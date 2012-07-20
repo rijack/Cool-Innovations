@@ -2,7 +2,11 @@
 <div class="row">
   <div class="span7">
     <h2>Comments <%= link_to 'New Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h2>
-    <%= nested_comments @comments %>
+    <% if @comments.length > 0 %>
+        <%= nested_comments @comments %>
+    <% else %>
+        There are no comments
+    <% end %>
   </div>
   <div class="span5 scroll">
     <h2>Upcoming Orders</h2>

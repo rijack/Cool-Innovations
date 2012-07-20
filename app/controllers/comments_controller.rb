@@ -5,8 +5,12 @@ class CommentsController < ApplicationController
     @comments = Comment.order("created_at desc").where(:ancestry => nil).page(params[:page] || 1).per_page(params[:per_page] || 30)
     @order_lines = OrderLine.where{(status != "shipped") & (color != "white") }.order("color asc")
 
+    if @comments.length > 0
+      last_id = @comments[0].id
+    end
+
     if cookies["latest_comment"] == nil
-      @latest_comment_id = @comments[0].id
+      @latest_comment_id = last_id
     else
       @comments.each do |comment|
         if (comment.id == cookies["latest_comment"].to_i  )
@@ -15,7 +19,8 @@ class CommentsController < ApplicationController
         end
       end
     end
-    cookies["latest_comment"] = @comments[0].id
+
+    cookies["latest_comment"] = last_id
 
 
 
