@@ -5,7 +5,7 @@
 
 <% extraClass = '' %>
 <% if params["display"] != "shipped" %>
-    <% extraClass = order_line.color%>
+    <% extraClass = order_line.color.split("-")[1] %>
 <% end %>
 
 <tr class="order_line <%= extraClass %>" data-id="<%= order_line.id %>">

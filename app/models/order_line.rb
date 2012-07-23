@@ -6,10 +6,10 @@ class OrderLine < ActiveRecord::Base
   ]
 
   COLORS = [
-      "white",
-      "green",
-      "yellow",
-      "red"
+      "4-white",
+      "1-green",
+      "3-yellow",
+      "2-red"
   ]
 
   attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :price, :shipping_method_id, :line_number, :tracking_number, :_destroy

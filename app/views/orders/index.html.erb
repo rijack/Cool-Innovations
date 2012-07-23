@@ -35,7 +35,7 @@
         </a>
         <ul class="dropdown-menu">
           <% OrderLine::COLORS.each do |order_line_color| %>
-              <li><a href="#" class="change-color"><%= order_line_color %></a></li>
+              <li><a href="#" class="change-color"><%= order_line_color.split("-")[1] %></a></li>
           <% end %>
         </ul>
     </div>
