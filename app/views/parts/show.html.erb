@@ -1,4 +1,7 @@
-<h1><%= @part.name %></h1>
+<h1>
+  <%= @part.name %>
+  <%= link_to 'New Part', new_part_path, :class => 'btn btn-primary pull-right mbxx' %>
+</h1>
 
 <%= render :partial => 'form', :locals => {:view => 'show'} %>
 
