@@ -119,5 +119,6 @@ $ ->
 
   $(".show-all").on 'click', ->
     current_id = $(this).attr("data-id")
+    console.log()
     $("tr[data-id="+current_id+"].collapsible").toggleClass("no-orders").toggleClass("has-orders");
     return false
