@@ -106,7 +106,15 @@ $ ->
 
           $(this).parents("td").html(modifiedValue);
         else
-          $(this).parents("td").html(oldValue);
+          if (substrLength)
+            if (oldValue.length > substrLength-3)
+              modifiedValue = oldValue.substr(0,substrLength-3)+ "..."
+            else
+              modifiedValue = oldValue
+            tag.attr('data-content',oldValue)
+          else
+            modifiedValue = oldValue
+          $(this).parents("td").html(modifiedValue);
         currentEditable = ""
 
 
