@@ -194,7 +194,7 @@ td.small {width:100px;}
 
 textarea.text.short { height: 30px;}
 
-.category {background-color: #DDD;}
+.category {background-color: #DDD; border-bottom: 1px solid #fff; font-style: italic;}
 
 .modal {max-height:720px !important; top:300px !important;}
 .modal.fade.in {top:300px !important;}
