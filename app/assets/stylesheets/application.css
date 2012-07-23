@@ -156,9 +156,9 @@ table .order-line-info .span5.middle {margin:0 25px;}
 /*order lines */
 .form-horizontal #order_lines td {vertical-align: top; padding-right:10px;}
 .form-horizontal #order_lines .control-group > label {
-    border:1px solid green;
     width:auto;
     margin-right:5px;
+    font-weight: bold;
 }
 .form-horizontal #order_lines .controls {
     margin-left:0;

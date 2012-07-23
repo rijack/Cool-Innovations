@@ -16,10 +16,11 @@
             <th>Shipping Method</th>
             <th>Ship Date</th>
             <th>Qty</th>
-            <th>Comment</th>
-            <th>Production Comment</th>
+            <!--<th>Comment</th>
+            <th>Production Comment</th>-->
             <% if current_user.admin? %>
             <th>Price</th>
+            <th>Setup Cost</th>
             <% end %>
             <th></th>
           </tr>
@@ -29,7 +30,7 @@
             <%= render 'order_line_fields', :f => order_line %>
           <% end %>
           <tr>
-            <td colspan="10">
+            <td colspan="11">
               <div class="links">
                 <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
                   :"data-association-insertion-node" => '#order_lines',

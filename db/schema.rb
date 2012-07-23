@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719013111) do
+ActiveRecord::Schema.define(:version => 20120723165811) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20120719013111) do
     t.integer  "line_number"
     t.string   "tracking_number"
     t.string   "color",                                            :default => "white"
+    t.integer  "setup_cost"
   end
 
   create_table "orders", :force => true do |t|

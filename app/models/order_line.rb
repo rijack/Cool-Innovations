@@ -12,7 +12,7 @@ class OrderLine < ActiveRecord::Base
       "2-red"
   ]
 
-  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :price, :shipping_method_id, :line_number, :tracking_number, :_destroy
+  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :production_comment, :price, :setup_cost, :shipping_method_id, :line_number, :tracking_number, :_destroy
 
   validates_presence_of :due_date, :part_id, :quantity
 
