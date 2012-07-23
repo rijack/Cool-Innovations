@@ -31,11 +31,11 @@
       <% @hardwares.each do |hardware| %>
           <% if hardware.hardware_category.name != hardware_category_name %>
             <tr>
-              <td colspan="5" class="category"><%= hardware.hardware_category.name %></td>
+              <td colspan="5" class="category"><%= hardware.hardware_category.name %> <a href="#" class="show-all pull-right" data-id="<%= hardware.hardware_category.id %>">Show/Hide All</a> </td>
             </tr>
             <% hardware_category_name = hardware.hardware_category.name %>
           <% end %>
-          <tr>
+          <tr data-id="<%= hardware.hardware_category.id %>" <% if (hardware.order_lines.pending.length == 0) %>class="collapsible no-orders"<% end %>>
             <% if (hardware.order_lines.pending.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
             <% else %>

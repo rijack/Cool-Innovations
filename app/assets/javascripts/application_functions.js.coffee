@@ -117,4 +117,7 @@ $ ->
           $(this).parents("td").html(modifiedValue);
         currentEditable = ""
 
-
+  $(".show-all").on 'click', ->
+    current_id = $(this).attr("data-id")
+    $("tr[data-id="+current_id+"].collapsible").toggleClass("no-orders").toggleClass("has-orders");
+    return false
