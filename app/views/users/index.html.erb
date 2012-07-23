@@ -23,7 +23,7 @@
           <%= link_to edit_user_path(user)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
               <i class="icon-edit"></i>
           <% end %>
-          <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+          <%= link_to user, method: :delete, data: { confirm: "Are you sure you want to delete this user? \n" + user.name }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
               <i class="icon-trash" alt="delete"></i>
           <% end %>
         </td>

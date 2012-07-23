@@ -17,7 +17,7 @@
       <td class="sort_handle"><%= hardware_category.sort_priority %></td>
       <td class="editable large3" data-headers="/hardware_categories/update_hardware_category"  id="name-<%= hardware_category.id %>"><%= hardware_category.name %></td>
       <td class="actions">
-        <%= link_to hardware_category, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+        <%= link_to hardware_category, method: :delete, data: { confirm: "Are you sure you want to delete this category? \n" + hardware_category.name }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
           <i class="icon-trash" alt="delete"></i>
         <% end %>
       </td>
