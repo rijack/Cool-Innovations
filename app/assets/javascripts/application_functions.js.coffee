@@ -32,7 +32,6 @@ $ ->
 
   $('.process_status .line-status .btn').live 'click', ->
     status = $(this).html()
-    #console.log($(this).siblings())
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning")
     if (status == 'completed')
       $(this).addClass("btn-success")
@@ -62,7 +61,13 @@ $ ->
   currentEditable = ""
   $('.editable').live 'click', ->
     if (currentEditable == "")
-      oldValue = $(this).html()
+      substrLength = $(this).attr('data-substr')
+      tag = $(this)
+      console.log(tag)
+      if ($(this).attr('data-content'))
+        oldValue = $(this).attr('data-content')
+      else
+        oldValue = $(this).html()
       currId = $(this).attr('id')
       postUrl = $(this).attr('data-headers')
 
@@ -88,7 +93,18 @@ $ ->
               field: editableField
               id: editableID
               new_value: newValue
-          $(this).parents("td").html(newValue);
+
+
+          if (substrLength)
+            if (newValue.length > substrLength-3)
+              modifiedValue = newValue.substr(0,substrLength-3)+ "..."
+            else
+              modifiedValue = newValue
+            tag.attr('data-content',newValue)
+          else
+            modifiedValue = newValue
+
+          $(this).parents("td").html(modifiedValue);
         else
           $(this).parents("td").html(oldValue);
         currentEditable = ""
