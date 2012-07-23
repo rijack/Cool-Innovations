@@ -4,7 +4,7 @@
   <% end %>
   <td><%= order_line.order.purchase_order %></td>
   <td><%= order_line.order.client.name %></td>
-  <td><%= order_line.part.name %></td>
+  <td><%= order_line.part.name.upcase %></td>
   <td><%= number_with_delimiter(order_line.quantity) %></td>
   <% if view == 'hardware' %>
     <td><%= number_with_delimiter(order_line.part.required_hardwares.where(:hardware_id => hardware.id)[0].quantity * order_line.quantity) %></td>

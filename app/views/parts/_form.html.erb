@@ -11,7 +11,7 @@
             <td><%= f.input :part_number, :label => false %></td>
             <td><%= f.input :description, :label => false %></td>
         <% else %>
-            <td class="editable large" data-headers="/parts/update_part" id="part_number-<%= @part.id%>"><%= @part.part_number %></td>
+            <td class="editable large" data-headers="/parts/update_part" id="part_number-<%= @part.id%>"><%= @part.part_number.upcase %></td>
             <td class="editable large" data-headers="/parts/update_part" id="description-<%= @part.id%>"><%= @part.description %></td>
         <% end %>
         <td class="large">

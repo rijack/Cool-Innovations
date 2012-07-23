@@ -16,9 +16,9 @@
       <% @parts.each do |part| %>
           <tr>
             <% if (part.order_lines.not_shipped.length > 0) %>
-                <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part.id %>"><i class="icon-plus"></i><%= part.part_number %></a></td>
+                <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part.id %>"><i class="icon-plus"></i><%= part.part_number.upcase %></a></td>
             <% else %>
-                <td class="fixed"><%= part.part_number %></td>
+                <td class="fixed"><%= part.part_number.upcase %></td>
             <% end %>
             <td class="editable large3" data-headers="/parts/update_part"  id="description-<%= part.id %>"><%= part.description %></td>
             <td class="actions">

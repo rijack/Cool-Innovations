@@ -27,7 +27,7 @@
       <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= order_line.id %>"><i class="icon-plus"></i> <%= order_line.order.purchase_order %></a></td>
   <% end %>
   <td class="fixed"><%= order_line.line_number %></td>
-  <td class="fixed"><%= order_line.part.name %></td>
+  <td class="fixed"><%= order_line.part.name.upcase %></td>
   <td class="editable qty" data-headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
   <td class="fixed"><%= order_line.due_date %></td>
   <% if params["display"] == "shipped" %>

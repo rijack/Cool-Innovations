@@ -25,6 +25,8 @@ table td.actions.med {
     width:130px;
 }
 
+.upper {text-transform: uppercase;}
+
 .nm {margin:0 !important;}
 .mxn {margin:0 -10px !important;}
 .mxna {margin:-11px !important;}
