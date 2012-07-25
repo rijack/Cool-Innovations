@@ -7,6 +7,7 @@
     <th>Vendor II</th>
     <th>Inventory</th>
     <th>Notes</th>
+    <th>Attachment</th>
   </tr>
   </thead>
   <tbody>
@@ -15,6 +16,11 @@
     <td class="editable large2" data-headers="/hardwares/update_hardware" id="pricing_i-<%= @hardware.id%>"><%= @hardware.pricing_i %></td>
     <td class="editable large2" data-headers="/hardwares/update_hardware" id="pricing_history-<%= @hardware.id%>"><%= @hardware.pricing_history %></td>
     <td class="editable large2" data-headers="/hardwares/update_hardware" id="comment-<%= @hardware.id%>"><%= @hardware.comment %></td>
+    <td>
+      <% if @hardware.attachment? %>
+          <%= link_to @hardware.attachment_file_name, @hardware.attachment.url, :class => "" %>
+      <% end %>
+    </td>
   </tr>
   </tbody>
 </table>

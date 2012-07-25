@@ -9,6 +9,10 @@
     <%= f.input :pricing_i, :label => "Vendor II", :input_html => {:class => "short"} %>
     <%= f.input :pricing_history, :label => "Inventory", :input_html => {:class => "short"} %>
     <%= f.input :description, :label => "Notes" %>
+    <% if @hardware.attachment? %>
+        <%= link_to @hardware.attachment_file_name, @hardware.attachment.url, :class => "" %>
+    <% end %>
+    <%= f.input :attachment, :as => :file, :label => false %>
   </div>
 
   <div class="modal-footer">

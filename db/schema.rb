@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723165811) do
+ActiveRecord::Schema.define(:version => 20120725135445) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -50,13 +50,17 @@ ActiveRecord::Schema.define(:version => 20120723165811) do
   create_table "hardwares", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.text     "comment"
     t.text     "vendor_name"
     t.text     "pricing_i"
     t.text     "pricing_history"
-    t.integer  "hardware_category_id", :default => 1
+    t.integer  "hardware_category_id",    :default => 1
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "order_line_process_statuses", :force => true do |t|

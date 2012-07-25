@@ -1,5 +1,5 @@
 class Hardware < ActiveRecord::Base
-  attr_accessible :description, :name, :vendor_name, :pricing_i, :pricing_history, :hardware_category_id
+  attr_accessible :description, :name, :vendor_name, :pricing_i, :pricing_history, :hardware_category_id, :attachment
 
   validates_presence_of :name, :hardware_category_id
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :hardware_category_id
@@ -10,6 +10,8 @@ class Hardware < ActiveRecord::Base
   has_many :required_hardwares
   has_many :parts, :through => :required_hardwares
   has_many :order_lines, :through => :parts
+
+  has_attached_file :attachment
 
   def required_count(options = {})
     count = 0
