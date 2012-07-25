@@ -8,7 +8,7 @@ class HardwaresController < ApplicationController
                          .joins('LEFT OUTER JOIN order_lines ON required_hardwares.part_id = order_lines.part_id')
                          .group("hardwares.id")
                          .order("order_lines.order_id desc")
-                         .page(params.fetch(:page, 1)).per_page(params.fetch(:per_page, 20))
+                         .page(params.fetch(:page, 1)).per_page(params.fetch(:per_page, 500))
                          .order(:name)
 
     respond_to do |format|

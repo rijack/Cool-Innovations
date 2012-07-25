@@ -6,7 +6,7 @@ class PartProcessesController < ApplicationController
                                  .joins('LEFT OUTER JOIN required_processes on part_processes.id = required_processes.part_process_id')
                                  .joins('LEFT OUTER JOIN order_lines ON required_processes.part_id = order_lines.part_id')
                                  .group(:id)
-                                 .order("order_lines.order_id asc")
+                                 .order("order_lines.order_id desc")
                                  .order(:name)
 
     respond_to do |format|

@@ -17,11 +17,11 @@
       <% @part_processes.each do |part_process| %>
           <% if part_process.part_process_category.name != process_category_name %>
               <tr>
-                <td colspan="5" class="category"><%= part_process.part_process_category.name %></td>
+                <td colspan="5" class="category"><%= part_process.part_process_category.name %> <a href="#" class="show-all pull-right" data-id="<%= part_process.part_process_category.id %>">Show/Hide All</a></td>
               </tr>
               <% process_category_name = part_process.part_process_category.name %>
           <% end %>
-          <tr>
+          <tr data-id="<%= part_process.part_process_category.id %>" <% if (part_process.order_lines_with_pending.length == 0) %>class="collapsible no-orders"<% end %>>
             <% if (part_process.order_lines_with_pending.length > 0) %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= part_process.id %>"><i class="icon-plus"></i><%= part_process.name %></a></td>
             <% else %>
