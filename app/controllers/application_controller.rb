@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       "#{sort_column} #{sort_direction}"
     else
       if params[:controller] == "orders"
-        cookies["order_line_sort_order"] != nil ? cookies["order_line_sort_order"] : "ship_date asc"
+        cookies["order_line_sort_order"] != nil ? cookies["order_line_sort_order"] : "due_date asc"
       end
     end
   end

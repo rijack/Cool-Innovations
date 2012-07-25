@@ -12,7 +12,7 @@ class PartProcess < ActiveRecord::Base
   has_many :order_lines, :through => :order_line_process_statuses
 
   def order_lines_with_pending
-    order_lines.pending.where{(order_line_process_statuses.status == "in progress") | (order_line_process_statuses.status == "pending")}.order("order_line_process_statuses.order_line_priority asc").order("ship_date asc")
+    order_lines.pending.where{(order_line_process_statuses.status == "in progress") | (order_line_process_statuses.status == "pending")}.order("order_line_process_statuses.order_line_priority asc").order("due_date asc")
   end
 
   def order_lines_manual
