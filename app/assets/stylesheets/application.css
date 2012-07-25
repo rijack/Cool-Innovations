@@ -25,6 +25,8 @@ table td.actions.med {
     width:130px;
 }
 
+.table td {padding:6px !important;}
+
 .upper {text-transform: uppercase;}
 
 .nm {margin:0 !important;}
