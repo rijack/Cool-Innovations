@@ -6,9 +6,9 @@ class HardwaresController < ApplicationController
     @hardwares = Hardware.order_by_priority
                          .joins('LEFT OUTER JOIN required_hardwares on hardwares.id = required_hardwares.hardware_id')
                          .joins('LEFT OUTER JOIN order_lines ON required_hardwares.part_id = order_lines.part_id')
-                         .group(:id)
+                         .group("hardwares.id")
                          .order("order_lines.order_id desc")
-                         .page(params[:page]).per_page(100)
+                         .page(params.fetch(:page, 1)).per_page(params.fetch(:per_page, 20))
                          .order(:name)
 
     respond_to do |format|
