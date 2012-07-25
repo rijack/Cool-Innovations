@@ -30,7 +30,7 @@
   <td class="fixed"><%= order_line.part.name.upcase %></td>
   <td class="editable qty" data-headers="/order_lines/update_order_line" id="quantity-<%= order_line.id%>"><%= order_line.quantity %></td>
   <% if params["display"] == "shipped" %>
-    <td class="fixed"><%= order_line.actual_ship_date %></td>
+    <td class="editable comment" data-headers="/order_lines/update_order_line" id="actual_ship_date-<%= order_line.id%>"><%= order_line.actual_ship_date %></td>
   <% else %>
     <td class="fixed"><%= order_line.ship_date %></td>
   <% end %>
