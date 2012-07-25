@@ -4,6 +4,9 @@ class PartsController < ApplicationController
   def index
     @parts = Part.order(:part_number).page(params[:page]).per_page(20)
 
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @parts }
@@ -14,6 +17,9 @@ class PartsController < ApplicationController
   # GET /parts/1.json
   def show
     @part = Part.find(params[:id])
+
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,6 +40,10 @@ class PartsController < ApplicationController
 
   # GET /parts/1/edit
   def edit
+
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
+
     @part = Part.find(params[:id])
   end
 

@@ -11,6 +11,9 @@ class HardwaresController < ApplicationController
                          .page(params.fetch(:page, 1)).per_page(params.fetch(:per_page, 500))
                          .order(:name)
 
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @hardwares }
@@ -21,6 +24,9 @@ class HardwaresController < ApplicationController
   # GET /hardwares/1.json
   def show
     @hardware = Hardware.find(params[:id])
+
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
 
     respond_to do |format|
       format.html # show.html.erb

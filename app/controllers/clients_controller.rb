@@ -4,6 +4,9 @@ class ClientsController < ApplicationController
   def index
     @clients = Client.order(:name).page(params[:page]).per_page(20)
 
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clients }

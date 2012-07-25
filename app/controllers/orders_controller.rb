@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     )
 
     if params[:controller] == "orders"
-      cookies["order_line_sort_order"] = sort_by_field
+      #cookies["order_line_sort_order"] = sort_by_field
     end
 
     respond_to do |format|

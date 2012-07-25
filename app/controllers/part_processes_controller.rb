@@ -8,6 +8,8 @@ class PartProcessesController < ApplicationController
                                  .group(:id)
                                  .order("order_lines.order_id desc")
                                  .order(:name)
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +21,9 @@ class PartProcessesController < ApplicationController
   # GET /part_processes/1.json
   def show
     @part_process = PartProcess.find(params[:id])
+
+    params[:direction] ||= "asc"
+    params[:sort] ||= "due_date"
 
     respond_to do |format|
       format.html # show.html.erb
