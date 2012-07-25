@@ -71,7 +71,7 @@
       <th class="fixed"><%= sortable "due_date" %></th>
       <th>Comment</th>
       <% if params["display"] == "shipped" %>
-          <th>Tracking #</th>
+          <th class="fixed">Tracking #</th>
       <% end %>
       <th>
         <% if params["display"] != "shipped" %>
