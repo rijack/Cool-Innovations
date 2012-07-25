@@ -32,14 +32,13 @@
         <th>Line</th>
         <th class="fixed"><%= sortable "parts.part_number", "Part #" %></th>
         <th class="fixed"><%= sortable "quantity", "Qty" %></th>
-        <th class="fixed"><%= sortable "due_date" %></th>
         <% if params["display"] != "shipped" %>
             <th class="fixed"><%= sortable "ship_date" %></th>
         <% else %>
             <th class="fixed"><%= sortable "actual_ship_date" %></th>
         <% end %>
+        <th class="fixed"><%= sortable "due_date" %></th>
         <th>Comment</th>
-        <th>Prod Comment</th>
         <th></th>
       </tr>
   </thead>

@@ -28,14 +28,13 @@
     <th>Line</th>
     <th class="fixed"><%= nonsortable "parts.part_number", "Part #" %></th>
     <th class="fixed"><%= nonsortable "quantity", "Qty" %></th>
-    <th class="fixed"><%= nonsortable "due_date" %></th>
     <% if params["display"] != "shipped" %>
         <th class="fixed"><%= nonsortable "ship_date" %></th>
     <% else %>
         <th class="fixed"><%= nonsortable "actual_ship_date" %></th>
     <% end %>
+    <th class="fixed"><%= nonsortable "due_date" %></th>
     <th>Comment</th>
-    <th>Prod Comment</th>
     <th></th>
   </tr>
   </thead>

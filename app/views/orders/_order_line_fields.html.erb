@@ -17,12 +17,11 @@
   </td>
 </tr>
 <% if current_user.admin? %>
-    <% colspan = 5 %>
+    <% colspan = 8 %>
 <% else %>
-    <% colspan = 3 %>
+    <% colspan = 7 %>
 <% end %>
 <tr>
-  <td colspan="<%= colspan-2 %>"><%= f.input :comment,:input_html => {:class => "span4"} %></td>
-  <td colspan="<%= colspan+1 %>"><%= f.input :production_comment,:input_html => {:class => "span4"} %></td>
+  <td colspan="<%= colspan %>"><%= f.input :comment,:input_html => {:class => "span9"} %></td>
 </tr>
 

@@ -9,6 +9,6 @@
   <% if view == 'hardware' %>
     <td><%= number_with_delimiter(order_line.part.required_hardwares.where(:hardware_id => hardware.id)[0].quantity * order_line.quantity) %></td>
   <% end %>
-  <td><%= order_line.due_date %></td>
   <td><%= order_line.ship_date %></td>
+  <td><%= order_line.due_date %></td>
 </tr>

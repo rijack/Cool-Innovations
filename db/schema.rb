@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725135445) do
+ActiveRecord::Schema.define(:version => 20120725141412) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(:version => 20120725135445) do
     t.datetime "updated_at",                                                              :null => false
     t.string   "status",                                           :default => "pending"
     t.date     "ship_date"
-    t.text     "production_comment"
     t.decimal  "price",              :precision => 8, :scale => 2
     t.integer  "shipping_method_id"
     t.date     "actual_ship_date"
