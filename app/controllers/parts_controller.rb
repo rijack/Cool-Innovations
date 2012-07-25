@@ -2,7 +2,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    @parts = Part.order(:part_number).page(params[:page]).per_page(20)
+    @parts = Part.order(sort_by_field || "part_number asc").page(params[:page]).per_page(20)
 
     params[:direction] ||= "asc"
     params[:sort] ||= "due_date"
