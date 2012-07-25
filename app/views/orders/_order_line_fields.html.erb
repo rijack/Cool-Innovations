@@ -2,7 +2,7 @@
   <td><%= f.input :line_number, :label =>false,:input_html => {:class => "span1"} %></td>
   <td><%= f.association :part, :label =>false, :collection => Part.order(:part_number).all, :input_html => {:"data-placeholder" => "Part #", :class => "span3"} %></td>
   <td class="due-date-cell"><%= f.input :due_date, :label =>false, :as => :string,:input_html => {:class => "due-date input-small"} %></td>
-  <td class="shipping-method-cell"><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).collect{|x| [x.name , x.duration]}, :input_html => {:"data-placeholder" => "Shipping method", :class => "span2 shipping-method"} %></td>
+  <td class="shipping-method-cell"><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).collect{|x| [x.name , x.duration]}, :input_html => {:"data-placeholder" => "Shipping method", :class => "span3 shipping-method"} %></td>
   <td class="ship-date-cell"><%= f.input :ship_date, :label =>false, :as => :string,:input_html => {:class => "ship-date input-small"} %></td>
   <td><%= f.input :quantity, :label =>false,:input_html => {:class => "span1"} %></td>
 
@@ -17,7 +17,7 @@
   </td>
 </tr>
 <% if current_user.admin? %>
-    <% colspan = 8 %>
+    <% colspan = 9 %>
 <% else %>
     <% colspan = 7 %>
 <% end %>
