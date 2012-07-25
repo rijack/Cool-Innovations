@@ -75,14 +75,14 @@ $ ->
     return false
 
   $(".change-color").on "click", ->
-    console.log(2)
     cBoxes = $('input.ship-lines')
-    colorValue = $(this).html()
+    colorValue = $(this).attr("data-sort")+"-"+$(this).html()
     colorValues = []
     toChange = []
 
     $(this).parents("li").siblings().each ->
       colorValues.push $(this).children("a").html()
+
 
     cBoxes.filter(':checked').each ->
       orderLineId = $(this).val().split("-")[1]
