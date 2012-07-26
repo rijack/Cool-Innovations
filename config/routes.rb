@@ -34,8 +34,9 @@ CoolInnovations::Application.routes.draw do
   end
 
   resources :parts do
-    get :search, :on => :collection
+    get  :search, :on => :collection
     post :update_part, :on => :collection
+    post :set_required_process_priority, :on => :member
   end
 
   resources :part_processes do

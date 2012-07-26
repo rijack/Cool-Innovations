@@ -70,7 +70,7 @@
                 <th>Process Name</th>
                 <th>Status</th>
               </tr>
-              <% order_line.order_line_process_statuses.each do |process_status| %>
+              <% order_line.process_statuses.each do |process_status| %>
                   <% if process_status.part_process %>
                   <tr class="process_status" data-id="<%= process_status.id %>">
                     <td><%= process_status.part_process.name %></td>

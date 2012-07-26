@@ -41,6 +41,10 @@ class OrderLine < ActiveRecord::Base
     where { (status == "in progress") | (status == "pending") }
   end
 
+  def process_statuses
+    self.order_line_process_statuses.joins(:order_line).joins("INNER JOIN required_processes ON required_processes.part_process_id = order_line_process_statuses.part_process_id AND required_processes.part_id = order_lines.part_id").order("required_processes.required_process_priority asc")
+  end
+
   # shipped => true | false
   # client_id => 
   # order_id => 
@@ -82,6 +86,8 @@ class OrderLine < ActiveRecord::Base
     order_lines = order_lines.order(options[:sort]).page(options[:page] || 1).per_page(options[:per_page] || 10)
   end
 
+
+
   private
 
   def build_statuses
@@ -100,4 +106,6 @@ class OrderLine < ActiveRecord::Base
       order.destroy
     end
   end
+
+
 end

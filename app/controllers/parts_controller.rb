@@ -114,4 +114,17 @@ class PartsController < ApplicationController
       format.json { render json: @parts }
     end
   end
+
+  def set_required_process_priority
+    params[:part_process_ids] ||= []
+    @curr_id = params[:id]
+
+    @part = Part.find(params[:id])
+
+    params[:part_process_ids].each_with_index do |id, i|
+      status = @part.required_processes.where(:id => id).first
+      status.required_process_priority = i + 1
+      status.save
+    end
+  end
 end

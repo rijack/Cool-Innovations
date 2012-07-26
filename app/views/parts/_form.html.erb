@@ -48,6 +48,26 @@
             :collection => PartProcessCategory.order(:sort_priority),
             :as => :grouped_select, :group_method => :part_processes_ordered_by_priority,
             :input_html => {:"data-placeholder" => "Choose processes", :multiple => :multiple} %>
+
+          <% if @part.required_processes.length >0  %>
+              <table class="table table-condensed table-bordered parts-processes"  data-id="<%= @part.id %>">
+                <thead>
+                    <tr>
+                      <th class="span1">Priority</th>
+                      <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody  class="required_process_lines"  data-id="<%= @part.id %>">
+                    <% @part.required_processes.order("required_process_priority asc").each_with_index do |required_process, i|%>
+                        <tr class="required-process"  data-id="<%= required_process.id %>">
+                          <td class="sort_handle"><% if required_process.required_process_priority?%><%=required_process.required_process_priority%><%else%>0<%end%></td>
+                          <td><%= required_process.part_process.name %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+              </table>
+          <% end %>
+
         </td>
         <td class="hardware-cell">
           <table class="table table-condensed">
