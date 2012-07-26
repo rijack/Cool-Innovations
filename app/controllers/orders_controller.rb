@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
 
     if params[:display] == "shipped"
       list_per_page = 100
+      params[:direction] ||= "desc"
+      params[:sort] ||= "actual_ship_date"
     else
       list_per_page = 500
     end
