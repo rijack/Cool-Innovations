@@ -119,17 +119,23 @@
           <div class="span5">
             <h5>Additional Info</h5>
             <table class="table table-bordered table-condensed table-striped">
-              <% if order_line.order.attachment? or order_line.part.attachment? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
+              <% if order_line.order.attachment? or order_line.part.attachments.present? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
                   <% if order_line.order.attachment? %>
                       <tr>
                         <td class="span2"><strong>Order Attachment:</strong></td>
                         <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></td>
                       </tr>
                   <% end %>
-                  <% if order_line.part.attachment? %>
+                  <% if order_line.part.attachments.present? %>
                       <tr>
                         <td class="span2"><strong>Part Drawing:</strong></td>
-                        <td><%= link_to order_line.part.attachment_file_name, order_line.part.attachment.url %></td>
+                        <td>
+                          <% order_line.part.attachments.each do |attachment| %>
+                            <div>
+                              <%= link_to attachment.name, attachment.url %>
+                            </div>
+                          <% end %>
+                        </td>
                       </tr>
                   <% end %>
                   <% if order_line.part.description? %>
