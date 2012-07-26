@@ -17,6 +17,7 @@ class PartsController < ApplicationController
   # GET /parts/1.json
   def show
     @part = Part.find(params[:id])
+    3.times { @part.attachments.build }
 
     params[:direction] ||= "asc"
     params[:sort] ||= "due_date"
@@ -31,6 +32,7 @@ class PartsController < ApplicationController
   # GET /parts/new.json
   def new
     @part = Part.new
+    3.times { @part.attachments.build }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +47,7 @@ class PartsController < ApplicationController
     params[:sort] ||= "due_date"
 
     @part = Part.find(params[:id])
+    3.times { @part.attachments.build }
   end
 
   # POST /parts

@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :attachments
+
   resources :part_process_categories do
     post :update_part_process_category, :on => :collection
     post :set_sort_priority, :on => :collection

@@ -1,5 +1,5 @@
 class Part < ActiveRecord::Base
-  attr_accessible :description, :name, :part_number, :part_process_ids, :required_hardwares_attributes, :attachment
+  attr_accessible :description, :name, :part_number, :part_process_ids, :required_hardwares_attributes, :attachments_attributes
 
   validates_presence_of :part_number
   validates_uniqueness_of :part_number, :case_sensitive => false
@@ -10,9 +10,11 @@ class Part < ActiveRecord::Base
   has_many :part_processes, :through => :required_processes, :class_name => "PartProcess", :after_remove => :handle_removed_processes
   has_many :order_lines
   has_many :sample_lines
+  has_many :attachments, :as => :attachable, :dependent => :destroy
 
   accepts_nested_attributes_for :required_hardwares, :allow_destroy => true
-  has_attached_file :attachment
+  accepts_nested_attributes_for :attachments, :allow_destroy => true
+
 
   after_save :handle_removed_processes
 

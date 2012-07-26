@@ -15,10 +15,26 @@
             <td class="editable large" data-headers="/parts/update_part" id="description-<%= @part.id%>"><%= @part.description %></td>
         <% end %>
         <td class="large">
-          <% if @part.attachment? %>
-              <%= link_to @part.attachment_file_name, @part.attachment.url, :class => "" %>
+          <%= f.fields_for :attachments do |attachment| %>
+            <% unless attachment.object.new_record? %>
+              <div>
+                <%= link_to attachment.object.name, attachment.object.file.url, :target => "_blank" %>
+
+                <%= attachment.label :_destroy %>
+                <%= attachment.check_box :_destroy %>
+              </div>
+            <% end %>        
           <% end %>
-          <%= f.input :attachment, :as => :file, :label => false %>
+
+
+          <%= f.fields_for :attachments do |attachment| %>
+
+            <% if attachment.object.new_record? %>
+              <%= attachment.file_field :file %>
+            <% end %>
+
+          <% end %>
+
         </td>
       </tr>
       <tr>
