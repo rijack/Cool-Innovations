@@ -1,6 +1,7 @@
 class OrderLine < ActiveRecord::Base
   STATUSES = [
     "pending",
+    "assigned",
     "in progress",
     "completed"
   ]
@@ -38,7 +39,7 @@ class OrderLine < ActiveRecord::Base
   end
 
   def self.pending
-    where { (status == "in progress") | (status == "pending") }
+    where { (status == "assigned") | (status == "in progress") | (status == "pending") }
   end
 
   def process_statuses
