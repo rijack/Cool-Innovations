@@ -31,7 +31,6 @@ $ ->
 
 
   $('.process_status .line-status .btn').live 'click', ->
-    console.log(1)
     status = $(this).html()
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger")
     if (status == 'completed')
