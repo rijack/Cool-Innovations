@@ -31,12 +31,15 @@ $ ->
 
 
   $('.process_status .line-status .btn').live 'click', ->
+    console.log(1)
     status = $(this).html()
-    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning")
+    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger")
     if (status == 'completed')
       $(this).addClass("btn-success")
     else if (status == 'in progress')
       $(this).addClass("btn-info")
+    else if (status == 'assigned')
+      $(this).addClass("btn-danger")
     else
       $(this).addClass("btn-warning")
     process_status_id = $(this).parents(".process_status").data("id")

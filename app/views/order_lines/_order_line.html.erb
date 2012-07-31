@@ -63,12 +63,13 @@
     <td colspan="<%= colspan %>" class="order-line-info hide">
         <div class="accordion-body collapse" id="collapse<%= order_line.id %>">
             <!--<h4>Order line details</h4>-->
-          <div class="span5">
+          <div class="span10">
             <h5>Process</h5>
-            <table class="table table-bordered table-condensed span5">
+            <table class="table table-bordered table-condensed span9">
               <tr>
                 <th>Process Name</th>
                 <th>Status</th>
+                <th>Assign</th>
               </tr>
               <% order_line.process_statuses.each do |process_status| %>
                   <% if process_status.part_process %>
@@ -83,6 +84,9 @@
                                 <% if process_status.status == "pending" %>
                                     <% extra_class = extra_class + " btn-warning" %>
                                 <% end %>
+                                <% if process_status.status == "assigned" %>
+                                    <% extra_class = extra_class + " btn-danger" %>
+                                <% end %>
                                 <% if process_status.status == "in progress" %>
                                     <% extra_class = extra_class + " btn-info" %>
                                 <% end %>
@@ -94,12 +98,13 @@
                         <% end %>
                       </div>
                     </td>
+                    <td>1</td>
                   </tr>
                   <% end%>
               <% end %>
             </table>
           </div>
-          <div class="span5 middle">
+          <div class="span5">
             <h5>Hardware</h5>
             <table class="table table-bordered table-condensed span5 table-striped">
               <tr>
@@ -115,8 +120,6 @@
                   </tr>
               <% end %>
             </table>
-          </div>
-          <div class="span5">
             <h5>Additional Info</h5>
             <table class="table table-bordered table-condensed table-striped">
               <% if order_line.order.attachment? or order_line.part.attachments.present? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>

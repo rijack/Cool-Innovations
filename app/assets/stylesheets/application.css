@@ -97,6 +97,7 @@ table td.actions.med {
 
 .table td.actions.completed .status.btn { background-color: #51A351; }
 .table td.actions.in-progress .status.btn  { background-color: #2F96B4;  }
+.table td.actions.assigned .status.btn  { background-color: #DA4F49; }
 .table td.actions.pending .status.btn  { background-color: #F89406; }
 .table td.actions.shipped .status.btn  { background-color: #414141;  }
 
@@ -109,6 +110,7 @@ table td.actions.med {
 table .order-line-info .span6 {float:left;}
 table .order-line-info .span3 {float:left;}
 table .order-line-info .span5 {float:left;}
+table .order-line-info .span10 {float:left;}
 table .order-line-info .span5.middle {margin:0 25px;}
 
 

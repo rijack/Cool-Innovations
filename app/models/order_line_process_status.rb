@@ -24,6 +24,8 @@ class OrderLineProcessStatus < ActiveRecord::Base
 
     if statuses.all? {|x| x == "completed" }
       self.order_line.status = "completed"
+    elsif statuses.all? {|x| x == "assigned" }
+      self.order_line.status = "assigned"
     elsif statuses.any? {|x| x == "in progress" }
       self.order_line.status = "in progress"
     else
