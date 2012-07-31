@@ -14,7 +14,7 @@
           </div>
       <% end %>
       <%= f.input :avatar, :as => :file, :label => false %>
-      <%= f.input :status, :label => "Type (admin or user)" %>
+      <%= f.input :status, :collection => User::USER_TYPES, :label=>"Type" %>
       <%= f.input :password %>
     </div>
 

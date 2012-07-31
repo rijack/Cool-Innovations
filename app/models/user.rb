@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  USER_TYPES = [
+      "admin",
+      "manager",
+      "user"
+  ]
+
   attr_accessible :email, :password, :username, :status, :name, :avatar
 
   validates_presence_of :email, :username
