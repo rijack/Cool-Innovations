@@ -117,3 +117,23 @@ $ ->
   $("#search_form #search_client").change update_search_dropdowns
   $("#search_form #search_part_id").change update_search_dropdowns
   $("#search_form #search_po_number").change update_search_dropdowns
+
+
+  $(".assign-user").on 'change', ->
+    selected_user = parseInt($(this).val())
+    order_line_process_id = $(this).parents("tr").attr("data-id")
+    console.log(order_line_process_id)
+    if (selected_user == 0)
+      $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button").removeClass().addClass("btn btn-small")
+      $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button:nth-child(1)").addClass("btn-warning active")
+    else
+      $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button").removeClass().addClass("btn btn-small")
+      $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button:nth-child(2)").addClass("btn-danger active")
+
+    data =
+      user_id: selected_user
+      order_line_process_status_id: order_line_process_id
+    $.ajax
+      type: 'POST'
+      url: "/order_lines/assign_user"
+      data: data

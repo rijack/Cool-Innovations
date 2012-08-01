@@ -75,7 +75,7 @@
                   <% if process_status.part_process %>
                   <tr class="process_status" data-id="<%= process_status.id %>">
                     <td><%= process_status.part_process.name %></td>
-                    <td>
+                    <td class="process-statuses">
                       <div class="btn-group line-status" data-toggle="buttons-radio">
                         <% OrderLine::STATUSES.each do |order_line_status| %>
                             <% extra_class = "" %>
@@ -98,7 +98,14 @@
                         <% end %>
                       </div>
                     </td>
-                    <td>1</td>
+                    <td>
+                      <select class="assign-user">
+                            <option value="0">Not Assigned</option>
+                        <% @users.each do |user| %>
+                            <option <% if (process_status.user_id == user.id)%>selected="selected"<%end%> value="<%= user.id %>"><%= user.name %></option>
+                        <% end %>
+                      </select>
+                    </td>
                   </tr>
                   <% end%>
               <% end %>

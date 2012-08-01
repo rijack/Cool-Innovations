@@ -30,6 +30,8 @@ class OrdersController < ApplicationController
       #cookies["order_line_sort_order"] = sort_by_field
     end
 
+    @users = User.users_only
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @order_lines }
@@ -134,4 +136,5 @@ class OrdersController < ApplicationController
       @clients = @clients.joins(:orders).where(:"orders.id" => params[:order_id])
     end
   end
+
 end

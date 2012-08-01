@@ -110,4 +110,12 @@ class OrderLinesController < ApplicationController
     @order_line.status = "completed"
     @order_line.save
   end
+
+  def assign_user
+    @order_line_process_status = OrderLineProcessStatus.find(params[:order_line_process_status_id])
+    @order_line_process_status.user_id = params[:user_id]
+    current_status = params[:user_id].to_i == 0 ? "pending" : "assigned"
+    @order_line_process_status.status = current_status
+    @order_line_process_status.save
+  end
 end

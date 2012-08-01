@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731131702) do
+ActiveRecord::Schema.define(:version => 20120801130142) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20120731131702) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "order_line_priority", :default => 10000
+    t.integer  "user_id"
+    t.integer  "user_priority",       :default => 10000
   end
 
   add_index "order_line_process_statuses", ["order_line_id"], :name => "index_order_line_process_statuses_on_order_line_id"

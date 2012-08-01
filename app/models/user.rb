@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :large => "300x300", :medium => "100x100>", :thumb => "50x50>",  }
   #has_attached_file :avatar
 
+  def self.users_only
+    where { status == "user" }
+    .order ("name asc")
+  end
+
   def admin?
     status == "admin"
   end
