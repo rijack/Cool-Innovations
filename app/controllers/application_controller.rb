@@ -50,12 +50,23 @@ class ApplicationController < ActionController::Base
   def needs_login
     if !logged_in?
       redirect_to login_url, :notice => "you need to be logged in"
+    else
+      session_timeout
     end
   end
 
   def needs_admin
     if !user_admin?
       redirect_to login_url, :notice => "you need to be logged in as admin"
+    else
+      session_timeout
+    end
+  end
+
+  def session_timeout
+    if !session[:last_seen] || session[:last_seen] < 10.minutes.ago
+      reset_session
+      redirect_to login_url, :notice => "your session timedout"
     end
   end
 end
