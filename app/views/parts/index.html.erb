@@ -49,7 +49,7 @@
                       </thead>
                       <tbody>
                       <%= render :partial => 'order_lines/order_line_simple',
-                                 :collection => part.order_lines.not_shipped,
+                                 :collection => part.order_lines.not_shipped.order("due_date asc"),
                                  :as => 'order_line',
                                  :locals => {:hardware => nil, :view => 'part_process'} %>
                       </tbody>
