@@ -6,7 +6,7 @@ $ ->
   datePicker = (selector) ->
     $real = $(selector).not(".picked")
     $real.addClass("picked")
-    $real.datepicker({dateFormat: 'yy-mm-dd'})
+    $real.datepicker({dateFormat: 'd-M-y'})
 
   $('#search_form').find("select").chosen(search_contains: true)
   $('#search_form .datepicker').datepicker({dateFormat: 'yy-mm-dd'})
