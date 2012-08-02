@@ -18,7 +18,7 @@ module ApplicationHelper
     title ||= column.titleize
   end
 
-  def display_date(input_date)
+  def display_date input_date
     return input_date.strftime("%d-%b-%y")
   end
 end
