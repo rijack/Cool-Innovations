@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :username, :case_sensitive => false
 
   has_many :comments
+  has_many :order_line_process_statuses
 
   has_attached_file :avatar, :styles => { :large => "300x300", :medium => "100x100>", :thumb => "50x50>",  }
   #has_attached_file :avatar

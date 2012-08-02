@@ -54,6 +54,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :users do
     post :update_user, :on => :collection
+    post :set_process_priority, :on => :member
   end
   resources :sessions
 

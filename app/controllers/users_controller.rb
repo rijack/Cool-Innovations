@@ -96,4 +96,17 @@ class UsersController < ApplicationController
     @user[params[:field]] = params[:new_value]
     @user.save
   end
+
+  def set_process_priority
+    params[:process_line_ids] ||= []
+    @curr_id = params[:id]
+
+    @user = User.find(params[:id])
+
+    params[:process_line_ids].each_with_index do |id, i|
+      status = @user.order_line_process_statuses.where(:id => id).first
+      status.user_priority = i + 1
+      status.save
+    end
+  end
 end

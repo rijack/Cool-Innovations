@@ -5,6 +5,7 @@
 <table class="table table-bordered">
   <thead>
   <tr>
+    <th>Active</th>
     <th>User Name</th>
     <th>Name</th>
     <th>Email</th>
@@ -15,6 +16,11 @@
   <tbody>
   <% @users.each do |user| %>
       <tr>
+        <% if (user.order_line_process_statuses.length > 0) %>
+            <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= user.id %>"><i class="icon-plus"></i>Expand</a></td>
+        <% else %>
+            <td>&nbsp;</td>
+        <% end %>
         <td class="editable medium" data-headers="/users/update_user"  id="username-<%= user.id %>"><%= user.username %></td>
         <td class="editable medium" data-headers="/users/update_user"  id="name-<%= user.id %>"><%= user.name %></td>
         <td class="editable medium" data-headers="/users/update_user"  id="email-<%= user.id %>"><%= user.email %></td>
@@ -28,6 +34,34 @@
           <% end %>
         </td>
       </tr>
+      <% if (user.order_line_process_statuses.length > 0) %>
+          <tr>
+            <td colspan="6" class="user-info hide">
+              <div class="accordion-body collapse" id="collapse<%= user.id %>">
+                <table class="table table-bordered table-condensed table-striped" data-id="<%= user.id %>">
+                  <thead>
+                  <tr>
+                    <th>priority</th>
+                    <th>part #</th>
+                    <th>name</th>
+                    <th>status</th>
+                  </tr>
+                  </thead>
+                  <tbody  class="user-process-lines"  data-id="<%= user.id %>">
+                  <% user.order_line_process_statuses.order("user_priority asc").each do |process| %>
+                    <tr class="user-process" data-id="<%= process.id %>">
+                      <td class="sort_handle"><%= process.user_priority %></td>
+                      <td><%= process.order_line.part.name %></td>
+                      <td><%= process.part_process.name %></td>
+                      <td><%= process.status %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+              </div>
+          </tr>
+      <% end %>
   <% end %>
   </tbody>
 </table>
