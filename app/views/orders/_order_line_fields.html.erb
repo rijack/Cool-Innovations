@@ -1,27 +1,23 @@
 <tr class="nested-fields">
-  <td><%= f.input :line_number, :label =>false,:input_html => {:class => "span1"} %></td>
+  <td><%= f.input :line_number, :label =>false,:input_html => {:class => "input-tiny"} %></td>
   <td><%= f.association :part, :label =>false, :collection => Part.order(:part_number).all, :input_html => {:"data-placeholder" => "Part #", :class => "span3"} %></td>
-  <td class="due-date-cell"><%= f.input :due_date, :label =>false, :as => :string,:input_html => {:class => "due-date input-small"} %></td>
+  <td class="due-date-cell"><%= f.input :due_date, :label =>false, :as => :string,:input_html => {:class => "due-date input-small2"} %></td>
   <td class="shipping-method-cell"><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).collect{|x| [x.name , x.duration]}, :input_html => {:"data-placeholder" => "Shipping method", :class => "span3 shipping-method"} %></td>
-  <td class="ship-date-cell"><%= f.input :ship_date, :label =>false, :as => :string,:input_html => {:class => "ship-date input-small"} %></td>
+  <td class="ship-date-cell"><%= f.input :ship_date, :label =>false, :as => :string,:input_html => {:class => "ship-date input-small2"} %></td>
   <td><%= f.input :quantity, :label =>false,:input_html => {:class => "span1"} %></td>
 
   <% if current_user.admin? %>
-  <td><%= f.input :price, :label =>false,:input_html => {:class => "span1"} %></td>
-  <td><%= f.input :setup_cost, :label =>false,:input_html => {:class => "span1"} %></td>
+  <td><%= f.input :price, :label =>false,:input_html => {:class => "input-tiny"} %></td>
+  <td><%= f.input :setup_cost, :label =>false,:input_html => {:class => "input-tiny"} %></td>
   <% end %>
+  <td>
+    <%= f.input :comment, :label => false, :input_html => {:class => "small"} %>
+  </td>
   <td>
     <%= link_to_remove_association  f, :class => "btn btn-small btn-danger", :title => "Remove Line" do%>
         <i class="icon-trash" alt="edit"></i>
     <% end %>
   </td>
 </tr>
-<% if current_user.admin? %>
-    <% colspan = 9 %>
-<% else %>
-    <% colspan = 7 %>
-<% end %>
-<tr>
-  <td colspan="<%= colspan %>"><%= f.input :comment,:input_html => {:class => "span9"} %></td>
-</tr>
+
 
