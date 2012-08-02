@@ -68,5 +68,6 @@ class ApplicationController < ActionController::Base
       reset_session
       redirect_to login_url, :notice => "your session timedout"
     end
+    session[:last_seen] = Time.now
   end
 end

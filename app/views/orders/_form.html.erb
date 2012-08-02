@@ -31,10 +31,11 @@
           <tr>
             <td colspan="11">
               <div class="links">
-                <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn',
+                <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn add-line',
                   :"data-association-insertion-node" => '#order_lines',
                   :"data-association-insertion-method" => "prepend"
                 %>
+                <a href="#" class="btn duplicate-line">Duplicate</a>
               </div>
             </td>
           </tr>
