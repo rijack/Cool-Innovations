@@ -1,6 +1,6 @@
 <% if item.errors.empty? %>
 $(".modal-body").html "<%= text %> was created"
-setTimeout (-> $('#modal-container').modal('hide')), 2000
+setTimeout (-> $('#modal-container').modal('hide')), 20000
 if (window.location.pathname == <%= raw path.to_json %>)
     location.reload()
 else

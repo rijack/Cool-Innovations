@@ -28,6 +28,8 @@ class OrderLineProcessStatus < ActiveRecord::Base
       self.order_line.status = "assigned"
     elsif statuses.any? {|x| x == "in progress" }
       self.order_line.status = "in progress"
+    elsif statuses.any? {|x| x == "completed" }
+      self.order_line.status = "in progress"
     else
       self.order_line.status = "pending"
     end

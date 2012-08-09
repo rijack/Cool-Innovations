@@ -17,7 +17,8 @@
 <table class="table table-bordered">
   <thead>
       <tr>
-        <th>Client Name</th>
+        <th><%= sortable "created_at" %></th>
+        <th><%= sortable "name", "Name" %></th>
         <th>Payment Instructions</th>
         <th>Shipping Instructions</th>
         <th>Special Instructions</th>
@@ -28,6 +29,7 @@
   <% if @clients.length > 0 %>
     <% @clients.each do |client| %>
       <tr>
+        <td><%= client.created_at.to_date() %></td>
         <% if (client.order_lines.not_shipped.length > 0) %>
             <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= client.id %>"><i class="icon-plus"></i><%= client.name %></a></td>
         <% else %>
@@ -65,7 +67,7 @@
                   </thead>
                   <tbody>
                   <%= render :partial => 'order_lines/order_line_simple',
-                             :collection => client.order_lines.not_shipped,
+                             :collection => client.order_lines.not_shipped.order("due_date asc"),
                              :as => 'order_line',
                              :locals => {:hardware => nil , :view => 'client'} %>
                   </tbody>

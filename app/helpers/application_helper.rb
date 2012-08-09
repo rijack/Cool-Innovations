@@ -17,4 +17,8 @@ module ApplicationHelper
   def nonsortable column, title = nil
     title ||= column.titleize
   end
+
+  def display_date input_date
+    return input_date.try(:strftime, "%d-%b-%y")
+  end
 end

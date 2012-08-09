@@ -1,6 +1,6 @@
 <% @is_seen = false %>
 <div class="row">
-  <div class="span7">
+  <div class="span6">
     <h2>Comments <%= link_to 'New Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h2>
     <% if @comments.length > 0 %>
         <%= nested_comments @comments %>
@@ -8,7 +8,7 @@
         There are no comments
     <% end %>
   </div>
-  <div class="span5 scroll">
+  <div class="span6 scroll">
     <h2>Upcoming Orders</h2>
     <table class="table table-bordered table-condensed">
       <thead>

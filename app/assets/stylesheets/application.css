@@ -217,3 +217,6 @@ textarea.text.short { height: 30px;}
 .nested_comments .span7 {width: 570px !important;}
 
 .no-orders {display: none;}
+
+.input-tiny {width:40px;}
+.input-small2 {width:70px;}

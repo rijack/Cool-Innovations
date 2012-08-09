@@ -6,7 +6,7 @@ $ ->
   datePicker = (selector) ->
     $real = $(selector).not(".picked")
     $real.addClass("picked")
-    $real.datepicker({dateFormat: 'yy-mm-dd'})
+    $real.datepicker({dateFormat: 'd-M-y'})
 
   $('#search_form').find("select").chosen(search_contains: true)
   $('#search_form .datepicker').datepicker({dateFormat: 'yy-mm-dd'})
@@ -14,10 +14,37 @@ $ ->
   $('#order_lines').find("select").chosen(search_contains: true)
 
 
+  isDuplicate = false
+  $('.duplicate-line').on 'click', ->
+    isDuplicate = true
+    $(".add-line").click()
+    return false
+
   $('#order_lines').bind 'insertion-callback', ->
     $('#order_lines').find("select").chosen(search_contains: true)
     datePicker $(".due-date")
     datePicker $(".ship-date")
+
+    if (isDuplicate)
+      lines_length = $(this).children(".nested-fields").length
+      if (lines_length > 1)
+        copy_from = $(this).children(".nested-fields:nth-child(2)")
+        copy_to = $(this).children(".nested-fields:nth-child(1)")
+
+        $(copy_from).find("input, select, textarea").each ->
+          curr_id = $(this).attr('id')
+          if (curr_id != undefined)
+            curr_value = $(this).val()
+            last_two = curr_id.split("_")[curr_id.split("_").length-2]
+            last = curr_id.split("_")[curr_id.split("_").length-1]
+            if (! /^[a-zA-Z]+$/.test(last_two))
+              test_id = last
+            else
+              test_id = last_two + "_" + last
+
+            copy_to.find('[id$='+test_id+']').val(curr_value)
+            $("select").trigger("liszt:updated")
+    isDuplicate = false
 
   datePicker $(".due-date")
   datePicker $(".ship-date")
