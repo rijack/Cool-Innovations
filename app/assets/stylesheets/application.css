@@ -221,3 +221,5 @@ textarea.text.short { height: 30px;}
 
 .input-tiny {width:40px;}
 .input-small2 {width:70px;}
+
+.order_line .btn-small {padding:3px 8px;}
