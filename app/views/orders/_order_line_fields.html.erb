@@ -2,7 +2,7 @@
   <td><%= f.input :line_number, :label =>false,:input_html => {:class => "copy-lineno input-tiny"} %></td>
   <td><%= f.association :part, :label =>false, :collection => Part.order(:part_number).all, :input_html => {:"data-placeholder" => "Part #", :class => "span3"} %></td>
   <td class="due-date-cell"><%= f.input :due_date, :label =>false, :as => :string,:input_html => {:class => "due-date input-small2"} %></td>
-  <td class="shipping-method-cell"><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).collect{|x| [x.name , x.duration]}, :input_html => {:"data-placeholder" => "Shipping method", :class => "span3 shipping-method"} %></td>
+  <td class="shipping-method-cell"><%= f.association :shipping_method, :label =>false, :collection => ShippingMethod.order(:name).collect{|x| [x.name , x.id, :"data-value"=>x.duration, :value => x.id]}, :input_html => {:"data-placeholder" => "Shipping method", :class => "span3 shipping-method"} %></td>
   <td class="ship-date-cell"><%= f.input :ship_date, :label =>false, :as => :string,:input_html => {:class => "ship-date input-small2"} %></td>
   <td><%= f.input :quantity, :label =>false,:input_html => {:class => "span1"} %></td>
 

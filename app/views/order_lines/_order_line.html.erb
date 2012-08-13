@@ -13,7 +13,7 @@
     <td class="fixed sort_handle"><%= order_line.order_line_process_statuses.where(:part_process_id => @process_order_line_priority).first.order_line_priority %></td>
   <% end %>
   <% if params["display"] != "shipped" %>
-      <td class="fixed"><%= display_date(order_line.created_at) %></td>
+      <td class="fixed editable comment" id="created_at-<%= order_line.id%>" data-headers="/order_lines/update_order_line" data-content="<%= display_date(order_line.created_at) %>"><%= display_date(order_line.created_at) %></td>
   <% end %>
   <% if local_assigns[:show_client].present? %>
     <% colspan += 1 %>
