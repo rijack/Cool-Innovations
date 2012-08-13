@@ -6,7 +6,6 @@
     <%= f.association :client, :label => "Customer", :collection => Client.order("LOWER(name)").all,
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
     <%= f.input :attachment, :as => :file %>
-
     <table class="table table-condensed">
       <thead>
           <tr>
@@ -33,7 +32,7 @@
               <div class="links">
                 <%= link_to_add_association 'Add Line', f, :order_lines, :class => 'btn add-line',
                   :"data-association-insertion-node" => '#order_lines',
-                  :"data-association-insertion-method" => "prepend"
+                  :"data-association-insertion-method" => "append"
                 %>
                 <a href="#" class="btn duplicate-line">Duplicate</a>
               </div>
@@ -48,4 +47,6 @@
     <%= link_to 'Cancel', orders_path, :class => 'btn' %>
   </div>
 <% end %>
+
+
 

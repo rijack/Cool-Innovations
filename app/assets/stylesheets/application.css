@@ -166,6 +166,9 @@ table .order-line-info .span5.middle {margin:0 25px;}
     margin-left:0;
 }
 
+
+/*#order_lines .links {position: relative; left:0px;top:-70px;}*/
+
 th.fixed,
 td.fixed {white-space: nowrap;}
 

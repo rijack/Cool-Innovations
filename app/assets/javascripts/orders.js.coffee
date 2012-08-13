@@ -28,8 +28,8 @@ $ ->
     if (isDuplicate)
       lines_length = $(this).children(".nested-fields").length
       if (lines_length > 1)
-        copy_from = $(this).children(".nested-fields:nth-child(2)")
-        copy_to = $(this).children(".nested-fields:nth-child(1)")
+        copy_from = $(this).children(".nested-fields:nth-child("+lines_length+")")
+        copy_to = $(this).children(".nested-fields:nth-child("+(lines_length+1)+")")
 
         $(copy_from).find("input, select, textarea").each ->
           curr_id = $(this).attr('id')
