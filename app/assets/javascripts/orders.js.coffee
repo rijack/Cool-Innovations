@@ -6,10 +6,10 @@ $ ->
   datePicker = (selector) ->
     $real = $(selector).not(".picked")
     $real.addClass("picked")
-    $real.datepicker({dateFormat: 'mm/dd/y'})
+    $real.datepicker({dateFormat: 'yy-mm-dd'})
 
   $('#search_form').find("select").chosen(search_contains: true)
-  $('#search_form .datepicker').datepicker({dateFormat: 'mm/dd/y'})
+  $('#search_form .datepicker').datepicker({dateFormat: 'yy-mm-dd'})
   $("#order_client_id").chosen(search_contains: true)
   $('#order_lines').find("select").chosen(search_contains: true)
   datePicker $(".due-date")
@@ -72,7 +72,7 @@ $ ->
 
     if (durationValue && dueDateValue)
       shipDate = dueDateValue.add({days:-durationValue})
-      shipDateCell.val(shipDate.toString("MM/dd/yy"))
+      shipDateCell.val(shipDate.toString("yyyy-MM-dd"))
 
 
   $(".ship-orders").click ->
