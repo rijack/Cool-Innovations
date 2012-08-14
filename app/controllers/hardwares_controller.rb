@@ -3,13 +3,12 @@ class HardwaresController < ApplicationController
   # GET /hardwares.json
   def index
 
-    @hardwares = Hardware.order_by_priority
+    @hardwares = Hardware.order_by_priority.order(:name)
                          .joins('LEFT OUTER JOIN required_hardwares on hardwares.id = required_hardwares.hardware_id')
                          .joins('LEFT OUTER JOIN order_lines ON required_hardwares.part_id = order_lines.part_id')
                          .group("hardwares.id")
                          .order("order_lines.order_id desc")
                          .page(params.fetch(:page, 1)).per_page(params.fetch(:per_page, 500))
-                         .order(:name)
 
     params[:direction] ||= "asc"
     params[:sort] ||= "due_date"
