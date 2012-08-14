@@ -148,3 +148,7 @@ $ ->
   $("#search_form #search_client").change update_search_dropdowns
   $("#search_form #search_part_id").change update_search_dropdowns
   $("#search_form #search_po_number").change update_search_dropdowns
+
+  # submitting search on select change
+  $("#search_form select").on "change", ->
+    $("#search_form").submit()
