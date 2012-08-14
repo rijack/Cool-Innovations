@@ -25,7 +25,7 @@
               <td><%= order_line.order.client.name %></td>
               <td><%= order_line.part.name.upcase %></td>
               <td><%= number_with_delimiter(order_line.quantity) %></td>
-              <td><%= order_line.ship_date %></td>
+              <td><%= display_date(order_line.ship_date) %></td>
             </tr>
         <% end %>
       </tbody>

@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.order(:name).page(params[:page]).per_page(30)
+    @clients = Client.order(sort_by_field || :name).page(params[:page]).per_page(30)
 
     #params[:direction] ||= "asc"
     #params[:sort] ||= "due_date"

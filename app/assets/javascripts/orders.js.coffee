@@ -6,30 +6,34 @@ $ ->
   datePicker = (selector) ->
     $real = $(selector).not(".picked")
     $real.addClass("picked")
-    $real.datepicker({dateFormat: 'd-M-y'})
+    $real.datepicker({dateFormat: 'yy-mm-dd'})
 
   $('#search_form').find("select").chosen(search_contains: true)
   $('#search_form .datepicker').datepicker({dateFormat: 'yy-mm-dd'})
   $("#order_client_id").chosen(search_contains: true)
   $('#order_lines').find("select").chosen(search_contains: true)
-
-
+  datePicker $(".due-date")
+  datePicker $(".ship-date")
   isDuplicate = false
+
+  # duplicating line call
   $('.duplicate-line').on 'click', ->
     isDuplicate = true
     $(".add-line").click()
     return false
 
+  # adding line method
   $('#order_lines').bind 'insertion-callback', ->
     $('#order_lines').find("select").chosen(search_contains: true)
     datePicker $(".due-date")
     datePicker $(".ship-date")
 
+    # duplicate line if needed
     if (isDuplicate)
       lines_length = $(this).children(".nested-fields").length
       if (lines_length > 1)
-        copy_from = $(this).children(".nested-fields:nth-child(2)")
-        copy_to = $(this).children(".nested-fields:nth-child(1)")
+        copy_from = $(this).children(".nested-fields:nth-child("+lines_length+")")
+        copy_to = $(this).children(".nested-fields:nth-child("+(lines_length+1)+")")
 
         $(copy_from).find("input, select, textarea").each ->
           curr_id = $(this).attr('id')
@@ -46,9 +50,8 @@ $ ->
             $("select").trigger("liszt:updated")
     isDuplicate = false
 
-  datePicker $(".due-date")
-  datePicker $(".ship-date")
 
+  # automatic due and ship date setting
   $(".due-date").live 'change', ->
     udpateShipDate (this)
 
@@ -61,10 +64,11 @@ $ ->
     shipDateCell = $($(currParent).siblings(".ship-date-cell")).find(".ship-date")
     if (line.tagName == "INPUT")
       dueDateValue = Date.parse($(line).val())
-      durationValue = $($(currParent).siblings(".shipping-method-cell")).find(".shipping-method").val()
+      selectGroup = $($(currParent).siblings(".shipping-method-cell")).find(".shipping-method")
+      durationValue = $(selectGroup).find(":selected").attr("data-duration")
     else
       dueDateValue = Date.parse($($(currParent).siblings(".due-date-cell")).find(".due-date").val())
-      durationValue = $(line).val()
+      durationValue = $(line).find(":selected").attr("data-duration")
 
     if (durationValue && dueDateValue)
       shipDate = dueDateValue.add({days:-durationValue})
@@ -145,6 +149,9 @@ $ ->
   $("#search_form #search_part_id").change update_search_dropdowns
   $("#search_form #search_po_number").change update_search_dropdowns
 
+  # submitting search on select change
+  $("#search_form select").on "change", ->
+    $("#search_form").submit()
 
   $(".assign-user").on 'change', ->
     selected_user = parseInt($(this).val())

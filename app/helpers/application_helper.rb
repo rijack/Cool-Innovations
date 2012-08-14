@@ -19,6 +19,6 @@ module ApplicationHelper
   end
 
   def display_date input_date
-    return input_date.try(:strftime, "%d-%b-%y")
+    return input_date.try(:strftime, "%m/%d/%y")
   end
 end

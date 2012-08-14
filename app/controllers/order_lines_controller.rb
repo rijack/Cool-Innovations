@@ -89,7 +89,13 @@ class OrderLinesController < ApplicationController
 
   def update_order_line
     @order_line = OrderLine.find(params[:id])
-    @order_line[params[:field]] = params[:new_value]
+
+    if params[:field] == "created_at"
+      @order_line[params[:field]] = Date.strptime(params[:new_value], "%m/%d/%y") + 1.hour
+    else
+      @order_line[params[:field]] = params[:new_value]
+    end
+
     @order_line.save
   end
 
