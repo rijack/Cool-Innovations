@@ -1,5 +1,7 @@
 CoolInnovations::Application.routes.draw do
 
+  resources :stations
+
   resources :attachments
 
   resources :part_process_categories do

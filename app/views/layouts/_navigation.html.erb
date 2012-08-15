@@ -18,7 +18,8 @@
           <li <% if params[:controller] == "clients" %>class="active"<% end%>><%= link_to "Customers", clients_path%></li>
           <li <% if params[:controller] == "shipping_methods" %>class="active"<% end%>><%= link_to "Shipping Methods", shipping_methods_path%></li>
           <% if current_user.admin? %>
-          <li <% if params[:controller] == "users" %>class="active"<% end%>><%= link_to "Users", users_path%></li>
+              <li <% if params[:controller] == "users" %>class="active"<% end%>><%= link_to "Users", users_path%></li>
+              <li <% if params[:controller] == "stations" %>class="active"<% end%>><%= link_to "Stations", stations_path%></li>
           <% end %>
           <li class="dropdown" id="utilities-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#utilityMenu">
