@@ -66,7 +66,7 @@
       <% if params["display"] != "shipped" %>
         <th class="fixed"><%= sortable "ship_date" %></th>
       <% else %>
-          <th class="fixed"><%= sortable "actual_ship_date" %></th>
+          <th class="fixed"><%= sortable "actual_ship_date", "A/S Date" %></th>
       <% end %>
       <th class="fixed"><%= sortable "due_date", "Dock Date" %></th>
       <th>Comment</th>
