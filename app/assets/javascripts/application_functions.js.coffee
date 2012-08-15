@@ -63,7 +63,6 @@ $ ->
     if (currentEditable == "")
       substrLength = $(this).attr('data-substr')
       tag = $(this)
-      console.log(tag)
       if ($(this).attr('data-content'))
         oldValue = $(this).attr('data-content')
       else
@@ -103,6 +102,7 @@ $ ->
             tag.attr('data-content',newValue)
           else
             modifiedValue = newValue
+            tag.attr('data-content',newValue)
 
           $(this).parents("td").html(modifiedValue);
         else
