@@ -7,12 +7,13 @@ class User < ActiveRecord::Base
       "user"
   ]
 
-  attr_accessible :email, :password, :username, :status, :name, :avatar
+  attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id
 
   validates_presence_of :email, :username
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :email, :username, :case_sensitive => false
 
+  belongs_to :station
   has_many :comments
   has_many :order_line_process_statuses
 

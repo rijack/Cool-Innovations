@@ -10,6 +10,7 @@
     <th>Name</th>
     <th>Email</th>
     <th>Type</th>
+    <th>Station</th>
     <th>&nbsp;</th>
   </tr>
   </thead>
@@ -23,8 +24,9 @@
         <% end %>
         <td class="editable medium" data-headers="/users/update_user"  id="username-<%= user.id %>"><%= user.username %></td>
         <td class="editable medium" data-headers="/users/update_user"  id="name-<%= user.id %>"><%= user.name %></td>
-        <td class="editable medium" data-headers="/users/update_user"  id="email-<%= user.id %>"><%= user.email %></td>
-        <td class="editable medium" data-headers="/users/update_user"  id="status-<%= user.id %>"><%= user.status %></td>
+        <td class="editable comment" data-headers="/users/update_user"  id="email-<%= user.id %>"><%= user.email %></td>
+        <td class="editable comment" data-headers="/users/update_user"  id="status-<%= user.id %>"><%= user.status %></td>
+        <td class="span3"><% if user.station %><%= user.station.name %><% end %></td>
         <td class="actions">
           <%= link_to edit_user_path(user)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
               <i class="icon-edit"></i>

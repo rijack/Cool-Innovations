@@ -5,6 +5,8 @@
       <%= f.input :username %>
       <%= f.input :name %>
       <%= f.input :email %>
+      <%= f.association :station, :label => "Station", :collection => Station.order("LOWER(name)").all,
+                        :input_html => {:"data-placeholder" => "Choose a station"} %>
       <% if @user.avatar? %>
           <div class="control-group">
             <label class="control-label">Avatar</label>
