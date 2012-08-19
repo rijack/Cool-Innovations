@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       params[:direction] ||= "desc"
       params[:sort] ||= "actual_ship_date"
     else
-      list_per_page = 500
+      list_per_page = params[:per_page].try(:to_i) || 500
     end
 
     @order_lines = OrderLine.search(
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       :order_id => params[:search][:po_number],
       :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
       :sort => (sort_by_field || "created_at desc"),
-      :page => params[:page],
+      :page => params[:page].try(:to_i),
       :per_page =>  list_per_page
     )
 
