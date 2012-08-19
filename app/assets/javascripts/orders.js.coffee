@@ -152,3 +152,7 @@ $ ->
   # submitting search on select change
   $("#search_form select").on "change", ->
     $("#search_form").submit()
+
+  $('tr.order_line a.order-toggle').click ->
+    console.log "this"
+    return false

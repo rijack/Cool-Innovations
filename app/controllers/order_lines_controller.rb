@@ -117,4 +117,9 @@ class OrderLinesController < ApplicationController
     @order_line.status = "completed"
     @order_line.save
   end
+
+  def accordion_details
+    @order_line = OrderLine.find(params[:id])
+    render :partial => 'order_lines/accordion_details', :locals => {:order_line => @order_line }
+  end
 end

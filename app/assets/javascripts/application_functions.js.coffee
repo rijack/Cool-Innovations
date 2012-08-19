@@ -52,7 +52,17 @@ $ ->
     $(this).children().toggleClass("icon-plus").toggleClass("icon-minus");
 
   $('.collapse').on 'show', ->
+    $this = $(this)
     $(this).parent("td").removeClass("hide")
+    order_line_id = $this.data("id")
+    if order_line_id
+      console.log order_line_id
+      $.ajax
+        type: 'GET'
+        url: "/order_lines/#{order_line_id}/accordion_details"
+        success: (data) =>
+          #console.log data
+          $this.html(data).removeAttr("style")
 
 
   $('.collapse').on 'hidden', ->
