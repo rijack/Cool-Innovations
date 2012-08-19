@@ -52,7 +52,7 @@ $ ->
     $(this).children().toggleClass("icon-plus").toggleClass("icon-minus");
 
   $('.collapse').on 'show', ->
-    $this = $(this)
+    $this = $(this).html('<div />')
     $(this).parent("td").removeClass("hide")
     order_line_id = $this.data("id")
     if order_line_id
