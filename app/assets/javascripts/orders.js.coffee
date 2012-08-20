@@ -58,21 +58,37 @@ $ ->
   $(".shipping-method").live 'change', ->
     udpateShipDate (this)
 
+  $(".ship-date").live 'change', ->
+    udpateShipDate (this)
+
 
   udpateShipDate = (line) ->
-    currParent = $(line).parents("td")
-    shipDateCell = $($(currParent).siblings(".ship-date-cell")).find(".ship-date")
-    if (line.tagName == "INPUT")
-      dueDateValue = Date.parse($(line).val())
-      selectGroup = $($(currParent).siblings(".shipping-method-cell")).find(".shipping-method")
-      durationValue = $(selectGroup).find(":selected").attr("data-duration")
-    else
-      dueDateValue = Date.parse($($(currParent).siblings(".due-date-cell")).find(".due-date").val())
-      durationValue = $(line).find(":selected").attr("data-duration")
+    curr_parent = $(line).parents("td")
+    current = $(curr_parent).attr('class')
+    part_number_cell = $($(curr_parent).siblings(".part-number-cell"))
 
-    if (durationValue && dueDateValue)
-      shipDate = dueDateValue.add({days:-durationValue})
-      shipDateCell.val(shipDate.toString("yyyy-MM-dd"))
+    ship_date_cell = $($(part_number_cell).siblings(".ship-date-cell")).find(".ship-date")
+    due_date_cell = $($(part_number_cell).siblings(".due-date-cell")).find(".due-date")
+
+    ship_date_value = Date.parse(ship_date_cell.val())
+    due_date_value = Date.parse(due_date_cell.val())
+    duration_value = $($(part_number_cell).siblings(".shipping-method-cell")).find(".shipping-method").find(":selected").attr("data-duration")
+
+    if due_date_value
+      new_ship_date = due_date_value.add({days:-duration_value})
+
+    if ship_date_value
+      new_due_date = ship_date_value.add({days:duration_value})
+
+    if current == "shipping-method-cell"
+      if due_date_value
+        ship_date_cell.val(new_ship_date.toString("yyyy-MM-dd"))
+
+    if current == "due-date-cell"
+      ship_date_cell.val(new_ship_date.toString("yyyy-MM-dd"))
+
+    if current == "ship-date-cell"
+      due_date_cell.val(new_due_date.toString("yyyy-MM-dd"))
 
 
   $(".ship-orders").click ->
