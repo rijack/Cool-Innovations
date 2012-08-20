@@ -58,7 +58,7 @@
       <% if order_line.order.attachment? %>
         <tr>
           <td class="span2"><strong>Order Attachment:</strong></td>
-          <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url %></td>
+          <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url, :target => "_blank" %></td>
         </tr>
       <% end %>
       <% if order_line.part.attachments.present? %>
@@ -67,7 +67,7 @@
           <td>
             <% order_line.part.attachments.each do |attachment| %>
               <div>
-                <%= link_to attachment.name, attachment.url %>
+                <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
               </div>
             <% end %>
           </td>
