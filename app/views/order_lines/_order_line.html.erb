@@ -32,10 +32,10 @@
   <% if params["display"] == "shipped" %>
     <td class="editable comment" data-headers="/order_lines/update_order_line" id="actual_ship_date-<%= order_line.id%>"><%= display_date(order_line.actual_ship_date) %></td>
   <% else %>
-    <td class="fixed"><%= display_date(order_line.ship_date) %></td>
+    <td class="fixed editable comment" id="ship_date-<%= order_line.id%>" data-headers="/order_lines/update_order_line" data-content="<%= display_date(order_line.ship_date) %>"><%= display_date(order_line.ship_date) %></td>
   <% end %>
-  <td class="fixed"><%= display_date(order_line.due_date) %></td>
-  <td class="editable large" data-headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>" data-content="<%= order_line.comment %>" data-substr="10"><%= truncate(order_line.comment, :length => 10) %></td>
+  <td class="fixed editable comment" id="due_date-<%= order_line.id%>" data-headers="/order_lines/update_order_line" data-content="<%= display_date(order_line.due_date) %>"><%= display_date(order_line.due_date) %></td>
+  <td class="editable large" data-headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>" data-content="<%= order_line.comment %>" data-substr="20"><%= truncate(order_line.comment, :length => 20) %></td>
   <% if params["display"] == "shipped" %>
     <td class="fixed editable comment" data-headers="/order_lines/update_order_line"  id="tracking_number-<%= order_line.id%>"><%= order_line.tracking_number %></td>
   <% end %>
