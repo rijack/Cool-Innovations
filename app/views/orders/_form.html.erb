@@ -45,7 +45,9 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to 'Create Order +', '#', :class => 'btn btn-success create-plus' %>
+    <% if type == "new" %>
+        <%= link_to 'Create Order +', '#', :class => 'btn btn-success create-plus' %>
+    <% end %>
     <%= link_to 'Cancel', orders_path, :class => 'btn' %>
   </div>
 <% end %>
