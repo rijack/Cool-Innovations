@@ -91,7 +91,7 @@ class OrderLinesController < ApplicationController
     @order_line = OrderLine.find(params[:id])
 
 
-    if params[:field] == "created_at" or params[:field] == "actual_ship_date"
+    if params[:field] == "created_at" or params[:field] == "actual_ship_date" or params[:field] == "due_date" or params[:field] == "ship_date"
       @order_line[params[:field]] = Date.strptime(params[:new_value], "%m/%d/%y") + 1.hour
     else
       @order_line[params[:field]] = params[:new_value]
