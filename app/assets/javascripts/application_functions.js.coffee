@@ -52,11 +52,10 @@ $ ->
     $(this).children().toggleClass("icon-plus").toggleClass("icon-minus");
 
   $('.collapse').on 'show', ->
-    $this = $(this).html('<div />')
     $(this).parent("td").removeClass("hide")
-    order_line_id = $this.data("id")
+    order_line_id = $(this).attr("data-id")
     if order_line_id
-      console.log order_line_id
+      $this = $(this).html('<div />')
       $.ajax
         type: 'GET'
         url: "/order_lines/#{order_line_id}/accordion_details"
