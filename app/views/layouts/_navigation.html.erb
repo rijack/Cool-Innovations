@@ -10,7 +10,7 @@
       <div class="nav-collapse">
         <ul class="nav">
 
-          <li <% if params[:controller] == "orders" && params["display"] != "shipped" %>class="active"<% end%>><%= link_to 'Orders', orders_path(:per_page => 150) %></li>
+          <li <% if params[:controller] == "orders" && params["display"] != "shipped" %>class="active"<% end%>><%= link_to 'Orders', orders_path %></li>
           <li <% if params["display"] == "shipped" %>class="active"<% end%>><%= link_to 'Shipped Orders', shipped_orders_url %></li>
           <li <% if params[:controller] == "parts" %>class="active"<% end%>><%= link_to "Parts", parts_path %></li>
           <li <% if params[:controller] == "hardwares" %>class="active"<% end%>><%= link_to "Hardware", hardwares_path %></li>

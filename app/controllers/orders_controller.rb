@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       params[:direction] ||= "desc"
       params[:sort] ||= "actual_ship_date"
     else
-      list_per_page = params[:per_page].try(:to_i) || 500
+      list_per_page = params[:per_page].try(:to_i) || 150
     end
 
     @order_lines = OrderLine.search(
