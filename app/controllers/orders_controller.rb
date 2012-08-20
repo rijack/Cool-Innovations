@@ -68,9 +68,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
+
+    redirect_path = orders_path
+    if params[:success_type] == "plus"
+      redirect_path = new_order_path
+    end
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to redirect_path, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         Rails.logger.info @order.errors.inspect

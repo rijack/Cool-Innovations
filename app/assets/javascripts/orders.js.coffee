@@ -156,3 +156,8 @@ $ ->
   $('tr.order_line a.order-toggle').click ->
     console.log "this"
     return false
+
+  $('.create-plus').click ->
+    $("#success-type").val("plus")
+    $("#new_order").submit()
+    return false;
