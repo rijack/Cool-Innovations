@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+  <% station.users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+      <tr>
+        <td>
+          <% if user.not_completed_processes.length > 0 %>
+              <table class="table table-bordered table-condensed table-striped">
+                <thead>
+                    <tr>
+                      <th>Process Name</th>
+                      <th>Part Number</th>
+                      <th>Qty</th>
+                      <th>Attachment(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% user.not_completed_processes.each do |process| %>
+                    <tr>
+                      <td><%= process.part_process.name %></td>
+                      <td><%= process.order_line.part.name %></td>
+                      <td><%= process.order_line.quantity %></td>
+                      <td>
+                        <% process.order_line.part.attachments.each do |attachment| %>
+                            <div>
+                              <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
+                            </div>
+                        <% end %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+
+          <% else %>
+            No work assigned
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>

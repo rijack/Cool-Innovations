@@ -1,20 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @station.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%= @station.name %>
-</p>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Location</th>
+    <th>Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="editable large" data-headers="/stations/update_station" id="location-<%= @station.id%>"><%= @station.location %></td>
+    <td class="editable large" data-headers="/stations/update_station" id="notes-<%= @station.id%>"><%= @station.notes %></td>
+  </tr>
+  </tbody>
+</table>
 
-<p>
-  <b>Location:</b>
-  <%= @station.location %>
-</p>
 
-<p>
-  <b>Notes:</b>
-  <%= @station.notes %>
-</p>
+<% if @station.users.length > 0 %>
+<h2>Users</h2>
+
+<%= render :partial => 'users/user_info',
+           :object => @station,
+           :as => 'station',
+           :locals => {:view => 'station'} %>
+
+<% end %>
 
 
-<%= link_to 'Edit', edit_station_path(@station) %> |
-<%= link_to 'Back', stations_path %>
+

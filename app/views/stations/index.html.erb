@@ -16,8 +16,8 @@
   <% if @stations.length > 0 %>
       <% @stations.each do |station| %>
           <tr>
-            <td><%= display_date(station.created_at.to_date()) %></td>
-            <td><%= station.name %></td>
+            <td class="span2"><%= display_date(station.created_at.to_date()) %></td>
+            <td class="editable medium" data-headers="/stations/update_station"  id="name-<%= station.id %>"><%= station.name %></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>
             <td class="actions fixed">

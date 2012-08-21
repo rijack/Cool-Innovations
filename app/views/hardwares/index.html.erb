@@ -76,7 +76,7 @@
                       <%= render :partial => 'order_lines/order_line_simple',
                                  :collection => hardware.order_lines.not_shipped.order(sort_by_field),
                                  :as => 'order_line',
-                                 :locals => {:hardware => hardware, :view => 'hardware'} %>
+                                 :locals => {:hardware => hardware, :view => 'hardware', :part_process => nil} %>
                       </tbody>
                     </table>
 

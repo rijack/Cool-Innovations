@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     .order ("name asc")
   end
 
+  def not_completed_processes
+    self.order_line_process_statuses.where {(status != "verified") }
+  end
+
   def admin?
     status == "admin"
   end
