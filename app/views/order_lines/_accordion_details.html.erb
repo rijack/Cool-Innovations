@@ -32,11 +32,11 @@
                       <% extra_class = extra_class + " btn-primary" %>
                   <% end %>
                 <% end %>
-                <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
+                <button class="btn btn-small <%= extra_class %>"  data-value="<%= order_line_status %>"><%= order_line_status %></button>
               <% end %>
             </div>
           </td>
-          <td data-id="<%= process_status.id %>">
+          <td class="assigned-users" data-id="<%= process_status.id %>">
             <select class="assign-user span3">
               <option value="0">Not Assigned</option>
               <% @users.each do |user| %>

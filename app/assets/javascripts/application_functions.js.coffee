@@ -31,7 +31,9 @@ $ ->
 
 
   $('.process_status .line-status .btn').live 'click', ->
-    status = $(this).html()
+
+    status = $(this).attr("data-value")
+    #console.log(status)
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger").removeClass("btn-primary")
     if (status == 'completed')
       $(this).addClass("btn-success")
@@ -41,8 +43,15 @@ $ ->
       $(this).addClass("btn-danger")
     else if (status == 'verified')
       $(this).addClass("btn-primary")
+      if document.location.pathname == "/stations"
+        location.reload()
     else
       $(this).addClass("btn-warning")
+      if document.location.pathname == "/orders"
+        $(this).parents("td").siblings(".assigned-users").find(".assign-user").val(0).trigger("liszt:updated")
+      else if document.location.pathname == "/stations"
+        location.reload()
+
     process_status_id = $(this).parents(".process_status").data("id")
     $.ajax
       type: 'POST'

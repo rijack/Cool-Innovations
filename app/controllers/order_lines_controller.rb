@@ -84,6 +84,9 @@ class OrderLinesController < ApplicationController
   def set_process_status
     @order_line_process_status = OrderLineProcessStatus.find(params[:order_line_process_status_id])
     @order_line_process_status.status = params[:status]
+    if params[:status] == 'pending'
+      @order_line_process_status.user_id = 0
+    end
     @order_line_process_status.save
   end
 

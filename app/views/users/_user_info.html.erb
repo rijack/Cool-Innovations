@@ -15,27 +15,55 @@
                       <th>Process Name</th>
                       <th>Part Number</th>
                       <th>Qty</th>
-                      <th>Attachment(s)</th>
+                      <th>Client Name</th>
+                      <!--<th>Attachment(s)</th>-->
                       <th>Ship Date</th>
                       <th>Status</th>
                     </tr>
                 </thead>
                 <tbody  class="user-process-lines"  data-id="<%= user.id %>">
                 <% user.not_completed_processes.each do |process| %>
-                    <tr class="user-process" data-id="<%= process.id %>">
+                    <tr class="user-process process_status" data-id="<%= process.id %>">
                       <td class="sort_handle span1"><%= process.user_priority %></td>
                       <td><%= process.part_process.name %></td>
                       <td class="span3"><%= process.order_line.part.name %></td>
                       <td class="span1"><%= process.order_line.quantity %></td>
-                      <td class="span3">
+                      <td class="span3"><%= process.order_line.order.client.name %></td>
+                      <!--<td class="span3">
                         <% process.order_line.part.attachments.each do |attachment| %>
                             <div>
                               <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
                             </div>
                         <% end %>
-                      </td>
+                      </td>-->
                       <td class="span2"><%= display_date(process.order_line.ship_date) %></td>
-                      <td class="span2"><%= process.status %></td>
+                      <td class="span2 process-statuses">
+                        <div class="btn-group line-status" data-toggle="buttons-radio">
+                          <% OrderLine::STATUSES.each do |order_line_status| %>
+                              <% extra_class = "" %>
+                              <% if order_line_status == process.status %>
+                                  <% extra_class = "active" %>
+                                  <% if process.status  == "pending" %>
+                                      <% extra_class = extra_class + " btn-warning" %>
+                                  <% end %>
+                                  <% if process.status  == "assigned" %>
+                                      <% extra_class = extra_class + " btn-danger" %>
+                                  <% end %>
+                                  <% if process.status  == "in progress" %>
+                                      <% extra_class = extra_class + " btn-info" %>
+                                  <% end %>
+                                  <% if process.status  == "completed" %>
+                                      <% extra_class = extra_class + " btn-success" %>
+                                  <% end %>
+                                  <% if process.status  == "verified" %>
+                                      <% extra_class = extra_class + " btn-primary" %>
+                                  <% end %>
+                              <% end %>
+                              <button class="btn btn-small <%= extra_class %>" data-value="<%= order_line_status %>"><%= order_line_status[0].upcase %></button>
+                          <% end %>
+                        </div>
+                      </td>
+
                     </tr>
                 <% end %>
                 </tbody>

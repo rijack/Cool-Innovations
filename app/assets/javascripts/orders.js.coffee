@@ -130,7 +130,6 @@ $ ->
     $(this).parents("li").siblings().each ->
       colorValues.push $(this).children("a").attr("data-sort")+"-"+$(this).children("a").html()
 
-    console.log(colorValues)
     cBoxes.filter(':checked').each ->
       orderLineId = $(this).val().split("-")[1]
       $(this).attr('checked', false)
