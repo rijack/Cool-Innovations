@@ -36,7 +36,7 @@
               <% end %>
             </div>
           </td>
-          <td>
+          <td data-id="<%= process_status.id %>">
             <select class="assign-user span3">
               <option value="0">Not Assigned</option>
               <% @users.each do |user| %>

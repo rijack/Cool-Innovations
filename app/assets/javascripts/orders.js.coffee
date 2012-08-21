@@ -181,7 +181,7 @@ $ ->
 
   $(".assign-user").live 'change', ->
     selected_user = parseInt($(this).val())
-    order_line_process_id = $(this).parents("tr").attr("data-id")
+    order_line_process_id = $(this).parents("td").attr("data-id")
     if (selected_user == 0)
       $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button").removeClass().addClass("btn btn-small")
       $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button:nth-child(1)").addClass("btn-warning active")

@@ -72,13 +72,14 @@
                         <th>Qty</th>
                         <th>Ship Date</th>
                         <th>Dock Date</th>
+                        <th>Assign</th>
                       </tr>
                       </thead>
                       <tbody  class="process_order_lines"  data-id="<%= part_process.id %>">
                       <%= render :partial => 'order_lines/order_line_simple',
                                  :collection => part_process.order_lines_with_pending,
                                  :as => 'order_line',
-                                 :locals => {:hardware => nil, :view => 'part_process'} %>
+                                 :locals => {:hardware => nil, :view => 'part_process', :part_process => part_process} %>
                       </tbody>
                     </table>
                   </div>

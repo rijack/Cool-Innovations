@@ -11,6 +11,8 @@ class PartProcessesController < ApplicationController
     params[:direction] ||= "asc"
     params[:sort] ||= "due_date"
 
+    @users = User.users_only
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @part_processes }
