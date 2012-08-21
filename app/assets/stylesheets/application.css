@@ -83,6 +83,8 @@ table td.actions.med {
 
 .no-bold {font-weight: normal;}
 
+.sort_handle:hover {cursor: move;}
+
 #modal-container form {margin-bottom:0px;}
 .modal .spinner {
     padding:20px 140px;
@@ -230,3 +232,6 @@ textarea.text.short { height: 30px;}
 .part-number + .chzn-container  {text-transform: uppercase;}
 
 .btn-group.line-status .btn-small {padding:5px 8px;}
+
+
+.user-process.table-bordered tr:first-child td {border-top:1px solid #DDD !important;}

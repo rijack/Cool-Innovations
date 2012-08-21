@@ -1,26 +1,31 @@
 <table class="table table-bordered">
-  <% station.users.each do |user| %>
+  <% station.users.order('name asc').each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td class="category"><%= user.name %></td>
       </tr>
       <tr>
         <td>
           <% if user.not_completed_processes.length > 0 %>
-              <table class="table table-bordered table-condensed table-striped">
+              <table class="table table-bordered table-condensed user-process" data-id="<%= user.id %>">
                 <thead>
                     <tr>
+                      <th>Priority</th>
                       <th>Process Name</th>
                       <th>Part Number</th>
                       <th>Qty</th>
+                      <th>Ship Date</th>
                       <th>Attachment(s)</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  class="user-process-lines"  data-id="<%= user.id %>">
                 <% user.not_completed_processes.each do |process| %>
-                    <tr>
+                    <tr class="user-process" data-id="<%= process.id %>">
+                      <td class="sort_handle span1"><%= process.user_priority %></td>
                       <td><%= process.part_process.name %></td>
                       <td><%= process.order_line.part.name %></td>
                       <td><%= process.order_line.quantity %></td>
+                      <td><%= display_date(process.order_line.ship_date) %></td>
                       <td>
                         <% process.order_line.part.attachments.each do |attachment| %>
                             <div>
@@ -28,6 +33,7 @@
                             </div>
                         <% end %>
                       </td>
+                      <td><%= process.status %></td>
                     </tr>
                 <% end %>
                 </tbody>
