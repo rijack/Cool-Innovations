@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       params[:direction] ||= "desc"
       params[:sort] ||= "actual_ship_date"
     else
-      list_per_page = 500
+      list_per_page = params[:per_page].try(:to_i) || 150
     end
 
     @order_lines = OrderLine.search(
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       :order_id => params[:search][:po_number],
       :search => params[:search].slice(*OrderLine.column_names).select{|k, v| v.present?},
       :sort => (sort_by_field || "created_at desc"),
-      :page => params[:page],
+      :page => params[:page].try(:to_i),
       :per_page =>  list_per_page
     )
 
@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
     end
 
     @users = User.users_only
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -70,9 +71,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
+
+    redirect_path = orders_path
+    if params[:success_type] == "plus"
+      redirect_path = new_order_path
+    end
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to redirect_path, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         Rails.logger.info @order.errors.inspect

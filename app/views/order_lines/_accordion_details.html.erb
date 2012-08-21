@@ -1,0 +1,136 @@
+<div class="span10">
+  <h5>Process</h5>
+  <table class="table table-bordered table-condensed span9">
+    <tr>
+      <th>Process Name</th>
+      <th>Status</th>
+      <th>Assign</th>
+    </tr>
+    <% order_line.process_statuses.each do |process_status| %>
+      <% if process_status.part_process %>
+        <tr class="process_status" data-id="<%= process_status.id %>">
+          <td class="span2"><%= process_status.part_process.name %></td>
+          <td>
+            <div class="btn-group line-status" data-toggle="buttons-radio">
+              <% OrderLine::STATUSES.each do |order_line_status| %>
+                <% extra_class = "" %>
+                <% if order_line_status == process_status.status %>
+                  <% extra_class = "active" %>
+                  <% if process_status.status == "pending" %>
+                    <% extra_class = extra_class + " btn-warning" %>
+                  <% end %>
+                  <% if process_status.status == "assigned" %>
+                      <% extra_class = extra_class + " btn-danger" %>
+                  <% end %>
+                  <% if process_status.status == "in progress" %>
+                    <% extra_class = extra_class + " btn-info" %>
+                  <% end %>
+                  <% if process_status.status == "completed" %>
+                    <% extra_class = extra_class + " btn-success" %>
+                  <% end %>
+                <% end %>
+                <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <select class="assign-user">
+              <option value="0">Not Assigned</option>
+              <% @users.each do |user| %>
+                  <option <% if (process_status.user_id == user.id)%>selected="selected"<%end%> value="<%= user.id %>"><%= user.name %></option>
+              <% end %>
+            </select>
+          </td>
+        </tr>
+      <% end%>
+    <% end %>
+  </table>
+</div>
+<div class="span5">
+  <h5>Hardware</h5>
+  <table class="table table-bordered table-condensed span5 table-striped">
+    <tr>
+      <th>Hardware Name</th>
+      <th>Part Qty</th>
+      <th>Order Qty</th>
+    </tr>
+    <% order_line.part.required_hardwares.each do |hardware| %>
+      <tr>
+        <td><%= hardware.hardware.name %></td>
+        <td><%= hardware.quantity %></td>
+        <td><%= hardware.quantity * order_line.quantity %></td>
+      </tr>
+    <% end %>
+  </table>
+  <h5>Additional Info</h5>
+  <table class="table table-bordered table-condensed table-striped">
+    <% if order_line.order.attachment? or order_line.part.attachments.present? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
+        <% if order_line.order.attachment? %>
+            <tr>
+              <td class="span2"><strong>Order Attachment:</strong></td>
+              <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url, :target => "_blank" %></td>
+            </tr>
+        <% end %>
+        <% if order_line.part.attachments.present? %>
+            <tr>
+              <td class="span2"><strong>Part Drawing:</strong></td>
+              <td>
+                <% order_line.part.attachments.each do |attachment| %>
+                    <div>
+                      <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
+                    </div>
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        <% if order_line.part.description? %>
+            <tr>
+              <td class="span2"><strong>Part Comment:</strong></td>
+              <td><%= order_line.part.description %></td>
+            </tr>
+        <% end %>
+        <% if order_line.order.client.payment_instructions?  %>
+            <tr>
+              <td class="span2"><strong>Payment Instructions:</strong></td>
+              <td><%= order_line.order.client.payment_instructions %></td>
+            </tr>
+        <% end %>
+        <% if order_line.order.client.shipping_instructions?  %>
+            <tr>
+              <td class="span2"><strong>Shipping Instructions:</strong></td>
+              <td><%= order_line.order.client.shipping_instructions %></td>
+            </tr>
+        <% end %>
+        <% if order_line.order.client.special_instructions?  %>
+            <tr>
+              <td class="span2"><strong>Special Instructions:</strong></td>
+              <td><%= order_line.order.client.special_instructions %></td>
+            </tr>
+        <% end %>
+    <% else %>
+        <tr>
+          <td>No special instructions</td>
+        </tr>
+    <% end %>
+  </table>
+  <% if order_line.versions.count > 1 %>
+      <h5>Date changes</h5>
+      <table class="table table-bordered table-condensed span5 table-striped">
+        <tr>
+          <th>Changed on</th>
+          <th>By</th>
+          <th>Old Value</th>
+        </tr>
+        <% order_line.versions.order("created_at desc").limit(5).each_with_index do |version,i| %>
+            <% if i>0 %>
+                <tr>
+                  <td><%= version.created_at.to_s(:long) %></td>
+                  <td><%= User.find_by_id(version.whodunnit).try(:username) %></td>
+                  <td><%= version.reify.try(:due_date) %></td>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
+  <% end %>
+</div>
+

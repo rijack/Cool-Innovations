@@ -55,6 +55,15 @@ $ ->
 
   $('.collapse').on 'show', ->
     $(this).parent("td").removeClass("hide")
+    order_line_id = $(this).attr("data-id")
+    if order_line_id
+      $this = $(this).html('<div />')
+      $.ajax
+        type: 'GET'
+        url: "/order_lines/#{order_line_id}/accordion_details"
+        success: (data) =>
+          #console.log data
+          $this.html(data).removeAttr("style")
 
 
   $('.collapse').on 'hidden', ->

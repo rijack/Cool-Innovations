@@ -2,6 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <input type="hidden" name="success_type" id="success-type" value="regular" />
     <%= f.input :purchase_order %>
     <%= f.association :client, :label => "Customer", :collection => Client.order("LOWER(name)").all,
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
@@ -44,6 +45,9 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
+    <% if type == "new" %>
+        <%= link_to 'Create Order +', '#', :class => 'btn btn-success create-plus' %>
+    <% end %>
     <%= link_to 'Cancel', orders_path, :class => 'btn' %>
   </div>
 <% end %>

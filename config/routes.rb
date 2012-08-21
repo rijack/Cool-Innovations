@@ -29,6 +29,7 @@ CoolInnovations::Application.routes.draw do
     post :update_order_lines, :on => :collection
     post :reset_order_line_status, :on => :collection
     post :assign_user, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   resources :orders do
