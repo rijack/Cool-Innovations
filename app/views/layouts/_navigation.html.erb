@@ -37,6 +37,11 @@
               <li class="divider"></li>
               <li><%= link_to 'New Hardware Category', "/hardware_categories/new?no_layout=1", :class => 'modal-trigger' %></li>
               <li><%= link_to 'New Process Category', "/part_process_categories/new?no_layout=1", :class => 'modal-trigger' %></li>
+              <% if current_user.not_user? %>
+                  <li class="divider"></li>
+                  <li><%= link_to 'New User', "/users/new?no_layout=1", :class => 'modal-trigger' %></li>
+                  <li><%= link_to 'New Station', "/stations/new?no_layout=1", :class => 'modal-trigger' %></li>
+              <% end %>
               <li class="divider"></li>
               <li><%= link_to 'Logout', logout_url %></li>
             </ul>

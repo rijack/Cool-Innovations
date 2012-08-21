@@ -1,5 +1,6 @@
 <h1>Stations</h1>
 
+<%= link_to 'New User', new_user_path+"?no_layout=1", :class => 'btn btn-primary pull-right mbx mrx modal-trigger' %>
 <%= link_to 'New Station', "/stations/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger mbxx'%>
 
 <table class="table table-bordered">
@@ -32,6 +33,16 @@
               <% end %>
             </td>
           </tr>
+          <% if station.users.length > 0 %>
+            <tr>
+              <td colspan="5">
+                <%= render :partial => 'users/user_info',
+                           :object => station,
+                           :as => 'station',
+                           :locals => {:view => 'station'} %>
+              </td>
+            </tr>
+          <% end %>
       <% end %>
   <% else %>
       <tr>

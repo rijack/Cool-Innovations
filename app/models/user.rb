@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
   def admin?
     status == "admin"
   end
+
+  def not_user?
+    status != "user"
+  end
 end

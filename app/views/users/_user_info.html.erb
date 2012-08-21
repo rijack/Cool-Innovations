@@ -1,7 +1,9 @@
 <table class="table table-bordered">
   <% station.users.order('name asc').each do |user| %>
       <tr>
-        <td class="category"><%= user.name %></td>
+        <td class="category">
+          <%= link_to user.name, edit_user_path(user)+"?no_layout=1", :class => 'modal-trigger', :title => 'Edit'  %>
+        </td>
       </tr>
       <tr>
         <td>
@@ -13,8 +15,8 @@
                       <th>Process Name</th>
                       <th>Part Number</th>
                       <th>Qty</th>
-                      <th>Ship Date</th>
                       <th>Attachment(s)</th>
+                      <th>Ship Date</th>
                       <th>Status</th>
                     </tr>
                 </thead>
@@ -23,17 +25,17 @@
                     <tr class="user-process" data-id="<%= process.id %>">
                       <td class="sort_handle span1"><%= process.user_priority %></td>
                       <td><%= process.part_process.name %></td>
-                      <td><%= process.order_line.part.name %></td>
-                      <td><%= process.order_line.quantity %></td>
-                      <td><%= display_date(process.order_line.ship_date) %></td>
-                      <td>
+                      <td class="span3"><%= process.order_line.part.name %></td>
+                      <td class="span1"><%= process.order_line.quantity %></td>
+                      <td class="span3">
                         <% process.order_line.part.attachments.each do |attachment| %>
                             <div>
                               <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
                             </div>
                         <% end %>
                       </td>
-                      <td><%= process.status %></td>
+                      <td class="span2"><%= display_date(process.order_line.ship_date) %></td>
+                      <td class="span2"><%= process.status %></td>
                     </tr>
                 <% end %>
                 </tbody>
