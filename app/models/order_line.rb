@@ -3,7 +3,8 @@ class OrderLine < ActiveRecord::Base
     "pending",
     "assigned",
     "in progress",
-    "completed"
+    "completed",
+    "verified"
   ]
 
   COLORS = [

@@ -100,6 +100,7 @@ table td.actions.med {
 .table td.actions.assigned .status.btn  { background-color: #DA4F49; }
 .table td.actions.pending .status.btn  { background-color: #F89406; }
 .table td.actions.shipped .status.btn  { background-color: #414141;  }
+.table td.actions.verified .status.btn  { background-color: #039;  }
 
 .table tr.a-green td {background-color: #CCFEBF;}
 .table tr.b-red td {background-color: #FE8080;}
@@ -227,3 +228,5 @@ textarea.text.short { height: 30px;}
 .order_line .btn-small {padding:3px 8px;}
 
 .part-number + .chzn-container  {text-transform: uppercase;}
+
+.btn-group.line-status .btn-small {padding:5px 8px;}

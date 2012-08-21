@@ -28,13 +28,16 @@
                   <% if process_status.status == "completed" %>
                     <% extra_class = extra_class + " btn-success" %>
                   <% end %>
+                  <% if process_status.status == "verified" %>
+                      <% extra_class = extra_class + " btn-primary" %>
+                  <% end %>
                 <% end %>
                 <button class="btn btn-small <%= extra_class %>"><%= order_line_status %></button>
               <% end %>
             </div>
           </td>
           <td>
-            <select class="assign-user">
+            <select class="assign-user span3">
               <option value="0">Not Assigned</option>
               <% @users.each do |user| %>
                   <option <% if (process_status.user_id == user.id)%>selected="selected"<%end%> value="<%= user.id %>"><%= user.name %></option>

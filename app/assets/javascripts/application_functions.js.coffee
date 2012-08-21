@@ -32,13 +32,15 @@ $ ->
 
   $('.process_status .line-status .btn').live 'click', ->
     status = $(this).html()
-    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger")
+    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger").removeClass("btn-primary")
     if (status == 'completed')
       $(this).addClass("btn-success")
     else if (status == 'in progress')
       $(this).addClass("btn-info")
     else if (status == 'assigned')
       $(this).addClass("btn-danger")
+    else if (status == 'verified')
+      $(this).addClass("btn-primary")
     else
       $(this).addClass("btn-warning")
     process_status_id = $(this).parents(".process_status").data("id")
@@ -62,8 +64,8 @@ $ ->
         type: 'GET'
         url: "/order_lines/#{order_line_id}/accordion_details"
         success: (data) =>
-          #console.log data
           $this.html(data).removeAttr("style")
+          $(".assign-user").chosen()
 
 
   $('.collapse').on 'hidden', ->

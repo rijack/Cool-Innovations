@@ -176,7 +176,8 @@ $ ->
   $('.create-plus').click ->
     $("#success-type").val("plus")
     $("#new_order").submit()
-    return false;  
+    return false;
+
 
   $(".assign-user").live 'change', ->
     selected_user = parseInt($(this).val())
