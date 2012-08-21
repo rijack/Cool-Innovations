@@ -1,3 +1,4 @@
+
 <tr class="order_line"  data-id="<%= order_line.id %>">
   <% if @process_order_line_priority %>
       <td class="fixed sort_handle"><%= order_line_counter + 1%></td>
@@ -11,4 +12,16 @@
   <% end %>
   <td><%= order_line.ship_date %></td>
   <td><%= order_line.due_date %></td>
+  <% if view == "part_process" %>
+      <% order_line_process_status_id = order_line.order_line_process_statuses.where(:part_process_id => part_process.id).first.id %>
+      <% order_line_process_status_user = order_line.order_line_process_statuses.where(:part_process_id => part_process.id).first.user_id %>
+      <td data-id="<%= order_line_process_status_id%>">
+      <select class="assign-user span3">
+        <option value="0">Not Assigned</option>
+        <% @users.each do |user| %>
+            <option <% if (order_line_process_status_user == user.id)%>selected="selected"<%end%>  value="<%= user.id %>"><%= user.name %></option>
+        <% end %>
+      </select>
+    </td>
+  <% end %>
 </tr>
