@@ -1,0 +1,1 @@
+<%= render "shared/update", :item => @station, :url => 'stations/form', :error_body => 'edit_station', :text => 'Station' %>

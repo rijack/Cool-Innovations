@@ -1,6 +1,8 @@
 CoolInnovations::Application.routes.draw do
 
-  resources :stations
+  resources :stations do
+    post :update_station, :on => :collection
+  end
 
   resources :attachments
 

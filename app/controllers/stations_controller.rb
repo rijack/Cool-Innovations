@@ -27,7 +27,9 @@ class StationsController < ApplicationController
     @station = Station.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
       format.json { render json: @station }
     end
   end
@@ -35,6 +37,13 @@ class StationsController < ApplicationController
   # GET /stations/1/edit
   def edit
     @station = Station.find(params[:id])
+
+    respond_to do |format|
+      format.html do
+        render :layout => false if params[:no_layout]
+      end
+      format.json { render json: @station }
+    end
   end
 
   # POST /stations
@@ -45,10 +54,10 @@ class StationsController < ApplicationController
     respond_to do |format|
       if @station.save
         format.html { redirect_to @station, notice: 'Station was successfully created.' }
-        format.json { render json: @station, status: :created, location: @station }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @station.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,10 +70,10 @@ class StationsController < ApplicationController
     respond_to do |format|
       if @station.update_attributes(params[:station])
         format.html { redirect_to @station, notice: 'Station was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @station.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -79,5 +88,11 @@ class StationsController < ApplicationController
       format.html { redirect_to stations_url }
       format.json { head :no_content }
     end
+  end
+
+  def update_station
+    @station = Station.find(params[:id])
+    @station[params[:field]] = params[:new_value]
+    @station.save
   end
 end

@@ -1,39 +1,43 @@
 <h1>Stations</h1>
 
-<%= link_to 'New Station', new_station_path, :class => 'btn btn-primary pull-right mbxx' %>
+<%= link_to 'New Station', "/stations/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger mbxx'%>
 
 <table class="table table-bordered">
   <thead>
   <tr>
     <th><%= sortable "created_at" %></th>
-    <th><%= sortable "name" %></th>
+    <th><%= sortable "name", "Name" %></th>
     <th>Location</th>
     <th>Notes</th>
-    <th></th>
+    <th>&nbsp;</th>
   </tr>
   </thead>
   <tbody>
-  <% @stations.each do |station| %>
+  <% if @stations.length > 0 %>
+      <% @stations.each do |station| %>
+          <tr>
+            <td><%= display_date(station.created_at.to_date()) %></td>
+            <td><%= station.name %></td>
+            <td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
+            <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>
+            <td class="actions fixed">
+              <%= link_to station, :class => 'btn btn-small btn-info', :title => 'Show' do%>
+                  <i class="icon-folder-open"></i>
+              <% end %>
+              <%= link_to edit_station_path(station)+"?no_layout=1", :class => 'btn btn-small modal-trigger', :title => 'Edit' do%>
+                  <i class="icon-edit"></i>
+              <% end %>
+              <%= link_to station, method: :delete, data: { confirm: "Are you sure you want to delete this station? \n" + station.name}, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
+                  <i class="icon-trash" alt="delete"></i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+  <% else %>
       <tr>
-        <td><%= display_date(station.created_at.to_date()) %></td>
-        <td><%= station.name %></td>
-        <td><%= station.location %></td>
-        <td><%= station.notes %></td>
-        <td class="actions">
-          <%= link_to station, :class => 'btn btn-small btn-info', :title => 'Show' do%>
-              <i class="icon-folder-open"></i>
-          <% end %>
-          <%= link_to station, method: :delete, data: { confirm: "Are you sure you want to delete this part? \n" + station.name }, :class => 'btn btn-small btn-danger', :title => 'Delete' do%>
-              <i class="icon-trash" alt="delete"></i>
-          <% end %>
-        </td>
+        <td colspan="5">There are no stations</td>
       </tr>
   <% end %>
   </tbody>
 </table>
-
-
-
-
-
 
