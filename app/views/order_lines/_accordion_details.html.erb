@@ -10,7 +10,7 @@
       <% if process_status.part_process %>
         <tr class="process_status" data-id="<%= process_status.id %>">
           <td class="span2"><%= process_status.part_process.name %></td>
-          <td>
+          <td class="process-statuses">
             <div class="btn-group line-status" data-toggle="buttons-radio">
               <% OrderLine::STATUSES.each do |order_line_status| %>
                 <% extra_class = "" %>
