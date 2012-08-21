@@ -74,7 +74,7 @@ $ ->
         url: "/order_lines/#{order_line_id}/accordion_details"
         success: (data) =>
           $this.html(data).removeAttr("style")
-          $(".assign-user").chosen()
+          ###$(".assign-user").chosen()###
 
 
   $('.collapse').on 'hidden', ->

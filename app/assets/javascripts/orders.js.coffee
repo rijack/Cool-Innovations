@@ -184,11 +184,13 @@ $ ->
 
     active_status = $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button.active").html()
 
+    console.log(active_status)
     if active_status == 'pending' or active_status == 'assigned'
       if (selected_user == 0)
         $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button").removeClass().addClass("btn btn-small")
         $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button:nth-child(1)").addClass("btn-warning active")
       else
+        console.log(2)
         $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button").removeClass().addClass("btn btn-small")
         $(".process_status[data-id="+order_line_process_id+"] td.process-statuses div button:nth-child(2)").addClass("btn-danger active")
 
