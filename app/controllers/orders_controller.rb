@@ -127,7 +127,7 @@ class OrdersController < ApplicationController
 
     if params[:client_id].present?
       @orders = @orders.where(:client_id => params[:client_id])
-      @parts = @parts.joins(:order_lines).where{order_lines.order_id >> my{@orders.all.collect(&:id)}}
+      @parts = @parts.joins(:order_lines).where{order_lines.order_id >> my{@orders.all.collect(&:id)}}.group(:id)
     end
 
     if params[:part_id].present?
@@ -136,7 +136,7 @@ class OrdersController < ApplicationController
     end
 
     if params[:order_id].present?
-      @parts = @parts.joins(:order_lines).where{order_lines.order_id == my{params[:order_id]}}
+      @parts = @parts.joins(:order_lines).where{order_lines.order_id == my{params[:order_id]}}.group(:id)
       @clients = @clients.joins(:orders).where(:"orders.id" => params[:order_id])
     end
   end
