@@ -12,7 +12,7 @@ $ ->
       $row = $(ui.item)
       process_line_ids = ($(row).data('id') for row in $row.parent().find(".user-process"))
       user_id = $row.parents("table").data("id")
-      console.log(user_id)
+      #console.log(user_id)
 
       $.ajax
         type: 'POST'

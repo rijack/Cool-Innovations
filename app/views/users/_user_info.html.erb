@@ -25,7 +25,27 @@
                     <% user.not_completed_processes.each do |process| %>
                         <tr class="user-process process_status" data-id="<%= process.id %>">
                           <td class="sort_handle span1"><%= process.user_priority %></td>
-                          <td><a class="show-hide" data-id="process-<%= user.id %>-<%= process.id%>" href="#"><i class="icon-plus"></i>&nbsp;<%= process.part_process.name %></a></td>
+                          <td class="relative">
+                            <a class="show-hide" data-id="process-<%= user.id %>-<%= process.id%>" href="#"><i class="icon-plus"></i>&nbsp;<%= process.part_process.name %></a>
+                            <div class="show-hide-container floating" id="process-<%= user.id %>-<%= process.id%>">
+                              <table class="table table-condensed table-bordered user-process">
+                                <thead>
+                                <tr>
+                                  <th>Client Name</th>
+                                  <th>Ship Date</th>
+                                  <th>Comment</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                  <td><%= process.order_line.order.client.name %></td>
+                                  <td><%= display_date(process.order_line.ship_date) %></td>
+                                  <td class="editable span3" data-headers="/order_lines/update_order_line_process_status" id="comment-<%= process.id%>"><%= process.comment %></td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </td>
                           <td class="span2"><%= process.order_line.part.name %></td>
                           <td class="span1"><%= process.order_line.quantity %></td>
                           <td class="span2 process-statuses">
@@ -55,28 +75,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                            <td colspan="5" class="attached no-display">
-                              <div class="show-hide-container" id="process-<%= user.id %>-<%= process.id%>">
-                                <table class="table table-condensed table-bordered user-process">
-                                  <thead>
-                                      <tr>
-                                        <th>Client Name</th>
-                                        <th>Ship Date</th>
-                                        <th>Comment</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td><%= process.order_line.order.client.name %></td>
-                                      <td><%= display_date(process.order_line.ship_date) %></td>
-                                      <td class="editable span3" data-headers="/order_lines/update_order_line_process_status" id="comment-<%= process.id%>"><%= process.comment %></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </td>
-                        </tr>
+
                     <% end %>
                 </tbody>
               </table>

@@ -254,3 +254,10 @@ textarea.text.short { height: 30px;}
 .user-process td {font-size:11px;line-height: 12px;}
 .user-process td a {font-size:11px;line-height: 11px;}
 .table td.attached {border-top:0;}
+.relative {position: relative;}
+.floating {
+    position:absolute;
+    background-color: #fff;
+    width: 400px;
+    z-index: 99999;
+}
