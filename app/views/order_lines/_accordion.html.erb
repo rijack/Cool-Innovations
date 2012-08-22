@@ -1,6 +1,6 @@
 <tr>
   <td colspan="<%= colspan %>" class="order-line-info hide">
-    <div class="accordion-body collapse" id="collapse<%= order_line.id %>" data-id="<%= order_line.id %>">
+    <div class="accordion-body collapse" id="collapse<%= order_line.id %>" data-headers="/order_lines/<%= order_line.id %>/accordion_details">
       <!--<h4>Order line details</h4>-->
       <%# render :partial => 'order_lines/_accordion_details', :locals => { :order_line => order_line } %>
     </div>

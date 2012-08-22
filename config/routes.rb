@@ -38,6 +38,7 @@ CoolInnovations::Application.routes.draw do
     get  :search, :on => :collection
     post :update_part, :on => :collection
     post :set_required_process_priority, :on => :member
+    get :accordion_details, :on => :member
   end
 
   resources :part_processes do
