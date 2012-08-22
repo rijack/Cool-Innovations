@@ -46,6 +46,7 @@ CoolInnovations::Application.routes.draw do
     post :set_order_line_priority, :on => :member
     post :reset_order_line_priority, :on => :member
     post :update_part_process, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   resources :hardwares do

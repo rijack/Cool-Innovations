@@ -1,0 +1,26 @@
+<table class="table table-bordered table-condensed table-striped" data-id="<%= part_process.id %>">
+  <thead>
+    <% if part_process.order_lines_manual %>
+      <tr>
+        <th colspan="7">Custom order</th>
+      </tr>
+
+    <% end %>
+    <tr>
+      <th class="fixed"><%= nonsortable "order_line_process_statuses.order_line_priority", "Priority" %></th>
+      <% @process_order_line_priority = part_process.id %>
+      <th>P/O #</th>
+      <th>Client</th>
+      <th>Part #</th>
+      <th>Qty</th>
+      <th>Ship Date</th>
+      <th>Dock Date</th>
+    </tr>
+  </thead>
+  <tbody  class="process_order_lines"  data-id="<%= part_process.id %>">
+    <%= render :partial => 'order_lines/order_line_simple',
+      :collection => part_process.order_lines_with_pending,
+      :as => 'order_line',
+      :locals => {:hardware => nil, :view => 'part_process'} %>
+  </tbody>
+</table>
