@@ -113,4 +113,8 @@ class ClientsController < ApplicationController
     @client.save
   end
 
+  def accordion_details
+    @client = Client.find(params[:id])
+    render :partial => 'clients/accordion_details', :locals => {:client => @client }
+  end
 end

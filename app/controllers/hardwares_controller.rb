@@ -135,4 +135,8 @@ class HardwaresController < ApplicationController
     @hardware.save
   end
 
+  def accordion_details
+    @hardware = Hardware.find(params[:id])
+    render :partial => 'hardwares/accordion_details', :locals => {:hardware => @hardware }
+  end
 end

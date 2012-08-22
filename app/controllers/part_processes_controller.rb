@@ -132,4 +132,9 @@ class PartProcessesController < ApplicationController
       order_line_process_status.save
     end
   end
+
+  def accordion_details
+    @part_process = PartProcess.find(params[:id])
+    render :partial => 'part_processes/accordion_details', :locals => {:part_process => @part_process }
+  end
 end

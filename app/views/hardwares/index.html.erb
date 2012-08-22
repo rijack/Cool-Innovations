@@ -59,27 +59,7 @@
           <% if (hardware.order_lines.not_shipped.length > 0) %>
               <tr>
                 <td colspan="7" class="order-line-info hide">
-                  <div class="accordion-body collapse" id="collapse<%= hardware.id %>">
-                    <table class="table table-bordered table-condensed table-striped">
-                      <thead>
-                      <tr>
-                        <th>P/O #</th>
-                        <th>Client</th>
-                        <th>Part #</th>
-                        <th>Qty</th>
-                        <th>Total Qty</th>
-                        <th>Ship Date</th>
-                        <th>Dock Date</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <%= render :partial => 'order_lines/order_line_simple',
-                                 :collection => hardware.order_lines.not_shipped.order(sort_by_field),
-                                 :as => 'order_line',
-                                 :locals => {:hardware => hardware, :view => 'hardware', :part_process => nil} %>
-                      </tbody>
-                    </table>
-
+                  <div class="accordion-body collapse" id="collapse<%= hardware.id %>" data-headers="/hardwares/<%= hardware.id %>/accordion_details">
                   </div>
               </tr>
           <% end %>

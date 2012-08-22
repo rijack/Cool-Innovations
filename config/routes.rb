@@ -43,6 +43,7 @@ CoolInnovations::Application.routes.draw do
     get  :search, :on => :collection
     post :update_part, :on => :collection
     post :set_required_process_priority, :on => :member
+    get :accordion_details, :on => :member
   end
 
   resources :part_processes do
@@ -50,11 +51,13 @@ CoolInnovations::Application.routes.draw do
     post :set_order_line_priority, :on => :member
     post :reset_order_line_priority, :on => :member
     post :update_part_process, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   resources :hardwares do
     get :search, :on => :collection
     post :update_hardware, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   resources :users do
@@ -66,6 +69,7 @@ CoolInnovations::Application.routes.draw do
   resources :clients do
     get :search, :on => :collection
     post :update_client, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   root to: "comments#index"

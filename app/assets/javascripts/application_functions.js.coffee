@@ -66,15 +66,13 @@ $ ->
 
   $('.collapse').on 'show', ->
     $(this).parent("td").removeClass("hide")
-    order_line_id = $(this).attr("data-id")
-    if order_line_id
+    headers = $(this).attr("data-headers")
+    if headers
       $this = $(this).html('<div />')
       $.ajax
         type: 'GET'
-        url: "/order_lines/#{order_line_id}/accordion_details"
-        success: (data) =>
-          $this.html(data).removeAttr("style")
-          ###$(".assign-user").chosen()###
+        url: headers
+        success: (data) => $this.html(data).removeAttr("style")
 
 
   $('.collapse').on 'hidden', ->

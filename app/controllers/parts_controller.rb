@@ -127,4 +127,9 @@ class PartsController < ApplicationController
       status.save
     end
   end
+
+  def accordion_details
+    @part = Part.find(params[:id])
+    render :partial => 'parts/accordion_details', :locals => {:part => @part }
+  end
 end
