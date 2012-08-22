@@ -25,6 +25,7 @@ table td.actions.med {
     width:130px;
 }
 
+.no-display{display: none;}
 .table td {padding:6px !important;}
 
 .upper {text-transform: uppercase;}
@@ -115,6 +116,16 @@ table .order-line-info .span3 {float:left;}
 table .order-line-info .span5 {float:left;}
 table .order-line-info .span10 {float:left;}
 table .order-line-info .span5.middle {margin:0 25px;}
+
+table .station-details .span6 {
+    float:left;
+    margin-left:30px;
+    width:550px;
+    margin-bottom: 10px;
+    border:1px solid #DDD;
+    -webkit-border-radius: 4px;
+    padding:5px;
+}
 
 
 
@@ -235,3 +246,11 @@ textarea.text.short { height: 30px;}
 
 
 .user-process.table-bordered tr:first-child td {border-top:1px solid #DDD !important;}
+
+.show-hide-container {display:none;}
+.show-hide-container.in {display:block;}
+.show-hide-container:hover {text-decoration: none;}
+
+.user-process td {font-size:11px;line-height: 12px;}
+.user-process td a {font-size:11px;line-height: 11px;}
+.table td.attached {border-top:0;}

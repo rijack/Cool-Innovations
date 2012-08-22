@@ -124,7 +124,7 @@ $ ->
             modifiedValue = newValue
             tag.attr('data-content',newValue)
 
-          $(this).parents("td").html(modifiedValue);
+          $(this).parent("td").html(modifiedValue);
         else
           if (substrLength)
             if (oldValue.length > substrLength-3)
@@ -134,11 +134,19 @@ $ ->
             tag.attr('data-content',oldValue)
           else
             modifiedValue = oldValue
-          $(this).parents("td").html(modifiedValue);
+          $(this).parent("td").html(modifiedValue);
         currentEditable = ""
 
   $(".show-all").on 'click', ->
     current_id = $(this).attr("data-id")
     console.log()
     $("tr[data-id="+current_id+"].collapsible").toggleClass("no-orders").toggleClass("has-orders");
+    return false
+
+
+  $(".show-hide").on 'click', ->
+    $(this).children().toggleClass("icon-plus").toggleClass("icon-minus");
+    block_id = $(this).attr("data-id")
+    $("#"+block_id).toggleClass("show-hide-container in").toggleClass("show-hide-container");
+    $("#"+block_id).parents(".attached").toggleClass("no-display").toggleClass("");
     return false

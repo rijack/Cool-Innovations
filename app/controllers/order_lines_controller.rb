@@ -134,4 +134,10 @@ class OrderLinesController < ApplicationController
     @order_line_process_status.status = current_status
     @order_line_process_status.save
   end
+
+  def update_order_line_process_status
+    @order_line_process_status = OrderLineProcessStatus.find(params[:id])
+    @order_line_process_status[params[:field]] = params[:new_value]
+    @order_line_process_status.save
+  end
 end

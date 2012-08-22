@@ -3,7 +3,8 @@
 <%= link_to 'New User', new_user_path+"?no_layout=1", :class => 'btn btn-primary pull-right mbx mrx modal-trigger' %>
 <%= link_to 'New Station', "/stations/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger mbxx'%>
 
-<table class="table table-bordered">
+
+<table class="table table-bordered table-striped stations-table">
   <thead>
   <tr>
     <th><%= sortable "created_at" %></th>
@@ -17,7 +18,7 @@
   <% if @stations.length > 0 %>
       <% @stations.each do |station| %>
           <tr>
-            <td class="span2"><%= display_date(station.created_at.to_date()) %></td>
+            <td class="span2"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= display_date(station.created_at.to_date()) %></a></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="name-<%= station.id %>"><%= station.name %></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>
@@ -35,11 +36,14 @@
           </tr>
           <% if station.users.length > 0 %>
             <tr>
-              <td colspan="5">
-                <%= render :partial => 'users/user_info',
-                           :object => station,
-                           :as => 'station',
-                           :locals => {:view => 'station'} %>
+              <td colspan="5" class="station-details">
+                <div class="accordion-body collapse in" id="collapse<%= station.id %>">
+                  <%= render :partial => 'users/user_info',
+                             :object => station,
+                             :as => 'station',
+                             :locals => {:view => 'station'} %>
+                </div>
+
               </td>
             </tr>
           <% end %>

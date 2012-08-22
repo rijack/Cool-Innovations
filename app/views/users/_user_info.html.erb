@@ -1,3 +1,97 @@
+<div class="row">
+  <% station.users.order('name asc').each do |user| %>
+      <div class="span6">
+        <div class="user-info">
+            <h5 class="nm">
+              <a class="show-hide" data-id="user-<%= user.id %>" href="#"><i class="icon-minus"></i>&nbsp;<%= user.name %></a>
+              <%= link_to edit_user_path(user)+"?no_layout=1", :class => 'modal-trigger', :title => 'Edit' do%>
+                  <i class="icon-edit"></i>
+              <% end %>
+            </h5>
+        </div>
+        <div class="show-hide-container in" id="user-<%= user.id %>">
+          <% if user.not_completed_processes.length > 0 %>
+              <table class="table table-condensed user-process" data-id="<%= user.id %>">
+                <thead>
+                    <tr>
+                      <th>Priority</th>
+                      <th>Process Name</th>
+                      <th>Part Number</th>
+                      <th>Qty</th>
+                      <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody  class="user-process-lines"  data-id="<%= user.id %>">
+                    <% user.not_completed_processes.each do |process| %>
+                        <tr class="user-process process_status" data-id="<%= process.id %>">
+                          <td class="sort_handle span1"><%= process.user_priority %></td>
+                          <td><a class="show-hide" data-id="process-<%= user.id %>-<%= process.id%>" href="#"><i class="icon-minus"></i>&nbsp;<%= process.part_process.name %></a></td>
+                          <td class="span2"><%= process.order_line.part.name %></td>
+                          <td class="span1"><%= process.order_line.quantity %></td>
+                          <td class="span2 process-statuses">
+                            <div class="btn-group line-status" data-toggle="buttons-radio">
+                              <% OrderLine::STATUSES.each do |order_line_status| %>
+                                  <% extra_class = "" %>
+                                  <% if order_line_status == process.status %>
+                                      <% extra_class = "active" %>
+                                      <% if process.status  == "pending" %>
+                                          <% extra_class = extra_class + " btn-warning" %>
+                                      <% end %>
+                                      <% if process.status  == "assigned" %>
+                                          <% extra_class = extra_class + " btn-danger" %>
+                                      <% end %>
+                                      <% if process.status  == "in progress" %>
+                                          <% extra_class = extra_class + " btn-info" %>
+                                      <% end %>
+                                      <% if process.status  == "completed" %>
+                                          <% extra_class = extra_class + " btn-success" %>
+                                      <% end %>
+                                      <% if process.status  == "verified" %>
+                                          <% extra_class = extra_class + " btn-primary" %>
+                                      <% end %>
+                                  <% end %>
+                                  <button class="btn btn-small <%= extra_class %>" data-value="<%= order_line_status %>"><%= order_line_status[0].upcase %></button>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="attached no-display">
+                              <div class="show-hide-container" id="process-<%= user.id %>-<%= process.id%>">
+                                <table class="table table-condensed table-bordered user-process">
+                                  <thead>
+                                      <tr>
+                                        <th>Client Name</th>
+                                        <th>Ship Date</th>
+                                        <th>Comment</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td><%= process.order_line.order.client.name %></td>
+                                      <td><%= display_date(process.order_line.ship_date) %></td>
+                                      <td class="editable span3" data-headers="/order_lines/update_order_line_process_status" id="comment-<%= process.id%>"><%= process.comment %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+              </table>
+          <% else %>
+              Slacking off
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+
+
+<!--
 <table class="table table-bordered">
   <% station.users.order('name asc').each do |user| %>
       <tr>
@@ -16,7 +110,7 @@
                       <th>Part Number</th>
                       <th>Qty</th>
                       <th>Client Name</th>
-                      <!--<th>Attachment(s)</th>-->
+                      &lt;!&ndash;<th>Attachment(s)</th>&ndash;&gt;
                       <th>Ship Date</th>
                       <th>Status</th>
                     </tr>
@@ -29,13 +123,13 @@
                       <td class="span3"><%= process.order_line.part.name %></td>
                       <td class="span1"><%= process.order_line.quantity %></td>
                       <td class="span3"><%= process.order_line.order.client.name %></td>
-                      <!--<td class="span3">
+                      &lt;!&ndash;<td class="span3">
                         <% process.order_line.part.attachments.each do |attachment| %>
                             <div>
                               <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
                             </div>
                         <% end %>
-                      </td>-->
+                      </td>&ndash;&gt;
                       <td class="span2"><%= display_date(process.order_line.ship_date) %></td>
                       <td class="span2 process-statuses">
                         <div class="btn-group line-status" data-toggle="buttons-radio">
@@ -75,4 +169,4 @@
         </td>
       </tr>
   <% end %>
-</table>
+</table>-->
