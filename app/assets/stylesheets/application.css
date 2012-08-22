@@ -260,4 +260,6 @@ textarea.text.short { height: 30px;}
     background-color: #fff;
     width: 400px;
     z-index: 99999;
+    top:-20px;
+    left:50px;
 }
