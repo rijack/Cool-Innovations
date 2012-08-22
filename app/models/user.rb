@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   USER_TYPES = [
       "admin",
       "manager",
-      "user"
+      "user",
+      "station"
   ]
 
   attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
 
   def self.users_only
     where { status == "user" }
-    .order ("name asc")
+    .order("name asc")
   end
 
   def not_completed_processes
@@ -35,5 +36,21 @@ class User < ActiveRecord::Base
 
   def not_user?
     status != "user"
+  end
+
+  def allowed_session_length
+    if status == "station"
+      24.hours.ago
+    else
+      10.minutes.ago
+    end
+  end
+
+  def layout
+    if status == "station"
+      "station"
+    else
+      "application"
+    end
   end
 end

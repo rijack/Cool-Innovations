@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :sort_column, :sort_direction, :sort_by_field, :current_user, :logged_in?
 
   before_filter :needs_login
+  layout :application_layout
 
   protected
   def sort_direction
@@ -64,10 +65,14 @@ class ApplicationController < ActionController::Base
   end
 
   def session_timeout
-    if !session[:last_seen] || session[:last_seen] < 10.minutes.ago
+    if !session[:last_seen] || session[:last_seen] < (current_user.try(:allowed_session_length) || 10.minutes.ago)
       reset_session
-      redirect_to login_url, :notice => "your session timedout"
+      redirect_to login_url, :notice => "your session timed-out"
     end
     session[:last_seen] = Time.now
+  end
+
+  def application_layout
+    current_user.try(:layout) || "application"
   end
 end
