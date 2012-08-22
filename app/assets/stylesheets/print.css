@@ -1,2 +1,11 @@
 /*
+ *
+ *= require_self
+ *= require_tree ./print
+*/
+ 
+
+/*
 .navbar { visibility: hidden; }*/
+
+

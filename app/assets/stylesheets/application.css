@@ -11,7 +11,7 @@
  *= require_self
  *= require chosen
  *= require custom-theme/jquery-ui-1.8.16.custom
- *= require_tree .
+ *= require_tree ./all
  */
 
 .navbar-fixed-top {position: relative !important;}
