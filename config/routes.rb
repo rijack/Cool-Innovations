@@ -63,6 +63,7 @@ CoolInnovations::Application.routes.draw do
   resources :clients do
     get :search, :on => :collection
     post :update_client, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   root to: "comments#index"
