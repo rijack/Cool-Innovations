@@ -56,7 +56,7 @@
   <thead>
     <tr>
       <% if params["display"] != "shipped" %>
-          <th class="fixed"><%= sortable "created_at" %></th>
+          <th class="fixed"><%= sortable "order_lines.created_at", "Create At" %></th>
       <% end %>
       <th><%= sortable "clients.name", "Customer" %></th>
       <th class="fixed"><%= sortable "order_id", "P/O Number" %></th>
