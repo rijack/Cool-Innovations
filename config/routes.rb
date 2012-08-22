@@ -51,6 +51,7 @@ CoolInnovations::Application.routes.draw do
   resources :hardwares do
     get :search, :on => :collection
     post :update_hardware, :on => :collection
+    get :accordion_details, :on => :member
   end
 
   resources :users do

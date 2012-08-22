@@ -1,0 +1,19 @@
+<table class="table table-bordered table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>P/O #</th>
+      <th>Client</th>
+      <th>Part #</th>
+      <th>Qty</th>
+      <th>Total Qty</th>
+      <th>Ship Date</th>
+      <th>Dock Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => 'order_lines/order_line_simple',
+      :collection => hardware.order_lines.not_shipped.order(sort_by_field),
+      :as => 'order_line',
+      :locals => {:hardware => hardware, :view => 'hardware'} %>
+  </tbody>
+</table>
