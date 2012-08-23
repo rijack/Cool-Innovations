@@ -10,6 +10,20 @@ class StationsController < ApplicationController
     end
   end
 
+  def index_floor
+    @stations = Station.all
+    if params[:id]
+      @station = Station.find(params[:id])
+    else
+      @station = nil
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @stations }
+    end
+  end
+
   # GET /stations/1
   # GET /stations/1.json
   def show

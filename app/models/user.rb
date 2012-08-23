@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     if status == "station"
       24.hours.ago
     else
-      10.minutes.ago
+      30.minutes.ago
     end
   end
 

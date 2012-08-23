@@ -7,6 +7,12 @@ class OrderLine < ActiveRecord::Base
     "verified"
   ]
 
+  FLOOR_STATUSES = [
+      "assigned",
+      "in progress",
+      "completed"
+  ]
+
   COLORS = [
       "a-green",
       "b-red",

@@ -117,7 +117,7 @@ table .order-line-info .span5 {float:left;}
 table .order-line-info .span10 {float:left;}
 table .order-line-info .span5.middle {margin:0 25px;}
 
-table .station-details .span6 {
+.station-details .span6 {
     float:left;
     margin-left:30px;
     width:550px;

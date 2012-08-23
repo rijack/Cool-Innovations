@@ -31,7 +31,7 @@ $ ->
 
 
   $('.process_status .line-status .btn').live 'click', ->
-
+    console.log(1)
     status = $(this).attr("data-value")
     #console.log(status)
     $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger").removeClass("btn-primary")

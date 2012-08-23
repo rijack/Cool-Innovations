@@ -2,6 +2,7 @@ CoolInnovations::Application.routes.draw do
 
   resources :stations do
     post :update_station, :on => :collection
+    get :index_floor, :on => :collection
   end
 
   resources :attachments
@@ -73,7 +74,8 @@ CoolInnovations::Application.routes.draw do
     get :accordion_details, :on => :member
   end
 
-  root to: "comments#index"
+
+  root to: "sessions#index"
   get 'login' => "sessions#new"
   get 'logout' => "sessions#destroy"
 

@@ -1,0 +1,13 @@
+<% if @station %>
+    <%= render :partial => 'stations/user_details',
+               :object => @station,
+               :as => 'station',
+               :locals => {:view => 'station'} %>
+<% else %>
+    <% @stations.each do |station| %>
+        <%= render :partial => 'stations/user_details',
+                   :object => station,
+                   :as => 'station',
+                   :locals => {:view => 'station'} %>
+    <% end %>
+<% end %>

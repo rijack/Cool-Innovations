@@ -4,6 +4,14 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def index
+    if current_user and current_user.status == "station"
+      redirect_to index_floor_stations_path
+    else
+      redirect_to comments_path
+    end
+  end
+
   def create
     user = User.find_by_username(params[:user][:username]) ||
       User.find_by_email(params[:user][:username])

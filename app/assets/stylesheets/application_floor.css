@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require chosen
+ *= require custom-theme/jquery-ui-1.8.16.custom
+ *= require_tree ./all
+ */
+
+.nm {margin:0 !important;}
+.mxn {margin:0 -10px !important;}
+.mxna {margin:-11px !important;}
+.mts { margin-top: 5px !important; }
+.mtx { margin-top: 10px !important; }
+.mtxx { margin-top: 20px !important; }
+.mls { margin-left: 5px !important; }
+.mlx { margin-left: 10px !important; }
+.mlxx { margin-left: 20px !important; }
+.mlxxx { margin-left: 30px !important; }
+.mlxc { margin-left: 90px !important; }
+.mlxx { margin-left: 20px !important; }
+.mbs { margin-bottom: 5px !important; }
+.mbx { margin-bottom: 10px !important; }
+.mbxx { margin-bottom: 20px !important; }
+.mbxxx { margin-bottom: 30px !important; }
+.mrs { margin-right: 5px !important; }
+.mrx { margin-right: 10px !important; }
+.mrxx { margin-right: 20px !important; }
+.nmt { margin-top: 0 !important; }
+.nml { margin-left: 0 !important; }
+.nmb { margin-bottom: 0 !important; }
+.nmr { margin-right: 0 !important; }
+.ml30 { margin-left:30px !important;}
+.ml15 { margin-left:15px !important;}
+.ml175 { margin-left:175px !important;}
+.ml335 { margin-left:335px !important;}
+.ml345 { margin-left:345px !important;}
+.stretch {padding-bottom:1000px !important;margin-bottom:-1000px !important;}
+.mtbx { margin: 10px 0 !important }
+.m0a { margin: 0 auto !important; }
+
+.navbar-fixed-top {position: relative !important;}
+
+.navbar .nav > li > a {font-size: 16px;}
+
+.box {
+    position: relative;
+    margin: 15px 0 0 0;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}

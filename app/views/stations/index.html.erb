@@ -17,7 +17,7 @@
   <tbody>
   <% if @stations.length > 0 %>
       <% @stations.each do |station| %>
-          <tr>
+          <tr class="category">
             <!--<td class="span2"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= display_date(station.created_at.to_date()) %></a></td>-->
             <td class="" data-headers="/stations/update_station"  id="name-<%= station.id %>"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i>&nbsp;<%= station.name %></a></td>
             <!--<td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
@@ -36,7 +36,7 @@
           </tr>
           <% if station.users.length > 0 %>
             <tr>
-              <td colspan="2" class="station-details">
+              <td colspan="2" class="">
                 <div class="accordion-body collapse in" id="collapse<%= station.id %>">
                   <%= render :partial => 'users/user_info',
                              :object => station,
