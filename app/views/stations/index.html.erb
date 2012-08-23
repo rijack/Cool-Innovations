@@ -7,10 +7,10 @@
 <table class="table table-bordered  stations-table">
   <thead>
   <tr>
-    <th><%= sortable "created_at" %></th>
+    <!--<th><%= sortable "created_at" %></th>-->
     <th><%= sortable "name", "Name" %></th>
-    <th>Location</th>
-    <th>Notes</th>
+    <!--<th>Location</th>
+    <th>Notes</th>-->
     <th>&nbsp;</th>
   </tr>
   </thead>
@@ -18,10 +18,10 @@
   <% if @stations.length > 0 %>
       <% @stations.each do |station| %>
           <tr>
-            <td class="span2"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= display_date(station.created_at.to_date()) %></a></td>
-            <td class="editable medium" data-headers="/stations/update_station"  id="name-<%= station.id %>"><%= station.name %></td>
-            <td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
-            <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>
+            <!--<td class="span2"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= display_date(station.created_at.to_date()) %></a></td>-->
+            <td class="editable medium" data-headers="/stations/update_station"  id="name-<%= station.id %>"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= station.name %></a></td>
+            <!--<td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
+            <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>-->
             <td class="actions fixed">
               <%= link_to station, :class => 'btn btn-small btn-info', :title => 'Show' do%>
                   <i class="icon-folder-open"></i>
@@ -36,7 +36,7 @@
           </tr>
           <% if station.users.length > 0 %>
             <tr>
-              <td colspan="5" class="station-details">
+              <td colspan="2" class="station-details">
                 <div class="accordion-body collapse in" id="collapse<%= station.id %>">
                   <%= render :partial => 'users/user_info',
                              :object => station,
