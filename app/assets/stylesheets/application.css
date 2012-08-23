@@ -236,6 +236,7 @@ textarea.text.short { height: 30px;}
 .no-orders {display: none;}
 
 .input-tiny {width:40px;}
+.input-tiny2 {width:55px;}
 .input-small2 {width:70px;}
 
 .order_line .btn-small {padding:3px 8px;}

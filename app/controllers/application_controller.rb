@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_timeout
-    if !session[:last_seen] || session[:last_seen] < (current_user.try(:allowed_session_length) || 10.minutes.ago)
+    if !session[:last_seen] || session[:last_seen] < 30.minutes.ago
       reset_session
       redirect_to login_url, :notice => "your session timed-out"
     end
