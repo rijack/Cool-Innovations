@@ -14,8 +14,4 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
-//= require cocoon
-//= require jquery.spin
-//= require date
-//= require sticky.table.headers
 //= require application_functions
