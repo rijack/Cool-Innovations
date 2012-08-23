@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cool Innovations</title>
+  <title>Cool Innovations - Station</title>
   <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
-  <%= stylesheet_link_tag "application_floor", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= stylesheet_link_tag "print", :media => "print" %>
   <%= csrf_meta_tags %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="<%= params[:controller] %>">
-<% if current_user  %>
-    <%= render 'layouts/navigation_stations' %>
-<% end %>
-<div class="container">
-  <div class="row">
-    <%= yield %>
-    <!--<div class="span3">
-        <%= render 'layouts/rail_search' %>
-      </div>-->
+  <div class="container">
+    <div class="row">
+      <div>
+        This is a station layout.
+      </div>
+
+      <div class="span12">
+        <% flash.each do |name, msg| %>
+          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= msg %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
   </div>
-</div>
-<%= javascript_include_tag "application_floor" %>
+  <%= javascript_include_tag "application" %>
 
-<%= content_for :pushed_javascript %>
+  <%= content_for :pushed_javascript %>
 
-<div class="modal hide fade" id="modal-container">
-  <div class="spinner"></div>
-</div>
+  <div class="modal hide fade" id="modal-container">
+    <div class="spinner"></div>
+  </div>
 </body>
 </html>
