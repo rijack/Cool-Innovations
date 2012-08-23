@@ -10,7 +10,7 @@
       <div class="nav-collapse">
         <ul class="nav">
           <% @stations.each do |station| %>
-              <li <% if params[:id] == station.id.to_s %>class="active"<% end%>><%= link_to station.name, "/?id="+station.id.to_s %></li>
+              <li <% if params[:id] == station.id.to_s %>class="active"<% end%>><%= link_to station.name, index_floor_stations_path+"?id="+station.id.to_s %></li>
           <% end %>
           <li><%= link_to 'Logout', logout_url %></li>
         </ul>

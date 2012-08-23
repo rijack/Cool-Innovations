@@ -2,7 +2,7 @@
    <% if params[:id] %>
       <h3><%= station.name %></h3>
    <% else %>
-      <h3><%= link_to station.name, "/?id="+station.id.to_s %></h3>
+      <h3><%= link_to station.name, index_floor_stations_path+"?id="+station.id.to_s %></h3>
    <% end %>
   <% if station.users.length > 0 %>
       <table class="table">
