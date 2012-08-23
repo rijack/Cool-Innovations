@@ -17,7 +17,7 @@
           <li <% if params[:controller] == "part_processes" %>class="active"<% end%>><%= link_to "Processes", part_processes_path %></li>
           <li <% if params[:controller] == "clients" %>class="active"<% end%>><%= link_to "Customers", clients_path%></li>
           <li <% if params[:controller] == "shipping_methods" %>class="active"<% end%>><%= link_to "Shipping Methods", shipping_methods_path%></li>
-          <% if current_user.admin? %>
+          <% if current_user.not_user? %>
               <li <% if params[:controller] == "users" %>class="active"<% end%>><%= link_to "Users", users_path%></li>
               <li <% if params[:controller] == "stations" %>class="active"<% end%>><%= link_to "Stations", stations_path%></li>
           <% end %>
