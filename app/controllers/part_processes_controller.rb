@@ -134,6 +134,7 @@ class PartProcessesController < ApplicationController
   end
 
   def accordion_details
+    @users = User.users_only
     @part_process = PartProcess.find(params[:id])
     render :partial => 'part_processes/accordion_details', :locals => {:part_process => @part_process }
   end
