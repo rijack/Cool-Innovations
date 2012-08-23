@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731131702) do
+ActiveRecord::Schema.define(:version => 20120823132619) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -83,6 +83,9 @@ ActiveRecord::Schema.define(:version => 20120731131702) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "order_line_priority", :default => 10000
+    t.integer  "user_id"
+    t.integer  "user_priority",       :default => 99
+    t.text     "comment"
   end
 
   add_index "order_line_process_statuses", ["order_line_id"], :name => "index_order_line_process_statuses_on_order_line_id"
@@ -98,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20120731131702) do
     t.datetime "updated_at",                                                              :null => false
     t.string   "status",                                           :default => "pending"
     t.date     "ship_date"
-    t.decimal  "price",              :precision => 8, :scale => 2
+    t.decimal  "price",              :precision => 8, :scale => 4
     t.integer  "shipping_method_id"
     t.date     "actual_ship_date"
     t.integer  "line_number"
@@ -176,6 +179,14 @@ ActiveRecord::Schema.define(:version => 20120731131702) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "stations", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -189,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20120731131702) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "station_id"
   end
 
   create_table "versions", :force => true do |t|
