@@ -3,13 +3,13 @@
       <div class="span6">
         <div class="user-info">
             <h5 class="nm">
-              <a class="show-hide" data-id="user-<%= user.id %>" href="#"><i class="icon-minus"></i>&nbsp;<%= user.name %></a>
+              <a class="show-hide" data-id="user-<%= user.id %>" href="#"><i class="<% if user.station_display == "true" %>icon-minus<% else %>icon-plus<% end %>"></i>&nbsp;<%= user.name %></a>
               <%= link_to edit_user_path(user)+"?no_layout=1", :class => 'modal-trigger', :title => 'Edit' do%>
                   <i class="icon-edit"></i>
               <% end %>
             </h5>
         </div>
-        <div class="show-hide-container in" id="user-<%= user.id %>">
+        <div class="show-hide-container <% if user.station_display == "true" %>in<% end %>" id="user-<%= user.id %>">
           <% if user.not_completed_processes.length > 0 %>
               <table class="table table-condensed user-process" data-id="<%= user.id %>">
                 <thead>

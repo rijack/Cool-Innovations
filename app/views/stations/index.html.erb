@@ -19,7 +19,7 @@
       <% @stations.each do |station| %>
           <tr class="category">
             <!--<td class="span2"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i><%= display_date(station.created_at.to_date()) %></a></td>-->
-            <td class="" data-headers="/stations/update_station"  id="name-<%= station.id %>"><a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= station.id %>"><i class="icon-minus"></i>&nbsp;<%= station.name %></a></td>
+            <td class="" data-headers="/stations/update_station"  id="name-<%= station.id %>"><a class="show-hide" data-id="station-<%= station.id %>" href="#"><i class="<% if station.station_display == "true"%>icon-minus<% else %>icon-plus<% end %>"></i>&nbsp;<%= station.name %></a></td>
             <!--<td class="editable medium" data-headers="/stations/update_station"  id="location-<%= station.id %>"><%= station.location %></td>
             <td class="editable medium" data-headers="/stations/update_station"  id="notes-<%= station.id %>"><%= station.notes %></td>-->
             <td class="actions fixed">
@@ -34,19 +34,18 @@
               <% end %>
             </td>
           </tr>
-          <% if station.users.length > 0 %>
-            <tr>
+          <tr>
               <td colspan="2" class="">
-                <div class="accordion-body collapse in" id="collapse<%= station.id %>">
-                  <%= render :partial => 'users/user_info',
-                             :object => station,
-                             :as => 'station',
-                             :locals => {:view => 'station'} %>
-                </div>
-
+                <% if station.users.length > 0 %>
+                    <div class="show-hide-container <% if station.station_display == "true" %>in<% end %>" id="station-<%= station.id %>">
+                      <%= render :partial => 'users/user_info',
+                                 :object => station,
+                                 :as => 'station',
+                                 :locals => {:view => 'station'} %>
+                    </div>
+                <% end %>
               </td>
-            </tr>
-          <% end %>
+          </tr>
       <% end %>
   <% else %>
       <tr>

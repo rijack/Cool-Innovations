@@ -149,4 +149,22 @@ $ ->
     block_id = $(this).attr("data-id")
     $("#"+block_id).toggleClass("show-hide-container in").toggleClass("show-hide-container");
     $("#"+block_id).parents(".attached").toggleClass("no-display").toggleClass("");
+
+    type = block_id.split("-")[0]
+    id = block_id.split("-")[1]
+    current_status = ($("#"+block_id).hasClass("in")) ? true : false
+
+    if type == "station"
+      curr_url = "/stations/update_station"
+    else if type == "user"
+      curr_url = "/users/update_user"
+
+    $.ajax
+      type: 'POST'
+      url: curr_url
+      data:
+        field: "station_display"
+        id: id
+        new_value: current_status
+
     return false

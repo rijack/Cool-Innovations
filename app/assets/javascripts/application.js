@@ -18,5 +18,6 @@
 //= require chosen-jquery
 //= require_tree .
 //= require jquery.spin
+//= require jquery.cookie
 //= require date
 //= require sticky.table.headers
