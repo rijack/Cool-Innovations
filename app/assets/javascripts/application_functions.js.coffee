@@ -5,6 +5,9 @@
 
 $ ->
   #$('#orders-table').tableScroll({height:500});
+  $(".refresh").on 'click', ->
+    location.reload()
+
   $(".orders #orders-table").stickyTableHeaders();
   $(".modal-trigger").click ->
     $("#modal-container .spinner").spin()
@@ -43,14 +46,14 @@ $ ->
       $(this).addClass("btn-danger")
     else if (status == 'verified')
       $(this).addClass("btn-primary")
-      if document.location.pathname == "/stations"
-        location.reload()
+      ###if document.location.pathname == "/stations"
+        location.reload()###
     else
       $(this).addClass("btn-warning")
       if document.location.pathname == "/orders"
         $(this).parents("td").siblings(".assigned-users").find(".assign-user").val(0).trigger("liszt:updated")
-      else if document.location.pathname == "/stations"
-        location.reload()
+      ###else if document.location.pathname == "/stations"
+        location.reload()###
 
     process_status_id = $(this).parents(".process_status").data("id")
     $.ajax

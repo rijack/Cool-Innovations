@@ -36,7 +36,7 @@
           <% end %>
         </td>
       </tr>
-      <% if (user.order_line_process_statuses.length > 0) %>
+      <% if (user.not_completed_processes.length > 0) %>
           <tr>
             <td colspan="6" class="user-info hide">
               <div class="accordion-body collapse" id="collapse<%= user.id %>">
@@ -50,7 +50,7 @@
                   </tr>
                   </thead>
                   <tbody  class="user-process-lines"  data-id="<%= user.id %>">
-                  <% user.order_line_process_statuses.order("user_priority asc").each do |process| %>
+                  <% user.not_completed_processes.order("user_priority asc").each do |process| %>
                     <tr class="user-process" data-id="<%= process.id %>">
                       <td class="sort_handle"><%= process.user_priority %></td>
                       <td><%= process.order_line.part.name %></td>

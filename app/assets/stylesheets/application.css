@@ -117,10 +117,10 @@ table .order-line-info .span5 {float:left;}
 table .order-line-info .span10 {float:left;}
 table .order-line-info .span5.middle {margin:0 25px;}
 
-.station-details .span6 {
+.station-details .span12 {
     float:left;
     margin-left:30px;
-    width:550px;
+    width:1144px;
     margin-bottom: 10px;
     border:1px solid #DDD;
     -webkit-border-radius: 4px;
@@ -252,8 +252,8 @@ textarea.text.short { height: 30px;}
 .show-hide-container.in {display:block;}
 .show-hide-container:hover {text-decoration: none;}
 
-.user-process td {font-size:11px;line-height: 12px;}
-.user-process td a {font-size:11px;line-height: 11px;}
+/*.user-process td {font-size:11px;line-height: 12px;}
+.user-process td a {font-size:11px;line-height: 11px;}*/
 .table td.attached {border-top:0;}
 .relative {position: relative;}
 .floating {
