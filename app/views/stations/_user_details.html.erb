@@ -7,7 +7,7 @@
   <% if station.users.length > 0 %>
       <table class="table">
         <tbody>
-        <% station.users.order('name asc').each do |user| %>
+        <% station.users.order('station_priority asc, name asc').each do |user| %>
             <tr>
               <td>
                 <h4><%= user.name %></h4>

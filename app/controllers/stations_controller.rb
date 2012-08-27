@@ -2,7 +2,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.order(:priority).all
+    @stations = Station.order("priority asc, name asc").all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +11,7 @@ class StationsController < ApplicationController
   end
 
   def index_floor
-    @stations = Station.all
+    @stations = Station.order("priority asc, name asc").all
     if params[:id]
       @station = Station.find(params[:id])
     else
