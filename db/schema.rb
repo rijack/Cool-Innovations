@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823132619) do
+ActiveRecord::Schema.define(:version => 20120827134945) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -183,8 +183,9 @@ ActiveRecord::Schema.define(:version => 20120823132619) do
     t.string   "name"
     t.string   "location"
     t.text     "notes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "priority",   :default => 99
   end
 
   create_table "users", :force => true do |t|

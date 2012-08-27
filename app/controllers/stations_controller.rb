@@ -2,7 +2,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.all
+    @stations = Station.order(:priority).all
 
     respond_to do |format|
       format.html # index.html.erb
