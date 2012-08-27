@@ -166,5 +166,4 @@ $ ->
         field: "station_display"
         id: id
         new_value: current_status
-
     return false

@@ -36,14 +36,16 @@
           </tr>
           <tr>
               <td colspan="2" class="">
-                <% if station.users.length > 0 %>
-                    <div class="show-hide-container <% if station.station_display == "true" %>in<% end %>" id="station-<%= station.id %>">
+                <div class="show-hide-container <% if station.station_display == "true" %>in<% end %>" id="station-<%= station.id %>">
+                  <% if station.users.length > 0 %>
                       <%= render :partial => 'users/user_info',
                                  :object => station,
                                  :as => 'station',
                                  :locals => {:view => 'station'} %>
-                    </div>
-                <% end %>
+                  <% else %>
+                    <p>There are no users assigned to this station</p>
+                  <% end %>
+                </div>
               </td>
           </tr>
       <% end %>
