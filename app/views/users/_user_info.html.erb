@@ -1,5 +1,5 @@
 <div class="row station-details">
-  <% station.users.order('name asc').each do |user| %>
+  <% station.users.order('station_priority asc, name asc').each do |user| %>
       <div class="span6">
         <div class="user-info">
             <h5 class="nm">

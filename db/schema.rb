@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827134945) do
+ActiveRecord::Schema.define(:version => 20120827135906) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20120827134945) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "station_id"
+    t.integer  "station_priority",    :default => 99
   end
 
   create_table "versions", :force => true do |t|

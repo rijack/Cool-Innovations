@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       "station"
   ]
 
-  attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id
+  attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id, :station_priority
 
   validates_presence_of :email, :username
   validates_presence_of :password, :on => :create
