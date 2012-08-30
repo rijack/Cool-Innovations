@@ -31,6 +31,7 @@
 
             <% if attachment.object.new_record? %>
               <%= attachment.file_field :file %>
+              <%= attachment.check_box :show_on_floor, :label=> 'hide' %>
             <% end %>
 
           <% end %>

@@ -1,5 +1,5 @@
 class Attachment < ActiveRecord::Base
-  attr_accessible :attachable_id, :attachable_type, :file
+  attr_accessible :attachable_id, :attachable_type, :file, :show_on_floor
 
   has_attached_file :file
   validates_attachment_presence :file
