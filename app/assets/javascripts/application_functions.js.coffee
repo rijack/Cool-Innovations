@@ -34,34 +34,41 @@ $ ->
 
 
   $('.process_status .line-status .btn').live 'click', ->
-    console.log(1)
     status = $(this).attr("data-value")
-    #console.log(status)
-    $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger").removeClass("btn-primary")
-    if (status == 'completed')
-      $(this).addClass("btn-success")
-    else if (status == 'in progress')
-      $(this).addClass("btn-info")
-    else if (status == 'assigned')
-      $(this).addClass("btn-danger")
-    else if (status == 'verified')
-      $(this).addClass("btn-primary")
-      ###if document.location.pathname == "/stations"
-        location.reload()###
-    else
-      $(this).addClass("btn-warning")
-      if document.location.pathname == "/orders"
-        $(this).parents("td").siblings(".assigned-users").find(".assign-user").val(0).trigger("liszt:updated")
-      ###else if document.location.pathname == "/stations"
-        location.reload()###
+    change_status = true
 
-    process_status_id = $(this).parents(".process_status").data("id")
-    $.ajax
-      type: 'POST'
-      url: "/order_lines/set_process_status"
-      data:
-        status: status
-        order_line_process_status_id: process_status_id
+    if document.location.pathname.substring(0, 7) == "/orders"
+      current_user = $(this).parents("td").siblings(".assigned-users").find(".assign-user").val()
+      if current_user == "0"
+        change_status = false
+        $(this).removeClass("active")
+        alert("Can't do that!")
+      else
+        change_status = true
+
+    if change_status == true
+      $(this).siblings().removeClass("btn-success").removeClass("btn-info").removeClass("btn-warning").removeClass("btn-danger").removeClass("btn-primary")
+      if (status == 'completed')
+        $(this).addClass("btn-success")
+      else if (status == 'in progress')
+        $(this).addClass("btn-info")
+      else if (status == 'assigned')
+        $(this).addClass("btn-danger")
+      else if (status == 'verified')
+        $(this).addClass("btn-primary")
+      else
+        $(this).addClass("btn-warning")
+        if document.location.pathname.substring(0, 7) == "/orders"
+          $(this).parents("td").siblings(".assigned-users").find(".assign-user").val(0).trigger("liszt:updated")
+
+      process_status_id = $(this).parents(".process_status").data("id")
+
+      $.ajax
+        type: 'POST'
+        url: "/order_lines/set_process_status"
+        data:
+          status: status
+          order_line_process_status_id: process_status_id
 
 
   $('.accordion-toggle').on "click", ->
