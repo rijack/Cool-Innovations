@@ -48,7 +48,7 @@
 .navbar-fixed-top {position: relative !important;}
 
 .navbar .nav > li > a {font-size: 16px;}
-
+.fixed {white-space: nowrap;}
 .box {
     position: relative;
     margin: 15px 0 0 0;
@@ -58,4 +58,8 @@
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+
+.floor-buttons {
+    padding:10px 15px !important;
 }

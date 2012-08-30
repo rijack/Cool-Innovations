@@ -1,4 +1,4 @@
-<div class="span12 box">
+<div class="span10 box">
    <% if params[:id] %>
       <h3><%= station.name %></h3>
    <% else %>
@@ -54,7 +54,7 @@
                                               <% extra_class = extra_class + " btn-success" %>
                                           <% end %>
                                       <% end %>
-                                      <button class="btn btn-small <%= extra_class %>" data-value="<%= order_line_status %>"><%= order_line_status[0].upcase %></button>
+                                      <button class="btn floor-buttons <%= extra_class %>" data-value="<%= order_line_status %>"><%= order_line_status[0].upcase %></button>
                                   <% end %>
                                 </div>
                               </td>
@@ -72,7 +72,7 @@
         </tbody>
       </table>
   <% else %>
-    <p>There are no users assigned to this work staion</p>
+    <p>There are no users assigned to this work station</p>
   <% end %>
 </div>
 
