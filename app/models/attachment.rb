@@ -21,4 +21,8 @@ class Attachment < ActiveRecord::Base
   def size
     file_file_size
   end 
+
+  def for_floor
+    where(:show_on_floor => true)
+  end
 end
