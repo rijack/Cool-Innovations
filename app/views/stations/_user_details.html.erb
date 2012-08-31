@@ -31,7 +31,7 @@
                               <td><%= process.order_line.part.name %></td>
                               <td><%= process.order_line.quantity %></td>
                               <td>
-                                <% process.order_line.part.attachments.each do |attachment| %>
+                                <% process.order_line.part.attachments.for_floor.each do |attachment| %>
                                     <div>
                                       <%= link_to attachment.name, attachment.file.url , :target => "_blank" %>
                                     </div>
