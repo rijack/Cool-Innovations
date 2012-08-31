@@ -1,4 +1,6 @@
 class PartsController < ApplicationController
+  before_filter :clean_attributes
+
   # GET /parts
   # GET /parts.json
   def index
@@ -53,15 +55,6 @@ class PartsController < ApplicationController
   # POST /parts
   # POST /parts.json
   def create
-    # clean up attachment attributes
-    if params[:part][:attachments_attributes].present?
-      attributes = {}
-      params[:part][:attachments_attributes].each do |k, v|
-        attributes[k] = v if v[:file].present?
-      end
-      params[:part][:attachments_attributes] = attributes
-    end
-
     @part = Part.new(params[:part])
 
     respond_to do |format|
@@ -69,7 +62,6 @@ class PartsController < ApplicationController
         format.html { redirect_to @part, notice: 'Part was successfully created.' }
         format.json { render json: @part, status: :created, location: @part }
       else
-        raise @part.errors.inspect
         format.html { render action: "new" }
         format.json { render json: @part.errors, status: :unprocessable_entity }
       end
@@ -141,5 +133,20 @@ class PartsController < ApplicationController
   def accordion_details
     @part = Part.find(params[:id])
     render :partial => 'parts/accordion_details', :locals => {:part => @part }
+  end
+
+  protected
+
+  def clean_attributes
+    return if params[:part].blank?
+
+    # clean up attachment attributes
+    if params[:part][:attachments_attributes].present?
+      attributes = {}
+      params[:part][:attachments_attributes].each do |k, v|
+        attributes[k] = v if v[:file].present? || v[:id].present?
+      end
+      params[:part][:attachments_attributes] = attributes
+    end
   end
 end

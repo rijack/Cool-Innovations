@@ -19,6 +19,7 @@
             <% unless attachment.object.new_record? %>
               <div>
                 <%= link_to attachment.object.name, attachment.object.file.url, :target => "_blank" %>
+                <%= attachment.check_box :show_on_floor, :label=> 'hide' %>
 
                 <%= attachment.label :_destroy %>
                 <%= attachment.check_box :_destroy %>
