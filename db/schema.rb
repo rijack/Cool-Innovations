@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830181938) do
+ActiveRecord::Schema.define(:version => 20120831151646) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20120830181938) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.string   "show_on_floor",     :default => "true"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "hide_on_floor",     :default => false
   end
 
   add_index "attachments", ["attachable_type", "attachable_id"], :name => "index_attachments_on_attachable_type_and_attachable_id"
