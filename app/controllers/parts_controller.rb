@@ -53,6 +53,15 @@ class PartsController < ApplicationController
   # POST /parts
   # POST /parts.json
   def create
+    # clean up attachment attributes
+    if params[:part][:attachments_attributes].present?
+      attributes = {}
+      params[:part][:attachments_attributes].each do |k, v|
+        attributes[k] = v if v[:file].present?
+      end
+      params[:part][:attachments_attributes] = attributes
+    end
+
     @part = Part.new(params[:part])
 
     respond_to do |format|
