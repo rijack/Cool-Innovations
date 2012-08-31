@@ -69,6 +69,7 @@ class PartsController < ApplicationController
         format.html { redirect_to @part, notice: 'Part was successfully created.' }
         format.json { render json: @part, status: :created, location: @part }
       else
+        raise @part.errors.inspect
         format.html { render action: "new" }
         format.json { render json: @part.errors, status: :unprocessable_entity }
       end
