@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user.editor = current_user
 
     respond_to do |format|
       if @user.save
@@ -67,6 +68,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @user.editor = current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -83,6 +85,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    @user.editor = current_user
     @user.destroy
 
     respond_to do |format|
@@ -93,6 +96,7 @@ class UsersController < ApplicationController
 
   def update_user
     @user = User.find(params[:id])
+    @user.editor = current_user
     @user[params[:field]] = params[:new_value]
     @user.save
   end
@@ -102,6 +106,7 @@ class UsersController < ApplicationController
     @curr_id = params[:id]
 
     @user = User.find(params[:id])
+    @user.editor = current_user
 
     params[:process_line_ids].each_with_index do |id, i|
       status = @user.order_line_process_statuses.where(:id => id).first

@@ -1,18 +1,14 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  USER_TYPES = [
-      "admin",
-      "manager",
-      "user",
-      "station"
-  ]
 
   attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id, :station_priority, :station_display
+  attr_accessor :editor
 
   validates_presence_of :email, :username
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :email, :username, :case_sensitive => false
+  validate :validate_user_type
 
   belongs_to :station
   has_many :comments
@@ -51,6 +47,24 @@ class User < ActiveRecord::Base
       "station"
     else
       "application"
+    end
+  end
+
+  def allowed_user_types
+    types = [
+      "manager",
+      "user",
+      "station"
+    ]
+
+    types.unshift "admin" if self.admin?
+
+    types
+  end
+
+  def validate_user_type
+    if !editor || !editor.allowed_user_types.include?(status)
+      errors.add(:status, "you cannot update to this status")
     end
   end
 end
