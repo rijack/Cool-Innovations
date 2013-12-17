@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   def allowed_user_types
     types = [
       "manager",
+      "asst manager",
       "user",
       "station"
     ]
