@@ -42,6 +42,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'thin'
+end
+
+group :development do
+  gem 'rack-mini-profiler'
 end
 
 # To use ActiveModel has_secure_password

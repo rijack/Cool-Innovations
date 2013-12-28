@@ -32,8 +32,8 @@ $ ->
     if (isDuplicate)
       lines_length = $(this).children(".nested-fields").length
       if (lines_length > 1)
-        copy_from = $(this).children(".nested-fields:nth-child("+lines_length+")")
-        copy_to = $(this).children(".nested-fields:nth-child("+(lines_length+1)+")")
+        copy_from = $(this).children(".nested-fields").get(lines_length - 2)
+        copy_to = $(this).children(".nested-fields").get(lines_length - 1)
 
         $(copy_from).find("input, select, textarea").each ->
           curr_id = $(this).attr('id')
@@ -46,7 +46,7 @@ $ ->
             else
               test_id = last_two + "_" + last
 
-            copy_to.find('[id$='+test_id+']').val(curr_value)
+            $(copy_to).find('[id$='+test_id+']').val(curr_value)
             $("select").trigger("liszt:updated")
     isDuplicate = false
 

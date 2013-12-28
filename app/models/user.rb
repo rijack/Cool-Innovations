@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   #has_attached_file :avatar
 
   def self.users_only
-    where { status == "user" }
+    where{ status == "user" }
     .order("name asc")
   end
 

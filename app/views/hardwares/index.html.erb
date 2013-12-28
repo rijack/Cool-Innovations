@@ -4,9 +4,6 @@
 <%= link_to 'View Categories', hardware_categories_path, :class => 'btn pull-right mrx mbxx'%>
 <%= link_to 'New Hardware', "/hardwares/new?no_layout=1", :class => 'btn btn-primary pull-right mrx modal-trigger'%>
 
-
-
-
 <% if params.fetch(:hardware, {})[:query].present? %>
     <div class="row">
       <div class="span9 mbxx">
@@ -35,8 +32,9 @@
             </tr>
             <% hardware_category_name = hardware.hardware_category.name %>
           <% end %>
-          <tr data-id="<%= hardware.hardware_category.id %>" <% if (hardware.order_lines.pending.length == 0) %>class="collapsible no-orders"<% end %>>
-            <% if (hardware.order_lines.pending.length > 0) %>
+          <% any_pending = hardware.order_lines.pending.any? %>
+          <tr data-id="<%= hardware.hardware_category.id %>" <% if !any_pending %>class="collapsible no-orders"<% end %>>
+            <% if any_pending %>
                 <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
             <% else %>
                 <td class="fixed"><%= hardware.name %></td>
@@ -56,7 +54,7 @@
               <% end %>
             </td>
           </tr>
-          <% if (hardware.order_lines.not_shipped.length > 0) %>
+          <% if hardware.order_lines.not_shipped.any? %>
               <tr>
                 <td colspan="7" class="order-line-info hide">
                   <div class="accordion-body collapse" id="collapse<%= hardware.id %>" data-headers="/hardwares/<%= hardware.id %>/accordion_details">
@@ -72,7 +70,3 @@
   </tbody>
 </table>
 <%= will_paginate @collection, :renderer => BootstrapPagination::Rails %>
-
-
-
-
