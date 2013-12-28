@@ -68,10 +68,10 @@
   <h5>Additional Info</h5>
   <table class="table table-bordered table-condensed table-striped">
     <% if order_line.order.attachment? or order_line.part.attachments.present? or order_line.part.description? or order_line.order.client.payment_instructions? or order_line.order.client.shipping_instructions? or order_line.order.client.special_instructions? %>
-        <% if order_line.order.attachment? %>
+        <% order_line.order.attachments.each do |attachment| %>
             <tr>
               <td class="span2"><strong>Order Attachment:</strong></td>
-              <td><%= link_to order_line.order.attachment_file_name, order_line.order.attachment.url, :target => "_blank" %></td>
+              <td><%= link_to attachment.name, attachment.file.url , :target => "_blank" %></td>
             </tr>
         <% end %>
         <% if order_line.part.attachments.present? %>

@@ -1,0 +1,16 @@
+<div class="nested-fields">
+  <% Rails.logger.info f.object.inspect %>
+  <% if f.object.persisted? %>
+    <div class="control-group file optional">
+    <label class="file optional control-label">Attachment</label>
+    <div class="controls">
+      <%= link_to f.object.name, f.object.file.url , :target => "_blank" %>
+      <%= link_to_remove_association f, :class => "btn btn-small btn-danger", :title => "Remove Line" do%>
+        <i class="icon-trash" alt="edit"></i>
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+    <%= f.input :file, :as => :file, :label => "Attachment" %>
+  <% end %>
+</div>

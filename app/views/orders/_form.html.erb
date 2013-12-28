@@ -6,7 +6,20 @@
     <%= f.input :purchase_order %>
     <%= f.association :client, :label => "Customer", :collection => Client.order("LOWER(name)").all,
       :input_html => {:"data-placeholder" => "Choose a customer"} %>
-    <%= f.input :attachment, :as => :file %>
+    <div id="file_attachments">
+      <%= f.simple_fields_for :attachments do |attachment_form| %>
+        <%= render 'attachment_fields', :f => attachment_form %>
+      <% end %>
+    </div>
+    <div class="control-group file optional">
+      <label class="file optional control-label">File</label>
+      <div class="controls">
+        <%= link_to_add_association 'Add Attachment', f, :attachments, :class => 'btn',
+          :"data-association-insertion-node" => '#file_attachments',
+          :"data-association-insertion-method" => "append"
+        %>
+      </div>
+    </div>
     <table class="table table-condensed">
       <thead>
           <tr>

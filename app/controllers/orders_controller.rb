@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @order.attachments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -64,6 +65,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @order.attachments.build
   end
 
   # POST /orders
@@ -82,6 +84,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to redirect_path, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
+        @order.attachments.build
         Rails.logger.info @order.errors.inspect
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
