@@ -49,7 +49,9 @@ CoolInnovations::Application.configure do
   config.assets.precompile += %w( print.css )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :sendmail
 
   # Enable threaded mode
   # config.threadsafe!
@@ -64,4 +66,10 @@ CoolInnovations::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.middleware.use ExceptionNotification::Rack, email: {
+    email_prefix: "[Cool Innovation Error] ",
+    sender_address: %{"notifier" <notifier@example.com>},
+    exception_recipients: %w{adnan.ali@gmail.com ijack.ron@gmail.com}
+  }
 end
