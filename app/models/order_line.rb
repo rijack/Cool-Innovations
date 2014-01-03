@@ -17,7 +17,9 @@ class OrderLine < ActiveRecord::Base
       "a-green",
       "b-red",
       "c-yellow",
-      "d-white"
+      "d-orange",
+      "e-purple",
+      "f-white"
   ]
 
   attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :price, :setup_cost, :shipping_method_id, :line_number, :tracking_number, :_destroy

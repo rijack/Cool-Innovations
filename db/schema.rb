@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131228012117) do
+ActiveRecord::Schema.define(:version => 20131231003655) do
 
   create_table "attachments", :force => true do |t|
     t.string   "attachable_type"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20131228012117) do
     t.date     "actual_ship_date"
     t.integer  "line_number"
     t.string   "tracking_number"
-    t.string   "color",                                            :default => "d-white"
+    t.string   "color",                                            :default => "f-white"
     t.integer  "setup_cost"
   end
 

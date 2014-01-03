@@ -22,8 +22,16 @@
         <% @order_lines.each do |order_line| %>
             <tr class="<%= order_line.color %>">
               <td><%= order_line.order.purchase_order %></td>
-              <td><%= order_line.order.client.name %></td>
-              <td><%= order_line.part.name.upcase %></td>
+              <td>
+                <% if order_line.order.client %>
+                    <%= order_line.order.client.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if order_line.part %>
+                    <%= order_line.part.name.upcase %>
+                <% end %>
+              </td>
               <td><%= number_with_delimiter(order_line.quantity) %></td>
               <td><%= display_date(order_line.ship_date) %></td>
             </tr>
