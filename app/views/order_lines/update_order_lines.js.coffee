@@ -1,2 +1,5 @@
 if ("<%= @changedField%>" == "status")
-  document.location = document.location + "?shipped=true"
+  sep = "?"
+  if document.location.toString().indexOf('?') != -1
+    sep = "&"
+  document.location = document.location + sep + "shipped=true"
