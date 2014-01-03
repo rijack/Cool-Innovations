@@ -105,6 +105,7 @@ class OrderLinesController < ApplicationController
 
   def update_order_lines
     @changedField = params[:field]
+    params[:ids] ||= []
     params[:ids].each do |id|
       @order_line = OrderLine.find(id)
       @order_line[params[:field]] = params[:value]
