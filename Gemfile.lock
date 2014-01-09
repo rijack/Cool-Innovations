@@ -32,6 +32,7 @@ GEM
     ancestry (1.3.0)
       activerecord (>= 2.3.14)
     arel (3.0.2)
+    awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.0)
     builder (3.0.0)
@@ -224,6 +225,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  awesome_print
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (= 2.0.0)
   capistrano (~> 3.0.1)

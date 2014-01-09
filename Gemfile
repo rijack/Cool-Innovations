@@ -44,6 +44,7 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'thin'
+  gem 'awesome_print'
 end
 
 group :development do
