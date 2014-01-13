@@ -94,7 +94,7 @@ class OrderLine < ActiveRecord::Base
     order_lines = order_lines.where(options[:search]) if options[:search].present?
 
     if options[:sort] =~ /^color/
-      options[:sort] = "color ASC, ship_date DESC, clients.name ASC"
+      options[:sort] = "color ASC, ship_date ASC, clients.name ASC"
     end
 
     order_lines = order_lines.order(options[:sort]).page(options[:page] || 1).per_page(options[:per_page] || 10)
