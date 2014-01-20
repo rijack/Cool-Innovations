@@ -1,14 +1,6 @@
 <% @is_seen = false %>
 <div class="row">
-  <div class="span4">
-    <h2>Comments <%= link_to 'New Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h2>
-    <% if @comments.length > 0 %>
-        <%= nested_comments @comments %>
-    <% else %>
-        There are no comments
-    <% end %>
-  </div>
-  <div class="span8 scroll">
+  <div class="span9 scroll">
     <h2>Upcoming Orders</h2>
     <table class="table table-bordered table-condensed">
       <thead>
@@ -44,7 +36,14 @@
     </table>
     <%= link_to 'View All', orders_path%>
   </div>
-
+  <div class="span3">
+    <h3>Comments <%= link_to 'Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h3>
+    <% if @comments.length > 0 %>
+        <%= nested_comments @comments %>
+    <% else %>
+        There are no comments
+    <% end %>
+  </div>
 </div>
 
 
