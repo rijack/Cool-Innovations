@@ -22,7 +22,7 @@ class OrderLine < ActiveRecord::Base
       "f-white"
   ]
 
-  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :price, :setup_cost, :shipping_method_id, :line_number, :tracking_number, :_destroy
+  attr_accessible :due_date, :ship_date, :order_id, :part_id, :quantity, :comment, :price, :setup_cost, :shipping_method_id, :line_number, :breakdown, :tracking_number, :_destroy
 
   validates_presence_of :due_date, :part_id, :quantity
 

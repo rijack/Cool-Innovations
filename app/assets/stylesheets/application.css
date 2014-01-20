@@ -170,6 +170,9 @@ table .order-line-info .span5.middle {margin:0 25px;}
 .table td.editable.qty input {width:30px;}
 .table td.editable.qty {width:45px;}
 
+.table td.editable.pickuptime input {width:50px;}
+.table td.editable.pickuptime {width:75px;}
+
 .table td.actions {width:115px;}
 .table td.actions.small {width:70px;}
 

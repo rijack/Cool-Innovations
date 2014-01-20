@@ -90,6 +90,7 @@ $ ->
 
   currentEditable = ""
   $('.editable').live 'click', ->
+
     if (currentEditable == "")
       substrLength = $(this).attr('data-substr')
       tag = $(this)
@@ -105,7 +106,7 @@ $ ->
       currentEditable = true
       inputType = "input"
 
-      if (editableField == "quantity")
+      if (editableField == "quantity" || editableField == "pickuptime")
         $(this).html("<input type='text' id='"+$(this).attr('id')+"' value='"+oldValue+"'/>");
       else
         $(this).html("<textarea id='"+$(this).attr('id')+"'>"+oldValue+"</textarea>");
@@ -115,6 +116,7 @@ $ ->
       $("#"+currId+" "+inputType).on 'blur', ->
         newValue = $("#"+currId+" "+inputType).val()
         if (newValue != oldValue)
+          console.log(editableField)
           $.ajax
             type: 'POST'
             url: postUrl

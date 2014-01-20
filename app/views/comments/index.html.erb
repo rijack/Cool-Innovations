@@ -1,6 +1,6 @@
 <% @is_seen = false %>
 <div class="row">
-  <div class="span6">
+  <div class="span4">
     <h2>Comments <%= link_to 'New Sample', "/comments/new?sample=true&no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%> <%= link_to 'New Comment', "/comments/new?no_layout=1", :class => 'btn btn-small btn-primary pull-right mrx mbxx modal-trigger'%></h2>
     <% if @comments.length > 0 %>
         <%= nested_comments @comments %>
@@ -8,7 +8,7 @@
         There are no comments
     <% end %>
   </div>
-  <div class="span6 scroll">
+  <div class="span8 scroll">
     <h2>Upcoming Orders</h2>
     <table class="table table-bordered table-condensed">
       <thead>
@@ -16,7 +16,9 @@
         <th>Customer</th>
         <th>Part #</th>
         <th>Qty</th>
-        <th>Ship Date</th>
+        <th>Comment</th>
+        <th>Breakdown</th>
+        <th>PU Time</th>
       </thead>
       <tbody>
         <% @order_lines.each do |order_line| %>
@@ -33,7 +35,9 @@
                 <% end %>
               </td>
               <td><%= number_with_delimiter(order_line.quantity) %></td>
-              <td><%= display_date(order_line.ship_date) %></td>
+              <td class="editable medium" data-headers="/order_lines/update_order_line"  id="comment-<%= order_line.id%>" data-content="<%= order_line.comment %>"><%= order_line.comment %></td>
+              <td class="editable medium" data-headers="/order_lines/update_order_line"  id="breakdown-<%= order_line.id%>" data-content="<%= order_line.breakdown %>"><%= order_line.breakdown %></td>
+              <td class="editable pickuptime" data-headers="/order_lines/update_order_line" id="pickuptime-<%= order_line.id%>"><%= order_line.pickuptime %></td>
             </tr>
         <% end %>
       </tbody>
