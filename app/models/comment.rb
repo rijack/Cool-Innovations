@@ -9,5 +9,11 @@ class Comment < ActiveRecord::Base
   accepts_nested_attributes_for :sample_lines
 
   has_ancestry
+
+  def self.homeOrders
+    order_lines = OrderLine.joins(:order => :client).includes(:order => :client).includes(:part).joins(:part)
+    order_lines = order_lines.where{(status != "shipped") & (color != "f-white") & (color != "white") & (color != "d-white")}
+    order_lines = order_lines.order('color ASC, ship_date ASC, clients.name ASC')
+  end
 end
 

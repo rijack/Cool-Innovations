@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.order("created_at desc").where(:ancestry => nil).page(params[:page] || 1).per_page(params[:per_page] || 30)
-    @order_lines = OrderLine.where{(status != "shipped") & (color != "f-white") & (color != "white") & (color != "d-white") }.order("color asc")
-
+    # @order_lines = OrderLine.where{(status != "shipped") & (color != "f-white") & (color != "white") & (color != "d-white") }.order("color asc, ship_date asc")
+    @order_lines = Comment.homeOrders
     if @comments.length > 0
       last_id = @comments[0].id
     end
