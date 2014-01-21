@@ -4,8 +4,8 @@
     <h2>Upcoming Orders</h2>
     <table class="table table-bordered table-condensed">
       <thead>
-        <th>P/O #</th>
         <th>Customer</th>
+        <th>P/O #</th>
         <th>Part #</th>
         <th>Qty</th>
         <th>Comment</th>
@@ -15,12 +15,12 @@
       <tbody>
         <% @order_lines.each do |order_line| %>
             <tr class="<%= order_line.color %>">
-              <td><%= order_line.order.purchase_order %></td>
               <td>
                 <% if order_line.order.client %>
                     <%= order_line.order.client.name %>
                 <% end %>
               </td>
+              <td><%= order_line.order.purchase_order %></td>
               <td>
                 <% if order_line.part %>
                     <%= order_line.part.name.upcase %>
