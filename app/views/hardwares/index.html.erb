@@ -15,7 +15,7 @@
 <table class="table table-bordered">
   <thead>
       <tr>
-        <th>Name</th>
+        <th class="fixed">Name</th>
         <th>Total Pending</th>
         <th>Inventory</th>
         <th>Notes</th>
@@ -35,9 +35,9 @@
           <% any_pending = hardware.order_lines.pending.any? %>
           <tr data-id="<%= hardware.hardware_category.id %>" <% if !any_pending %>class="collapsible no-orders"<% end %>>
             <% if any_pending %>
-                <td class="fixed"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
+                <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= hardware.id %>"><i class="icon-plus"></i><%= hardware.name %></a></td>
             <% else %>
-                <td class="fixed"><%= hardware.name %></td>
+                <td><%= hardware.name %></td>
             <% end %>
             <td><%= number_with_delimiter(hardware.required_count(:shipped => false)) %></td>
             <td class="editable large2" data-headers="/hardwares/update_hardware"  id="pricing_history-<%= hardware.id %>"><%= hardware.pricing_history %></td>
