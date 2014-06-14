@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def not_completed_processes
-    self.order_line_process_statuses.where {(status != "verified") }.order('user_priority asc')
+    self.order_line_process_statuses.joins(:order_line).where {(order_line_process_statuses.status != "verified")}.where{order_lines.status != "shipped" }.order('user_priority asc')
   end
 
   def admin?
