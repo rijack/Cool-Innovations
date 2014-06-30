@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :needs_not_user
+  before_filter :needs_admin
   # GET /users
   # GET /users.json
   def index

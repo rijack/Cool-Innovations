@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :needs_manager_or_admin, only: [:index]
   # GET /orders
   # GET /orders.json
   def index

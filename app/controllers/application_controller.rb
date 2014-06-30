@@ -48,6 +48,10 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
+  def manager_or_admin?
+    current_user && current_user.manager_or_admin?
+  end
+
   def user_not_user?
     current_user && current_user.not_user?
   end
@@ -71,6 +75,14 @@ class ApplicationController < ActionController::Base
   def needs_not_user
     if !user_not_user?
       redirect_to login_url, :notice => "you need to be logged in as manager"
+    else
+      session_timeout
+    end
+  end
+
+  def needs_manager_or_admin
+    if !manager_or_admin?
+      redirect_to login_url, :notice => "you need to be logged in as manager or admin"
     else
       session_timeout
     end

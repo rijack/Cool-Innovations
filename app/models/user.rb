@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
     status == "admin"
   end
 
+  def manager?
+    status == "manager"
+  end
+
+  def manager_or_admin?
+    admin? || manager?
+  end
+
   def not_user?
     status != "user"
   end
@@ -53,6 +61,7 @@ class User < ActiveRecord::Base
   def allowed_user_types
     types = [
       "manager",
+      "manager training",
       "asst manager",
       "user",
       "station"

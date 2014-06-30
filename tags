@@ -376,12 +376,16 @@ index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersControl
 index_floor	app/controllers/stations_controller.rb	/^  def index_floor$/;"	f	class:StationsController
 layout	app/models/user.rb	/^  def layout$/;"	f	class:User
 logged_in?	app/controllers/application_controller.rb	/^  def logged_in?$/;"	f	class:ApplicationController
+manager?	app/models/user.rb	/^  def manager?$/;"	f	class:User
+manager_or_admin?	app/controllers/application_controller.rb	/^  def manager_or_admin?$/;"	f	class:ApplicationController
+manager_or_admin?	app/models/user.rb	/^  def manager_or_admin?$/;"	f	class:User
 method	vendor/assets/javascripts/date.js	/^var today=Date.today();var method=null;var expression=!!(this.days!=null||this.orient||this.operator);if(expression){var gap,mod,orient;orient=((this.orient=="past"||this.operator=="subtract")?-1:1);if(this.weekday){this.unit="day";gap=(Date.getDayNumberFromName(this.weekday)-today.getDay());mod=7;this.days=gap?((gap+(orient*mod))%mod):(orient*mod);}$/;"	v
 mf	vendor/assets/javascripts/date.js	/^var mf=function(n){return function(){if(this._is){this._is=false;return this.getMonth()===n;}$/;"	f
 name	app/models/attachment.rb	/^  def name$/;"	f	class:Attachment
 name	app/models/part.rb	/^  def name$/;"	f	class:Part
 needs_admin	app/controllers/application_controller.rb	/^  def needs_admin$/;"	f	class:ApplicationController
 needs_login	app/controllers/application_controller.rb	/^  def needs_login$/;"	f	class:ApplicationController
+needs_manager_or_admin	app/controllers/application_controller.rb	/^  def needs_manager_or_admin$/;"	f	class:ApplicationController
 needs_not_user	app/controllers/application_controller.rb	/^  def needs_not_user$/;"	f	class:ApplicationController
 nested_comments	app/helpers/comments_helper.rb	/^  def nested_comments(comments)$/;"	f	class:CommentsHelper
 new	app/controllers/clients_controller.rb	/^  def new$/;"	f	class:ClientsController
