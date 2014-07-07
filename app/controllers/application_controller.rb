@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
   def manager_or_admin?
     current_user && current_user.manager_or_admin?
   end
+  helper_method :manager_or_admin?
 
   def user_not_user?
     current_user && current_user.not_user?
