@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-
   attr_accessible :email, :password, :username, :status, :name, :avatar, :station_id, :station_priority, :station_display
   attr_accessor :editor
 
@@ -19,11 +18,15 @@ class User < ActiveRecord::Base
 
   def self.users_only
     where{ status == "user" }
-    .order("name asc")
+      .order("name asc")
   end
 
   def not_completed_processes
-    self.order_line_process_statuses.joins(:order_line).where {(order_line_process_statuses.status != "verified")}.where{order_lines.status != "shipped" }.order('user_priority asc')
+    self.order_line_process_statuses
+      .joins(:order_line)
+      .where {(order_line_process_statuses.status != "verified")}
+      .where{order_lines.status != "shipped" }
+      .order('user_priority asc')
   end
 
   def admin?

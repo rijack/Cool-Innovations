@@ -2,8 +2,12 @@
   <% if @process_order_line_priority %>
       <td class="fixed sort_handle"><%= order_line_counter + 1%></td>
   <% end %>
-  <td><%= order_line.order.purchase_order %></td>
-  <td><% if order_line.order.client %><%= order_line.order.client.name %><% end %></td>
+  <% if order_line.order.nil? %>
+    <td colspan="2">Order not found.</td>
+  <% else %>
+    <td><%= order_line.order.purchase_order %></td>
+    <td><% if order_line.order.client %><%= order_line.order.client.name %><% end %></td>
+  <% end %>
   <td><% if order_line.part %><%= order_line.part.name.upcase %><% end %></td>
   <td><%= number_with_delimiter(order_line.quantity) %></td>
   <% if view == 'hardware' %>
