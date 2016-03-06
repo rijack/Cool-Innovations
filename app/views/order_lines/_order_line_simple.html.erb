@@ -16,7 +16,7 @@
   <td><%= order_line.ship_date %></td>
   <td><%= order_line.due_date %></td>
   <% if view == "part_process" %>
-    <% order_line_process_status = order_line.order_line_process_statuses.where(:part_process_id => part_process.id).first %>
+    <% order_line_process_status = order_line.order_line_process_statuses.detect{|x| x.part_process_id == part_process.id} %>
     <td><%= order_line_process_status.status %></td>
     <td data-id="<%= order_line_process_status.id%>">
       <select class="assign-user span3">

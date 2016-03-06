@@ -12,13 +12,11 @@ class PartProcess < ActiveRecord::Base
   has_many :order_lines, :through => :order_line_process_statuses
 
   def order_lines_with_pending
-    order_lines.pending.where{(order_line_process_statuses.status == "in progress") | (order_line_process_statuses.status == "pending")| (order_line_process_statuses.status == "assigned")}.order("order_line_process_statuses.order_line_priority asc").order("due_date asc")
+    order_lines.includes(:part, :order_line_process_statuses, {:order => [:client]}).pending.where{(order_line_process_statuses.status == "in progress") | (order_line_process_statuses.status == "pending")| (order_line_process_statuses.status == "assigned")}.order("order_line_process_statuses.order_line_priority asc").order("due_date asc")
   end
 
   def order_lines_manual
-    order_lines.any? do |order_line|
-      order_line.order_line_process_statuses.where(:part_process_id => self.id).first.order_line_priority != 10000
-    end
+    order_lines.includes(:order_line_process_statuses).where("order_line_process_statuses.order_line_priority != 10000").any?
   end
 
   def self.order_by_priority
